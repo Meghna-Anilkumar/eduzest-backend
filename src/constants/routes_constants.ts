@@ -1,5 +1,6 @@
 export const USER_ROUTES={
-    SIGN_UP:'/signup',
+    SIGNUP:'/signup',
     OTP_VERIFY:'/otp-verification',
-    USER_HOME:'/'
+    USER_HOME:'/',
+    LOGIN:'/login'
 }

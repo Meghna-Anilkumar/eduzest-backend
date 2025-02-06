@@ -8,6 +8,8 @@ import { CustomError } from '../utils/CustomError';
 import { generateOTP } from '../utils/OTPGenerator';
 import { sendEmail } from '../utils/nodemailer';
 import { generateToken, generateRefreshToken } from '../utils/jwt';
+import { validateName, validateEmail, validatePassword } from '../utils/validator'
+import { comparePassword } from '../utils/bcrypt';
 
 export class UserService implements IUserService {
     constructor(
@@ -20,70 +22,54 @@ export class UserService implements IUserService {
 
 
     //sigup user
-    async signupUser(data: Partial<UserDoc>): Promise<IResponse> {
+    async signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse> {
         try {
-            if (!data.name?.trim()) {
-                throw new CustomError('Name is required', 400, 'name');
-            }
-            if (!data.password?.trim()) {
-                throw new CustomError('Password is required', 400, 'password');
-            }
+            const { name, email, password, confirmPassword } = data;
+            console.log(confirmPassword)
+            if (!name?.trim()) throw new CustomError('Name is required', 400, 'name');
+            if (!email) throw new CustomError("Email is required", 400, "email");
+            if (!password?.trim()) throw new CustomError('Password is required', 400, 'password');
+            if (!confirmPassword?.trim()) throw new CustomError('Confirm Password is required', 400, 'confirmPassword');
 
-            const { name, email, password } = data;
+            validateName(name);
+            validateEmail(email);
+            validatePassword(password);
 
-            if (!email) {
-                throw new CustomError("Email is required", 400, "email");
+            if (password !== confirmPassword) {
+                throw new CustomError('Passwords do not match', 400, 'confirmPassword');
             }
 
             const existingUser = await this._userRepository.findByQuery({ email });
             if (existingUser?.isVerified) {
-                throw new CustomError('Email already exists', 400, 'email');
+                return {
+                    success: false,
+                    message: 'Email already exists',
+                    data: { email: 'Email already exists' }
+                };
             }
 
             const hashedPassword = await hashPassword(password.trim());
-            let user;
 
+            let user;
             if (existingUser) {
                 user = await this._userRepository.update(
                     { email },
-                    {
-                        name,
-                        password: hashedPassword,
-                        isVerified: false
-                    }
+                    { name, password: hashedPassword, isVerified: false }
                 );
             } else {
                 user = await this._userRepository.create({
-                    name,
-                    email,
-                    password: hashedPassword,
-                    isVerified: false,
+                    name, email, password: hashedPassword, isVerified: false,
                 });
             }
 
             const OTP = generateOTP();
             const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
-
             const existingOtp = await this._otpRepository.findByQuery({ email });
 
             if (existingOtp) {
-                await this._otpRepository.update(
-                    { email },
-                    {
-                        otp: OTP,
-                        expiresAt: otpExpiration,
-                    }
-                );
+                await this._otpRepository.update({ email }, { otp: OTP, expiresAt: otpExpiration });
             } else {
-                await this._otpRepository.create({
-                    email,
-                    otp: OTP,
-                    userData: {
-                        name,
-                        password: hashedPassword,
-                    },
-                    expiresAt: otpExpiration,
-                });
+                await this._otpRepository.create({ email, otp: OTP, expiresAt: otpExpiration });
             }
 
             console.log({ email, OTP });
@@ -97,40 +83,44 @@ export class UserService implements IUserService {
             };
         } catch (error) {
             console.error('Signup Error:', error);
-            throw error;
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    data: error.field ? { [error.field]: error.message } : undefined,
+                };
+            }
+            return { success: false, message: "An unexpected error occurred." };
         }
     }
 
 
+
     //verify user
-    async verifyOtp({ email, otp }: { email: string; otp: Number }): Promise<IResponse> {
+    async verifyOtp({ email, otp }: { email: string; otp: number }): Promise<IResponse> {
         try {
             const otpData = await this._otpRepository.findByQuery({ email });
+
             if (!otpData) {
                 return {
                     success: false,
                     message: "No OTP found for this email.",
                 };
             }
+
+            const currentTime = new Date();
+            if (currentTime > otpData.expiresAt) {
+                await this._otpRepository.update({ email }, { otp: null });
+                return {
+                    success: false,
+                    message: "OTP expired. Please request a new one.",
+                };
+            }
+
             if (otpData.otp !== otp) {
                 return {
                     success: false,
                     message: "Invalid OTP.",
-                };
-            }
-            const currentTime = new Date();
-            if (currentTime > otpData.expiresAt) {
-                await this._otpRepository.update({ _id: otpData._id }, { otp: null });
-                return {
-                    success: false,
-                    message: "OTP expired.Resend otp.",
-                };
-            }
-
-            if (!otpData.userData || !otpData.userData.name || !otpData.userData.password) {
-                return {
-                    success: false,
-                    message: "User data not found. Please try signing up again.",
                 };
             }
 
@@ -145,8 +135,8 @@ export class UserService implements IUserService {
                 success: true,
                 message: "OTP verified successfully. Your account is now activated.",
                 redirectURL: "/",
-                token:token,
-                refreshToken:refreshToken
+                token: token,
+                refreshToken: refreshToken,
             };
         } catch (error) {
             console.error("Error during OTP verification:", error);
@@ -156,4 +146,55 @@ export class UserService implements IUserService {
             };
         }
     }
-}
+
+
+    //user login
+    async userLogin({ email, password }: { email: string; password: string }): Promise<IResponse> {
+        try {
+            const existingUser = await this._userRepository.findByQuery({ email });
+
+            if (!existingUser) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+
+            if (!existingUser.isVerified) {
+                return {
+                    success: false,
+                    message: "Invalid credentials.",
+                };
+            }
+
+            const isPasswordValid = await comparePassword(password, existingUser.password);
+            if (!isPasswordValid) {
+                return {
+                    success: false,
+                    message: "Invalid password.",
+                };
+            }
+
+            const token = generateToken(existingUser);
+            const refreshToken = generateRefreshToken(existingUser);
+
+            return {
+                success: true,
+                message: "Login successful.",
+                token,
+                refreshToken,
+            };
+        } catch (error) {
+            console.error("Error during user login:", error);
+            return {
+                success: false,
+                message: "Login failed. Please try again.",
+            };
+        }
+    }
+
+
+
+
+
+}    

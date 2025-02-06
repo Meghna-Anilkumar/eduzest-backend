@@ -14,15 +14,16 @@ const OTPSchema = new Schema<OtpDoc>({
   userData: {
     name: String,
     password: String
-},
+  },
   createdAt: {
     type: Date,
     default: Date.now,
-    // expires: 60 * 2
   },
-  expiresAt:{
-    type: Date
+  expiresAt: {
+    type: Date,
+    required: true
   }
 });
+
 
 export const OTP = model<OtpDoc>('OTP', OTPSchema);

@@ -6,7 +6,7 @@ dotenv.config();
 const secret = process.env.JWT_SECRET!;
 
 export const generateToken = (payload: unknown) => {
-    console.log('rechead jwt');
+    console.log('reached jwt');
     
     return jwt.sign({ payload: payload },secret,{expiresIn: "1d"});
 };
