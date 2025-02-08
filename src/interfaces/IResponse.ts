@@ -1,3 +1,5 @@
+import { UserDoc } from './IUser';
+
 export interface IResponse {
   success: boolean;
   message: string;
@@ -8,5 +10,5 @@ export interface IResponse {
   };
   token?: string;
   refreshToken?: string;
-
+  userData?: UserDoc|null;  
 }

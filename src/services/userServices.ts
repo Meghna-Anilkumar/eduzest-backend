@@ -7,7 +7,7 @@ import { hashPassword } from '../utils/bcrypt';
 import { CustomError } from '../utils/CustomError';
 import { generateOTP } from '../utils/OTPGenerator';
 import { sendEmail } from '../utils/nodemailer';
-import { generateToken, generateRefreshToken } from '../utils/jwt';
+import { generateToken, generateRefreshToken,verifyToken } from '../utils/jwt';
 import { validateName, validateEmail, validatePassword } from '../utils/validator'
 import { comparePassword } from '../utils/bcrypt';
 
@@ -137,6 +137,7 @@ export class UserService implements IUserService {
                 redirectURL: "/",
                 token: token,
                 refreshToken: refreshToken,
+                userData:user,
             };
         } catch (error) {
             console.error("Error during OTP verification:", error);
@@ -181,6 +182,7 @@ export class UserService implements IUserService {
             return {
                 success: true,
                 message: "Login successful.",
+                userData:existingUser,
                 token,
                 refreshToken,
             };
@@ -193,6 +195,35 @@ export class UserService implements IUserService {
         }
     }
 
+
+    //get user data
+    async getUser(token: string) {
+        try {
+          const payload = verifyToken(token);
+    
+          const id = JSON.parse(JSON.stringify(payload)).payload;
+    
+          const user = await this._userRepository.findById(id._id);
+    
+            // if (user?.Avatar) {
+            //   const key = user.Avatar.split(`.s3.amazonaws.com/`)[1]
+            //     user.Avatar=await getPredesignedUrl(process.env.AWS_S3_BUCKET_NAME!,key)!
+            // }
+          
+          return {
+            success: true,
+            message: "User details fetched successfully",
+            data: user,
+          };
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+          return {
+            success: false,
+            message: "An error occurred while fetching user details",
+            data: null,
+          };
+        }
+    }
 
 
 
