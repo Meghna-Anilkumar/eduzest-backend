@@ -3,5 +3,7 @@ export const USER_ROUTES={
     OTP_VERIFY:'/otp-verification',
     USER_HOME:'/',
     LOGIN:'/login',
-    GET_USER:'/getUserdata'
+    GET_USER:'/getUserdata',
+    LOGOUT:'/logout',
+    RESEND_OTP:'/resend-otp'
 }

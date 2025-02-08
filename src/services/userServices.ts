@@ -7,9 +7,11 @@ import { hashPassword } from '../utils/bcrypt';
 import { CustomError } from '../utils/CustomError';
 import { generateOTP } from '../utils/OTPGenerator';
 import { sendEmail } from '../utils/nodemailer';
-import { generateToken, generateRefreshToken,verifyToken } from '../utils/jwt';
+import { generateToken, generateRefreshToken, verifyToken } from '../utils/jwt';
 import { validateName, validateEmail, validatePassword } from '../utils/validator'
 import { comparePassword } from '../utils/bcrypt';
+import { Response } from 'express';
+import { Cookie } from '../interfaces/IEnums';
 
 export class UserService implements IUserService {
     constructor(
@@ -97,7 +99,10 @@ export class UserService implements IUserService {
 
 
     //verify user
-    async verifyOtp({ email, otp }: { email: string; otp: number }): Promise<IResponse> {
+    async verifyOtp(
+        { email, otp }: { email: string; otp: number },
+        res: Response
+    ): Promise<IResponse> {
         try {
             const otpData = await this._otpRepository.findByQuery({ email });
 
@@ -131,13 +136,18 @@ export class UserService implements IUserService {
             const token = generateToken(user);
             const refreshToken = generateRefreshToken(user);
 
+            res.cookie(Cookie.userJWT, token, {
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000,
+            });
+
             return {
                 success: true,
                 message: "OTP verified successfully. Your account is now activated.",
                 redirectURL: "/",
                 token: token,
                 refreshToken: refreshToken,
-                userData:user,
+                userData: user,
             };
         } catch (error) {
             console.error("Error during OTP verification:", error);
@@ -149,8 +159,9 @@ export class UserService implements IUserService {
     }
 
 
+
     //user login
-    async userLogin({ email, password }: { email: string; password: string }): Promise<IResponse> {
+    async userLogin({ email, password }: { email: string; password: string },res:Response): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByQuery({ email });
 
@@ -179,10 +190,15 @@ export class UserService implements IUserService {
             const token = generateToken(existingUser);
             const refreshToken = generateRefreshToken(existingUser);
 
+            res.cookie(Cookie.userJWT, token, {
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000,
+            });
+
             return {
                 success: true,
                 message: "Login successful.",
-                userData:existingUser,
+                userData: existingUser,
                 token,
                 refreshToken,
             };
@@ -199,29 +215,75 @@ export class UserService implements IUserService {
     //get user data
     async getUser(token: string) {
         try {
-          const payload = verifyToken(token);
-    
-          const id = JSON.parse(JSON.stringify(payload)).payload;
-    
-          const user = await this._userRepository.findById(id._id);
-    
-            // if (user?.Avatar) {
-            //   const key = user.Avatar.split(`.s3.amazonaws.com/`)[1]
-            //     user.Avatar=await getPredesignedUrl(process.env.AWS_S3_BUCKET_NAME!,key)!
-            // }
-          
-          return {
-            success: true,
-            message: "User details fetched successfully",
-            data: user,
-          };
+            const payload = verifyToken(token);
+
+            const id = JSON.parse(JSON.stringify(payload)).payload;
+
+            const user = await this._userRepository.findById(id._id);
+
+            return {
+                success: true,
+                message: "User details fetched successfully",
+                data: user,
+            };
         } catch (error) {
-          console.error("Error fetching user details:", error);
-          return {
-            success: false,
-            message: "An error occurred while fetching user details",
-            data: null,
-          };
+            console.error("Error fetching user details:", error);
+            return {
+                success: false,
+                message: "An error occurred while fetching user details",
+                data: null,
+            };
+        }
+    }
+
+
+    //resend otp
+    async resendOtp(email: string): Promise<IResponse> {
+        try {
+            if (!email) {
+                throw new CustomError("Email is required", 400, "email");
+            }
+    
+            const user = await this._userRepository.findByQuery({ email });
+    
+            if (!user) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+    
+            if (user.isVerified) {
+                return {
+                    success: false,
+                    message: "User is already verified.",
+                };
+            }
+    
+            const OTP = generateOTP();
+            const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
+    
+            const existingOtp = await this._otpRepository.findByQuery({ email });
+    
+            if (existingOtp) {
+                await this._otpRepository.update({ email }, { otp: OTP, expiresAt: otpExpiration });
+            } else {
+                await this._otpRepository.create({ email, otp: OTP, expiresAt: otpExpiration });
+            }
+    
+            console.log({ email, OTP });
+            await sendEmail(email, "Your OTP for Verification", `Your new OTP is: ${OTP}`);
+    
+            return {
+                success: true,
+                message: "A new OTP has been sent to your email. Please check your inbox.",
+            };
+        } catch (error) {
+            console.error("Error resending OTP:", error);
+            return {
+                success: false,
+                message: "Failed to resend OTP. Please try again.",
+            };
         }
     }
 

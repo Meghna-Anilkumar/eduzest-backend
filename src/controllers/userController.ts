@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { UserService } from '../services/userServices'
 import { Status } from "../utils/enums";
+import { Cookie } from "../interfaces/IEnums";
 
 class UserController {
     constructor(private _userService: UserService) {
@@ -32,14 +33,14 @@ class UserController {
                 });
             }
 
-            const result = await this._userService.verifyOtp({ email, otp });
+            const result = await this._userService.verifyOtp({ email, otp }, res);
 
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
                 success: result.success,
                 message: result.message,
-                token:result.token,
-                refreshToken:result.refreshToken,
-                userData:result.userData
+                token: result.token,
+                refreshToken: result.refreshToken,
+                userData: result.userData
             });
 
         } catch (error) {
@@ -62,14 +63,14 @@ class UserController {
                 });
             }
 
-            const result = await this._userService.userLogin({ email, password });
+            const result = await this._userService.userLogin({ email, password }, res);
 
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
                 success: result.success,
                 message: result.message,
                 token: result.token,
                 refreshToken: result.refreshToken,
-                userData:result.userData
+                userData: result.userData
             });
 
         } catch (error) {
@@ -85,32 +86,78 @@ class UserController {
 
     //get user data
     async getUser(req: Request, res: Response): Promise<void> {
-    try {
-        let token = req.headers.authorization;
-        
-        if (!token) {
-            res.status(Status.UN_AUTHORISED).json({
+        try {
+            let token = req.headers.authorization;
+
+            if (!token) {
+                res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "Authorization token is required",
+                });
+                return;
+            }
+
+            token = token.split(" ")[1];
+
+            const result = await this._userService.getUser(token);
+            res.status(Status.OK).json(result);
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Authorization token is required",
+                message: "Internal server error",
             });
-            return;
         }
-
-        token = token.split(" ")[1];
-
-        const result = await this._userService.getUser(token);
-        res.status(Status.OK).json(result);
-    } catch (error) {
-        console.error("Error fetching user data:", error);
-        res.status(Status.INTERNAL_SERVER_ERROR).json({
-            success: false,
-            message: "Internal server error",
-        });
     }
+
+
+    async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.clearCookie(Cookie.userJWT, {
+                httpOnly: true,
+            });
+
+            return res.status(Status.OK).json({
+                status: "Success",
+                message: "User logged out successfully",
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    async resendOtp(req: Request, res: Response) {
+        try {
+            const { email } = req.body;
+    
+            if (!email) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "Email is required.",
+                });
+            }
+    
+            const result = await this._userService.resendOtp(email);
+    
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+            });
+    
+        } catch (error) {
+            console.error("Error resending OTP:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+    
 }
 
-    
-    
-}
+
+
+
 
 export default UserController;

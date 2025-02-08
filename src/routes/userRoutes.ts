@@ -17,5 +17,8 @@ userRouter.post(USER_ROUTES.SIGNUP, userController.signupUser.bind(userControlle
 userRouter.post(USER_ROUTES.OTP_VERIFY, userController.verifyOtp.bind(userController) as RequestHandler);
 userRouter.post(USER_ROUTES.LOGIN, userController.userLogin.bind(userController) as RequestHandler)
 userRouter.get(USER_ROUTES.GET_USER,userController.getUser.bind(userController) as RequestHandler)
+userRouter.post(USER_ROUTES.LOGOUT,userController.logout.bind(userController) as RequestHandler)
+userRouter.post(USER_ROUTES.RESEND_OTP,userController.resendOtp.bind(userController) as RequestHandler)
+
 
 export default userRouter   
