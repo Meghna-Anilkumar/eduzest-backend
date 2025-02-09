@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { UserService } from '../services/userServices'
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
+import { validatePassword } from "../utils/validator";
 
 class UserController {
     constructor(private _userService: UserService) {
@@ -40,7 +41,8 @@ class UserController {
                 message: result.message,
                 token: result.token,
                 refreshToken: result.refreshToken,
-                userData: result.userData
+                userData: result.userData,
+                redirectURL: result.redirectURL
             });
 
         } catch (error) {
@@ -130,21 +132,21 @@ class UserController {
     async resendOtp(req: Request, res: Response) {
         try {
             const { email } = req.body;
-    
+
             if (!email) {
                 return res.status(Status.BAD_REQUEST).json({
                     success: false,
                     message: "Email is required.",
                 });
             }
-    
+
             const result = await this._userService.resendOtp(email);
-    
+
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
                 success: result.success,
                 message: result.message,
             });
-    
+
         } catch (error) {
             console.error("Error resending OTP:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
@@ -153,8 +155,65 @@ class UserController {
             });
         }
     }
-    
+
+    async forgotPassword(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+        try {
+            const { email } = req.body;
+
+            if (!email) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "Email is required.",
+                });
+            }
+
+            const result = await this._userService.forgotPassword(email);
+
+            return res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+                data: result.data,
+                redirectURL: result.redirectURL || undefined,
+            });
+
+        } catch (error) {
+            console.error("Error in forgotPassword:", error);
+            next(error);
+        }
+    }
+
+
+    //reset password
+    async resetPassword(req: Request, res: Response): Promise<void> {
+        try {
+
+            console.log(" Received request body:", req.body);
+            const { email, newPassword, confirmNewPassword } = req.body;
+
+            const result = await this._userService.resetPassword(email, newPassword, confirmNewPassword);
+
+            if (result.success) {
+                res.status(Status.OK).json({
+                    success: true,
+                    message: result.message,
+                    redirectURL: result.redirectURL,
+                });
+            } else {
+                res.status(Status.INTERNAL_SERVER_ERROR).json({
+                    success: false,
+                    message: result.message || "Failed to reset password. Please try again later.",
+                });
+            }
+        } catch (error) {
+            console.error("Error in resetPassword:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "An unexpected error occurred. Please try again later.",
+            });
+        }
+    }
 }
+
 
 
 

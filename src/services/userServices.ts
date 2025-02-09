@@ -12,6 +12,7 @@ import { validateName, validateEmail, validatePassword } from '../utils/validato
 import { comparePassword } from '../utils/bcrypt';
 import { Response } from 'express';
 import { Cookie } from '../interfaces/IEnums';
+import { error } from 'console';
 
 export class UserService implements IUserService {
     constructor(
@@ -129,10 +130,22 @@ export class UserService implements IUserService {
                 };
             }
 
+            //--------------for forgot password---------
+            const existingUser = await this._userRepository.findByQuery({ email })
+            if (existingUser?.isVerified) {
+                return {
+                    success: true,
+                    message: 'otp verified.reset your password',
+                    redirectURL: '/reset-password'
+                }
+            }
+            //-------------------------------------------
+
             await this._userRepository.update({ email }, { isVerified: true });
             await this._otpRepository.delete(otpData._id);
 
             const user = await this._userRepository.findByQuery({ email });
+
             const token = generateToken(user);
             const refreshToken = generateRefreshToken(user);
 
@@ -161,7 +174,7 @@ export class UserService implements IUserService {
 
 
     //user login
-    async userLogin({ email, password }: { email: string; password: string },res:Response): Promise<IResponse> {
+    async userLogin({ email, password }: { email: string; password: string }, res: Response): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByQuery({ email });
 
@@ -243,37 +256,35 @@ export class UserService implements IUserService {
             if (!email) {
                 throw new CustomError("Email is required", 400, "email");
             }
-    
+
             const user = await this._userRepository.findByQuery({ email });
-    
+
             if (!user) {
                 return {
                     success: false,
                     message: "User not found.",
                 };
             }
-    
-            if (user.isVerified) {
-                return {
-                    success: false,
-                    message: "User is already verified.",
-                };
-            }
-    
+
+            // if (user.isVerified) {
+            //     return {
+            //         success: false,
+            //         message: "User is already verified.",
+            //     };
+            // }
+
             const OTP = generateOTP();
             const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
-    
+
             const existingOtp = await this._otpRepository.findByQuery({ email });
-    
+
             if (existingOtp) {
                 await this._otpRepository.update({ email }, { otp: OTP, expiresAt: otpExpiration });
-            } else {
-                await this._otpRepository.create({ email, otp: OTP, expiresAt: otpExpiration });
             }
-    
+
             console.log({ email, OTP });
             await sendEmail(email, "Your OTP for Verification", `Your new OTP is: ${OTP}`);
-    
+
             return {
                 success: true,
                 message: "A new OTP has been sent to your email. Please check your inbox.",
@@ -286,6 +297,97 @@ export class UserService implements IUserService {
             };
         }
     }
+
+
+    //forgot password
+    async forgotPassword(email: string): Promise<IResponse> {
+        try {
+            const existingUser = await this._userRepository.findByQuery({ email });
+
+            if (!existingUser) {
+                return {
+                    success: false,
+                    message: "Invalid email. Please sign up first.",
+                    redirectURL: "/signup",
+                };
+            }
+
+            if (!existingUser.isVerified) {
+                return {
+                    success: false,
+                    message: "User is not verified. Please complete your sign-up process.",
+                    redirectURL: "/signup",
+                };
+            }
+
+            const OTP = generateOTP();
+            const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
+            const existingOtp = await this._otpRepository.findByQuery({ email });
+
+            if (existingOtp) {
+                await this._otpRepository.update({ email }, { otp: OTP, expiresAt: otpExpiration });
+            } else {
+                await this._otpRepository.create({ email, otp: OTP, expiresAt: otpExpiration });
+            }
+
+            console.log({ email, OTP });
+            await sendEmail(email, "Your OTP for Password Reset", `Your OTP for verification is: ${OTP}`);
+
+            return {
+                success: true,
+                message: "OTP sent to your email. Please verify.",
+                data: email,
+                redirectURL: "/otp-verification",
+            };
+
+        } catch (error) {
+            console.error("Error in forgotPassword:", error);
+
+            return {
+                success: false,
+                message: "An error occurred. Please try again later.",
+            };
+        }
+    }
+
+
+    //reset-password
+    async resetPassword(email: string, newPassword: string, confirmNewPassword: string): Promise<IResponse> {
+        try {
+
+            if (!email) throw new CustomError("Email is required", 400, "email");
+            if (!newPassword?.trim()) throw new CustomError('Password is required', 400, 'password');
+            if (!confirmNewPassword?.trim()) throw new CustomError('Confirm Password is required', 400, 'confirmPassword');
+
+            const existingUser = await this._userRepository.findByQuery({ email });
+
+            if (existingUser && existingUser.isVerified) {
+                validatePassword(newPassword)
+                if (newPassword !== confirmNewPassword) {
+                    throw new CustomError('Passwords do not match', 400, 'confirmPassword')
+                }
+                const hashedPassword = await hashPassword(newPassword.trim());
+                await this._userRepository.update({email} , {password: hashedPassword});
+                return {
+                    success: true,
+                    message: "Password reset successful",
+                    redirectURL: "/login",
+                };
+            }
+
+            return {
+                success: false,
+                message: "User not found or not verified",
+            };
+        } catch (error) {
+            console.error("Error occurred in password reset:", error);
+            return {
+                success: false,
+                message: "An error occurred. Please try again later",
+            };
+        }
+    }
+
 
 
 

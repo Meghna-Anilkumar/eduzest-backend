@@ -19,6 +19,7 @@ userRouter.post(USER_ROUTES.LOGIN, userController.userLogin.bind(userController)
 userRouter.get(USER_ROUTES.GET_USER,userController.getUser.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.LOGOUT,userController.logout.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.RESEND_OTP,userController.resendOtp.bind(userController) as RequestHandler)
-
+userRouter.post(USER_ROUTES.FORGOT_PASS,userController.forgotPassword.bind(userController) as RequestHandler)
+userRouter.post(USER_ROUTES.RESET_PASS,userController.resetPassword.bind(userController)as RequestHandler)
 
 export default userRouter   
