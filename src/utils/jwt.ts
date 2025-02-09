@@ -15,6 +15,11 @@ export const generateRefreshToken = (payload: unknown) => {
     return jwt.sign({ payload: payload },secret,{expiresIn: "7d"});
 };
 
+// export const generateRefreshToken = (id: string, role: string) => { 
+//     return jwt.sign({ id, role }, secret, { expiresIn: "7d" });
+// };
+
+
 export const verifyToken = (token: string) => {
     return  jwt.verify(token, secret);
 }

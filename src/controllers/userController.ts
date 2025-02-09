@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { UserService } from '../services/userServices'
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
-import { validatePassword } from "../utils/validator";
+// import { validatePassword } from "../utils/validator";
 
 class UserController {
     constructor(private _userService: UserService) {

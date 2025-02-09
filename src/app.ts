@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import userRouter from "./routes/userRoutes";
+import adminRouter from "./routes/adminRoutes";
 
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(
 
 
 app.use("/", userRouter);
+app.use("/admin", adminRouter);
 
 
 // app.get('/',(req,res)=>{

@@ -12,7 +12,7 @@ import { validateName, validateEmail, validatePassword } from '../utils/validato
 import { comparePassword } from '../utils/bcrypt';
 import { Response } from 'express';
 import { Cookie } from '../interfaces/IEnums';
-import { error } from 'console';
+
 
 export class UserService implements IUserService {
     constructor(
