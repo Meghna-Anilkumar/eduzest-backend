@@ -24,6 +24,7 @@ export interface UserDoc extends Document {
       rating: string;
     }[];
     phone?: number;
+    address?:string;
     socialMedia?: string[];
   };
   instructorDetails?: {

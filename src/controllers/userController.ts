@@ -186,8 +186,6 @@ class UserController {
     //reset password
     async resetPassword(req: Request, res: Response): Promise<void> {
         try {
-
-            console.log(" Received request body:", req.body);
             const { email, newPassword, confirmNewPassword } = req.body;
 
             const result = await this._userService.resetPassword(email, newPassword, confirmNewPassword);
@@ -212,6 +210,49 @@ class UserController {
             });
         }
     }
+
+
+
+    //update student profile
+    async updateStudentProfile(req: Request, res: Response) {
+        try {
+            const { email, name, additionalEmail, profileData } = req.body;
+            console.log('hiii')
+            console.log(profileData)
+            console.log(req.body)
+            if (!email) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "Email is required.",
+                });
+            }
+    
+            const result = await this._userService.updateStudentProfile(email, { 
+                name, 
+                studentDetails: { additionalEmail }, 
+                profile: profileData 
+            });
+    
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+                data: result.data
+            });
+    
+        } catch (error) {
+            console.error("Error updating student profile:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+    
+
+
+
+
+
 }
 
 

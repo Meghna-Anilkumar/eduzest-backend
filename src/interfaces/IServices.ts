@@ -13,6 +13,8 @@ export interface IUserService {
 }
 
 
-export interface IAdminService{
-    
+export interface IAdminService {
+    adminLogin(data: { email: string; password: string }): Promise<IResponse>;
+    fetchAllStudents(page: number, limit: number): Promise<IResponse>;
 }
+

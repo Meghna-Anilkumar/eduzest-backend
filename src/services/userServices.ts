@@ -307,7 +307,7 @@ export class UserService implements IUserService {
             if (!existingUser) {
                 return {
                     success: false,
-                    message: "Invalid email. Please sign up first.",
+                    message: "Invalid email.Please try with your registered email.",
                     redirectURL: "/signup",
                 };
             }
@@ -367,7 +367,7 @@ export class UserService implements IUserService {
                     throw new CustomError('Passwords do not match', 400, 'confirmPassword')
                 }
                 const hashedPassword = await hashPassword(newPassword.trim());
-                await this._userRepository.update({email} , {password: hashedPassword});
+                await this._userRepository.update({ email }, { password: hashedPassword });
                 return {
                     success: true,
                     message: "Password reset successful",
@@ -387,6 +387,52 @@ export class UserService implements IUserService {
             };
         }
     }
+
+
+    //update student profile
+    async updateStudentProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
+        try {
+            if (!email) throw new CustomError("Email is required", 400, "email");
+    
+            const existingUser = await this._userRepository.findByQuery({ email });
+    
+            if (!existingUser) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+            const updatedData = {
+                name: profileData.name || existingUser.name,
+                profile: {
+                    ...existingUser.profile,
+                    ...profileData.profile,
+                },
+                studentDetails: {
+                    ...existingUser.studentDetails,
+                    additionalEmail: profileData.studentDetails?.additionalEmail || existingUser.studentDetails?.additionalEmail,
+                }
+            };
+    
+            await this._userRepository.update({ email }, {
+                $set: updatedData ,  new: true 
+            });
+            
+    
+            return {
+                success: true,
+                message: "Profile updated successfully.",
+                data: updatedData,
+            };
+        } catch (error) {
+            console.error("Error updating user profile:", error);
+            return {
+                success: false,
+                message: "An error occurred while updating the profile.",
+            };
+        }
+    }
+    
 
 
 

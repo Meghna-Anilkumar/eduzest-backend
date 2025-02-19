@@ -21,5 +21,6 @@ userRouter.post(USER_ROUTES.LOGOUT,userController.logout.bind(userController) as
 userRouter.post(USER_ROUTES.RESEND_OTP,userController.resendOtp.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.FORGOT_PASS,userController.forgotPassword.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.RESET_PASS,userController.resetPassword.bind(userController)as RequestHandler)
+userRouter.put(USER_ROUTES.STUDENT_PROFILE,userController.updateStudentProfile.bind(userController) as RequestHandler)
 
 export default userRouter   

@@ -12,26 +12,20 @@ const userSchema = new Schema<UserDoc>({
   },
   isVerified: {
     type: Boolean,
-    default:false
+    default: false
   },
   profile: {
     dob: {
       type: String,
       // required: true 
     },
-    firstName: {
-      type: String,
-      // required: true 
-    },
+
     gender: {
       type: String,
       enum: ['Male', 'Female', 'Other'],
       // required: true 
     },
-    lastName: {
-      type: String,
-      // required: true 
-    },
+
     profilePic: {
       type: String
     }
@@ -76,9 +70,10 @@ const userSchema = new Schema<UserDoc>({
     phone: {
       type: Number
     },
-    socialMedia: [{
-      type: String
-    }]
+    socialMedia: {
+      linkedin: { type: String },
+      github: { type: String }
+    }
   },
   instructorDetails: {
     createdCourses: [{

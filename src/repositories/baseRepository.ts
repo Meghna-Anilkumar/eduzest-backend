@@ -58,14 +58,19 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
     async update(query: any, item: UpdateQuery<T>): Promise<T | null> {
         try {
             if (typeof query === 'object') {
-                return await this._model.findOneAndUpdate(query, item, { new: true });
+                const updatedDoc = await this._model.findOneAndUpdate(query, item, { new: true });
+                console.log("Updated Document:", updatedDoc);
+                return updatedDoc;
             }
-            return await this._model.findByIdAndUpdate(query, item, { new: true });
+            const updatedDoc = await this._model.findByIdAndUpdate(query, item, { new: true });
+            console.log("Updated Document:", updatedDoc);
+            return updatedDoc;
         } catch (error) {
             console.error("Error updating record:", error);
             throw new Error("Could not update record");
         }
     }
+    
 
     async delete(id: any): Promise<boolean> {
         try {

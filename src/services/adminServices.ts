@@ -4,15 +4,15 @@ import { IAdminService } from '../interfaces/IServices';
 import UserRepository from '../repositories/userRepository';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { generateToken } from '../utils/jwt';
-import { Cookie } from '../interfaces/IEnums';
-import { Response } from "express";
+// import { Cookie } from '../interfaces/IEnums';
+// import { Response } from "express";
 
 
 export class AdminService implements IAdminService {
     constructor(
         private _userRepository: UserRepository,
         private _adminRepository: AdminRepository
-    ) {}
+    ) { }
 
 
     //admin login
@@ -20,29 +20,29 @@ export class AdminService implements IAdminService {
         try {
             const adminEmail = process.env.ADMIN_EMAIL;
             const adminPassword = process.env.ADMIN_PASS;
-    
+
             if (!adminEmail || !adminPassword) {
                 return {
                     success: false,
-                    message: "Admin credentials are not set in environment variables.",
+                    message: "Admin credentials are not set.",
                 };
             }
-    
+
             let existingAdmin = await this._adminRepository.findByQuery({ email });
-    
+
             if (!existingAdmin) {
                 const hashedPassword = await hashPassword(adminPassword);
                 existingAdmin = await this._adminRepository.create({ email: adminEmail, password: hashedPassword });
                 console.log("Default admin account created.");
             }
-    
+
             if (email !== adminEmail) {
                 return {
                     success: false,
                     message: "Invalid admin credentials.",
                 };
             }
-    
+
             const isPasswordValid = await comparePassword(password, existingAdmin.password);
             if (!isPasswordValid) {
                 return {
@@ -50,13 +50,13 @@ export class AdminService implements IAdminService {
                     message: "Invalid email or password.",
                 };
             }
-    
+
             const token = generateToken(existingAdmin);
-    
+
             return {
                 success: true,
                 message: "Admin logged in successfully.",
-                token:token
+                token: token
             };
         } catch (error) {
             console.error("Error during admin login:", error);
@@ -66,8 +66,6 @@ export class AdminService implements IAdminService {
             };
         }
     }
-    
-
 
 
     //list users on admin side
