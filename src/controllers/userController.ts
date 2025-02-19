@@ -226,19 +226,19 @@ class UserController {
                     message: "Email is required.",
                 });
             }
-    
-            const result = await this._userService.updateStudentProfile(email, { 
-                name, 
-                studentDetails: { additionalEmail }, 
-                profile: profileData 
+
+            const result = await this._userService.updateStudentProfile(email, {
+                name,
+                studentDetails: { additionalEmail },
+                profile: profileData
             });
-    
+
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
                 success: result.success,
                 message: result.message,
                 data: result.data
             });
-    
+
         } catch (error) {
             console.error("Error updating student profile:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
@@ -247,9 +247,38 @@ class UserController {
             });
         }
     }
-    
 
 
+    //change password
+    async changePassword(req: Request, res: Response) {
+        try {
+            const { email, currentPassword, newPassword } = req.body;
+            console.log(req.body)
+            if (!email || !currentPassword || !newPassword) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: 'Email, current password, and new password are required',
+                });
+            }
+
+            const result = await this._userService.changePassword(email, {
+                currentPassword,
+                newPassword,
+            });
+
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+                data: result.data,
+            });
+        } catch (error) {
+            console.error('Error changing password:', error);
+            return res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: 'Internal Server Error',
+            });
+        }
+    }
 
 
 

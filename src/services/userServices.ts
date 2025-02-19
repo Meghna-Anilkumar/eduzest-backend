@@ -393,9 +393,9 @@ export class UserService implements IUserService {
     async updateStudentProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
         try {
             if (!email) throw new CustomError("Email is required", 400, "email");
-    
+
             const existingUser = await this._userRepository.findByQuery({ email });
-    
+
             if (!existingUser) {
                 return {
                     success: false,
@@ -413,12 +413,12 @@ export class UserService implements IUserService {
                     additionalEmail: profileData.studentDetails?.additionalEmail || existingUser.studentDetails?.additionalEmail,
                 }
             };
-    
+
             await this._userRepository.update({ email }, {
-                $set: updatedData ,  new: true 
+                $set: updatedData, new: true
             });
-            
-    
+
+
             return {
                 success: true,
                 message: "Profile updated successfully.",
@@ -432,10 +432,70 @@ export class UserService implements IUserService {
             };
         }
     }
-    
 
 
 
+    //change password
+    async changePassword(
+        email: string,
+        passwordData: { currentPassword: string; newPassword: string }
+    ): Promise<IResponse> {
+        try {
+            const { currentPassword, newPassword } = passwordData;
+
+            if (!currentPassword?.trim()) {
+                throw new CustomError('Current password is required', 400, 'currentPassword');
+            }
+            if (!newPassword?.trim()) {
+                throw new CustomError('New password is required', 400, 'newPassword');
+            }
+
+            validatePassword(newPassword);
+
+            const user = await this._userRepository.findByQuery({ email });
+            if (!user) {
+                return {
+                    success: false,
+                    message: 'User not found',
+                };
+            }
+
+            const isPasswordValid = await comparePassword(currentPassword, user.password);
+            if (!isPasswordValid) {
+                return {
+                    success: false,
+                    message: 'Current password is incorrect',
+                    data: { currentPassword: 'Current password is incorrect' },
+                };
+            }
+
+            if (await comparePassword(newPassword, user.password)) {
+                return {
+                    success: false,
+                    message: 'New password cannot be the same as current password',
+                    data: { newPassword: 'New password cannot be the same as current password' },
+                };
+            }
+
+            const hashedPassword = await hashPassword(newPassword.trim());
+            await this._userRepository.update({ email }, { password: hashedPassword });
+
+            return {
+                success: true,
+                message: 'Password updated successfully',
+            };
+        } catch (error) {
+            console.error('Change Password Error:', error);
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    data: error.field ? { [error.field]: error.message } : undefined,
+                };
+            }
+            return { success: false, message: 'An unexpected error occurred' };
+        }
+    }
 
 
 }    

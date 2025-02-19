@@ -10,6 +10,10 @@ export interface IUserService {
     resendOtp(email: string): Promise<IResponse>;
     forgotPassword(email: string): Promise<IResponse>;
     resetPassword(email: string, newPassword: string, confirmNewPassword: string): Promise<IResponse>;
+    changePassword(
+        email: string,
+        passwordData: { currentPassword: string; newPassword: string }
+      ): Promise<IResponse>;
 }
 
 
