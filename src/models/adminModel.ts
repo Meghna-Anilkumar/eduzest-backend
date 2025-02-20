@@ -8,7 +8,12 @@ const adminSchema = new Schema<AdminDoc>({
     password: {
         type: String,
         required: true
+    },
+    role:{
+        type:String,
+        default:"Admin"
     }
+
 })
 
 export const Admin = model<AdminDoc>('Admin', adminSchema);

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { UserService } from '../services/userServices'
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
+import { OAuth2Client } from 'google-auth-library';
 // import { validatePassword } from "../utils/validator";
 
 class UserController {
@@ -279,6 +280,64 @@ class UserController {
             });
         }
     }
+
+
+    //google auth
+    async googleAuth(req: Request, res: Response) {
+        try {
+            const { token } = req.body;
+    
+            if (!token) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "Google token is required"
+                });
+            }
+    
+            const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    
+            const ticket = await client.verifyIdToken({
+                idToken: token,
+                audience: process.env.GOOGLE_CLIENT_ID
+            });
+    
+            const payload = ticket.getPayload();
+    
+            if (!payload || !payload.email) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "Invalid Google token"
+                });
+            }
+    
+            // Extract username from email
+            const username = payload.email.split('@')[0];
+    
+            const googleUser = {
+                email: payload.email,
+                name: payload.name || '',
+                username: username, // Assign the extracted username
+            };
+    
+            const result = await this._userService.googleAuth(googleUser, res);
+    
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+                token: result.token,
+                refreshToken: result.refreshToken,
+                userData: result.userData
+            });
+    
+        } catch (error) {
+            console.error("Google Authentication Error:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error during Google authentication"
+            });
+        }
+    }
+    
 
 
 

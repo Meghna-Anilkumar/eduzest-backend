@@ -12,6 +12,8 @@ import { validateName, validateEmail, validatePassword } from '../utils/validato
 import { comparePassword } from '../utils/bcrypt';
 import { Response } from 'express';
 import { Cookie } from '../interfaces/IEnums';
+import * as crypto from 'crypto';
+
 
 
 export class UserService implements IUserService {
@@ -496,6 +498,71 @@ export class UserService implements IUserService {
             return { success: false, message: 'An unexpected error occurred' };
         }
     }
+
+
+
+    //google auth
+    async googleAuth(googleUser: { email: string, name: string }, res: Response): Promise<IResponse> {
+        try {
+            const existingUser = await this._userRepository.findByQuery({ email: googleUser.email });
+
+            let user;
+
+            if (!existingUser) {
+                const randomPassword = crypto.randomBytes(16).toString('hex');
+                const hashedPassword = await hashPassword(randomPassword);
+
+                user = await this._userRepository.create({
+                    email: googleUser.email,
+                    name: googleUser.name,
+                    isVerified: true,
+                    password: hashedPassword,
+                    isGoogleAuth: true,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    isBlocked: false,
+                    role: 'Student'
+                });
+
+                console.log("New Google user created:", user.email);
+            } else {
+                if (!existingUser.isGoogleAuth) {
+                    await this._userRepository.update(
+                        { email: googleUser.email },
+                        {
+                            isGoogleAuth: true,
+                            updatedAt: new Date()
+                        }
+                    );
+                }
+                user = existingUser;
+            }
+
+            const token = generateToken(user);
+            const refreshToken = generateRefreshToken(user);
+
+            res.cookie(Cookie.userJWT, token, {
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000,
+            });
+
+            return {
+                success: true,
+                message: "Google authentication successful",
+                token: token,
+                refreshToken: refreshToken,
+                userData: user.toObject({ getters: true })
+            };
+        } catch (error) {
+            console.error("Google Authentication Service Error:", error);
+            return {
+                success: false,
+                message: "Failed to authenticate with Google"
+            };
+        }
+    }
+
+
 
 
 }    

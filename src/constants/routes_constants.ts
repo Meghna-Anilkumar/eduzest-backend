@@ -9,7 +9,8 @@ export const USER_ROUTES={
     FORGOT_PASS:'/forgot-pass',
     RESET_PASS:'/reset-password',
     STUDENT_PROFILE:'/student-profile',
-    CHANGE_PASSWORD:'/change-password'
+    CHANGE_PASSWORD:'/change-password',
+    GOOGLE_AUTH:'/google-auth'
 }
 
 

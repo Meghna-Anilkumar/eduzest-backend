@@ -3,7 +3,7 @@ import { Document, ObjectId } from "mongoose";
 export interface UserDoc extends Document {
   email: string;
   name: string;
-  isVerified:Boolean;
+  isVerified: boolean;
   profile?: {
     dob?: Date;
     firstName?: string;
@@ -24,7 +24,7 @@ export interface UserDoc extends Document {
       rating: string;
     }[];
     phone?: number;
-    address?:string;
+    address?: string;
     socialMedia?: string[];
   };
   instructorDetails?: {
@@ -32,4 +32,6 @@ export interface UserDoc extends Document {
     profit?: number;
     rating?: number;
   };
+  isGoogleAuth?: boolean;
+
 }

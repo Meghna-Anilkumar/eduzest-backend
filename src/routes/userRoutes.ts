@@ -23,5 +23,6 @@ userRouter.post(USER_ROUTES.FORGOT_PASS,userController.forgotPassword.bind(userC
 userRouter.post(USER_ROUTES.RESET_PASS,userController.resetPassword.bind(userController)as RequestHandler)
 userRouter.put(USER_ROUTES.STUDENT_PROFILE,userController.updateStudentProfile.bind(userController) as RequestHandler)
 userRouter.put(USER_ROUTES.CHANGE_PASSWORD,userController.changePassword.bind(userController) as RequestHandler)
+userRouter.post(USER_ROUTES.GOOGLE_AUTH,userController.googleAuth.bind(userController) as RequestHandler)
 
 export default userRouter   

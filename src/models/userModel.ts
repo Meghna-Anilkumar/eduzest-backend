@@ -87,6 +87,11 @@ const userSchema = new Schema<UserDoc>({
       type: Schema.Types.Decimal128
     }
   },
+  isGoogleAuth: {
+    type: Boolean,
+    default: false
+  },
+
 });
 
 export const Users = model<UserDoc>('Users', userSchema);
