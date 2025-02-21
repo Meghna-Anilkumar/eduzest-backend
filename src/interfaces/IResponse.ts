@@ -1,4 +1,5 @@
 import { UserDoc } from './IUser';
+import { AdminDoc } from './IAdmin';
 
 export interface IResponse {
   success: boolean;
@@ -10,5 +11,5 @@ export interface IResponse {
   };
   token?: string;
   refreshToken?: string;
-  userData?: UserDoc|null;  
+  userData?: UserDoc|AdminDoc|null;  
 }

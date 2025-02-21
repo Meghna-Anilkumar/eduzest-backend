@@ -4,6 +4,7 @@ import { IAdminService } from '../interfaces/IServices';
 import UserRepository from '../repositories/userRepository';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { generateToken } from '../utils/jwt';
+import { AdminDoc } from '../interfaces/IAdmin';
 // import { Cookie } from '../interfaces/IEnums';
 // import { Response } from "express";
 
@@ -56,8 +57,13 @@ export class AdminService implements IAdminService {
             return {
                 success: true,
                 message: "Admin logged in successfully.",
-                token: token
-            };
+                token: token,
+                userData: {
+                  _id: existingAdmin._id,
+                  email: existingAdmin.email,
+                  role: "Admin"
+                } as AdminDoc
+              };
         } catch (error) {
             console.error("Error during admin login:", error);
             return {

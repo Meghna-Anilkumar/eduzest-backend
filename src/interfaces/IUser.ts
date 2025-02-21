@@ -35,3 +35,6 @@ export interface UserDoc extends Document {
   isGoogleAuth?: boolean;
 
 }
+
+
+
