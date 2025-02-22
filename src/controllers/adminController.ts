@@ -1,11 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { AdminService } from "../services/adminServices";
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
 
 
-  
-    
 
 class AdminController {
     private _adminService: AdminService;
@@ -14,8 +12,8 @@ class AdminController {
         this._adminService = adminService;
     }
 
-      //admin login
-      async adminLogin(req: Request, res: Response): Promise<void> {
+    //admin login
+    async adminLogin(req: Request, res: Response): Promise<void> {
         try {
             const { email, password } = req.body;
 
@@ -60,6 +58,49 @@ class AdminController {
         }
     }
 
+
+    // Block or unblock user
+    async blockUnblockUser(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params;
+
+            if (!id) {
+                res.status(Status.BAD_REQUEST).json({ success: false, message: "User ID is required." });
+                return;
+            }
+
+            const response = await this._adminService.blockUnblockUser(id);
+
+            if (!response.success) {
+                res.status(Status.NOT_FOUND).json(response);
+                return;
+            }
+
+            res.status(Status.OK).json(response);
+        } catch (error) {
+            console.error("Error in blockUnblockUser Controller:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+
+    async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.clearCookie(Cookie.adminJWT, {
+                httpOnly: true,
+            });
+
+            return res.status(Status.OK).json({
+                status: "Success",
+                message: "User logged out successfully",
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
 
 }
 

@@ -187,6 +187,13 @@ export class UserService implements IUserService {
                 };
             }
 
+            if (existingUser.isBlocked) {
+                return {
+                    success: false,
+                    message: "Your account has been blocked. Please contact support.",
+                };
+            }
+
             if (!existingUser.isVerified) {
                 return {
                     success: false,
@@ -228,25 +235,45 @@ export class UserService implements IUserService {
 
 
     //get user data
-    async getUser(token: string) {
+    async getUser(email: string): Promise<IResponse> {
         try {
-            const payload = verifyToken(token);
-
-            const id = JSON.parse(JSON.stringify(payload)).payload;
-
-            const user = await this._userRepository.findById(id._id);
-
+            if (!email) {
+                throw new CustomError('Email is required', 400, 'email');
+            }
+    
+            const user = await this._userRepository.findByQuery({ email });
+    
+            if (!user) {
+                return {
+                    success: false,
+                    message: 'User not found',
+                };
+            }
+    
+            if (user.isBlocked) {
+                return {
+                    success: false,
+                    message: 'Your account has been blocked. Please contact support.',
+                };
+            }
+    
             return {
                 success: true,
-                message: "User details fetched successfully",
-                data: user,
+                message: 'User data retrieved successfully',
+                userData: user,
             };
         } catch (error) {
-            console.error("Error fetching user details:", error);
+            console.error('Error fetching user data:', error);
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    data: error.field ? { [error.field]: error.message } : undefined,
+                };
+            }
             return {
                 success: false,
-                message: "An error occurred while fetching user details",
-                data: null,
+                message: 'An unexpected error occurred while fetching user data',
             };
         }
     }
@@ -561,6 +588,57 @@ export class UserService implements IUserService {
             };
         }
     }
+
+
+    //instructor apply
+    async applyForInstructor(data: Partial<UserDoc>): Promise<IResponse> {
+        try {
+            const { name, email, profile, aboutMe, cv, phone, qualification } = data;
+
+            if (!name?.trim()) throw new CustomError('Name is required', 400, 'name');
+            if (!email) throw new CustomError("Email is required", 400, "email");
+            if (!profile?.gender) throw new CustomError('Gender is required', 400, 'gender');
+            if (!profile?.dob) throw new CustomError('Date of birth is required', 400, 'dob');
+            if (!phone) throw new CustomError('Phone number is required', 400, 'phone');
+            if (!aboutMe?.trim()) throw new CustomError('About Me section is required', 400, 'aboutMe');
+            if (!cv?.trim()) throw new CustomError('CV is required', 400, 'cv');
+            if (!qualification?.trim()) throw new CustomError('Qualification is required', 400, 'qualification');
+
+            const existingUser = await this._userRepository.findByQuery({ email });
+
+            if (!existingUser) {
+                throw new CustomError('User not found', 404, 'email');
+            }
+
+            if (existingUser.isRequested) {
+                return {
+                    success: false,
+                    message: 'You have already applied for an instructor position.',
+                };
+            }
+
+            await this._userRepository.update({ email }, {
+                profile,
+                aboutMe,
+                cv,
+                qualification,
+                isRequested: true,
+                isRejected: false,
+            });
+
+            return {
+                success: true,
+                message: 'Application submitted successfully. Awaiting approval.',
+            };
+        } catch (error) {
+            console.error('Error during instructor application:', error);
+            return {
+                success: false,
+                message: error instanceof CustomError ? error.message : 'An unexpected error occurred.',
+            };
+        }
+    }
+
 
 
 

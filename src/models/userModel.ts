@@ -14,16 +14,15 @@ const userSchema = new Schema<UserDoc>({
     type: Boolean,
     default: false
   },
+
   profile: {
     dob: {
       type: String,
-      // required: true 
     },
 
     gender: {
       type: String,
       enum: ['Male', 'Female', 'Other'],
-      // required: true 
     },
 
     profilePic: {
@@ -32,7 +31,6 @@ const userSchema = new Schema<UserDoc>({
   },
   updatedAt: {
     type: Date,
-    // required: true 
   },
   role: {
     type: String,
@@ -41,15 +39,20 @@ const userSchema = new Schema<UserDoc>({
   },
   createdAt: {
     type: Date,
-    // required: true 
   },
   isBlocked: {
     type: Boolean,
-    // required: true 
   },
   password: {
     type: String,
     required: true
+  },
+  phone: {
+    type: Number
+  },
+
+  qualification:{
+    type:String
   },
   studentDetails: {
     additionalEmail: {
@@ -67,9 +70,6 @@ const userSchema = new Schema<UserDoc>({
         type: String
       }
     }],
-    phone: {
-      type: Number
-    },
     socialMedia: {
       linkedin: { type: String },
       github: { type: String }
@@ -88,6 +88,24 @@ const userSchema = new Schema<UserDoc>({
     }
   },
   isGoogleAuth: {
+    type: Boolean,
+    default: false
+  },
+
+  aboutMe: {
+    type: String
+  },
+
+  cv: {
+    type: String,
+  },
+
+  isRequested: {
+    type: Boolean,
+    default: false,
+  },
+
+  isRejected: {
     type: Boolean,
     default: false
   },

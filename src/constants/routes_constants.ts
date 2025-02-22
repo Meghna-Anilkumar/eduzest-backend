@@ -10,11 +10,14 @@ export const USER_ROUTES={
     RESET_PASS:'/reset-password',
     STUDENT_PROFILE:'/student-profile',
     CHANGE_PASSWORD:'/change-password',
-    GOOGLE_AUTH:'/google-auth'
+    GOOGLE_AUTH:'/google-auth',
+    INSTRUCTOR_APPLY:'/instructor-apply'
 }
 
 
 export const ADMIN_ROUTES={
     LOGIN:'/login',
-    FETCHALL_STUDENTS:'/fetchAllStudents'
+    LOGOUT:'/logout',
+    FETCHALL_STUDENTS:'/fetchAllStudents',
+    BLOCK_UNBLOCK_USER: '/block-unblock/:id' 
 }

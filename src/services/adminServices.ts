@@ -59,11 +59,11 @@ export class AdminService implements IAdminService {
                 message: "Admin logged in successfully.",
                 token: token,
                 userData: {
-                  _id: existingAdmin._id,
-                  email: existingAdmin.email,
-                  role: "Admin"
+                    _id: existingAdmin._id,
+                    email: existingAdmin.email,
+                    role: "Admin"
                 } as AdminDoc
-              };
+            };
         } catch (error) {
             console.error("Error during admin login:", error);
             return {
@@ -108,5 +108,37 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
+
+    // block or unblock user
+    async blockUnblockUser(_id: string): Promise<IResponse> {
+        try {
+            const existingUser = await this._userRepository.findById(_id);
+
+            if (!existingUser) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+
+            existingUser.isBlocked = !existingUser.isBlocked;
+            await existingUser.save();
+
+            return {
+                success: true,
+                message: `User has been ${existingUser.isBlocked ? "blocked" : "unblocked"} successfully.`,
+                userData: existingUser,
+            };
+        } catch (error) {
+            console.error("Error blocking/unblocking user:", error);
+            return {
+                success: false,
+                message: "Failed to update user status. Please try again.",
+            };
+        }
+    }
+
+
 
 }

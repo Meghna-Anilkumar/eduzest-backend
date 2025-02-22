@@ -17,5 +17,7 @@ const adminRouter = Router();
 
 adminRouter.get(ADMIN_ROUTES.FETCHALL_STUDENTS,adminController.fetchAllStudents.bind(adminController) as RequestHandler)
 adminRouter.post(ADMIN_ROUTES.LOGIN,adminController.adminLogin.bind(adminController) as RequestHandler)
+adminRouter.put(ADMIN_ROUTES.BLOCK_UNBLOCK_USER,adminController.blockUnblockUser.bind(adminController))
+adminRouter.post(ADMIN_ROUTES.LOGOUT,adminController.logout.bind(adminController) as RequestHandler)
 
 export default adminRouter

@@ -88,27 +88,30 @@ class UserController {
 
 
     //get user data
-    async getUser(req: Request, res: Response): Promise<void> {
+    async getUser(req: Request, res: Response) {
         try {
-            let token = req.headers.authorization;
-
-            if (!token) {
-                res.status(Status.UN_AUTHORISED).json({
+            const { email } = req.body;
+    
+            if (!email) {
+                return res.status(Status.BAD_REQUEST).json({
                     success: false,
-                    message: "Authorization token is required",
+                    message: "Email is required.",
                 });
-                return;
             }
-
-            token = token.split(" ")[1];
-
-            const result = await this._userService.getUser(token);
-            res.status(Status.OK).json(result);
+    
+            const result = await this._userService.getUser(email);
+    
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+                userData: result.userData
+            });
+    
         } catch (error) {
             console.error("Error fetching user data:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: "Internal Server Error",
             });
         }
     }
@@ -286,41 +289,40 @@ class UserController {
     async googleAuth(req: Request, res: Response) {
         try {
             const { token } = req.body;
-    
+
             if (!token) {
                 return res.status(Status.BAD_REQUEST).json({
                     success: false,
                     message: "Google token is required"
                 });
             }
-    
+
             const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-    
+
             const ticket = await client.verifyIdToken({
                 idToken: token,
                 audience: process.env.GOOGLE_CLIENT_ID
             });
-    
+
             const payload = ticket.getPayload();
-    
+
             if (!payload || !payload.email) {
                 return res.status(Status.BAD_REQUEST).json({
                     success: false,
                     message: "Invalid Google token"
                 });
             }
-    
-            // Extract username from email
+
             const username = payload.email.split('@')[0];
-    
+
             const googleUser = {
                 email: payload.email,
                 name: payload.name || '',
-                username: username, // Assign the extracted username
+                username: username,
             };
-    
+
             const result = await this._userService.googleAuth(googleUser, res);
-    
+
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
                 success: result.success,
                 message: result.message,
@@ -328,7 +330,7 @@ class UserController {
                 refreshToken: result.refreshToken,
                 userData: result.userData
             });
-    
+
         } catch (error) {
             console.error("Google Authentication Error:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
@@ -337,7 +339,30 @@ class UserController {
             });
         }
     }
-    
+
+
+
+    //apply for instructor 
+    async applyForInstructor(req: Request, res: Response) {
+        try {
+            const result = await this._userService.applyForInstructor(req.body);
+
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
+                success: result.success,
+                message: result.message,
+            });
+
+        } catch (error) {
+            console.error("Instructor Application Error:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+
+
+
 
 
 
