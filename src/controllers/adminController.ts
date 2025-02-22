@@ -102,6 +102,26 @@ class AdminController {
         }
     }
 
+
+    async fetchAllRequestedUsers(req: Request, res: Response): Promise<void> {
+        try {
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+
+            const response = await this._adminService.fetchAllRequestedUsers(page, limit);
+
+            res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
+        } catch (error) {
+            console.error("Error in fetchAllRequestedUsers Controller:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+    
+
 }
 
 

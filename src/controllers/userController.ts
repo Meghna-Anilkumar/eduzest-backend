@@ -88,34 +88,28 @@ class UserController {
 
 
     //get user data
-    async getUser(req: Request, res: Response) {
+    async getUser(req: Request, res: Response): Promise<void> {
         try {
-            const { email } = req.body;
+            let token = req.cookies.userJWT; 
     
-            if (!email) {
-                return res.status(Status.BAD_REQUEST).json({
+            if (!token) {
+                res.status(Status.UN_AUTHORISED).json({
                     success: false,
-                    message: "Email is required.",
+                    message: "Authorization token is required",
                 });
+                return;
             }
     
-            const result = await this._userService.getUser(email);
-    
-            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
-                success: result.success,
-                message: result.message,
-                userData: result.userData
-            });
-    
+            const result = await this._userService.getUser(token);
+            res.status(Status.OK).json(result);
         } catch (error) {
             console.error("Error fetching user data:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message: "Internal server error",
             });
         }
     }
-
 
     async logout(req: Request, res: Response, next: NextFunction) {
         try {

@@ -19,5 +19,6 @@ export const ADMIN_ROUTES={
     LOGIN:'/login',
     LOGOUT:'/logout',
     FETCHALL_STUDENTS:'/fetchAllStudents',
-    BLOCK_UNBLOCK_USER: '/block-unblock/:id' 
+    BLOCK_UNBLOCK_USER: '/block-unblock/:id',
+    FETCH_REQUESTS:'/fetchAllRequestedUsers' 
 }

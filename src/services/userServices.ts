@@ -16,6 +16,7 @@ import * as crypto from 'crypto';
 
 
 
+
 export class UserService implements IUserService {
     constructor(
         private _userRepository: UserRepository,
@@ -214,6 +215,7 @@ export class UserService implements IUserService {
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
                 maxAge: 24 * 60 * 60 * 1000,
             });
 
@@ -235,45 +237,25 @@ export class UserService implements IUserService {
 
 
     //get user data
-    async getUser(email: string): Promise<IResponse> {
+    async getUser(token: string) {
         try {
-            if (!email) {
-                throw new CustomError('Email is required', 400, 'email');
-            }
-    
-            const user = await this._userRepository.findByQuery({ email });
-    
-            if (!user) {
-                return {
-                    success: false,
-                    message: 'User not found',
-                };
-            }
-    
-            if (user.isBlocked) {
-                return {
-                    success: false,
-                    message: 'Your account has been blocked. Please contact support.',
-                };
-            }
-    
+            const payload = verifyToken(token);
+
+            const id = JSON.parse(JSON.stringify(payload)).payload;
+
+            const user = await this._userRepository.findById(id._id);
+
             return {
                 success: true,
-                message: 'User data retrieved successfully',
-                userData: user,
+                message: "User details fetched successfully",
+                data: user,
             };
         } catch (error) {
-            console.error('Error fetching user data:', error);
-            if (error instanceof CustomError) {
-                return {
-                    success: false,
-                    message: error.message,
-                    data: error.field ? { [error.field]: error.message } : undefined,
-                };
-            }
+            console.error("Error fetching user details:", error);
             return {
                 success: false,
-                message: 'An unexpected error occurred while fetching user data',
+                message: "An error occurred while fetching user details",
+                data: null,
             };
         }
     }

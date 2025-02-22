@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import userRouter from "./routes/userRoutes";
 import adminRouter from "./routes/adminRoutes";
+import cookieParser from "cookie-parser";
 
 
 dotenv.config();
@@ -15,7 +16,7 @@ app.use(express.json());
 app.use(morgan('tiny'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 
 
 app.use(

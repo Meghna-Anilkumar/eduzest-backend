@@ -5,8 +5,7 @@ import UserRepository from '../repositories/userRepository';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { generateToken } from '../utils/jwt';
 import { AdminDoc } from '../interfaces/IAdmin';
-// import { Cookie } from '../interfaces/IEnums';
-// import { Response } from "express";
+
 
 
 export class AdminService implements IAdminService {
@@ -138,6 +137,47 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
+
+    //get all requests
+    async fetchAllRequestedUsers(page: number, limit: number): Promise<IResponse> {
+        try {
+            const skip = (page - 1) * limit;
+
+            const requestedUsers = await this._userRepository.findAll(
+                { isRequested: true },
+                skip,
+                {},
+                limit
+            );
+
+            console.log("Requested users found:", requestedUsers);
+
+            const totalRequestedUsers = await this._userRepository.count({ isRequested: true });
+
+            return {
+                success: true,
+                message: "Requested users fetched successfully",
+                data: {
+                    requestedUsers,
+                    totalRequestedUsers,
+                    totalPages: Math.ceil(totalRequestedUsers / limit),
+                    currentPage: page,
+                },
+            };
+        } catch (error) {
+            console.error("Error fetching requested users:", error);
+            return {
+                success: false,
+                message: "Failed to fetch requested users. Please try again.",
+            };
+        }
+    }
+
+
+
+
+
 
 
 
