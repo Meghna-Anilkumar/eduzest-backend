@@ -20,5 +20,7 @@ export const ADMIN_ROUTES={
     LOGOUT:'/logout',
     FETCHALL_STUDENTS:'/fetchAllStudents',
     BLOCK_UNBLOCK_USER: '/block-unblock/:id',
-    FETCH_REQUESTS:'/fetchAllRequestedUsers' 
+    FETCH_REQUESTS:'/fetchAllRequestedUsers',
+    APPROVE_INSTRUCTOR:'/approve-instructor/:id',
+    REJECT_INSTRUCTOR:'/reject-instructor/:id' 
 }

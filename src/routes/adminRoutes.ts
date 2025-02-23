@@ -20,5 +20,8 @@ adminRouter.post(ADMIN_ROUTES.LOGIN,adminController.adminLogin.bind(adminControl
 adminRouter.put(ADMIN_ROUTES.BLOCK_UNBLOCK_USER,adminController.blockUnblockUser.bind(adminController))
 adminRouter.post(ADMIN_ROUTES.LOGOUT,adminController.logout.bind(adminController) as RequestHandler)
 adminRouter.get(ADMIN_ROUTES.FETCH_REQUESTS,adminController.fetchAllRequestedUsers.bind(adminController))
+adminRouter.patch(ADMIN_ROUTES.APPROVE_INSTRUCTOR,adminController.approveInstructor.bind(adminController))
+adminRouter.patch(ADMIN_ROUTES.REJECT_INSTRUCTOR,adminController.rejectInstructor.bind(adminController))
+
 
 export default adminRouter

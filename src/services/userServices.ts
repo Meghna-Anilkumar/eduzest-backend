@@ -413,11 +413,12 @@ export class UserService implements IUserService {
                     message: "User not found.",
                 };
             }
+
             const updatedData = {
                 name: profileData.name || existingUser.name,
                 profile: {
                     ...existingUser.profile,
-                    ...profileData.profile,
+                    profilePic: profileData.profile?.profilePic || existingUser.profile?.profilePic,
                 },
                 studentDetails: {
                     ...existingUser.studentDetails,
@@ -425,10 +426,7 @@ export class UserService implements IUserService {
                 }
             };
 
-            await this._userRepository.update({ email }, {
-                $set: updatedData, new: true
-            });
-
+            await this._userRepository.update({ email }, { $set: updatedData, new: true });
 
             return {
                 success: true,
@@ -443,6 +441,7 @@ export class UserService implements IUserService {
             };
         }
     }
+
 
 
 
@@ -576,53 +575,54 @@ export class UserService implements IUserService {
     async applyForInstructor(data: Partial<UserDoc>): Promise<IResponse> {
         try {
             const { name, email, profile, aboutMe, cv, phone, qualification } = data;
-
-            if (!name?.trim()) throw new CustomError('Name is required', 400, 'name');
+            console.log(data)
+            if (!name?.trim()) throw new CustomError("Name is required", 400, "name");
             if (!email) throw new CustomError("Email is required", 400, "email");
-            if (!profile?.gender) throw new CustomError('Gender is required', 400, 'gender');
-            if (!profile?.dob) throw new CustomError('Date of birth is required', 400, 'dob');
-            if (!phone) throw new CustomError('Phone number is required', 400, 'phone');
-            if (!aboutMe?.trim()) throw new CustomError('About Me section is required', 400, 'aboutMe');
-            if (!cv?.trim()) throw new CustomError('CV is required', 400, 'cv');
-            if (!qualification?.trim()) throw new CustomError('Qualification is required', 400, 'qualification');
+            if (!profile?.gender) throw new CustomError("Gender is required", 400, "gender");
+            if (!profile?.profilePic) throw new CustomError("pro pic is required", 400, "profile picture");
+            if (!profile?.dob) throw new CustomError("Date of birth is required", 400, "dob");
+            if (!phone) throw new CustomError("Phone number is required", 400, "phone");
+            if (!aboutMe?.trim()) throw new CustomError("About Me section is required", 400, "aboutMe");
+            if (!cv?.trim()) throw new CustomError("CV is required", 400, "cv");
+            if (!qualification?.trim()) throw new CustomError("Qualification is required", 400, "qualification");
 
             const existingUser = await this._userRepository.findByQuery({ email });
 
             if (!existingUser) {
-                throw new CustomError('User not found', 404, 'email');
+                throw new CustomError("User not found", 404, "email");
             }
 
             if (existingUser.isRequested) {
                 return {
                     success: false,
-                    message: 'You have already applied for an instructor position.',
+                    message: "You have already applied for an instructor position.",
                 };
             }
 
-            await this._userRepository.update({ email }, {
-                profile,
-                aboutMe,
-                cv,
-                qualification,
-                isRequested: true,
-                isRejected: false,
-            });
+            await this._userRepository.update(
+                { email },
+                {
+                    profile,
+                    aboutMe,
+                    cv,
+                    qualification,
+                    isRequested: true,
+                    isRejected: false,
+                }
+            );
 
             return {
                 success: true,
-                message: 'Application submitted successfully. Awaiting approval.',
+                message: "Application submitted successfully. Awaiting approval.",
             };
         } catch (error) {
-            console.error('Error during instructor application:', error);
+            console.error("Error during instructor application:", error);
             return {
                 success: false,
-                message: error instanceof CustomError ? error.message : 'An unexpected error occurred.',
+                message: error instanceof CustomError ? error.message : "An unexpected error occurred.",
             };
         }
     }
-
-
-
 
 
 }    

@@ -214,37 +214,22 @@ class UserController {
     //update student profile
     async updateStudentProfile(req: Request, res: Response) {
         try {
-            const { email, name, additionalEmail, profileData } = req.body;
-            console.log('hiii')
-            console.log(profileData)
-            console.log(req.body)
-            if (!email) {
-                return res.status(Status.BAD_REQUEST).json({
-                    success: false,
-                    message: "Email is required.",
-                });
-            }
-
-            const result = await this._userService.updateStudentProfile(email, {
-                name,
-                studentDetails: { additionalEmail },
-                profile: profileData
-            });
-
-            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
-                success: result.success,
-                message: result.message,
-                data: result.data
-            });
-
+          const { email, username, additionalEmail, dob, gender } = req.body;
+          let imageUrl = req.file?.path; 
+      
+          const updatedData = {
+            name: username,
+            studentDetails: { additionalEmail },
+            profile: { dob, gender, profilePic: imageUrl },
+          };
+      
+          const result = await this._userService.updateStudentProfile(email, updatedData);
+          res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
-            console.error("Error updating student profile:", error);
-            res.status(Status.INTERNAL_SERVER_ERROR).json({
-                success: false,
-                message: "Internal Server Error",
-            });
+          res.status(500).json({ success: false, message: "Internal Server Error" });
         }
-    }
+      }
+
 
 
     //change password
@@ -339,21 +324,56 @@ class UserController {
     //apply for instructor 
     async applyForInstructor(req: Request, res: Response) {
         try {
-            const result = await this._userService.applyForInstructor(req.body);
-
-            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json({
-                success: result.success,
-                message: result.message,
+          const { name, email, gender, dob, phone, qualification, aboutMe } = req.body;
+          const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+      
+          console.log("Received files:", files); // Debug log
+      
+          if (!files || !files["profilePic"]?.[0]) {
+            return res.status(400).json({
+              success: false,
+              message: "Profile picture is required"
             });
-
+          }
+      
+          const profilePicUrl = files["profilePic"][0].path;
+          const cvUrl = files["cv"]?.[0]?.path;
+      
+          if (!cvUrl) {
+            return res.status(400).json({
+              success: false,
+              message: "CV is required"
+            });
+          }
+      
+          const applicationData = {
+            name,
+            email,
+            profile: {
+              gender,
+              dob,
+              profilePic: profilePicUrl
+            },
+            aboutMe,
+            cv: cvUrl,
+            phone,
+            qualification
+          };
+      
+          console.log("Application data:", applicationData); // Debug log
+      
+          const result = await this._userService.applyForInstructor(applicationData);
+      
+          res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
-            console.error("Instructor Application Error:", error);
-            res.status(Status.INTERNAL_SERVER_ERROR).json({
-                success: false,
-                message: "Internal Server Error",
-            });
+          console.error("Instructor Application Error:", error);
+          res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+          });
         }
-    }
+      }
+    
 
 
 

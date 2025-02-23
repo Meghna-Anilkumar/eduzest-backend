@@ -7,7 +7,7 @@ export interface UserDoc extends Document {
   profile?: {
     dob?: string;
     gender?: "Male" | "Female" | "Other";
-    profilePic?: string;
+    profilePic?: string|null
   };
   updatedAt?: Date;
   role?: "Student" | "Instructor" | "Admin";

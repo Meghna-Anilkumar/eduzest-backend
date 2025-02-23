@@ -120,7 +120,64 @@ class AdminController {
         }
     }
 
-    
+    // Approve Instructor
+    async approveInstructor(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params;
+
+            if (!id) {
+                res.status(Status.BAD_REQUEST).json({ success: false, message: "User ID is required." });
+                return;
+            }
+
+            const response = await this._adminService.approveInstructor(id);
+
+            if (!response.success) {
+                res.status(Status.NOT_FOUND).json(response);
+                return;
+            }
+
+            res.status(Status.OK).json(response);
+        } catch (error) {
+            console.error("Error in approveInstructor Controller:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+
+    // Reject Instructor
+    async rejectInstructor(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params;
+
+            if (!id) {
+                res.status(Status.BAD_REQUEST).json({ success: false, message: "User ID is required." });
+                return;
+            }
+
+            const response = await this._adminService.rejectInstructor(id);
+
+            if (!response.success) {
+                res.status(Status.NOT_FOUND).json(response);
+                return;
+            }
+
+            res.status(Status.OK).json(response);
+        } catch (error) {
+            console.error("Error in rejectInstructor Controller:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+
+
+
 
 }
 

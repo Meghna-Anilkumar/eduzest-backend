@@ -175,6 +175,84 @@ export class AdminService implements IAdminService {
     }
 
 
+    // Approve instructor request
+    async approveInstructor(_id: string): Promise<IResponse> {
+        try {
+            const existingUser = await this._userRepository.findById(_id);
+
+            if (!existingUser) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+
+            if (!existingUser.isRequested) {
+                return {
+                    success: false,
+                    message: "This user has not requested instructor approval.",
+                };
+            }
+
+            existingUser.isRequested = false;
+            existingUser.role = "Instructor";
+            await existingUser.save();
+
+            return {
+                success: true,
+                message: "User has been approved as an Instructor successfully.",
+                userData: existingUser,
+            };
+        } catch (error) {
+            console.error("Error approving instructor:", error);
+            return {
+                success: false,
+                message: "Failed to approve instructor. Please try again.",
+            };
+        }
+    }
+
+
+    //reject instructor
+    async rejectInstructor(_id: string): Promise<IResponse> {
+        try {
+            const existingUser = await this._userRepository.findById(_id);
+    
+            if (!existingUser) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+    
+            if (!existingUser.isRequested) {
+                return {
+                    success: false,
+                    message: "This user has not requested instructor approval.",
+                };
+            }
+    
+            existingUser.isRequested = false;
+            existingUser.isRejected = true;
+            await existingUser.save();
+    
+            return {
+                success: true,
+                message: "User's instructor request has been rejected.",
+                userData: existingUser,
+            };
+        } catch (error) {
+            console.error("Error rejecting instructor:", error);
+            return {
+                success: false,
+                message: "Failed to reject instructor request. Please try again.",
+            };
+        }
+    }
+    
+
+
+
 
 
 
