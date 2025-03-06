@@ -1,6 +1,8 @@
 import { UserDoc } from "./IUser";
+import { CategoryDoc } from "./ICategory";
 import { IResponse } from "./IResponse";
 import { Response } from "express";
+
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -23,3 +25,7 @@ export interface IAdminService {
     blockUnblockUser(_id: string): Promise<IResponse>
 }
 
+
+export interface ICategoryService{
+    createCategory(categoryData: Partial<CategoryDoc>): Promise<IResponse>
+}

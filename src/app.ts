@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { responseLogger } from "./middlewares/logger";
 import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
@@ -17,6 +18,7 @@ app.use(morgan('tiny'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(responseLogger); 
 
 
 app.use(

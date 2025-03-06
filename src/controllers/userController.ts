@@ -90,8 +90,8 @@ class UserController {
     //get user data
     async getUser(req: Request, res: Response): Promise<void> {
         try {
-            let token = req.cookies.userJWT; 
-    
+            let token = req.cookies.userJWT;
+
             if (!token) {
                 res.status(Status.UN_AUTHORISED).json({
                     success: false,
@@ -99,7 +99,7 @@ class UserController {
                 });
                 return;
             }
-    
+
             const result = await this._userService.getUser(token);
             res.status(Status.OK).json(result);
         } catch (error) {
@@ -214,21 +214,21 @@ class UserController {
     //update student profile
     async updateStudentProfile(req: Request, res: Response) {
         try {
-          const { email, username, additionalEmail, dob, gender } = req.body;
-          let imageUrl = req.file?.path; 
-      
-          const updatedData = {
-            name: username,
-            studentDetails: { additionalEmail },
-            profile: { dob, gender, profilePic: imageUrl },
-          };
-      
-          const result = await this._userService.updateStudentProfile(email, updatedData);
-          res.status(result.success ? 200 : 400).json(result);
+            const { email, username, additionalEmail, dob, gender } = req.body;
+            let imageUrl = req.file?.path;
+
+            const updatedData = {
+                name: username,
+                studentDetails: { additionalEmail },
+                profile: { dob, gender, profilePic: imageUrl },
+            };
+
+            const result = await this._userService.updateStudentProfile(email, updatedData);
+            res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
-          res.status(500).json({ success: false, message: "Internal Server Error" });
+            res.status(500).json({ success: false, message: "Internal Server Error" });
         }
-      }
+    }
 
 
 
@@ -324,56 +324,82 @@ class UserController {
     //apply for instructor 
     async applyForInstructor(req: Request, res: Response) {
         try {
-          const { name, email, gender, dob, phone, qualification, aboutMe } = req.body;
-          const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-      
-          console.log("Received files:", files); // Debug log
-      
-          if (!files || !files["profilePic"]?.[0]) {
-            return res.status(400).json({
-              success: false,
-              message: "Profile picture is required"
-            });
-          }
-      
-          const profilePicUrl = files["profilePic"][0].path;
-          const cvUrl = files["cv"]?.[0]?.path;
-      
-          if (!cvUrl) {
-            return res.status(400).json({
-              success: false,
-              message: "CV is required"
-            });
-          }
-      
-          const applicationData = {
-            name,
-            email,
-            profile: {
-              gender,
-              dob,
-              profilePic: profilePicUrl
-            },
-            aboutMe,
-            cv: cvUrl,
-            phone,
-            qualification
-          };
-      
-          console.log("Application data:", applicationData); // Debug log
-      
-          const result = await this._userService.applyForInstructor(applicationData);
-      
-          res.status(result.success ? 200 : 400).json(result);
+            const { name, email, gender, dob, phone, qualification, aboutMe, profilePic } = req.body;
+            const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+
+            console.log("Received body:", req.body);
+            console.log("Received files:", files);
+
+            let profilePicUrl: string;
+
+            if (files && files["profilePic"]?.[0]) {
+                profilePicUrl = files["profilePic"][0].path;
+            }
+            else if (profilePic && typeof profilePic === "string" && profilePic.startsWith("http")) {
+                profilePicUrl = profilePic;
+            }
+            else {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "Profile picture is required (upload a file or provide an existing URL)",
+                });
+            }
+
+            if (!files || !files["cv"]?.[0]) {
+                return res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "CV file is required",
+                });
+            }
+            const cvUrl = files["cv"][0].path;
+
+            const applicationData = {
+                name,
+                email,
+                profile: {
+                    gender,
+                    dob,
+                    profilePic: profilePicUrl,
+                },
+                aboutMe,
+                cv: cvUrl,
+                phone,
+                qualification,
+            };
+
+            console.log("Application data:", applicationData);
+
+            const result = await this._userService.applyForInstructor(applicationData);
+
+            res.status(result.success ? Status.CREATED : Status.BAD_REQUEST).json(result);
         } catch (error) {
-          console.error("Instructor Application Error:", error);
-          res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-          });
+            console.error("Instructor Application Error:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal Server Error",
+            });
         }
-      }
-    
+    }
+
+
+
+    async updateInstructorProfile(req: Request, res: Response) {
+        try {
+            const { email, username, dob, gender, qualification } = req.body;
+            let imageUrl = req.file?.path;
+
+            const updatedData = {
+                name: username,
+                qualification: qualification,
+                profile: { dob, gender, profilePic: imageUrl },
+            };
+
+            const result = await this._userService.updateInstructorProfile(email, updatedData);
+            res.status(result.success ? 200 : 400).json(result);
+        } catch (error) {
+            res.status(500).json({ success: false, message: "Internal Server Error" });
+        }
+    }
 
 
 

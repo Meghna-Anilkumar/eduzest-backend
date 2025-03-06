@@ -574,55 +574,102 @@ export class UserService implements IUserService {
     //instructor apply
     async applyForInstructor(data: Partial<UserDoc>): Promise<IResponse> {
         try {
-            const { name, email, profile, aboutMe, cv, phone, qualification } = data;
-            console.log(data)
-            if (!name?.trim()) throw new CustomError("Name is required", 400, "name");
-            if (!email) throw new CustomError("Email is required", 400, "email");
-            if (!profile?.gender) throw new CustomError("Gender is required", 400, "gender");
-            if (!profile?.profilePic) throw new CustomError("pro pic is required", 400, "profile picture");
-            if (!profile?.dob) throw new CustomError("Date of birth is required", 400, "dob");
-            if (!phone) throw new CustomError("Phone number is required", 400, "phone");
-            if (!aboutMe?.trim()) throw new CustomError("About Me section is required", 400, "aboutMe");
-            if (!cv?.trim()) throw new CustomError("CV is required", 400, "cv");
-            if (!qualification?.trim()) throw new CustomError("Qualification is required", 400, "qualification");
-
-            const existingUser = await this._userRepository.findByQuery({ email });
-
-            if (!existingUser) {
-                throw new CustomError("User not found", 404, "email");
+          const { name, email, profile, aboutMe, cv, phone, qualification } = data;
+          console.log("Service received data:", data);
+      
+          if (!name?.trim()) throw new CustomError("Name is required", 400, "name");
+          if (!email) throw new CustomError("Email is required", 400, "email");
+          if (!profile?.gender) throw new CustomError("Gender is required", 400, "gender");
+          if (!profile?.profilePic) throw new CustomError("Profile picture is required", 400, "profile picture");
+          if (!profile?.dob) throw new CustomError("Date of birth is required", 400, "dob");
+          if (!phone) throw new CustomError("Phone number is required", 400, "phone");
+          if (!aboutMe?.trim()) throw new CustomError("About Me section is required", 400, "aboutMe");
+          if (!cv?.trim()) throw new CustomError("CV is required", 400, "cv");
+          if (!qualification?.trim()) throw new CustomError("Qualification is required", 400, "qualification");
+      
+          const existingUser = await this._userRepository.findByQuery({ email });
+      
+          if (!existingUser) {
+            throw new CustomError("User not found", 404, "email");
+          }
+      
+          if (existingUser.isRequested) {
+            return {
+              success: false,
+              message: "You have already applied for an instructor position.",
+            };
+          }
+      
+          await this._userRepository.update(
+            { email },
+            {
+              profile,
+              aboutMe,
+              cv,
+              qualification,
+              isRequested: true,
+              isRejected: false,
             }
+          );
+      
+          return {
+            success: true,
+            message: "Application submitted successfully. Awaiting approval.",
+          };
+        } catch (error) {
+          console.error("Error during instructor application:", error);
+          return {
+            success: false,
+            message: error instanceof CustomError ? error.message : "An unexpected error occurred.",
+          };
+        }
+      }
 
-            if (existingUser.isRequested) {
+
+      async updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
+        try {
+            if (!email) throw new CustomError("Email is required", 400, "email");
+    
+            const existingUser = await this._userRepository.findByQuery({ email });
+    
+            if (!existingUser) {
                 return {
                     success: false,
-                    message: "You have already applied for an instructor position.",
+                    message: "Instructor not found.",
                 };
             }
-
-            await this._userRepository.update(
-                { email },
-                {
-                    profile,
-                    aboutMe,
-                    cv,
-                    qualification,
-                    isRequested: true,
-                    isRejected: false,
+    
+            const updatedData = {
+                name: profileData.name || existingUser.name,
+                qualification:profileData.qualification||existingUser.qualification,
+                profile: {
+                    ...existingUser.profile,
+                    profilePic: profileData.profile?.profilePic || existingUser.profile?.profilePic,
+                    dob: profileData.profile?.dob || existingUser.profile?.dob,
+                    gender: profileData.profile?.gender || existingUser.profile?.gender,
+                },
+                instructorDetails: {
+                    ...existingUser.instructorDetails,
+                   
                 }
-            );
-
+            };
+    
+            await this._userRepository.update({ email }, { $set: updatedData, new: true });
+    
             return {
                 success: true,
-                message: "Application submitted successfully. Awaiting approval.",
+                message: "Instructor profile updated successfully.",
+                data: updatedData,
             };
         } catch (error) {
-            console.error("Error during instructor application:", error);
+            console.error("Error updating instructor profile:", error);
             return {
                 success: false,
-                message: error instanceof CustomError ? error.message : "An unexpected error occurred.",
+                message: "An error occurred while updating the instructor profile.",
             };
         }
     }
+    
 
 
 }    

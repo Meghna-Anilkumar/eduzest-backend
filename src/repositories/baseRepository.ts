@@ -18,7 +18,7 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
             query = query.skip(skip).limit(limit);
     
             const result = await query;
-            console.log("Query result:", result); // Debugging log
+            console.log("Query result:", result);
     
             return result;
         } catch (error) {

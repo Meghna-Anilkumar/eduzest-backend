@@ -11,7 +11,7 @@ import { AdminDoc } from '../interfaces/IAdmin';
 export class AdminService implements IAdminService {
     constructor(
         private _userRepository: UserRepository,
-        private _adminRepository: AdminRepository
+        private _adminRepository: AdminRepository,
     ) { }
 
 
@@ -249,6 +249,47 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
+
+
+
+    //fetch all instructors
+    async fetchAllInstructors(page: number, limit: number): Promise<IResponse> {
+        try {
+            const skip = (page - 1) * limit;
+    
+            // Fetch instructors with role "Instructor"
+            const instructors = await this._userRepository.findAll(
+                { role: "Instructor" }, // Correct role filter
+                skip,
+                {},
+                limit
+            );
+    
+            console.log("Instructors found:", instructors);
+    
+            // Count total instructors
+            const totalInstructors = await this._userRepository.count({ role: "Instructor" });
+    
+            return {
+                success: true,
+                message: "Instructors fetched successfully",
+                data: {
+                    instructors,
+                    totalInstructors,
+                    totalPages: Math.ceil(totalInstructors / limit),
+                    currentPage: page,
+                },
+            };
+        } catch (error) {
+            console.error("Error fetching instructors:", error);
+            return {
+                success: false,
+                message: "Failed to fetch instructors. Please try again.",
+            };
+        }
+    }
+    
     
 
 
