@@ -3,6 +3,7 @@ import { UserService } from '../services/userServices'
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
 import { OAuth2Client } from 'google-auth-library';
+import { uploadToS3 } from "../utils/s3";
 // import { validatePassword } from "../utils/validator";
 
 class UserController {
@@ -215,21 +216,41 @@ class UserController {
     async updateStudentProfile(req: Request, res: Response) {
         try {
             const { email, username, additionalEmail, dob, gender } = req.body;
-            let imageUrl = req.file?.path;
-
+            let imageUrl = null;
+            
+            console.log("Request file:", req.file); // Add this for debugging
+            
+            // Upload profile image to S3 if available
+            if (req.file) {
+                try {
+                    imageUrl = await uploadToS3(req.file, 'profile');
+                    console.log("Image uploaded successfully:", imageUrl);
+                } catch (error) {
+                    console.error("Error uploading to S3:", error);
+                    return res.status(400).json({
+                        success: false,
+                        message: "Failed to upload profile image"
+                    });
+                }
+            }
+    
             const updatedData = {
                 name: username,
                 studentDetails: { additionalEmail },
-                profile: { dob, gender, profilePic: imageUrl },
+                profile: {
+                    dob, 
+                    gender,
+                    profilePic: imageUrl,
+                },
             };
-
+    
             const result = await this._userService.updateStudentProfile(email, updatedData);
             res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
+            console.error("Error updating student profile:", error);
             res.status(500).json({ success: false, message: "Internal Server Error" });
         }
     }
-
 
 
     //change password
@@ -319,40 +340,54 @@ class UserController {
         }
     }
 
-
-
-    //apply for instructor 
     async applyForInstructor(req: Request, res: Response) {
         try {
-            const { name, email, gender, dob, phone, qualification, aboutMe, profilePic } = req.body;
+            const { name, email, gender, dob, phone, qualification, aboutMe } = req.body;
             const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-
-            console.log("Received body:", req.body);
-            console.log("Received files:", files);
-
-            let profilePicUrl: string;
-
-            if (files && files["profilePic"]?.[0]) {
-                profilePicUrl = files["profilePic"][0].path;
-            }
-            else if (profilePic && typeof profilePic === "string" && profilePic.startsWith("http")) {
-                profilePicUrl = profilePic;
-            }
-            else {
-                return res.status(Status.BAD_REQUEST).json({
+            
+            console.log("Request files:", files); // Add this for debugging
+            
+            let profilePicUrl = null;
+            let cvUrl = null;
+    
+            // Upload profile picture if available
+            if (files && files['profilePic'] && files['profilePic'][0]) {
+                try {
+                    profilePicUrl = await uploadToS3(files['profilePic'][0], 'profile');
+                    console.log("Profile picture uploaded:", profilePicUrl);
+                } catch (error) {
+                    console.error("Error uploading profile picture:", error);
+                    return res.status(400).json({
+                        success: false,
+                        message: "Failed to upload profile picture"
+                    });
+                }
+            } else {
+                return res.status(400).json({
                     success: false,
-                    message: "Profile picture is required (upload a file or provide an existing URL)",
+                    message: "Profile picture is required"
                 });
             }
-
-            if (!files || !files["cv"]?.[0]) {
-                return res.status(Status.BAD_REQUEST).json({
+    
+            // Upload CV if available
+            if (files && files['cv'] && files['cv'][0]) {
+                try {
+                    cvUrl = await uploadToS3(files['cv'][0], 'document');
+                    console.log("CV uploaded:", cvUrl);
+                } catch (error) {
+                    console.error("Error uploading CV:", error);
+                    return res.status(400).json({
+                        success: false,
+                        message: "Failed to upload CV"
+                    });
+                }
+            } else {
+                return res.status(400).json({
                     success: false,
-                    message: "CV file is required",
+                    message: "CV is required"
                 });
             }
-            const cvUrl = files["cv"][0].path;
-
+    
             const applicationData = {
                 name,
                 email,
@@ -366,12 +401,9 @@ class UserController {
                 phone,
                 qualification,
             };
-
-            console.log("Application data:", applicationData);
-
+    
             const result = await this._userService.applyForInstructor(applicationData);
-
-            res.status(result.success ? Status.CREATED : Status.BAD_REQUEST).json(result);
+            res.status(result.success ? 201 : 400).json(result);
         } catch (error) {
             console.error("Instructor Application Error:", error);
             res.status(500).json({
@@ -380,13 +412,24 @@ class UserController {
             });
         }
     }
-
-
-
+        
     async updateInstructorProfile(req: Request, res: Response) {
         try {
             const { email, username, dob, gender, qualification } = req.body;
-            let imageUrl = req.file?.path;
+            let imageUrl = null;
+
+            // Upload profile picture to S3 if provided
+            if (req.file) {
+                try {
+                    imageUrl = await uploadToS3(req.file);
+                } catch (error) {
+                    console.error("Error uploading profile picture to S3:", error);
+                    return res.status(Status.BAD_REQUEST).json({
+                        success: false,
+                        message: "Failed to upload profile picture to S3",
+                    });
+                }
+            }
 
             const updatedData = {
                 name: username,
@@ -397,10 +440,10 @@ class UserController {
             const result = await this._userService.updateInstructorProfile(email, updatedData);
             res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
+            console.error("Error updating instructor profile:", error);
             res.status(500).json({ success: false, message: "Internal Server Error" });
         }
     }
-
 
 
 

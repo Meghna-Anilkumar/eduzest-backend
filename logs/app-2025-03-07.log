@@ -1,0 +1,95 @@
+[2025-03-07 15:29:57] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-07 15:29:57] [INFO] [REQUEST] PUT /student-profile
+[2025-03-07 15:29:59] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-07 15:30:14] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-07 15:30:14] [INFO] [REQUEST] POST /logout
+[2025-03-07 15:30:14] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-07 15:30:27] [INFO] [REQUEST] OPTIONS /login
+[2025-03-07 15:30:27] [INFO] [REQUEST] POST /login
+[2025-03-07 15:30:27] [INFO] [RESPONSE] Status: 400 Message: Invalid password.
+[2025-03-07 15:31:28] [INFO] [REQUEST] OPTIONS /login
+[2025-03-07 15:31:28] [INFO] [REQUEST] POST /login
+[2025-03-07 15:31:28] [INFO] [RESPONSE] Status: 400 Message: Invalid password.
+[2025-03-07 15:31:37] [INFO] [REQUEST] OPTIONS /login
+[2025-03-07 15:31:37] [INFO] [REQUEST] POST /login
+[2025-03-07 15:31:37] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-07 16:34:30] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-07 16:34:30] [INFO] [REQUEST] PUT /student-profile
+[2025-03-07 16:34:31] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-07 16:35:03] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 16:35:03] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 16:35:41] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 16:35:42] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-07 16:35:42] [INFO] [REQUEST] GET /getUserdata
+[2025-03-07 16:35:42] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-07 16:36:27] [INFO] [REQUEST] OPTIONS /login
+[2025-03-07 16:36:27] [INFO] [REQUEST] POST /login
+[2025-03-07 16:36:27] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-07 16:37:53] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 16:37:53] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:37:53] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:37:57] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:37:57] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:37:58] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:37:58] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:37:59] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 16:37:59] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:37:59] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:38:00] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:38:00] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:38:01] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:38:01] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:38:01] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:38:01] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:38:02] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:38:02] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:38:03] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:38:03] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 16:38:50] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 16:38:50] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 16:38:50] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:23:50] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:23:50] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:23:50] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:24:12] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:24:12] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:24:12] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:25:06] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:25:06] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:25:06] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:34:55] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:34:55] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:34:55] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:35:44] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:35:44] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:35:44] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:36:03] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:36:03] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:36:03] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-07 17:43:18] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 17:43:18] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 17:43:18] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-07 17:43:36] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-07 17:43:36] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 17:43:42] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-07 17:43:42] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-07 17:43:49] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 17:43:49] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 17:43:56] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 17:43:56] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 17:47:59] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-07 17:47:59] [INFO] [REQUEST] POST /logout
+[2025-03-07 17:47:59] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-07 17:48:48] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-07 17:48:48] [INFO] [REQUEST] POST /signup
+[2025-03-07 17:48:52] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-07 17:49:09] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-07 17:49:09] [INFO] [REQUEST] POST /otp-verification
+[2025-03-07 17:49:09] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-07 17:49:36] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-07 17:49:36] [INFO] [REQUEST] PUT /student-profile
+[2025-03-07 17:49:37] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-07 17:49:57] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 17:49:58] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 17:57:49] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 17:57:49] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required

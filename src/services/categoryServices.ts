@@ -22,7 +22,7 @@ export class CategoryService implements ICategoryService {
                 };
             }
 
-            const existingCategory = await this._categoryRepository.findByQuery({ categoryName: categoryData.categoryName });
+            const existingCategory = await this._categoryRepository.findByName(categoryData.categoryName);
             if (existingCategory) {
                 return {
                     success: false,
@@ -49,19 +49,17 @@ export class CategoryService implements ICategoryService {
     // Get all categories
     async getAllCategories(page: number, limit: number): Promise<IResponse> {
         try {
-            const skip = (page - 1) * limit; // Calculate skip value for pagination
+            const skip = (page - 1) * limit;
 
-            // Fetch categories with pagination
             const categories = await this._categoryRepository.findAll(
-                {}, // No filter, fetch all categories
+                {},
                 skip,
-                { createdAt: -1 }, // Sort by newest first
+                { createdAt: -1 },
                 limit
             );
 
             console.log("Categories found:", categories);
 
-            // Count total categories
             const totalCategories = await this._categoryRepository.count({});
 
             return {
@@ -94,7 +92,6 @@ export class CategoryService implements ICategoryService {
                 };
             }
 
-            // Update an existing category
             const duplicateCategory = await this._categoryRepository.findByQuery({ categoryName: categoryData.categoryName });
 
             if (duplicateCategory) {
@@ -126,42 +123,39 @@ export class CategoryService implements ICategoryService {
 
     async deleteCategory(categoryId: string): Promise<IResponse> {
         try {
-          // Check if the category exists
-          const category = await this._categoryRepository.findById(categoryId);
-          if (!category) {
+            const category = await this._categoryRepository.findById(categoryId);
+            if (!category) {
+                return {
+                    success: false,
+                    message: "Category not found.",
+                };
+            }
+
+            const newActiveStatus = !category.isActive;
+
+            const updatedCategory = await this._categoryRepository.update(categoryId, {
+                isActive: newActiveStatus,
+            });
+
+            if (!updatedCategory) {
+                return {
+                    success: false,
+                    message: "Failed to toggle category status.",
+                };
+            }
+
             return {
-              success: false,
-              message: "Category not found.",
+                success: true,
+                message: `Category ${newActiveStatus ? "restored" : "deleted"} successfully.`,
+                data: updatedCategory,
             };
-          }
-      
-          // Toggle isActive (true -> false, false -> true)
-          const newActiveStatus = !category.isActive;
-      
-          // Update the category with the toggled isActive value
-          const updatedCategory = await this._categoryRepository.update(categoryId, {
-            isActive: newActiveStatus,
-          });
-      
-          if (!updatedCategory) {
-            return {
-              success: false,
-              message: "Failed to toggle category status.",
-            };
-          }
-      
-          return {
-            success: true,
-            message: `Category ${newActiveStatus ? "restored" : "deleted"} successfully.`,
-            data: updatedCategory,
-          };
         } catch (error) {
-          console.error(`Error toggling category with ID ${categoryId}:`, error);
-          return {
-            success: false,
-            message: "Failed to toggle category status. Please try again.",
-          };
+            console.error(`Error toggling category with ID ${categoryId}:`, error);
+            return {
+                success: false,
+                message: "Failed to toggle category status. Please try again.",
+            };
         }
-      }
+    }
 
 }

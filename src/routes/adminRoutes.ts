@@ -24,6 +24,9 @@ const categoryController = new CategoryController(categoryService);
 
 const adminRouter = Router();
 
+
+adminRouter.post(ADMIN_ROUTES.LOGIN,adminController.adminLogin.bind(adminController))
+adminRouter.post(ADMIN_ROUTES.LOGOUT,adminController.logout.bind(adminController) as RequestHandler)
 adminRouter.get(ADMIN_ROUTES.FETCHALL_STUDENTS, authenticate("Admin"), adminController.fetchAllStudents.bind(adminController) as RequestHandler);
 adminRouter.get(ADMIN_ROUTES.FETCHALL_INSTRUCTORS, authenticate("Admin"), adminController.fetchAllInstructors.bind(adminController) as RequestHandler);
 adminRouter.put(ADMIN_ROUTES.BLOCK_UNBLOCK_USER, authenticate("Admin"), adminController.blockUnblockUser.bind(adminController));
@@ -31,7 +34,8 @@ adminRouter.get(ADMIN_ROUTES.FETCH_REQUESTS, authenticate("Admin"), adminControl
 adminRouter.patch(ADMIN_ROUTES.APPROVE_INSTRUCTOR, authenticate("Admin"), adminController.approveInstructor.bind(adminController));
 adminRouter.patch(ADMIN_ROUTES.REJECT_INSTRUCTOR, authenticate("Admin"), adminController.rejectInstructor.bind(adminController));
 
-// Category management (only admin should access)
+
+// Category management 
 adminRouter.post(ADMIN_ROUTES.ADD_CATEGORY, authenticate("Admin"), categoryController.createCategory.bind(categoryController));
 adminRouter.get(ADMIN_ROUTES.FETCHALL_CATEGORIES, authenticate("Admin"), categoryController.getAllCategories.bind(categoryController));
 adminRouter.put(ADMIN_ROUTES.EDIT_CATEGORY, authenticate("Admin"), categoryController.editCategory.bind(categoryController));

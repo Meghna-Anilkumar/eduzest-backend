@@ -6,14 +6,11 @@ import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { generateToken } from '../utils/jwt';
 import { AdminDoc } from '../interfaces/IAdmin';
 
-
-
 export class AdminService implements IAdminService {
     constructor(
         private _userRepository: UserRepository,
         private _adminRepository: AdminRepository,
     ) { }
-
 
     //admin login
     async adminLogin({ email, password }: { email: string; password: string }): Promise<IResponse> {
@@ -28,7 +25,7 @@ export class AdminService implements IAdminService {
                 };
             }
 
-            let existingAdmin = await this._adminRepository.findByQuery({ email });
+            let existingAdmin = await this._adminRepository.findByEmail(email);
 
             if (!existingAdmin) {
                 const hashedPassword = await hashPassword(adminPassword);
@@ -72,7 +69,6 @@ export class AdminService implements IAdminService {
         }
     }
 
-
     //list users on admin side
     async fetchAllStudents(page: number, limit: number): Promise<IResponse> {
         try {
@@ -81,11 +77,9 @@ export class AdminService implements IAdminService {
             const students = await this._userRepository.findAll(
                 { role: "Student" },
                 skip,
-                {},
+                { createdAt: -1 }, 
                 limit
             );
-
-            console.log("Students found:", students);
 
             const totalStudents = await this._userRepository.count({ role: "Student" });
 
@@ -108,7 +102,6 @@ export class AdminService implements IAdminService {
         }
     }
 
-
     // block or unblock user
     async blockUnblockUser(_id: string): Promise<IResponse> {
         try {
@@ -121,13 +114,22 @@ export class AdminService implements IAdminService {
                 };
             }
 
-            existingUser.isBlocked = !existingUser.isBlocked;
-            await existingUser.save();
+            // Toggle the isBlocked status
+            const updatedUser = await this._userRepository.update(_id, {
+                isBlocked: !existingUser.isBlocked
+            });
+
+            if (!updatedUser) {
+                return {
+                    success: false,
+                    message: "Failed to update user status.",
+                };
+            }
 
             return {
                 success: true,
-                message: `User has been ${existingUser.isBlocked ? "blocked" : "unblocked"} successfully.`,
-                userData: existingUser,
+                message: `User has been ${updatedUser.isBlocked ? "blocked" : "unblocked"} successfully.`,
+                userData: updatedUser,
             };
         } catch (error) {
             console.error("Error blocking/unblocking user:", error);
@@ -138,7 +140,6 @@ export class AdminService implements IAdminService {
         }
     }
 
-
     //get all requests
     async fetchAllRequestedUsers(page: number, limit: number): Promise<IResponse> {
         try {
@@ -147,11 +148,9 @@ export class AdminService implements IAdminService {
             const requestedUsers = await this._userRepository.findAll(
                 { isRequested: true },
                 skip,
-                {},
+                { createdAt: -1 },
                 limit
             );
-
-            console.log("Requested users found:", requestedUsers);
 
             const totalRequestedUsers = await this._userRepository.count({ isRequested: true });
 
@@ -174,7 +173,6 @@ export class AdminService implements IAdminService {
         }
     }
 
-
     // Approve instructor request
     async approveInstructor(_id: string): Promise<IResponse> {
         try {
@@ -194,14 +192,23 @@ export class AdminService implements IAdminService {
                 };
             }
 
-            existingUser.isRequested = false;
-            existingUser.role = "Instructor";
-            await existingUser.save();
+            const updatedUser = await this._userRepository.update(_id, {
+                isRequested: false,
+                role: "Instructor",
+                isRejected: false 
+            });
+
+            if (!updatedUser) {
+                return {
+                    success: false,
+                    message: "Failed to approve instructor.",
+                };
+            }
 
             return {
                 success: true,
                 message: "User has been approved as an Instructor successfully.",
-                userData: existingUser,
+                userData: updatedUser,
             };
         } catch (error) {
             console.error("Error approving instructor:", error);
@@ -211,7 +218,6 @@ export class AdminService implements IAdminService {
             };
         }
     }
-
 
     //reject instructor
     async rejectInstructor(_id: string): Promise<IResponse> {
@@ -232,14 +238,22 @@ export class AdminService implements IAdminService {
                 };
             }
     
-            existingUser.isRequested = false;
-            existingUser.isRejected = true;
-            await existingUser.save();
+            const updatedUser = await this._userRepository.update(_id, {
+                isRequested: false,
+                isRejected: true
+            });
+
+            if (!updatedUser) {
+                return {
+                    success: false,
+                    message: "Failed to reject instructor request.",
+                };
+            }
     
             return {
                 success: true,
                 message: "User's instructor request has been rejected.",
-                userData: existingUser,
+                userData: updatedUser,
             };
         } catch (error) {
             console.error("Error rejecting instructor:", error);
@@ -250,25 +264,18 @@ export class AdminService implements IAdminService {
         }
     }
 
-
-
-
     //fetch all instructors
     async fetchAllInstructors(page: number, limit: number): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
     
-            // Fetch instructors with role "Instructor"
             const instructors = await this._userRepository.findAll(
-                { role: "Instructor" }, // Correct role filter
+                { role: "Instructor" },
                 skip,
-                {},
+                { createdAt: -1 }, 
                 limit
             );
     
-            console.log("Instructors found:", instructors);
-    
-            // Count total instructors
             const totalInstructors = await this._userRepository.count({ role: "Instructor" });
     
             return {
@@ -289,15 +296,6 @@ export class AdminService implements IAdminService {
             };
         }
     }
-    
-    
-
-
-
-
-
-
-
-
-
 }
+
+export default AdminService;

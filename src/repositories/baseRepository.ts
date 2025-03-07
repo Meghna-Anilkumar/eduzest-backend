@@ -3,7 +3,7 @@ import { IBaseRepository } from '../interfaces/IRepositories';
 
 
 export class BaseRepository<T extends Document> implements IBaseRepository<T> {
-    constructor(private _model: Model<T>) { }
+    constructor(protected _model: Model<T>) { }
 
     async findAll(filter: Record<string, unknown>, skip: number, sort: any, limit: number = 5): Promise<T[]> {
         try {

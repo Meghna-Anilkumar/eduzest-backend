@@ -1,0 +1,18 @@
+[2025-03-06 16:29:08] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-06 16:29:08] [INFO] [REQUEST] POST /logout
+[2025-03-06 16:29:08] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-06 16:29:26] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-06 16:29:26] [INFO] [REQUEST] POST /google-auth
+[2025-03-06 16:29:27] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-06 16:29:37] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-06 16:29:37] [INFO] [REQUEST] POST /logout
+[2025-03-06 16:29:37] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-06 16:30:14] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-06 16:30:14] [INFO] [REQUEST] POST /signup
+[2025-03-06 16:30:18] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-06 16:30:22] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-06 16:30:22] [INFO] [REQUEST] POST /otp-verification
+[2025-03-06 16:30:22] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-06 16:30:41] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-06 16:30:41] [INFO] [REQUEST] POST /otp-verification
+[2025-03-06 16:30:41] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
