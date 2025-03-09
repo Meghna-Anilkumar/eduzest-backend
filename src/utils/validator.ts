@@ -48,6 +48,34 @@ export const validateMobileNumber = (mobileNumber: string): void => {
     }
 };
 
+export const validateDOB = (dob: string): void => {
+    if (!dob) {
+        throw new CustomError("Date of birth is required", Status.BAD_REQUEST, "dob");
+    }
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    if (isNaN(birthDate.getTime())) {
+        throw new CustomError("Invalid date format", Status.BAD_REQUEST, "dob");
+    }
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        age--;
+    }
+
+    if (age < 14) {
+        throw new CustomError("You must be at least 14 years old", Status.BAD_REQUEST, "dob");
+    }
+
+    if (birthDate > today) {
+        throw new CustomError("Date of birth cannot be in the future", Status.BAD_REQUEST, "dob");
+    }
+};
+
 // Validate email
 export const validateEmail = (email: string): void => {
     isEmpty(email, "email");

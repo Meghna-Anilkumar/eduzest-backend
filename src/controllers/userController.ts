@@ -4,7 +4,7 @@ import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
 import { OAuth2Client } from 'google-auth-library';
 import { uploadToS3 } from "../utils/s3";
-// import { validatePassword } from "../utils/validator";
+
 
 class UserController {
     constructor(private _userService: UserService) {
@@ -218,9 +218,8 @@ class UserController {
             const { email, username, additionalEmail, dob, gender } = req.body;
             let imageUrl = null;
             
-            console.log("Request file:", req.file); // Add this for debugging
+            console.log("Request file:", req.file); 
             
-            // Upload profile image to S3 if available
             if (req.file) {
                 try {
                     imageUrl = await uploadToS3(req.file, 'profile');
@@ -346,15 +345,13 @@ class UserController {
             const files = req.files as { [fieldname: string]: Express.Multer.File[] };
             
             console.log("Request files:", files);
-            console.log("Request body:", req.body); // Add for debugging
+            console.log("Request body:", req.body); 
             
             let profilePicUrl = null;
             let cvUrl = null;
     
-            // Parse profile if it exists (since it's sent as a JSON string)
             const profileData = profile ? JSON.parse(profile) : {};
-    
-            // Check for profile picture: prioritize uploaded file, then existing URL
+
             if (files && files['profilePic'] && files['profilePic'][0]) {
                 try {
                     profilePicUrl = await uploadToS3(files['profilePic'][0], 'profile');
@@ -367,7 +364,7 @@ class UserController {
                     });
                 }
             } else if (profileData.profilePic) {
-                profilePicUrl = profileData.profilePic; // Use existing URL
+                profilePicUrl = profileData.profilePic; 
                 console.log("Using existing profile picture URL:", profilePicUrl);
             } else {
                 return res.status(400).json({
@@ -376,7 +373,6 @@ class UserController {
                 });
             }
     
-            // Upload CV if available
             if (files && files['cv'] && files['cv'][0]) {
                 try {
                     cvUrl = await uploadToS3(files['cv'][0], 'document');
@@ -425,7 +421,6 @@ class UserController {
             const { email, username, dob, gender, qualification } = req.body;
             let imageUrl = null;
 
-            // Upload profile picture to S3 if provided
             if (req.file) {
                 try {
                     imageUrl = await uploadToS3(req.file);

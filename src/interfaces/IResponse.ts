@@ -8,6 +8,8 @@ export interface IResponse {
   redirectURL?: string;
   error?: {
     message: string;
+    field?: string;
+    statusCode?: number;
   };
   token?: string;
   refreshToken?: string;

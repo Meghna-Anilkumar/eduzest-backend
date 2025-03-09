@@ -22,11 +22,10 @@ export const uploadToS3Single = multer({
 export const uploadToS3Multiple = multer({
   storage: s3Storage,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
+    fileSize: 10 * 1024 * 1024,
   }
 }).fields([
   { name: 'profilePic', maxCount: 1 },
   { name: 'cv', maxCount: 1 },
-  // Add other document fields as needed
 ]);
 

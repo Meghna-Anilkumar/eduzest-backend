@@ -8,7 +8,7 @@ import { CustomError } from '../utils/CustomError';
 import { generateOTP } from '../utils/OTPGenerator';
 import { sendEmail } from '../utils/nodemailer';
 import { generateToken, generateRefreshToken, verifyToken } from '../utils/jwt';
-import { validateName, validateEmail, validatePassword } from '../utils/validator'
+import { validateName, validateEmail, validatePassword, validateDOB, validateMobileNumber } from '../utils/validator'
 import { comparePassword } from '../utils/bcrypt';
 import { Response } from 'express';
 import { Cookie } from '../interfaces/IEnums';
@@ -394,7 +394,11 @@ export class UserService implements IUserService {
     async updateStudentProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
         try {
             if (!email) throw new CustomError("Email is required", 400, "email");
-
+            if (!profileData.name?.trim()) throw new CustomError('Name is required', 400, 'name');
+            validateName(profileData.name);
+            if (profileData.profile?.dob) {
+                validateDOB(profileData.profile.dob);
+            }
             const existingUser = await this._userRepository.findByEmail(email);
 
             if (!existingUser) {
@@ -425,9 +429,23 @@ export class UserService implements IUserService {
             };
         } catch (error) {
             console.error("Error updating user profile:", error);
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    error: {
+                        message: error.message,
+                        field: error.field,
+                        statusCode: error.statusCode
+                    }
+                };
+            }
             return {
                 success: false,
                 message: "An error occurred while updating the profile.",
+                error: {
+                    message: "An error occurred while updating the profile."
+                }
             };
         }
     }
@@ -566,7 +584,11 @@ export class UserService implements IUserService {
             if (!profile?.gender) throw new CustomError("Gender is required", 400, "gender");
             if (!profile?.profilePic) throw new CustomError("Profile picture is required", 400, "profile picture");
             if (!profile?.dob) throw new CustomError("Date of birth is required", 400, "dob");
+            if (profile.dob) validateDOB(profile.dob)
             if (!phone) throw new CustomError("Phone number is required", 400, "phone");
+            if (data.phone) {
+                validateMobileNumber(`${data.phone}`);
+            }
             if (!aboutMe?.trim()) throw new CustomError("About Me section is required", 400, "aboutMe");
             if (!cv?.trim()) throw new CustomError("CV is required", 400, "cv");
             if (!qualification?.trim()) throw new CustomError("Qualification is required", 400, "qualification");
@@ -601,10 +623,24 @@ export class UserService implements IUserService {
                 message: "Application submitted successfully. Awaiting approval.",
             };
         } catch (error) {
-            console.error("Error during instructor application:", error);
+            console.error("Error submitting application", error);
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    error: {
+                        message: error.message,
+                        field: error.field,
+                        statusCode: error.statusCode
+                    }
+                };
+            }
             return {
                 success: false,
-                message: error instanceof CustomError ? error.message : "An unexpected error occurred.",
+                message: "An error occurred while applying.",
+                error: {
+                    message: "An error occurred while applying."
+                }
             };
         }
     }
@@ -613,6 +649,11 @@ export class UserService implements IUserService {
     async updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
         try {
             if (!email) throw new CustomError("Email is required", 400, "email");
+            if (!profileData.name?.trim()) throw new CustomError('Name is required', 400, 'name');
+            validateName(profileData.name);
+            if (profileData.profile?.dob) {
+                validateDOB(profileData.profile.dob);
+            }
 
             const existingUser = await this._userRepository.findByEmail(email);
 
@@ -645,10 +686,24 @@ export class UserService implements IUserService {
                 data: updatedData,
             };
         } catch (error) {
-            console.error("Error updating instructor profile:", error);
+            console.error("Error updating user profile:", error);
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    error: {
+                        message: error.message,
+                        field: error.field,
+                        statusCode: error.statusCode
+                    }
+                };
+            }
             return {
                 success: false,
-                message: "An error occurred while updating the instructor profile.",
+                message: "An error occurred while updating the profile.",
+                error: {
+                    message: "An error occurred while updating the profile."
+                }
             };
         }
     }
