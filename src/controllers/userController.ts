@@ -342,15 +342,19 @@ class UserController {
 
     async applyForInstructor(req: Request, res: Response) {
         try {
-            const { name, email, gender, dob, phone, qualification, aboutMe } = req.body;
+            const { name, email, gender, dob, phone, qualification, aboutMe, profile } = req.body;
             const files = req.files as { [fieldname: string]: Express.Multer.File[] };
             
-            console.log("Request files:", files); // Add this for debugging
+            console.log("Request files:", files);
+            console.log("Request body:", req.body); // Add for debugging
             
             let profilePicUrl = null;
             let cvUrl = null;
     
-            // Upload profile picture if available
+            // Parse profile if it exists (since it's sent as a JSON string)
+            const profileData = profile ? JSON.parse(profile) : {};
+    
+            // Check for profile picture: prioritize uploaded file, then existing URL
             if (files && files['profilePic'] && files['profilePic'][0]) {
                 try {
                     profilePicUrl = await uploadToS3(files['profilePic'][0], 'profile');
@@ -362,6 +366,9 @@ class UserController {
                         message: "Failed to upload profile picture"
                     });
                 }
+            } else if (profileData.profilePic) {
+                profilePicUrl = profileData.profilePic; // Use existing URL
+                console.log("Using existing profile picture URL:", profilePicUrl);
             } else {
                 return res.status(400).json({
                     success: false,
@@ -392,8 +399,8 @@ class UserController {
                 name,
                 email,
                 profile: {
-                    gender,
-                    dob,
+                    gender: profileData.gender || gender,
+                    dob: profileData.dob || dob,
                     profilePic: profilePicUrl,
                 },
                 aboutMe,

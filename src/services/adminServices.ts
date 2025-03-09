@@ -12,6 +12,7 @@ export class AdminService implements IAdminService {
         private _adminRepository: AdminRepository,
     ) { }
 
+
     //admin login
     async adminLogin({ email, password }: { email: string; password: string }): Promise<IResponse> {
         try {
@@ -74,14 +75,18 @@ export class AdminService implements IAdminService {
         try {
             const skip = (page - 1) * limit;
 
+            console.log(`Fetching students - Page: ${page}, Limit: ${limit}, Skip: ${skip}`);
+
             const students = await this._userRepository.findAll(
                 { role: "Student" },
                 skip,
-                { createdAt: -1 }, 
+                { createdAt: -1, _id: 1 },
                 limit
             );
 
             const totalStudents = await this._userRepository.count({ role: "Student" });
+
+            console.log(`Fetched ${students.length} students, Total: ${totalStudents}`);
 
             return {
                 success: true,
@@ -145,14 +150,18 @@ export class AdminService implements IAdminService {
         try {
             const skip = (page - 1) * limit;
 
+            console.log(`Fetching requested users - Page: ${page}, Limit: ${limit}, Skip: ${skip}`);
+
             const requestedUsers = await this._userRepository.findAll(
                 { isRequested: true },
                 skip,
-                { createdAt: -1 },
+                { createdAt: -1, _id: 1 },
                 limit
             );
 
             const totalRequestedUsers = await this._userRepository.count({ isRequested: true });
+
+            console.log(`Fetched ${requestedUsers.length} users, Total: ${totalRequestedUsers}`);
 
             return {
                 success: true,
@@ -172,7 +181,6 @@ export class AdminService implements IAdminService {
             };
         }
     }
-
     // Approve instructor request
     async approveInstructor(_id: string): Promise<IResponse> {
         try {
@@ -195,7 +203,7 @@ export class AdminService implements IAdminService {
             const updatedUser = await this._userRepository.update(_id, {
                 isRequested: false,
                 role: "Instructor",
-                isRejected: false 
+                isRejected: false
             });
 
             if (!updatedUser) {
@@ -223,21 +231,21 @@ export class AdminService implements IAdminService {
     async rejectInstructor(_id: string): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findById(_id);
-    
+
             if (!existingUser) {
                 return {
                     success: false,
                     message: "User not found.",
                 };
             }
-    
+
             if (!existingUser.isRequested) {
                 return {
                     success: false,
                     message: "This user has not requested instructor approval.",
                 };
             }
-    
+
             const updatedUser = await this._userRepository.update(_id, {
                 isRequested: false,
                 isRejected: true
@@ -249,7 +257,7 @@ export class AdminService implements IAdminService {
                     message: "Failed to reject instructor request.",
                 };
             }
-    
+
             return {
                 success: true,
                 message: "User's instructor request has been rejected.",
@@ -268,16 +276,16 @@ export class AdminService implements IAdminService {
     async fetchAllInstructors(page: number, limit: number): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
-    
+
             const instructors = await this._userRepository.findAll(
                 { role: "Instructor" },
                 skip,
-                { createdAt: -1 }, 
+                { createdAt: -1, _id: 1 },
                 limit
             );
-    
+
             const totalInstructors = await this._userRepository.count({ role: "Instructor" });
-    
+
             return {
                 success: true,
                 message: "Instructors fetched successfully",

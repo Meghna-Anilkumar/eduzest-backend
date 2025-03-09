@@ -93,3 +93,99 @@
 [2025-03-07 17:49:58] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
 [2025-03-07 17:57:49] [INFO] [REQUEST] POST /instructor-apply
 [2025-03-07 17:57:49] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 22:09:03] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:09:03] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 22:09:24] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:09:24] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 22:24:08] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:24:08] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 22:26:13] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:26:13] [INFO] [RESPONSE] Status: 400 Message: Profile picture is required
+[2025-03-07 22:35:45] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:35:58] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-07 22:37:34] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-07 22:37:34] [INFO] [REQUEST] POST /admin/login
+[2025-03-07 22:37:36] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-07 22:37:45] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:37:49] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:37:54] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 22:37:57] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:38:07] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:38:09] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:41:03] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:41:12] [INFO] [RESPONSE] Status: 400 Message: You have already applied for an instructor position.
+[2025-03-07 22:41:39] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 22:41:40] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:41:53] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:41:54] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:42:23] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-07 22:42:23] [INFO] [REQUEST] POST /logout
+[2025-03-07 22:42:23] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-07 22:43:12] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-07 22:43:12] [INFO] [REQUEST] POST /signup
+[2025-03-07 22:43:21] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-07 22:43:43] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-07 22:43:43] [INFO] [REQUEST] POST /otp-verification
+[2025-03-07 22:43:47] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-07 22:44:26] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:51:35] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-07 22:51:43] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-07 22:51:43] [INFO] [REQUEST] GET /getUserdata
+[2025-03-07 22:51:44] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-07 22:51:56] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 22:51:59] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:52:09] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:52:11] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:52:18] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:52:21] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:52:26] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 22:52:29] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:53:30] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-07 22:53:32] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-07 22:53:34] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-07 22:53:36] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:53:41] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-07 22:53:42] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:53:45] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=3&limit=10
+[2025-03-07 22:53:48] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:53:54] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-07 22:53:57] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:04] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-07 22:54:05] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:14] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=3&limit=10
+[2025-03-07 22:54:16] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:19] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-07 22:54:21] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:30] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-07 22:54:31] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:37] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-07 22:54:39] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:43] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=3&limit=10
+[2025-03-07 22:54:44] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:54:48] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-07 22:54:49] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:56:18] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-07 22:56:21] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:56:27] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=3&limit=10
+[2025-03-07 22:56:30] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-07 22:56:35] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-07 22:56:37] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-07 22:56:57] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:56:59] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:57:05] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 22:57:07] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 22:59:53] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 22:59:55] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 23:00:01] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/67b96566808b0bac36c315b1
+[2025-03-07 23:00:01] [INFO] [REQUEST] PATCH /admin/approve-instructor/67b96566808b0bac36c315b1
+[2025-03-07 23:00:03] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-03-07 23:00:03] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 23:00:04] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 23:00:08] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 23:00:10] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 23:00:22] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 23:00:23] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 23:00:35] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=2&limit=9
+[2025-03-07 23:00:36] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-07 23:16:52] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-07 23:16:53] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully

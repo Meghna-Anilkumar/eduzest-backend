@@ -1,0 +1,22 @@
+[2025-03-09 10:19:35] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-09 10:19:35] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-09 10:19:38] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-09 10:19:38] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-09 10:19:47] [INFO] [REQUEST] POST /admin/logout
+[2025-03-09 10:19:47] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-09 10:20:00] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-09 10:20:01] [INFO] [REQUEST] POST /admin/login
+[2025-03-09 10:20:02] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-09 10:20:08] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-09 10:20:09] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-09 10:20:11] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-09 10:20:11] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-09 10:20:14] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-09 10:20:14] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-09 10:20:20] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-09 10:20:20] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-09 10:22:43] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-09 10:22:44] [INFO] [REQUEST] PUT /student-profile
+[2025-03-09 10:22:46] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-09 10:30:01] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-09 10:30:01] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
