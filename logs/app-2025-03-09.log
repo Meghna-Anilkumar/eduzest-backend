@@ -272,3 +272,22 @@
 [2025-03-09 22:19:52] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
 [2025-03-09 22:20:25] [INFO] [REQUEST] GET /admin/fetch-all-categories
 [2025-03-09 22:20:25] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-09 22:25:18] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-09 22:25:18] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-09 22:25:18] [INFO] [RESPONSE] Status: 200 Message: Category created successfully.
+[2025-03-09 22:25:18] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-09 22:25:19] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-09 22:37:10] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-09 22:37:10] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-09 22:37:35] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-09 22:37:36] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-09 22:37:36] [INFO] [RESPONSE] Status: 400 Message: Category already exists.
+[2025-03-09 22:38:17] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-09 22:38:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-09 22:40:17] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-09 22:40:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-09 22:53:37] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-09 22:53:38] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-09 22:54:53] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-09 22:54:53] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-09 22:54:53] [INFO] [RESPONSE] Status: 400 Message: Category already exists.

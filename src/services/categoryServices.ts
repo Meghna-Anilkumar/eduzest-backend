@@ -3,6 +3,7 @@ import CategoryRepository from '../repositories/categoryRepository';
 import { IResponse } from '../interfaces/IResponse';
 import { ICategoryService } from '../interfaces/IServices';
 import { CategoryDoc } from '../interfaces/ICategory';
+import { CustomError } from '../utils/CustomError';
 
 
 export class CategoryService implements ICategoryService {
@@ -37,10 +38,24 @@ export class CategoryService implements ICategoryService {
                 data: newCategory
             };
         } catch (error) {
-            console.error("Error creating category:", error);
+            console.error("Error updating user profile:", error);
+            if (error instanceof CustomError) {
+                return {
+                    success: false,
+                    message: error.message,
+                    error: {
+                        message: error.message,
+                        field: error.field,
+                        statusCode: error.statusCode
+                    }
+                };
+            }
             return {
                 success: false,
-                message: "Failed to create category. Please try again."
+                message: "An error occurred while updating the profile.",
+                error: {
+                    message: "An error occurred while updating the profile."
+                }
             };
         }
     }
@@ -120,7 +135,8 @@ export class CategoryService implements ICategoryService {
         }
     }
 
-
+    
+    //delete category
     async deleteCategory(categoryId: string): Promise<IResponse> {
         try {
             const category = await this._categoryRepository.findById(categoryId);
