@@ -1,5 +1,5 @@
 import { RequestHandler, Router } from "express";
-import { authenticate } from "../middlewares/authMiddleware";
+import { authenticateAdmin } from "../middlewares/authMiddleware";
 import AdminController from "../controllers/adminController";
 import UserRepository from "../repositories/userRepository";
 import { AdminService } from "../services/adminServices";
@@ -27,19 +27,19 @@ const adminRouter = Router();
 
 adminRouter.post(ADMIN_ROUTES.LOGIN,adminController.adminLogin.bind(adminController))
 adminRouter.post(ADMIN_ROUTES.LOGOUT,adminController.logout.bind(adminController) as RequestHandler)
-adminRouter.get(ADMIN_ROUTES.FETCHALL_STUDENTS, authenticate("Admin"), adminController.fetchAllStudents.bind(adminController) as RequestHandler);
-adminRouter.get(ADMIN_ROUTES.FETCHALL_INSTRUCTORS, authenticate("Admin"), adminController.fetchAllInstructors.bind(adminController) as RequestHandler);
-adminRouter.put(ADMIN_ROUTES.BLOCK_UNBLOCK_USER, authenticate("Admin"), adminController.blockUnblockUser.bind(adminController));
-adminRouter.get(ADMIN_ROUTES.FETCH_REQUESTS, authenticate("Admin"), adminController.fetchAllRequestedUsers.bind(adminController));
-adminRouter.patch(ADMIN_ROUTES.APPROVE_INSTRUCTOR, authenticate("Admin"), adminController.approveInstructor.bind(adminController));
-adminRouter.patch(ADMIN_ROUTES.REJECT_INSTRUCTOR, authenticate("Admin"), adminController.rejectInstructor.bind(adminController));
+adminRouter.get(ADMIN_ROUTES.FETCHALL_STUDENTS, authenticateAdmin(), adminController.fetchAllStudents.bind(adminController) as RequestHandler);
+adminRouter.get(ADMIN_ROUTES.FETCHALL_INSTRUCTORS, authenticateAdmin(), adminController.fetchAllInstructors.bind(adminController) as RequestHandler);
+adminRouter.put(ADMIN_ROUTES.BLOCK_UNBLOCK_USER, authenticateAdmin(), adminController.blockUnblockUser.bind(adminController));
+adminRouter.get(ADMIN_ROUTES.FETCH_REQUESTS,authenticateAdmin(), adminController.fetchAllRequestedUsers.bind(adminController));
+adminRouter.patch(ADMIN_ROUTES.APPROVE_INSTRUCTOR,authenticateAdmin(), adminController.approveInstructor.bind(adminController));
+adminRouter.patch(ADMIN_ROUTES.REJECT_INSTRUCTOR, authenticateAdmin(), adminController.rejectInstructor.bind(adminController));
 
 
 // Category management 
-adminRouter.post(ADMIN_ROUTES.ADD_CATEGORY, authenticate("Admin"), categoryController.createCategory.bind(categoryController));
-adminRouter.get(ADMIN_ROUTES.FETCHALL_CATEGORIES, authenticate("Admin"), categoryController.getAllCategories.bind(categoryController));
-adminRouter.put(ADMIN_ROUTES.EDIT_CATEGORY, authenticate("Admin"), categoryController.editCategory.bind(categoryController));
-adminRouter.put(ADMIN_ROUTES.DELETE_CATEGORY, authenticate("Admin"), categoryController.deleteCategory.bind(categoryController));
+adminRouter.post(ADMIN_ROUTES.ADD_CATEGORY,authenticateAdmin(), categoryController.createCategory.bind(categoryController));
+adminRouter.get(ADMIN_ROUTES.FETCHALL_CATEGORIES, authenticateAdmin(), categoryController.getAllCategories.bind(categoryController));
+adminRouter.put(ADMIN_ROUTES.EDIT_CATEGORY, authenticateAdmin(), categoryController.editCategory.bind(categoryController));
+adminRouter.put(ADMIN_ROUTES.DELETE_CATEGORY, authenticateAdmin(), categoryController.deleteCategory.bind(categoryController));
 
 
 export default adminRouter

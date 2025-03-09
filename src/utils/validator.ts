@@ -67,8 +67,8 @@ export const validateDOB = (dob: string): void => {
         age--;
     }
 
-    if (age < 14) {
-        throw new CustomError("You must be at least 14 years old", Status.BAD_REQUEST, "dob");
+    if (age < 16) {
+        throw new CustomError("You must be at least 16 years old", Status.BAD_REQUEST, "dob");
     }
 
     if (birthDate > today) {

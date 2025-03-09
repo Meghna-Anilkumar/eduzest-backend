@@ -74,9 +74,6 @@ export class AdminService implements IAdminService {
     async fetchAllStudents(page: number, limit: number): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
-
-            console.log(`Fetching students - Page: ${page}, Limit: ${limit}, Skip: ${skip}`);
-
             const students = await this._userRepository.findAll(
                 { role: "Student" },
                 skip,
@@ -85,8 +82,6 @@ export class AdminService implements IAdminService {
             );
 
             const totalStudents = await this._userRepository.count({ role: "Student" });
-
-            console.log(`Fetched ${students.length} students, Total: ${totalStudents}`);
 
             return {
                 success: true,
@@ -150,8 +145,6 @@ export class AdminService implements IAdminService {
         try {
             const skip = (page - 1) * limit;
 
-            console.log(`Fetching requested users - Page: ${page}, Limit: ${limit}, Skip: ${skip}`);
-
             const requestedUsers = await this._userRepository.findAll(
                 { isRequested: true },
                 skip,
@@ -160,8 +153,6 @@ export class AdminService implements IAdminService {
             );
 
             const totalRequestedUsers = await this._userRepository.count({ isRequested: true });
-
-            console.log(`Fetched ${requestedUsers.length} users, Total: ${totalRequestedUsers}`);
 
             return {
                 success: true,
