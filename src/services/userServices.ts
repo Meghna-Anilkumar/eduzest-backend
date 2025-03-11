@@ -13,10 +13,11 @@ import { comparePassword } from '../utils/bcrypt';
 import { Response } from 'express';
 import { Cookie } from '../interfaces/IEnums';
 import * as crypto from 'crypto';
+import { IUserRepository,IOtpRepository } from '../interfaces/IRepositories';
 
 export class UserService implements IUserService {
-    private _userRepository: UserRepository;
-    private _otpRepository: OtpRepository;
+    private _userRepository: IUserRepository;
+    private _otpRepository: IOtpRepository;
 
     constructor(userRepository: UserRepository, otpRepository: OtpRepository) {
         this._userRepository = userRepository;

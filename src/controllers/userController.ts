@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { UserService } from '../services/userServices'
+import { IUserService } from "../interfaces/IServices";
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
 import { OAuth2Client } from 'google-auth-library';
@@ -7,10 +7,7 @@ import { uploadToS3 } from "../utils/s3";
 
 
 class UserController {
-    constructor(private _userService: UserService) {
-        this._userService = _userService
-
-    }
+    constructor(private _userService: IUserService) { }
 
     async signupUser(req: Request, res: Response) {
         try {
@@ -217,9 +214,9 @@ class UserController {
         try {
             const { email, username, additionalEmail, dob, gender } = req.body;
             let imageUrl = null;
-            
-            console.log("Request file:", req.file); 
-            
+
+            console.log("Request file:", req.file);
+
             if (req.file) {
                 try {
                     imageUrl = await uploadToS3(req.file, 'profile');
@@ -232,17 +229,17 @@ class UserController {
                     });
                 }
             }
-    
+
             const updatedData = {
                 name: username,
                 studentDetails: { additionalEmail },
                 profile: {
-                    dob, 
+                    dob,
                     gender,
                     profilePic: imageUrl,
                 },
             };
-    
+
             const result = await this._userService.updateStudentProfile(email, updatedData);
             res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
@@ -343,13 +340,13 @@ class UserController {
         try {
             const { name, email, gender, dob, phone, qualification, aboutMe, profile } = req.body;
             const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-            
+
             console.log("Request files:", files);
-            console.log("Request body:", req.body); 
-            
+            console.log("Request body:", req.body);
+
             let profilePicUrl = null;
             let cvUrl = null;
-    
+
             const profileData = profile ? JSON.parse(profile) : {};
 
             if (files && files['profilePic'] && files['profilePic'][0]) {
@@ -364,7 +361,7 @@ class UserController {
                     });
                 }
             } else if (profileData.profilePic) {
-                profilePicUrl = profileData.profilePic; 
+                profilePicUrl = profileData.profilePic;
                 console.log("Using existing profile picture URL:", profilePicUrl);
             } else {
                 return res.status(400).json({
@@ -372,7 +369,7 @@ class UserController {
                     message: "Profile picture is required"
                 });
             }
-    
+
             if (files && files['cv'] && files['cv'][0]) {
                 try {
                     cvUrl = await uploadToS3(files['cv'][0], 'document');
@@ -390,7 +387,7 @@ class UserController {
                     message: "CV is required"
                 });
             }
-    
+
             const applicationData = {
                 name,
                 email,
@@ -404,7 +401,7 @@ class UserController {
                 phone,
                 qualification,
             };
-    
+
             const result = await this._userService.applyForInstructor(applicationData);
             res.status(result.success ? 201 : 400).json(result);
         } catch (error) {
@@ -415,7 +412,7 @@ class UserController {
             });
         }
     }
-        
+
     async updateInstructorProfile(req: Request, res: Response) {
         try {
             const { email, username, dob, gender, qualification } = req.body;

@@ -15,7 +15,11 @@ export interface IUserService {
     changePassword(
         email: string,
         passwordData: { currentPassword: string; newPassword: string }
-      ): Promise<IResponse>;
+    ): Promise<IResponse>;
+    updateStudentProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse>
+    googleAuth(googleUser: { email: string; name: string; username: string }, res: Response): Promise<IResponse>;
+    applyForInstructor(data: Partial<UserDoc>): Promise<IResponse>;
+    updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse>;
 }
 
 
@@ -26,6 +30,6 @@ export interface IAdminService {
 }
 
 
-export interface ICategoryService{
+export interface ICategoryService {
     createCategory(categoryData: Partial<CategoryDoc>): Promise<IResponse>
 }

@@ -103,3 +103,82 @@
 [2025-03-10 01:31:19] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/67cddd8c30cdba190892402d
 [2025-03-10 01:31:19] [INFO] [REQUEST] PATCH /admin/approve-instructor/67cddd8c30cdba190892402d
 [2025-03-10 01:31:20] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-03-10 01:36:31] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-10 01:36:32] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-10 08:43:59] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-10 08:43:59] [INFO] [REQUEST] POST /logout
+[2025-03-10 08:43:59] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-10 08:55:34] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-10 08:55:34] [INFO] [REQUEST] POST /google-auth
+[2025-03-10 08:55:35] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-10 08:55:39] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-10 08:55:39] [INFO] [REQUEST] POST /logout
+[2025-03-10 08:55:39] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-10 09:09:36] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-10 09:09:37] [INFO] [REQUEST] POST /signup
+[2025-03-10 09:09:37] [INFO] [RESPONSE] Status: 201 Message: Name is required
+[2025-03-10 09:11:54] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-10 09:11:54] [INFO] [REQUEST] POST /signup
+[2025-03-10 09:11:59] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-10 09:12:10] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-10 09:12:10] [INFO] [REQUEST] POST /otp-verification
+[2025-03-10 09:12:10] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-10 09:12:26] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-10 09:12:26] [INFO] [REQUEST] POST /logout
+[2025-03-10 09:12:26] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-10 09:12:51] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-10 09:12:51] [INFO] [REQUEST] POST /signup
+[2025-03-10 09:12:55] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-10 09:13:03] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-10 09:13:03] [INFO] [REQUEST] POST /otp-verification
+[2025-03-10 09:13:03] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-10 09:13:18] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-10 09:13:18] [INFO] [REQUEST] POST /otp-verification
+[2025-03-10 09:13:18] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-10 09:15:25] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-10 09:15:28] [INFO] [RESPONSE] Status: 400 Message: You must be at least 16 years old
+[2025-03-10 09:15:47] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-10 09:15:50] [INFO] [RESPONSE] Status: 400 Message: Mobile number should be ten digits.
+[2025-03-10 09:16:10] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-10 09:16:18] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-10 09:16:18] [INFO] [REQUEST] GET /getUserdata
+[2025-03-10 09:16:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-10 09:16:42] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-10 09:16:42] [INFO] [REQUEST] POST /admin/login
+[2025-03-10 09:16:42] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-10 09:16:48] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-10 09:16:49] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-10 09:18:10] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:18:10] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-10 09:18:16] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-10 09:18:16] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-10 09:22:06] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67cddd8c30cdba190892402d
+[2025-03-10 09:22:06] [INFO] [REQUEST] PUT /admin/block-unblock/67cddd8c30cdba190892402d
+[2025-03-10 09:22:06] [INFO] [RESPONSE] Status: 200 Message: User has been blocked successfully.
+[2025-03-10 09:23:11] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-10 09:23:11] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-10 09:23:29] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-10 09:23:29] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-10 09:23:29] [INFO] [RESPONSE] Status: 400 Message: Category already exists.
+[2025-03-10 09:31:37] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:31:37] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-10 09:32:08] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:32:08] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-10 09:33:17] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:33:17] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-10 09:33:18] [INFO] [REQUEST] GET /favicon.ico
+[2025-03-10 09:33:18] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-10 09:41:17] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:41:17] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-10 09:42:21] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:42:21] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-10 09:58:06] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-10 09:58:07] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-10 10:13:09] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-10 10:13:09] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-10 11:36:45] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-10 11:36:46] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-10 14:16:49] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-10 14:16:49] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-10 14:27:06] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-10 14:27:06] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
