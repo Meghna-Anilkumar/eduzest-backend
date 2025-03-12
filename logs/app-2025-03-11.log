@@ -119,3 +119,103 @@
 [2025-03-11 15:36:41] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
 [2025-03-11 15:36:47] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
 [2025-03-11 15:36:47] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-11 15:50:52] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-11 15:50:54] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-11 15:50:54] [INFO] [REQUEST] POST /logout
+[2025-03-11 15:50:54] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-11 15:50:54] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-11 15:52:36] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 15:52:36] [INFO] [REQUEST] POST /signup
+[2025-03-11 15:52:36] [INFO] [RESPONSE] Status: 201 Message: Name is required
+[2025-03-11 15:55:56] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 15:55:56] [INFO] [REQUEST] POST /signup
+[2025-03-11 15:55:56] [INFO] [RESPONSE] Status: 201 Message: Password must contain at least one upper case.
+[2025-03-11 15:56:18] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 15:56:18] [INFO] [REQUEST] POST /signup
+[2025-03-11 15:56:29] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-11 15:56:39] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 15:56:39] [INFO] [REQUEST] POST /signup
+[2025-03-11 15:56:46] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-11 15:57:08] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-11 15:57:08] [INFO] [REQUEST] POST /otp-verification
+[2025-03-11 15:57:12] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-11 15:57:14] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-11 15:57:14] [INFO] [REQUEST] POST /logout
+[2025-03-11 15:57:14] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-11 15:57:40] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 15:57:40] [INFO] [REQUEST] POST /signup
+[2025-03-11 15:57:40] [INFO] [RESPONSE] Status: 201 Message: Password must contain at least one upper case.
+[2025-03-11 15:57:50] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 15:57:50] [INFO] [REQUEST] POST /signup
+[2025-03-11 15:57:57] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-11 15:58:11] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-11 15:58:11] [INFO] [REQUEST] POST /otp-verification
+[2025-03-11 15:58:15] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-11 15:58:22] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-11 15:58:22] [INFO] [REQUEST] POST /logout
+[2025-03-11 15:58:22] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-11 16:10:37] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 16:10:37] [INFO] [REQUEST] POST /signup
+[2025-03-11 16:10:37] [INFO] [RESPONSE] Status: 201 Message: Name is required
+[2025-03-11 16:10:42] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 16:10:42] [INFO] [REQUEST] POST /signup
+[2025-03-11 16:10:42] [INFO] [RESPONSE] Status: 201 Message: Name is required
+[2025-03-11 17:14:41] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:14:41] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:14:41] [INFO] [RESPONSE] Status: 201 Message: Name is required
+[2025-03-11 17:15:54] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:15:54] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:15:54] [INFO] [RESPONSE] Status: 201 Message: Name is required
+[2025-03-11 17:23:27] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-11 17:23:28] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-11 17:28:44] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-11 17:28:44] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-11 17:28:51] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-11 17:28:51] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-11 17:28:55] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-11 17:28:55] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-11 17:44:03] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:44:04] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:44:08] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-11 17:44:20] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-11 17:44:20] [INFO] [REQUEST] POST /otp-verification
+[2025-03-11 17:44:20] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-11 17:44:22] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-11 17:44:22] [INFO] [REQUEST] POST /logout
+[2025-03-11 17:44:22] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-11 17:51:01] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:51:01] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:51:01] [INFO] [RESPONSE] Status: 201 Message: Email already exists
+[2025-03-11 17:53:56] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:53:56] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:53:57] [INFO] [RESPONSE] Status: 201 Message: Email already exists
+[2025-03-11 17:57:45] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:57:45] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:57:46] [INFO] [RESPONSE] Status: 201 Message: Email already exists
+[2025-03-11 17:58:45] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:58:45] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:58:45] [INFO] [RESPONSE] Status: 201 Message: Email already exists
+[2025-03-11 17:59:15] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-11 17:59:15] [INFO] [REQUEST] POST /signup
+[2025-03-11 17:59:19] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-11 17:59:28] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-11 17:59:28] [INFO] [REQUEST] POST /otp-verification
+[2025-03-11 17:59:28] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-11 18:03:41] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-11 18:03:41] [INFO] [REQUEST] PUT /student-profile
+[2025-03-11 18:03:41] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-11 18:03:50] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-11 18:03:50] [INFO] [REQUEST] PUT /student-profile
+[2025-03-11 18:03:50] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-11 18:04:33] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-11 18:04:33] [INFO] [REQUEST] PUT /student-profile
+[2025-03-11 18:04:33] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-11 18:16:35] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-11 18:16:35] [INFO] [REQUEST] PUT /student-profile
+[2025-03-11 18:16:35] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-11 18:16:57] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-11 18:16:57] [INFO] [REQUEST] PUT /student-profile
+[2025-03-11 18:16:57] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-11 18:20:11] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-11 18:20:11] [INFO] [REQUEST] PUT /student-profile
+[2025-03-11 18:20:11] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.

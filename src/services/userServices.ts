@@ -577,15 +577,15 @@ export class UserService implements IUserService {
     //instructor apply
     async applyForInstructor(data: Partial<UserDoc>): Promise<IResponse> {
         try {
-            const { name, email, profile, aboutMe, cv, phone, qualification } = data;
+            const { name, email, profile, aboutMe, cv, phone, qualification, experience, socialMedia } = data;
             console.log("Service received data:", data);
-
+    
             if (!name?.trim()) throw new CustomError("Name is required", 400, "name");
             if (!email) throw new CustomError("Email is required", 400, "email");
             if (!profile?.gender) throw new CustomError("Gender is required", 400, "gender");
             if (!profile?.profilePic) throw new CustomError("Profile picture is required", 400, "profile picture");
             if (!profile?.dob) throw new CustomError("Date of birth is required", 400, "dob");
-            if (profile.dob) validateDOB(profile.dob)
+            if (profile.dob) validateDOB(profile.dob);
             if (!phone) throw new CustomError("Phone number is required", 400, "phone");
             if (data.phone) {
                 validateMobileNumber(`${data.phone}`);
@@ -593,20 +593,21 @@ export class UserService implements IUserService {
             if (!aboutMe?.trim()) throw new CustomError("About Me section is required", 400, "aboutMe");
             if (!cv?.trim()) throw new CustomError("CV is required", 400, "cv");
             if (!qualification?.trim()) throw new CustomError("Qualification is required", 400, "qualification");
-
+            if (!experience?.trim()) throw new CustomError("Experience is required", 400, "experience");
+    
             const existingUser = await this._userRepository.findByEmail(email);
-
+    
             if (!existingUser) {
                 throw new CustomError("User not found", 404, "email");
             }
-
+    
             if (existingUser.isRequested) {
                 return {
                     success: false,
                     message: "You have already applied for an instructor position.",
                 };
             }
-
+    
             await this._userRepository.update(
                 { email },
                 {
@@ -614,11 +615,13 @@ export class UserService implements IUserService {
                     aboutMe,
                     cv,
                     qualification,
+                    experience,
+                    socialMedia,
                     isRequested: true,
                     isRejected: false,
                 }
             );
-
+    
             return {
                 success: true,
                 message: "Application submitted successfully. Awaiting approval.",
@@ -645,6 +648,7 @@ export class UserService implements IUserService {
             };
         }
     }
+    
 
     // Update instructor profile
     async updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {

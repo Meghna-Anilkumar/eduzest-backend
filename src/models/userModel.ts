@@ -27,6 +27,10 @@ const userSchema = new Schema<UserDoc>({
 
     profilePic: {
       type: String
+    },
+
+    address:{
+      type:String
     }
   },
   updatedAt: {
@@ -51,8 +55,8 @@ const userSchema = new Schema<UserDoc>({
     type: Number
   },
 
-  qualification:{
-    type:String
+  qualification: {
+    type: String
   },
   studentDetails: {
     additionalEmail: {
@@ -70,10 +74,7 @@ const userSchema = new Schema<UserDoc>({
         type: String
       }
     }],
-    socialMedia: {
-      linkedin: { type: String },
-      github: { type: String }
-    }
+    
   },
   instructorDetails: {
     createdCourses: [{
@@ -100,6 +101,11 @@ const userSchema = new Schema<UserDoc>({
     type: String,
   },
 
+  socialMedia: {
+    linkedin: { type: String },
+    github: { type: String }
+  },
+
   isRequested: {
     type: Boolean,
     default: false,
@@ -109,6 +115,10 @@ const userSchema = new Schema<UserDoc>({
     type: Boolean,
     default: false
   },
+
+  experience:{
+    type:String
+  }
 
 });
 

@@ -7,7 +7,8 @@ export interface UserDoc extends Document {
   profile?: {
     dob?: string;
     gender?: "Male" | "Female" | "Other";
-    profilePic?: string|null
+    profilePic?: string | null;
+    address?:string;
   };
   updatedAt?: Date;
   role?: "Student" | "Instructor" | "Admin";
@@ -15,7 +16,7 @@ export interface UserDoc extends Document {
   isBlocked?: boolean;
   password: string;
   phone?: number;
-  qualification?:string;
+  qualification?: string;
   studentDetails?: {
     additionalEmail?: string;
     enrolledCourses?: {
@@ -23,20 +24,20 @@ export interface UserDoc extends Document {
       progress?: number;
       rating?: string;
     }[];
-   
-    socialMedia?: {
-      linkedin?: string;
-      github?: string;
-    };
   };
   instructorDetails?: {
     createdCourses?: ObjectId[];
     profit?: Decimal128;
     rating?: Decimal128;
   };
+  socialMedia?: {
+    linkedin?: string;
+    github?: string;
+  };
   isGoogleAuth?: boolean;
   aboutMe?: string;
   cv?: string;
   isRequested?: boolean;
   isRejected?: boolean;
+  experience:string
 }

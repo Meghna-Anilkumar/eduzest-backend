@@ -338,17 +338,17 @@ class UserController {
 
     async applyForInstructor(req: Request, res: Response) {
         try {
-            const { name, email, gender, dob, phone, qualification, aboutMe, profile } = req.body;
+            const { name, email, gender, dob, phone, qualification, aboutMe, profile, experience, address, socialMedia } = req.body;
             const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-
+    
             console.log("Request files:", files);
             console.log("Request body:", req.body);
-
+    
             let profilePicUrl = null;
             let cvUrl = null;
-
+    
             const profileData = profile ? JSON.parse(profile) : {};
-
+    
             if (files && files['profilePic'] && files['profilePic'][0]) {
                 try {
                     profilePicUrl = await uploadToS3(files['profilePic'][0], 'profile');
@@ -369,7 +369,7 @@ class UserController {
                     message: "Profile picture is required"
                 });
             }
-
+    
             if (files && files['cv'] && files['cv'][0]) {
                 try {
                     cvUrl = await uploadToS3(files['cv'][0], 'document');
@@ -387,7 +387,7 @@ class UserController {
                     message: "CV is required"
                 });
             }
-
+    
             const applicationData = {
                 name,
                 email,
@@ -395,13 +395,16 @@ class UserController {
                     gender: profileData.gender || gender,
                     dob: profileData.dob || dob,
                     profilePic: profilePicUrl,
+                    address
                 },
                 aboutMe,
                 cv: cvUrl,
                 phone,
                 qualification,
+                experience,
+                socialMedia: socialMedia ? JSON.parse(socialMedia) : undefined
             };
-
+    
             const result = await this._userService.applyForInstructor(applicationData);
             res.status(result.success ? 201 : 400).json(result);
         } catch (error) {
@@ -412,6 +415,7 @@ class UserController {
             });
         }
     }
+    
 
     async updateInstructorProfile(req: Request, res: Response) {
         try {
