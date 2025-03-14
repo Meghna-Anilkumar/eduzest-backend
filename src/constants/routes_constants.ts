@@ -28,5 +28,6 @@ export const ADMIN_ROUTES={
     ADD_CATEGORY:'/create-category',
     FETCHALL_CATEGORIES: '/fetch-all-categories',
     EDIT_CATEGORY: '/edit-category/:categoryId',
-    DELETE_CATEGORY: '/delete-category/:categoryId', 
+    DELETE_CATEGORY: '/delete-category/:categoryId',
+    GET_REQUESTDETAILS:'/getRequestDetails' 
 }

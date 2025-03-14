@@ -295,6 +295,34 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
+
+    // Fetch request details by ID
+    async fetchRequestDetails(_id: string): Promise<IResponse> {
+        try {
+            const requestDetails = await this._userRepository.findById(_id);
+
+            if (!requestDetails) {
+                return {
+                    success: false,
+                    message: "Request not found.",
+                };
+            }
+
+            return {
+                success: true,
+                message: "Request details fetched successfully.",
+                data: requestDetails,
+            };
+        } catch (error) {
+            console.error("Error fetching request details:", error);
+            return {
+                success: false,
+                message: "Failed to fetch request details. Please try again.",
+            };
+        }
+    }
+
 }
 
 export default AdminService;

@@ -196,6 +196,32 @@ class AdminController {
     }
 
 
+    // Fetch request details by ID
+    async fetchRequestDetails(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params;
+
+            if (!id) {
+                res.status(Status.BAD_REQUEST).json({ success: false, message: "Request ID is required." });
+                return;
+            }
+
+            const response = await this._adminService.fetchRequestDetails(id);
+
+            if (!response.success) {
+                res.status(Status.NOT_FOUND).json(response);
+                return;
+            }
+
+            res.status(Status.OK).json(response);
+        } catch (error) {
+            console.error("Error in fetchRequestDetails Controller:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
 
 
 

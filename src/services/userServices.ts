@@ -614,6 +614,7 @@ export class UserService implements IUserService {
                     profile,
                     aboutMe,
                     cv,
+                    phone,
                     qualification,
                     experience,
                     socialMedia,

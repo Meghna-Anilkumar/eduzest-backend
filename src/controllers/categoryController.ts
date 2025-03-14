@@ -24,7 +24,7 @@ class CategoryController {
         }
     }
 
-    // Get all categories with pagination
+    // Get all categories
     async getAllCategories(req: Request, res: Response): Promise<void> {
         try {
             const page = req.query.page ? Number(req.query.page) : 1;
