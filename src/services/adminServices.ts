@@ -172,6 +172,8 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
+    
     // Approve instructor request
     async approveInstructor(_id: string): Promise<IResponse> {
         try {

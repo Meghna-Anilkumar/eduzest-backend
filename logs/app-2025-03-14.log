@@ -144,3 +144,17 @@
 [2025-03-14 15:03:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
 [2025-03-14 15:03:56] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
 [2025-03-14 15:03:56] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-14 15:20:33] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-14 15:20:34] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-14 15:20:39] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-14 15:20:39] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-14 15:20:40] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-14 15:20:40] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-14 15:20:59] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-14 15:20:59] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-14 15:29:21] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-14 15:29:22] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-14 15:31:22] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-14 15:31:22] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-14 15:31:32] [INFO] [REQUEST] GET /admin/fetch-all-categories
+[2025-03-14 15:31:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
