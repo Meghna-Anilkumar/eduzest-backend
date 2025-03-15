@@ -1,0 +1,57 @@
+[2025-03-13 14:32:57] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-13 14:32:58] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-13 14:33:01] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-13 14:33:01] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 14:34:48] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-13 14:34:48] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 14:34:50] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67d16817af7dfc038fb091ee
+[2025-03-13 14:34:50] [INFO] [REQUEST] PUT /admin/block-unblock/67d16817af7dfc038fb091ee
+[2025-03-13 14:34:51] [INFO] [RESPONSE] Status: 200 Message: User has been blocked successfully.
+[2025-03-13 14:35:12] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67d16817af7dfc038fb091ee
+[2025-03-13 14:35:12] [INFO] [REQUEST] PUT /admin/block-unblock/67d16817af7dfc038fb091ee
+[2025-03-13 14:35:13] [INFO] [RESPONSE] Status: 200 Message: User has been unblocked successfully.
+[2025-03-13 14:35:15] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-13 14:35:15] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 15:17:56] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-13 15:17:56] [INFO] [REQUEST] PUT /student-profile
+[2025-03-13 15:17:56] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-13 15:18:54] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-13 15:18:54] [INFO] [REQUEST] PUT /student-profile
+[2025-03-13 15:18:54] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-13 15:24:43] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-13 15:24:43] [INFO] [REQUEST] POST /logout
+[2025-03-13 15:24:43] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-13 15:25:49] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-13 15:25:49] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 15:26:12] [INFO] [REQUEST] OPTIONS /login
+[2025-03-13 15:26:12] [INFO] [REQUEST] POST /login
+[2025-03-13 15:26:12] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-13 15:27:49] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-13 15:27:50] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 15:28:16] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-13 15:28:16] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 15:28:31] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-13 15:28:31] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-13 15:28:37] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-13 15:28:37] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-13 15:28:44] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-13 15:28:45] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 15:28:47] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-13 15:28:47] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-13 15:28:54] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-13 15:28:54] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-13 15:28:56] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-13 15:28:56] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-13 15:36:08] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-13 15:36:08] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-13 15:36:13] [INFO] [REQUEST] OPTIONS /admin/reject-instructor/67d16817af7dfc038fb091ee
+[2025-03-13 15:36:13] [INFO] [REQUEST] PATCH /admin/reject-instructor/67d16817af7dfc038fb091ee
+[2025-03-13 15:36:13] [INFO] [RESPONSE] Status: 200 Message: User's instructor request has been rejected.
+[2025-03-13 15:36:20] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-13 15:36:20] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-13 15:49:46] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-13 15:49:46] [INFO] [REQUEST] POST /logout
+[2025-03-13 15:49:46] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-13 15:50:01] [INFO] [REQUEST] OPTIONS /login
+[2025-03-13 15:50:01] [INFO] [REQUEST] POST /login
+[2025-03-13 15:50:01] [INFO] [RESPONSE] Status: 200 Message: Login successful.

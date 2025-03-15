@@ -1,0 +1,132 @@
+[2025-03-15 08:15:27] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 08:15:28] [INFO] [REQUEST] POST /logout
+[2025-03-15 08:15:28] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 08:15:45] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-15 08:15:45] [INFO] [REQUEST] POST /google-auth
+[2025-03-15 08:15:46] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-15 08:18:30] [INFO] [REQUEST] POST /admin/logout
+[2025-03-15 08:18:31] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 08:18:43] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-15 08:18:43] [INFO] [REQUEST] POST /admin/login
+[2025-03-15 08:18:43] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-15 08:21:22] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 08:21:22] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 08:21:28] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-15 08:21:28] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 08:21:31] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 08:21:31] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 08:21:57] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-15 08:21:57] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 08:21:59] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-15 08:21:59] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-15 08:22:13] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:22:13] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:22:21] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 08:22:21] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 08:24:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 08:24:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 08:25:40] [INFO] [REQUEST] OPTIONS /admin/edit-category/67d40e7a666885ab6f1ed3c3
+[2025-03-15 08:25:40] [INFO] [REQUEST] PUT /admin/edit-category/67d40e7a666885ab6f1ed3c3
+[2025-03-15 08:25:40] [INFO] [RESPONSE] Status: 200 Message: Category updated successfully.
+[2025-03-15 08:25:40] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 08:25:40] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 08:25:51] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-15 08:25:51] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-15 08:25:52] [INFO] [RESPONSE] Status: 400 Message: Category already exists.
+[2025-03-15 08:26:23] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:26:23] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:40:10] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:40:11] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:40:18] [INFO] [REQUEST] OPTIONS /admin/reject-instructor/67d3ea0473b8989d23a782af
+[2025-03-15 08:40:18] [INFO] [REQUEST] PATCH /admin/reject-instructor/67d3ea0473b8989d23a782af
+[2025-03-15 08:40:18] [INFO] [RESPONSE] Status: 200 Message: User's instructor request has been rejected.
+[2025-03-15 08:40:18] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:40:19] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:40:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 08:40:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 08:41:18] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:41:19] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:41:22] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 08:41:22] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 08:41:34] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:41:34] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:41:44] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 08:41:44] [INFO] [REQUEST] POST /logout
+[2025-03-15 08:41:44] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 08:42:03] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 08:42:03] [INFO] [REQUEST] POST /login
+[2025-03-15 08:42:04] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-15 08:52:56] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-15 08:53:02] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-15 08:53:02] [INFO] [REQUEST] GET /getUserdata
+[2025-03-15 08:53:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-15 08:53:19] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:53:19] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 08:53:28] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/67d15e35af7dfc038fb0918f
+[2025-03-15 08:53:28] [INFO] [REQUEST] PATCH /admin/approve-instructor/67d15e35af7dfc038fb0918f
+[2025-03-15 08:53:28] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-03-15 08:53:28] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 08:53:28] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 09:00:29] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 09:00:29] [INFO] [REQUEST] POST /logout
+[2025-03-15 09:00:30] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 09:01:03] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 09:01:03] [INFO] [REQUEST] POST /signup
+[2025-03-15 09:01:09] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 09:01:20] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 09:01:20] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 09:01:20] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 09:02:42] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-15 09:02:48] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-15 09:02:48] [INFO] [REQUEST] GET /getUserdata
+[2025-03-15 09:02:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-15 09:02:56] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 09:02:56] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 09:03:08] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/67d4f477c12d27b5431c2864
+[2025-03-15 09:03:08] [INFO] [REQUEST] PATCH /admin/approve-instructor/67d4f477c12d27b5431c2864
+[2025-03-15 09:03:08] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-03-15 09:03:09] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 09:03:09] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 16:29:58] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 16:29:58] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 16:30:03] [INFO] [REQUEST] POST /admin/logout
+[2025-03-15 16:30:03] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 16:30:14] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-15 16:30:14] [INFO] [REQUEST] POST /admin/login
+[2025-03-15 16:30:14] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-15 16:30:26] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 16:30:26] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 16:30:31] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67ce5f82092053baad91eb68
+[2025-03-15 16:30:31] [INFO] [REQUEST] PUT /admin/block-unblock/67ce5f82092053baad91eb68
+[2025-03-15 16:30:31] [INFO] [RESPONSE] Status: 200 Message: User has been blocked successfully.
+[2025-03-15 16:30:38] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67ce5f82092053baad91eb68
+[2025-03-15 16:30:38] [INFO] [REQUEST] PUT /admin/block-unblock/67ce5f82092053baad91eb68
+[2025-03-15 16:30:39] [INFO] [RESPONSE] Status: 200 Message: User has been unblocked successfully.
+[2025-03-15 16:30:40] [INFO] [REQUEST] PUT /admin/block-unblock/67ce5f82092053baad91eb68
+[2025-03-15 16:30:41] [INFO] [RESPONSE] Status: 200 Message: User has been blocked successfully.
+[2025-03-15 16:30:49] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 16:30:49] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 16:31:11] [INFO] [REQUEST] OPTIONS /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-15 16:31:11] [INFO] [REQUEST] PUT /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-15 16:31:11] [INFO] [RESPONSE] Status: 400 Message: Category with this name already exists.
+[2025-03-15 16:31:25] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 16:31:25] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 16:31:43] [INFO] [REQUEST] OPTIONS /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-15 16:31:43] [INFO] [REQUEST] PUT /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-15 16:31:44] [INFO] [RESPONSE] Status: 200 Message: Category updated successfully.
+[2025-03-15 16:31:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 16:31:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 17:02:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 17:02:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 17:02:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-15 17:02:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 17:02:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 17:02:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 17:02:21] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-15 17:02:21] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-15 17:02:21] [INFO] [RESPONSE] Status: 400 Message: Category already exists.
+[2025-03-15 17:03:04] [INFO] [REQUEST] OPTIONS /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-15 17:03:04] [INFO] [REQUEST] PUT /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-15 17:03:04] [INFO] [RESPONSE] Status: 200 Message: Category updated successfully.
+[2025-03-15 17:03:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 17:03:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
