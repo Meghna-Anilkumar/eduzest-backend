@@ -23,7 +23,7 @@ export class UserService implements IUserService {
         this._otpRepository = otpRepository;
     }
 
-    // signupUser (already correctly implemented)
+    // signupUser 
     async signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse> {
         try {
             const { name, email, password, confirmPassword } = data;
@@ -70,6 +70,7 @@ export class UserService implements IUserService {
             }
 
             const OTP = generateOTP();
+            console.log('otp:', OTP)
             const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
             const existingOtp = await this._otpRepository.findByEmail(email);
 
@@ -100,7 +101,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // verifyOtp (already correctly implemented)
+    // verifyOtp 
     async verifyOtp({ email, otp }: { email: string; otp: number }, res: Response): Promise<IResponse> {
         try {
             const otpData = await this._otpRepository.findByEmail(email);
@@ -143,20 +144,10 @@ export class UserService implements IUserService {
 
             const user = await this._userRepository.findByEmail(email);
 
-            const token = generateToken(user);
-            const refreshToken = generateRefreshToken(user);
-
-            res.cookie(Cookie.userJWT, token, {
-                httpOnly: true,
-                maxAge: 24 * 60 * 60 * 1000,
-            });
-
             return {
                 success: true,
                 message: "OTP verified successfully. Your account is now activated.",
-                redirectURL: "/",
-                token: token,
-                refreshToken: refreshToken,
+                redirectURL: "/login",
                 userData: user,
             };
         } catch (error) {
@@ -168,7 +159,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // userLogin (already correctly implemented)
+    // userLogin 
     async userLogin({ email, password }: { email: string; password: string }, res: Response): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByEmail(email);
@@ -200,17 +191,18 @@ export class UserService implements IUserService {
             if (!isPasswordValid) {
                 return {
                     success: false,
-                    message: "Invalid password.",
+                    message: "Incorrect password.",
                 };
             }
 
+            // Pass the full existingUser object to generateToken and generateRefreshToken
             const token = generateToken(existingUser);
             const refreshToken = generateRefreshToken(existingUser);
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 24 * 60 * 60 * 1000,
+                maxAge: 24 * 60 * 60 * 1000, // 1 day
             });
 
             return {
@@ -228,13 +220,30 @@ export class UserService implements IUserService {
             };
         }
     }
-
-    // getUser (already correctly implemented)
+    
+    // getUser 
     async getUser(token: string): Promise<IResponse> {
         try {
-            const payload = verifyToken(token);
-            const id = JSON.parse(JSON.stringify(payload)).payload;
-            const user = await this._userRepository.findById(id._id); // Changed from findUserById to findById
+            const payload = verifyToken(token); // Returns { id, role, email, iat, exp }
+            const userId = payload.id; // Directly access the 'id' field
+
+            if (!userId) {
+                return {
+                    success: false,
+                    message: "Invalid token payload",
+                    data: null,
+                };
+            }
+
+            const user = await this._userRepository.findById(userId);
+
+            if (!user) {
+                return {
+                    success: false,
+                    message: "User not found",
+                    data: null,
+                };
+            }
 
             return {
                 success: true,
@@ -250,8 +259,8 @@ export class UserService implements IUserService {
             };
         }
     }
-
-    // resendOtp (already correctly implemented)
+    
+    // resendOtp 
     async resendOtp(email: string): Promise<IResponse> {
         try {
             if (!email) {
@@ -292,7 +301,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // forgotPassword (corrected)
+    // forgotPassword 
     async forgotPassword(email: string): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByEmail(email);
@@ -314,6 +323,7 @@ export class UserService implements IUserService {
             }
 
             const OTP = generateOTP();
+            console.log('otp:',OTP)
             const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
             const existingOtp = await this._otpRepository.findByEmail(email);
 
@@ -340,7 +350,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // resetPassword (corrected)
+    // resetPassword 
     async resetPassword(email: string, newPassword: string, confirmNewPassword: string): Promise<IResponse> {
         try {
             if (!email) throw new CustomError("Email is required", 400, "email");
@@ -385,7 +395,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // updateStudentProfile (corrected)
+    // updateStudentProfile 
     async updateStudentProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
         try {
             if (!email) throw new CustomError("Email is required", 400, "email");
@@ -446,7 +456,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // changePassword (corrected)
+    // changePassword 
     async changePassword(
         email: string,
         passwordData: { currentPassword: string; newPassword: string }
@@ -508,7 +518,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // googleAuth (corrected)
+    // googleAuth 
     async googleAuth(googleUser: { email: string, name: string }, res: Response): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByEmail(googleUser.email);
@@ -560,7 +570,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // applyForInstructor (already correctly implemented)
+    // applyForInstructor
     async applyForInstructor(data: Partial<UserDoc>): Promise<IResponse> {
         try {
             const { name, email, profile, aboutMe, cv, phone, qualification, experience, socialMedia } = data;
@@ -630,7 +640,7 @@ export class UserService implements IUserService {
         }
     }
 
-    // updateInstructorProfile (corrected)
+    // updateInstructorProfile
     async updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse> {
         try {
             if (!email) throw new CustomError("Email is required", 400, "email");

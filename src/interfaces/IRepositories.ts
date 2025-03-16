@@ -1,5 +1,6 @@
 import { Document, UpdateQuery, FilterQuery } from 'mongoose';
 import { UserDoc } from './IUser';
+import { AdminDoc } from './IAdmin';
 import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
 
@@ -28,10 +29,15 @@ export interface IUserRepository extends IBaseRepository<UserDoc> {
     hasRequestedInstructor(email: string): Promise<boolean>;
     updateStudentProfile(email: string, updatedData: Partial<UserDoc>): Promise<UserDoc | null>;
     updateInstructorProfile(email: string, updatedData: Partial<UserDoc>): Promise<UserDoc | null>;
+}
 
-    // Added methods for AdminService
+export interface IAdminRepository extends IBaseRepository<AdminDoc> {
+    findByEmail(email: string): Promise<AdminDoc | null>;
+    createAdmin(adminData: Partial<AdminDoc>): Promise<AdminDoc>;
+    // Moved from IUserRepository
     getAllStudents(skip: number, limit: number): Promise<UserDoc[]>;
     countStudents(): Promise<number>;
+    findUserById(id: string): Promise<UserDoc | null>; 
     toggleBlockStatus(id: string, isBlocked: boolean): Promise<UserDoc | null>;
     getAllRequestedUsers(skip: number, limit: number): Promise<UserDoc[]>;
     countRequestedUsers(): Promise<number>;

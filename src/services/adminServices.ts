@@ -1,19 +1,18 @@
-import AdminRepository from '../repositories/adminRepository';
+import { IAdminRepository } from '../interfaces/IRepositories';
 import { IResponse } from '../interfaces/IResponse';
 import { IAdminService } from '../interfaces/IServices';
-import UserRepository from '../repositories/userRepository';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { generateToken } from '../utils/jwt';
 import { AdminDoc } from '../interfaces/IAdmin';
+import { Response } from 'express';
 
 export class AdminService implements IAdminService {
     constructor(
-        private _userRepository: UserRepository,
-        private _adminRepository: AdminRepository,
-    ) { }
+        private _adminRepository: IAdminRepository,
+    ) {}
 
-    //admin login
-    async adminLogin({ email, password }: { email: string; password: string }): Promise<IResponse> {
+    // Admin login
+    async adminLogin({ email, password }: { email: string; password: string }, res: Response): Promise<IResponse> {
         try {
             const adminEmail = process.env.ADMIN_EMAIL;
             const adminPassword = process.env.ADMIN_PASS;
@@ -31,7 +30,8 @@ export class AdminService implements IAdminService {
                 const hashedPassword = await hashPassword(adminPassword);
                 existingAdmin = await this._adminRepository.createAdmin({ 
                     email: adminEmail, 
-                    password: hashedPassword 
+                    password: hashedPassword,
+                    role: "Admin" 
                 });
                 console.log("Default admin account created.");
             }
@@ -53,6 +53,12 @@ export class AdminService implements IAdminService {
 
             const token = generateToken(existingAdmin);
 
+            res.cookie("adminJWT", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                maxAge: 24 * 60 * 60 * 1000, // 1 day
+            });
+
             return {
                 success: true,
                 message: "Admin logged in successfully.",
@@ -72,13 +78,13 @@ export class AdminService implements IAdminService {
         }
     }
 
-    //list users on admin side
+    // List users on admin side
     async fetchAllStudents(page: number, limit: number): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
             
-            const students = await this._userRepository.getAllStudents(skip, limit);
-            const totalStudents = await this._userRepository.countStudents();
+            const students = await this._adminRepository.getAllStudents(skip, limit);
+            const totalStudents = await this._adminRepository.countStudents();
 
             return {
                 success: true,
@@ -99,10 +105,10 @@ export class AdminService implements IAdminService {
         }
     }
 
-    // block or unblock user
+    // Block or unblock user
     async blockUnblockUser(_id: string): Promise<IResponse> {
         try {
-            const existingUser = await this._userRepository.findUserById(_id);
+            const existingUser = await this._adminRepository.findUserById(_id);
 
             if (!existingUser) {
                 return {
@@ -113,7 +119,7 @@ export class AdminService implements IAdminService {
 
             const updatedIsBlocked = !existingUser.isBlocked;
             
-            const updatedUser = await this._userRepository.toggleBlockStatus(_id, updatedIsBlocked);
+            const updatedUser = await this._adminRepository.toggleBlockStatus(_id, updatedIsBlocked);
 
             if (!updatedUser) {
                 return {
@@ -136,13 +142,13 @@ export class AdminService implements IAdminService {
         }
     }
 
-    //get all requests
+    // Get all instructor requests
     async fetchAllRequestedUsers(page: number, limit: number): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
             
-            const requestedUsers = await this._userRepository.getAllRequestedUsers(skip, limit);
-            const totalRequestedUsers = await this._userRepository.countRequestedUsers();
+            const requestedUsers = await this._adminRepository.getAllRequestedUsers(skip, limit);
+            const totalRequestedUsers = await this._adminRepository.countRequestedUsers();
 
             return {
                 success: true,
@@ -166,7 +172,7 @@ export class AdminService implements IAdminService {
     // Approve instructor request
     async approveInstructor(_id: string): Promise<IResponse> {
         try {
-            const existingUser = await this._userRepository.findUserById(_id);
+            const existingUser = await this._adminRepository.findUserById(_id);
 
             if (!existingUser) {
                 return {
@@ -182,7 +188,7 @@ export class AdminService implements IAdminService {
                 };
             }
             
-            const updatedUser = await this._userRepository.approveInstructorRequest(_id);
+            const updatedUser = await this._adminRepository.approveInstructorRequest(_id);
 
             if (!updatedUser) {
                 return {
@@ -205,10 +211,10 @@ export class AdminService implements IAdminService {
         }
     }
 
-    //reject instructor
+    // Reject instructor request
     async rejectInstructor(_id: string): Promise<IResponse> {
         try {
-            const existingUser = await this._userRepository.findUserById(_id);
+            const existingUser = await this._adminRepository.findUserById(_id);
 
             if (!existingUser) {
                 return {
@@ -224,7 +230,7 @@ export class AdminService implements IAdminService {
                 };
             }
             
-            const updatedUser = await this._userRepository.rejectInstructorRequest(_id);
+            const updatedUser = await this._adminRepository.rejectInstructorRequest(_id);
 
             if (!updatedUser) {
                 return {
@@ -247,13 +253,13 @@ export class AdminService implements IAdminService {
         }
     }
 
-    //fetch all instructors
+    // Fetch all instructors
     async fetchAllInstructors(page: number, limit: number): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
             
-            const instructors = await this._userRepository.getAllInstructors(skip, limit);
-            const totalInstructors = await this._userRepository.countInstructors();
+            const instructors = await this._adminRepository.getAllInstructors(skip, limit);
+            const totalInstructors = await this._adminRepository.countInstructors();
 
             return {
                 success: true,
@@ -277,7 +283,7 @@ export class AdminService implements IAdminService {
     // Fetch request details by ID
     async fetchRequestDetails(_id: string): Promise<IResponse> {
         try {
-            const requestDetails = await this._userRepository.findUserById(_id);
+            const requestDetails = await this._adminRepository.findUserById(_id);
 
             if (!requestDetails) {
                 return {

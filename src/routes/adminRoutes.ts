@@ -14,7 +14,7 @@ const userRepository = new UserRepository();
 const adminRepository = new AdminRepository()
 const categoryRepository = new CategoryRepository();
 
-const adminService = new AdminService(userRepository, adminRepository);
+const adminService = new AdminService(adminRepository);
 const categoryService=new CategoryService(categoryRepository)
 
 const adminController = new AdminController(adminService);

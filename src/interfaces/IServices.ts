@@ -24,7 +24,7 @@ export interface IUserService {
 
 
 export interface IAdminService {
-    adminLogin(data: { email: string; password: string }): Promise<IResponse>;
+    adminLogin(data: { email: string; password: string }, res: Response): Promise<IResponse>;
     fetchAllStudents(page: number, limit: number): Promise<IResponse>;
     blockUnblockUser(_id: string): Promise<IResponse>
 }

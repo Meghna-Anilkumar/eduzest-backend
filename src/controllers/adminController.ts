@@ -22,7 +22,7 @@ class AdminController {
                 return;
             }
 
-            const response = await this._adminService.adminLogin({ email, password });
+            const response = await this._adminService.adminLogin({ email, password },res);
 
             if (!response.success) {
                 res.status(Status.UN_AUTHORISED).json(response);

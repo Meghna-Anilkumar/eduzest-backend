@@ -1,6 +1,7 @@
 import { Document, ObjectId, Decimal128 } from "mongoose";
 
 export interface UserDoc extends Document {
+  _id: string;
   email: string;
   name: string;
   isVerified: boolean;
@@ -11,7 +12,7 @@ export interface UserDoc extends Document {
     address?:string;
   };
   updatedAt?: Date;
-  role?: "Student" | "Instructor" | "Admin";
+  role: "Student" | "Instructor" | "Admin";
   createdAt?: Date;
   isBlocked?: boolean;
   password: string;

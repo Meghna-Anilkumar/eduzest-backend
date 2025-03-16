@@ -130,3 +130,244 @@
 [2025-03-15 17:03:04] [INFO] [RESPONSE] Status: 200 Message: Category updated successfully.
 [2025-03-15 17:03:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
 [2025-03-15 17:03:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 19:59:18] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 19:59:19] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 20:00:11] [INFO] [REQUEST] OPTIONS /admin/delete-category/67bb5f286a4a8d015eca0ec5
+[2025-03-15 20:00:11] [INFO] [REQUEST] PUT /admin/delete-category/67bb5f286a4a8d015eca0ec5
+[2025-03-15 20:00:12] [INFO] [RESPONSE] Status: 200 Message: Category restored successfully.
+[2025-03-15 20:00:12] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 20:00:12] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 20:00:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 20:00:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 20:00:35] [INFO] [REQUEST] OPTIONS /admin/delete-category/67d40e7a666885ab6f1ed3c3
+[2025-03-15 20:00:35] [INFO] [REQUEST] PUT /admin/delete-category/67d40e7a666885ab6f1ed3c3
+[2025-03-15 20:00:35] [INFO] [RESPONSE] Status: 200 Message: Category deleted successfully.
+[2025-03-15 20:00:35] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 20:00:35] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 20:00:41] [INFO] [REQUEST] OPTIONS /admin/delete-category/67bb5f286a4a8d015eca0ec5
+[2025-03-15 20:00:41] [INFO] [REQUEST] PUT /admin/delete-category/67bb5f286a4a8d015eca0ec5
+[2025-03-15 20:00:42] [INFO] [RESPONSE] Status: 200 Message: Category deleted successfully.
+[2025-03-15 20:00:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-15 20:00:42] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-15 20:01:25] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 20:01:25] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 20:01:52] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-15 20:01:52] [INFO] [REQUEST] PUT /student-profile
+[2025-03-15 20:01:53] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-15 20:02:28] [INFO] [REQUEST] OPTIONS /change-password
+[2025-03-15 20:02:28] [INFO] [REQUEST] PUT /change-password
+[2025-03-15 20:02:29] [INFO] [RESPONSE] Status: 400 Message: Current password is incorrect
+[2025-03-15 20:02:36] [INFO] [REQUEST] OPTIONS /change-password
+[2025-03-15 20:02:36] [INFO] [REQUEST] PUT /change-password
+[2025-03-15 20:02:36] [INFO] [RESPONSE] Status: 200 Message: Password updated successfully
+[2025-03-15 20:04:56] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:04:56] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:04:56] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:05:09] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-15 20:05:09] [INFO] [REQUEST] POST /google-auth
+[2025-03-15 20:05:10] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-15 20:06:34] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-15 20:06:34] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-15 20:06:34] [INFO] [RESPONSE] Status: 400 Message: You must be at least 16 years old
+[2025-03-15 20:07:00] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:07:00] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:07:00] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:07:31] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 20:07:31] [INFO] [REQUEST] POST /signup
+[2025-03-15 20:07:39] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 20:10:18] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:10:19] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:10:19] [INFO] [RESPONSE] Status: 400 Message: OTP expired. Please request a new one.
+[2025-03-15 20:10:26] [INFO] [REQUEST] OPTIONS /resend-otp
+[2025-03-15 20:10:26] [INFO] [REQUEST] POST /resend-otp
+[2025-03-15 20:10:31] [INFO] [RESPONSE] Status: 200 Message: A new OTP has been sent to your email. Please check your inbox.
+[2025-03-15 20:10:38] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:10:39] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:10:39] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-15 20:11:23] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:11:23] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:11:24] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 20:11:51] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-15 20:11:51] [INFO] [REQUEST] PUT /student-profile
+[2025-03-15 20:11:52] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-15 20:13:30] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-15 20:13:30] [INFO] [REQUEST] PUT /student-profile
+[2025-03-15 20:13:31] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-15 20:17:03] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 20:17:04] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 20:17:59] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:17:59] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:17:59] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:18:20] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-15 20:18:20] [INFO] [REQUEST] POST /google-auth
+[2025-03-15 20:18:20] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-15 20:18:26] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-15 20:18:26] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-15 20:18:26] [INFO] [RESPONSE] Status: 200 Message: Instructor profile updated successfully.
+[2025-03-15 20:18:36] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-15 20:18:36] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-15 20:18:37] [INFO] [RESPONSE] Status: 400 Message: You must be at least 16 years old
+[2025-03-15 20:19:12] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:19:12] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:19:12] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:19:51] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:19:51] [INFO] [REQUEST] POST /login
+[2025-03-15 20:19:51] [INFO] [RESPONSE] Status: 400 Message: Invalid password.
+[2025-03-15 20:20:02] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:20:02] [INFO] [REQUEST] POST /login
+[2025-03-15 20:20:03] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-15 20:21:12] [INFO] [REQUEST] OPTIONS /change-password
+[2025-03-15 20:21:12] [INFO] [REQUEST] PUT /change-password
+[2025-03-15 20:21:12] [INFO] [RESPONSE] Status: 200 Message: Password updated successfully
+[2025-03-15 20:21:16] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:21:16] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:21:16] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:21:31] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:21:31] [INFO] [REQUEST] POST /login
+[2025-03-15 20:21:32] [INFO] [RESPONSE] Status: 400 Message: User not found.
+[2025-03-15 20:21:40] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:21:40] [INFO] [REQUEST] POST /login
+[2025-03-15 20:21:41] [INFO] [RESPONSE] Status: 400 Message: Invalid password.
+[2025-03-15 20:21:46] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:21:46] [INFO] [REQUEST] POST /login
+[2025-03-15 20:21:46] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-15 20:25:19] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:25:19] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:25:19] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:25:49] [INFO] [REQUEST] OPTIONS /forgot-pass
+[2025-03-15 20:25:49] [INFO] [REQUEST] POST /forgot-pass
+[2025-03-15 20:25:53] [INFO] [RESPONSE] Status: 200 Message: OTP sent to your email. Please verify.
+[2025-03-15 20:26:00] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:26:00] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:26:00] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-15 20:28:43] [INFO] [REQUEST] OPTIONS /resend-otp
+[2025-03-15 20:28:43] [INFO] [REQUEST] POST /resend-otp
+[2025-03-15 20:28:49] [INFO] [RESPONSE] Status: 200 Message: A new OTP has been sent to your email. Please check your inbox.
+[2025-03-15 20:29:11] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:29:11] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:29:11] [INFO] [RESPONSE] Status: 200 Message: OTP verified. Reset your password
+[2025-03-15 20:29:26] [INFO] [REQUEST] OPTIONS /reset-password
+[2025-03-15 20:29:26] [INFO] [REQUEST] POST /reset-password
+[2025-03-15 20:29:26] [INFO] [RESPONSE] Status: 500 Message: Password must contain at least one upper case.
+[2025-03-15 20:30:12] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 20:30:13] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 20:34:59] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 20:34:59] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 20:35:02] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-15 20:35:02] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-15 20:35:04] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 20:35:04] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 20:35:08] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 20:35:09] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-15 20:35:10] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 20:35:10] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 20:35:16] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 20:35:16] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 20:38:50] [INFO] [REQUEST] OPTIONS /reset-password
+[2025-03-15 20:38:50] [INFO] [REQUEST] POST /reset-password
+[2025-03-15 20:38:50] [INFO] [RESPONSE] Status: 200 Message: Password reset successful
+[2025-03-15 20:39:37] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:39:37] [INFO] [REQUEST] POST /login
+[2025-03-15 20:39:38] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-15 20:41:28] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:41:28] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:41:28] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:43:22] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 20:43:22] [INFO] [REQUEST] POST /signup
+[2025-03-15 20:43:29] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 20:43:41] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:43:41] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:43:41] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 20:45:20] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:45:20] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:45:20] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:46:22] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 20:46:22] [INFO] [REQUEST] POST /signup
+[2025-03-15 20:46:35] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 20:46:40] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 20:46:40] [INFO] [REQUEST] POST /signup
+[2025-03-15 20:46:46] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 20:47:05] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:47:05] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:47:05] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 20:51:01] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 20:51:01] [INFO] [REQUEST] POST /logout
+[2025-03-15 20:51:01] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 20:51:33] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 20:51:33] [INFO] [REQUEST] POST /signup
+[2025-03-15 20:51:40] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 20:52:00] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 20:52:00] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 20:52:01] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 20:52:46] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 20:52:46] [INFO] [REQUEST] POST /login
+[2025-03-15 20:52:46] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-15 21:00:15] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 21:00:15] [INFO] [REQUEST] POST /logout
+[2025-03-15 21:00:15] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 21:00:45] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 21:00:45] [INFO] [REQUEST] POST /signup
+[2025-03-15 21:00:53] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 21:01:09] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 21:01:09] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 21:01:10] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-15 21:01:16] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 21:01:16] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 21:01:17] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 21:03:35] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-15 21:03:36] [INFO] [REQUEST] POST /signup
+[2025-03-15 21:03:42] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-15 21:03:53] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-15 21:03:53] [INFO] [REQUEST] POST /otp-verification
+[2025-03-15 21:03:54] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-15 23:34:51] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 23:34:51] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-15 23:34:56] [INFO] [REQUEST] POST /admin/logout
+[2025-03-15 23:34:56] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 23:35:47] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 23:35:47] [INFO] [REQUEST] POST /login
+[2025-03-15 23:35:47] [INFO] [RESPONSE] Status: 400 Message: User not found.
+[2025-03-15 23:35:54] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 23:35:54] [INFO] [REQUEST] POST /login
+[2025-03-15 23:35:54] [INFO] [RESPONSE] Status: 400 Message: User not found.
+[2025-03-15 23:36:15] [INFO] [REQUEST] OPTIONS /login
+[2025-03-15 23:36:15] [INFO] [REQUEST] POST /login
+[2025-03-15 23:36:15] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-15 23:37:00] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-15 23:37:00] [INFO] [REQUEST] PUT /student-profile
+[2025-03-15 23:37:00] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-15 23:37:14] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-15 23:37:14] [INFO] [REQUEST] PUT /student-profile
+[2025-03-15 23:37:16] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-15 23:38:20] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-15 23:38:20] [INFO] [REQUEST] POST /admin/login
+[2025-03-15 23:38:20] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-15 23:38:28] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 23:38:28] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:49:32] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-15 23:49:32] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:49:50] [INFO] [REQUEST] POST /admin/logout
+[2025-03-15 23:49:50] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 23:50:04] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-15 23:50:04] [INFO] [REQUEST] POST /admin/login
+[2025-03-15 23:50:04] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-15 23:50:08] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 23:50:08] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:50:09] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-15 23:50:09] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:50:11] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-15 23:50:11] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:51:07] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-15 23:51:08] [INFO] [REQUEST] POST /logout
+[2025-03-15 23:51:08] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 23:51:16] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-15 23:51:16] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:51:17] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 23:51:17] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-15 23:51:26] [INFO] [REQUEST] POST /admin/logout
+[2025-03-15 23:51:26] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-15 23:51:39] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-15 23:51:39] [INFO] [REQUEST] POST /admin/login
+[2025-03-15 23:51:39] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-15 23:51:54] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-15 23:51:54] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token

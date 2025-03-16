@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken"; // No need for JwtPayload import since we define TokenPayload
 import { AuthRequest } from "../interfaces/AuthRequest";
 import dotenv from "dotenv";
 
@@ -7,28 +7,37 @@ dotenv.config();
 
 const secret = process.env.JWT_SECRET!;
 
+// Define the expected token payload structure
+interface TokenPayload {
+    id: string;
+    role: string;
+    email: string;
+    iat?: number;
+    exp?: number;
+}
+
 export const authenticateAdmin = (requiredRole?: string) => {
     return (req: AuthRequest, res: Response, next: NextFunction): void => {
         try {
-           
             let token = req.cookies.adminJWT;
 
             if (!token) {
-                console.log("No token found"); 
+                console.log("No token found");
                 res.status(401).json({ message: "Unauthorized: No token provided" });
                 return;
             }
 
-            const decoded = jwt.verify(token, secret) as JwtPayload;
+            // Verify and decode the token directly as TokenPayload
+            const decoded = jwt.verify(token, secret) as TokenPayload;
             console.log("Decoded Token:", decoded);
 
-            if (typeof decoded === "string" || !decoded.payload) {
-                res.status(401).json({ message: "Unauthorized: Invalid token" });
-                return;
-            }
-
-            req.user = decoded.payload as { id: string; role: string; email: string };
-            console.log("User in Request:", req.user); 
+            // Assign the decoded payload to req.user
+            req.user = {
+                id: decoded.id,
+                role: decoded.role,
+                email: decoded.email
+            };
+            console.log("User in Request:", req.user);
 
             if (requiredRole && req.user.role !== requiredRole) {
                 res.status(403).json({ message: "Forbidden: Insufficient permissions" });
@@ -43,11 +52,10 @@ export const authenticateAdmin = (requiredRole?: string) => {
     };
 };
 
-
 export const authenticateUser = (requiredRole?: string) => {
     return (req: AuthRequest, res: Response, next: NextFunction): void => {
         try {
-            let token = req.cookies["userJWT"] 
+            let token = req.cookies["userJWT"];
 
             if (!token) {
                 console.log("No user token found");
@@ -55,15 +63,16 @@ export const authenticateUser = (requiredRole?: string) => {
                 return;
             }
 
-            const decoded = jwt.verify(token, secret) as JwtPayload;
+            // Verify and decode the token directly as TokenPayload
+            const decoded = jwt.verify(token, secret) as TokenPayload;
             console.log("Decoded User Token:", decoded);
 
-            if (typeof decoded === "string" || !decoded.payload) {
-                res.status(401).json({ message: "Unauthorized: Invalid user token" });
-                return;
-            }
-
-            req.user = decoded.payload as { id: string; role: string; email: string };
+            // Assign the decoded payload to req.user
+            req.user = {
+                id: decoded.id,
+                role: decoded.role,
+                email: decoded.email
+            };
             console.log("User in Request:", req.user);
 
             if (requiredRole && req.user.role !== requiredRole) {
