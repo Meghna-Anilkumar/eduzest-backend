@@ -20,12 +20,26 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
         return this.create(adminData);
     }
 
-    async getAllStudents(skip: number, limit: number): Promise<UserDoc[]> {
-        return this.userModel.find({ role: "Student" }).skip(skip).limit(limit);
+    async getAllStudents(skip: number, limit: number, search?: string): Promise<UserDoc[]> {
+        const query: any = { role: "Student" };
+        if (search) {
+            query.$or = [
+                { email: { $regex: search, $options: 'i' } }, 
+                { name: { $regex: search, $options: 'i' } },  
+            ];
+        }
+        return this.userModel.find(query).skip(skip).limit(limit);
     }
 
-    async countStudents(): Promise<number> {
-        return this.userModel.countDocuments({ role: "Student" });
+    async countStudents(search?: string): Promise<number> {
+        const query: any = { role: "Student" };
+        if (search) {
+            query.$or = [
+                // { email: { $regex: search, $options: 'i' } },
+                { name: { $regex: search, $options: 'i' } },
+            ];
+        }
+        return this.userModel.countDocuments(query);
     }
 
     async findUserById(id: string): Promise<UserDoc | null> {
@@ -60,13 +74,27 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
         );
     }
 
-    async getAllInstructors(skip: number, limit: number): Promise<UserDoc[]> {
-        return this.userModel.find({ role: "Instructor" }).skip(skip).limit(limit);
+    async getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]> {
+        const query: any = { role: "Instructor" };
+        if (search) {
+            query.$or = [
+                // { email: { $regex: search, $options: 'i' } }, 
+                { name: { $regex: search, $options: 'i' } }, 
+            ];
+        }
+        return this.userModel.find(query).skip(skip).limit(limit);
     }
 
-    async countInstructors(): Promise<number> {
-        return this.userModel.countDocuments({ role: "Instructor" });
-    }
+    async countInstructors(search?: string): Promise<number> {
+        const query: any = { role: "Instructor" };
+        if (search) {
+            query.$or = [
+                // { email: { $regex: search, $options: 'i' } },
+                { name: { $regex: search, $options: 'i' } },
+            ];
+        }
+        return this.userModel.countDocuments(query);
+    } 
 }
 
 export default AdminRepository;

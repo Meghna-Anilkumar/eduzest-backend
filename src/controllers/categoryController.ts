@@ -29,8 +29,9 @@ class CategoryController {
         try {
             const page = req.query.page ? Number(req.query.page) : 1;
             const limit = req.query.limit ? Number(req.query.limit) : 10;
+            const search = req.query.search as string | undefined; 
 
-            const response = await this._categoryService.getAllCategories(page, limit);
+            const response = await this._categoryService.getAllCategories(page, limit,search);
             res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
         } catch (error) {
             console.error("Error in getAllCategories controller:", error);

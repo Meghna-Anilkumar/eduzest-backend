@@ -64,19 +64,12 @@ export class CategoryService implements ICategoryService {
     }
 
     // Get all categories 
-    async getAllCategories(page: number, limit: number): Promise<IResponse> {
+    async getAllCategories(page: number, limit: number, search?: string): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
 
-            const categories = await this._categoryRepository.findAll(
-                {},
-                skip,
-                { createdAt: -1 },
-                limit
-            );
-            const totalCategories = await this._categoryRepository.count({});
-
-            console.log("Categories found:", categories);
+            const categories = await this._categoryRepository.getAllCategories(skip, limit, search);
+            const totalCategories = await this._categoryRepository.countCategories(search);
 
             return {
                 success: true,

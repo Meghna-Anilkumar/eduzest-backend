@@ -47,7 +47,9 @@ class AdminController {
         try {
             const page = parseInt(req.query.page as string) || 1;
             const limit = parseInt(req.query.limit as string) || 10;
-            const response = await this._adminService.fetchAllStudents(page, limit);
+            const search = req.query.search as string | undefined; 
+
+            const response = await this._adminService.fetchAllStudents(page, limit, search);
             res.status(Status.OK).json(response);
         } catch (error) {
             console.error("Error in fetchAllStudents Controller:", error);
@@ -182,8 +184,9 @@ class AdminController {
         try {
             const page = parseInt(req.query.page as string) || 1;
             const limit = parseInt(req.query.limit as string) || 10;
+            const search = req.query.search as string | undefined; 
 
-            const response = await this._adminService.fetchAllInstructors(page, limit);
+            const response = await this._adminService.fetchAllInstructors(page, limit,search);
 
             res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
         } catch (error) {

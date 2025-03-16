@@ -79,12 +79,12 @@ export class AdminService implements IAdminService {
     }
 
     // List users on admin side
-    async fetchAllStudents(page: number, limit: number): Promise<IResponse> {
+    async fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
             
-            const students = await this._adminRepository.getAllStudents(skip, limit);
-            const totalStudents = await this._adminRepository.countStudents();
+            const students = await this._adminRepository.getAllStudents(skip, limit, search);
+            const totalStudents = await this._adminRepository.countStudents(search);
 
             return {
                 success: true,
@@ -254,12 +254,12 @@ export class AdminService implements IAdminService {
     }
 
     // Fetch all instructors
-    async fetchAllInstructors(page: number, limit: number): Promise<IResponse> {
+    async fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse> {
         try {
             const skip = (page - 1) * limit;
             
-            const instructors = await this._adminRepository.getAllInstructors(skip, limit);
-            const totalInstructors = await this._adminRepository.countInstructors();
+            const instructors = await this._adminRepository.getAllInstructors(skip, limit, search);
+            const totalInstructors = await this._adminRepository.countInstructors(search);
 
             return {
                 success: true,
