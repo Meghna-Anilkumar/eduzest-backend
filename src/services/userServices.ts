@@ -195,14 +195,13 @@ export class UserService implements IUserService {
                 };
             }
 
-            // Pass the full existingUser object to generateToken and generateRefreshToken
             const token = generateToken(existingUser);
             const refreshToken = generateRefreshToken(existingUser);
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 24 * 60 * 60 * 1000, // 1 day
+                maxAge: 24 * 60 * 60 * 1000, 
             });
 
             return {
@@ -224,8 +223,8 @@ export class UserService implements IUserService {
     // getUser 
     async getUser(token: string): Promise<IResponse> {
         try {
-            const payload = verifyToken(token); // Returns { id, role, email, iat, exp }
-            const userId = payload.id; // Directly access the 'id' field
+            const payload = verifyToken(token); 
+            const userId = payload.id;
 
             if (!userId) {
                 return {
@@ -259,7 +258,7 @@ export class UserService implements IUserService {
             };
         }
     }
-    
+
     // resendOtp 
     async resendOtp(email: string): Promise<IResponse> {
         try {

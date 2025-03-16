@@ -27,7 +27,7 @@ userRouter.post(USER_ROUTES.RESEND_OTP, userController.resendOtp.bind(userContro
 userRouter.post(USER_ROUTES.FORGOT_PASS, userController.forgotPassword.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.RESET_PASS, userController.resetPassword.bind(userController) as RequestHandler)
 userRouter.put(
-    USER_ROUTES.STUDENT_PROFILE,
+    USER_ROUTES.STUDENT_PROFILE,authenticateUser(),
     uploadToS3Single.single("profilePic"),
     userController.updateStudentProfile.bind(userController) as RequestHandler
 ); 

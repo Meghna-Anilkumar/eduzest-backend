@@ -89,7 +89,6 @@ export class UserRepository extends BaseRepository<UserDoc> {
         return this.update({ email }, { $set: updatedData }, { new: true });
     }
 
-    // New methods for AdminService
     async getAllStudents(skip: number, limit: number): Promise<UserDoc[]> {
         return this.findAll({ role: 'Student' }, skip, {}, limit);
     }
