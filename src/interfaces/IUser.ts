@@ -40,5 +40,7 @@ export interface UserDoc extends Document {
   cv?: string;
   isRequested?: boolean;
   isRejected?: boolean;
-  experience:string
+  experience:string;
+  refreshToken?: string;
+  refreshTokenExpires?: Date;
 }

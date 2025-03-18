@@ -1,0 +1,480 @@
+[2025-03-17 08:52:52] [INFO] [REQUEST] OPTIONS /forgot-pass
+[2025-03-17 08:52:52] [INFO] [REQUEST] POST /forgot-pass
+[2025-03-17 08:52:52] [INFO] [RESPONSE] Status: 400 Message: Invalid email. Please try with your registered email.
+[2025-03-17 08:53:14] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 08:53:15] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 08:53:19] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-17 08:53:19] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 08:53:22] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 08:53:22] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 08:53:36] [INFO] [REQUEST] OPTIONS /forgot-pass
+[2025-03-17 08:53:36] [INFO] [REQUEST] POST /forgot-pass
+[2025-03-17 08:53:44] [INFO] [RESPONSE] Status: 200 Message: OTP sent to your email. Please verify.
+[2025-03-17 08:53:49] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-17 08:53:49] [INFO] [REQUEST] POST /otp-verification
+[2025-03-17 08:53:49] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-17 08:54:04] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-17 08:54:04] [INFO] [REQUEST] POST /otp-verification
+[2025-03-17 08:54:04] [INFO] [RESPONSE] Status: 200 Message: OTP verified. Reset your password
+[2025-03-17 08:54:28] [INFO] [REQUEST] OPTIONS /reset-password
+[2025-03-17 08:54:28] [INFO] [REQUEST] POST /reset-password
+[2025-03-17 08:54:28] [INFO] [RESPONSE] Status: 200 Message: Password reset successful
+[2025-03-17 08:54:50] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 08:54:50] [INFO] [REQUEST] POST /login
+[2025-03-17 08:54:50] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 08:55:30] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:55:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:56:00] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:56:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:56:15] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-17 08:56:15] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-17 08:56:15] [INFO] [RESPONSE] Status: 200 Message: Instructor profile updated successfully.
+[2025-03-17 08:56:26] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-17 08:56:26] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-17 08:56:26] [INFO] [RESPONSE] Status: 400 Message: You must be at least 16 years old
+[2025-03-17 08:56:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:56:41] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:57:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:57:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:57:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:57:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:58:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:58:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:58:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:58:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:59:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:59:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 08:59:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 08:59:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:00:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:00:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:01:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:01:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:01:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:01:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:02:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:02:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:02:29] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 09:02:29] [INFO] [REQUEST] POST /logout
+[2025-03-17 09:02:29] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 09:02:38] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-17 09:02:38] [INFO] [REQUEST] POST /google-auth
+[2025-03-17 09:02:38] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-17 09:03:08] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:03:08] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:03:38] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:03:38] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:03:59] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 09:03:59] [INFO] [REQUEST] POST /logout
+[2025-03-17 09:03:59] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 09:04:08] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 09:04:08] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 09:04:15] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 09:04:15] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 09:04:34] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 09:04:34] [INFO] [REQUEST] POST /login
+[2025-03-17 09:04:35] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 09:05:07] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:05:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:05:37] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:05:37] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:06:07] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:06:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:06:10] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-17 09:06:19] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-17 09:06:19] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:06:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:06:47] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 09:06:47] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 09:06:55] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:06:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:07:11] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/67d0290c492a7b483d33f9b3
+[2025-03-17 09:07:11] [INFO] [REQUEST] PATCH /admin/approve-instructor/67d0290c492a7b483d33f9b3
+[2025-03-17 09:07:12] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-03-17 09:07:12] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 09:07:12] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 09:07:15] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 09:07:15] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 09:07:25] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:07:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:07:55] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:07:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:08:25] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:08:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:09:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:09:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:09:51] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10&search=m
+[2025-03-17 09:09:51] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 09:09:53] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 09:09:53] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 09:09:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:09:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:10:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:10:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:10:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5&search=w
+[2025-03-17 09:10:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:10:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:10:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:11:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:11:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:12:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:12:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:12:32] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-17 09:12:32] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-17 09:12:32] [INFO] [RESPONSE] Status: 200 Message: Category created successfully.
+[2025-03-17 09:12:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:12:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:12:39] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-17 09:12:39] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-17 09:12:39] [INFO] [RESPONSE] Status: 200 Message: Category created successfully.
+[2025-03-17 09:12:39] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:12:39] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:12:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:12:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:12:58] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-17 09:12:58] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-17 09:12:59] [INFO] [RESPONSE] Status: 200 Message: Category created successfully.
+[2025-03-17 09:12:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:12:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:13:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:13:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:14:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:14:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:15:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:15:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:16:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:16:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:17:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:17:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:20:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:20:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:20:39] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-17 09:20:39] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-17 09:20:40] [INFO] [RESPONSE] Status: 200 Message: Category created successfully.
+[2025-03-17 09:20:40] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:20:40] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:20:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:20:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:20:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:20:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:20:52] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:20:52] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:21:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:21:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:21:03] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:21:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:21:34] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:21:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:22:04] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:22:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:22:34] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:22:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:24:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:24:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:25:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:25:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:27:41] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:27:41] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:27:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:27:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:27:48] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:27:48] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:27:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:27:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:28:01] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-17 09:28:01] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-17 09:28:01] [INFO] [RESPONSE] Status: 400 Message: Category already exists.
+[2025-03-17 09:28:27] [INFO] [REQUEST] OPTIONS /admin/edit-category/67d4100c666885ab6f1ed3d3
+[2025-03-17 09:28:27] [INFO] [REQUEST] PUT /admin/edit-category/67d4100c666885ab6f1ed3d3
+[2025-03-17 09:28:27] [INFO] [RESPONSE] Status: 200 Message: Category updated successfully.
+[2025-03-17 09:28:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:28:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:28:34] [INFO] [REQUEST] OPTIONS /admin/delete-category/67d4100c666885ab6f1ed3d3
+[2025-03-17 09:28:34] [INFO] [REQUEST] PUT /admin/delete-category/67d4100c666885ab6f1ed3d3
+[2025-03-17 09:28:34] [INFO] [RESPONSE] Status: 200 Message: Category deleted successfully.
+[2025-03-17 09:28:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:28:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:34:25] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=2&limit=5
+[2025-03-17 09:34:25] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:34:26] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 09:34:26] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 09:35:39] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 09:35:39] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 09:36:06] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 09:36:06] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 09:36:21] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 09:36:21] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 09:36:35] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 09:36:35] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-17 09:36:36] [INFO] [REQUEST] GET /favicon.ico
+[2025-03-17 09:36:36] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-17 09:40:15] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-17 09:40:15] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 09:40:17] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 09:40:17] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 09:41:58] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 09:41:58] [INFO] [REQUEST] POST /login
+[2025-03-17 09:41:58] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 09:42:28] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:42:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:43:20] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:43:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:43:50] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:43:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:44:20] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:44:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:44:50] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:44:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:45:56] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:45:56] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:46:20] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:46:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:46:50] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:46:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:48:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:48:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:49:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:49:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:50:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:50:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:50:19] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:50:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:50:52] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:50:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:51:21] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:51:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:51:51] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:51:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:52:21] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:52:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:53:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:53:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:54:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:54:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:55:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:55:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:56:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:56:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:57:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:57:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:57:20] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-17 09:57:20] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-17 09:57:20] [INFO] [RESPONSE] Status: 200 Message: Instructor profile updated successfully.
+[2025-03-17 09:57:48] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:57:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:58:19] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:58:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:58:49] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:58:49] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:59:19] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 09:59:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 09:59:29] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-17 09:59:29] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-17 09:59:29] [INFO] [RESPONSE] Status: 200 Message: Instructor profile updated successfully.
+[2025-03-17 09:59:57] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-17 09:59:57] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-17 09:59:57] [INFO] [RESPONSE] Status: 200 Message: Instructor profile updated successfully.
+[2025-03-17 10:00:17] [INFO] [REQUEST] OPTIONS /instructor-profile
+[2025-03-17 10:00:17] [INFO] [REQUEST] PUT /instructor-profile
+[2025-03-17 10:00:17] [INFO] [RESPONSE] Status: 200 Message: Instructor profile updated successfully.
+[2025-03-17 10:00:50] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:00:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:01:20] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:01:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:01:50] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:01:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:02:21] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:02:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:02:22] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 10:02:22] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 10:02:52] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:02:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:03:00] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:03:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:03:22] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:03:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:03:30] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:03:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:03:53] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:03:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:03:59] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:03:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:04:23] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:04:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:04:30] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:04:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:04:53] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:04:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:05:00] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:05:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:05:23] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:05:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:05:53] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:05:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:06:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:06:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:08:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:08:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:08:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:08:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:09:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:09:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:09:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:09:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:09:22] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:09:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:09:53] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:09:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:10:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:10:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:10:23] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:10:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:11:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:11:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:11:01] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 10:11:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 10:18:07] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 10:18:08] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 10:29:51] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 10:29:51] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 10:37:14] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-17 10:37:14] [INFO] [REQUEST] POST /google-auth
+[2025-03-17 10:37:15] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-17 10:40:24] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 10:40:24] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 11:46:30] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 11:46:30] [INFO] [REQUEST] POST /logout
+[2025-03-17 11:46:30] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 12:21:11] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-17 12:21:11] [INFO] [REQUEST] POST /google-auth
+[2025-03-17 12:21:12] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-17 12:56:00] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 12:56:00] [INFO] [REQUEST] POST /logout
+[2025-03-17 12:56:00] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 12:57:32] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 12:57:32] [INFO] [REQUEST] POST /login
+[2025-03-17 12:57:32] [INFO] [RESPONSE] Status: 400 Message: User not found.
+[2025-03-17 12:57:43] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 12:57:43] [INFO] [REQUEST] POST /login
+[2025-03-17 12:57:44] [INFO] [RESPONSE] Status: 400 Message: Incorrect password.
+[2025-03-17 12:57:52] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 12:57:52] [INFO] [REQUEST] POST /login
+[2025-03-17 12:57:52] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 13:17:12] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 13:17:12] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 13:17:14] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 13:17:14] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:17:18] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 13:17:18] [INFO] [REQUEST] POST /logout
+[2025-03-17 13:17:18] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 13:17:56] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 13:17:56] [INFO] [REQUEST] POST /login
+[2025-03-17 13:17:56] [INFO] [RESPONSE] Status: 400 Message: Your account has been blocked. Please contact support.
+[2025-03-17 13:18:20] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 13:18:20] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:18:30] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 13:18:30] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-17 13:18:45] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10&search=a
+[2025-03-17 13:18:45] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:18:46] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10&search=am
+[2025-03-17 13:18:46] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:18:47] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10&search=a
+[2025-03-17 13:18:47] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:18:47] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 13:18:48] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:20:19] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=2&limit=10
+[2025-03-17 13:20:20] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 13:20:22] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-17 13:20:22] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-17 13:20:29] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 13:20:29] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 13:20:31] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 13:20:31] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 14:24:38] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 14:24:38] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 14:24:56] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 14:24:56] [INFO] [REQUEST] POST /login
+[2025-03-17 14:24:57] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 15:27:36] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 15:27:36] [INFO] [REQUEST] POST /logout
+[2025-03-17 15:27:36] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 15:27:50] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 15:27:51] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 15:27:56] [INFO] [REQUEST] POST /admin/logout
+[2025-03-17 15:27:56] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 15:40:26] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-17 15:40:26] [INFO] [REQUEST] POST /admin/login
+[2025-03-17 15:40:26] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-17 15:40:29] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 15:40:29] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 15:40:46] [INFO] [REQUEST] POST /admin/logout
+[2025-03-17 15:40:46] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 16:05:09] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-17 16:05:09] [INFO] [REQUEST] POST /signup
+[2025-03-17 16:05:43] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-17 16:06:50] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-17 16:06:50] [INFO] [REQUEST] POST /otp-verification
+[2025-03-17 16:06:51] [INFO] [RESPONSE] Status: 400 Message: Invalid OTP.
+[2025-03-17 16:07:10] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-17 16:07:10] [INFO] [REQUEST] POST /otp-verification
+[2025-03-17 16:07:10] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-17 16:07:47] [INFO] [REQUEST] OPTIONS /forgot-pass
+[2025-03-17 16:07:47] [INFO] [REQUEST] POST /forgot-pass
+[2025-03-17 16:07:47] [INFO] [RESPONSE] Status: 400 Message: Invalid email. Please try with your registered email.
+[2025-03-17 16:08:17] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-17 16:08:17] [INFO] [REQUEST] POST /google-auth
+[2025-03-17 16:08:18] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-17 16:08:37] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-17 16:08:37] [INFO] [REQUEST] POST /logout
+[2025-03-17 16:08:37] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-17 16:08:55] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 16:08:55] [INFO] [REQUEST] POST /login
+[2025-03-17 16:08:55] [INFO] [RESPONSE] Status: 400 Message: User not found.
+[2025-03-17 16:09:50] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 16:09:50] [INFO] [REQUEST] POST /login
+[2025-03-17 16:09:51] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 16:12:11] [INFO] [REQUEST] OPTIONS /change-password
+[2025-03-17 16:12:11] [INFO] [REQUEST] PUT /change-password
+[2025-03-17 16:12:13] [INFO] [RESPONSE] Status: 400 Message: Current password is incorrect
+[2025-03-17 16:13:37] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-03-17 16:13:37] [INFO] [REQUEST] PUT /student-profile
+[2025-03-17 16:13:39] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-03-17 16:14:42] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-17 16:14:45] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-17 16:14:45] [INFO] [REQUEST] GET /getUserdata
+[2025-03-17 16:14:45] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-17 16:15:19] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-17 16:15:19] [INFO] [REQUEST] POST /admin/login
+[2025-03-17 16:15:19] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-17 16:15:26] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 16:15:27] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 16:15:53] [INFO] [REQUEST] OPTIONS /admin/reject-instructor/67d7fadeab740606e5b8a3f8
+[2025-03-17 16:15:53] [INFO] [REQUEST] PATCH /admin/reject-instructor/67d7fadeab740606e5b8a3f8
+[2025-03-17 16:15:54] [INFO] [RESPONSE] Status: 200 Message: User's instructor request has been rejected.
+[2025-03-17 16:15:54] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-03-17 16:15:54] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-03-17 16:17:11] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-17 16:17:11] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-17 16:17:35] [INFO] [REQUEST] OPTIONS /login
+[2025-03-17 16:17:35] [INFO] [REQUEST] POST /login
+[2025-03-17 16:17:36] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-17 16:17:46] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67d02c9b492a7b483d33f9c2
+[2025-03-17 16:17:46] [INFO] [REQUEST] PUT /admin/block-unblock/67d02c9b492a7b483d33f9c2
+[2025-03-17 16:17:46] [INFO] [RESPONSE] Status: 200 Message: User has been blocked successfully.
+[2025-03-17 16:17:55] [INFO] [REQUEST] OPTIONS /admin/block-unblock/67d14d0aaf7dfc038fb09170
+[2025-03-17 16:17:55] [INFO] [REQUEST] PUT /admin/block-unblock/67d14d0aaf7dfc038fb09170
+[2025-03-17 16:17:55] [INFO] [RESPONSE] Status: 200 Message: User has been blocked successfully.
+[2025-03-17 16:18:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-03-17 16:18:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-17 16:19:10] [INFO] [REQUEST] OPTIONS /admin/create-category
+[2025-03-17 16:19:10] [INFO] [REQUEST] POST /admin/create-category
+[2025-03-17 16:19:10] [INFO] [RESPONSE] Status: 400 Message: Category already exists.
+[2025-03-17 16:19:34] [INFO] [REQUEST] OPTIONS /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-17 16:19:34] [INFO] [REQUEST] PUT /admin/edit-category/67d40e7e666885ab6f1ed3c8
+[2025-03-17 16:19:34] [INFO] [RESPONSE] Status: 400 Message: Category with this name already exists.

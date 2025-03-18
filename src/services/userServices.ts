@@ -163,14 +163,14 @@ export class UserService implements IUserService {
     async userLogin({ email, password }: { email: string; password: string }, res: Response): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByEmail(email);
-
+    
             if (!existingUser) {
                 return {
                     success: false,
                     message: "User not found.",
                 };
             }
-
+    
             const isBlocked = await this._userRepository.isUserBlocked(email);
             if (isBlocked) {
                 return {
@@ -178,7 +178,7 @@ export class UserService implements IUserService {
                     message: "Your account has been blocked. Please contact support.",
                 };
             }
-
+    
             const isVerified = await this._userRepository.isUserVerified(email);
             if (!isVerified) {
                 return {
@@ -186,7 +186,7 @@ export class UserService implements IUserService {
                     message: "Invalid credentials.",
                 };
             }
-
+    
             const isPasswordValid = await this._userRepository.validatePassword(email, password, comparePassword);
             if (!isPasswordValid) {
                 return {
@@ -194,9 +194,11 @@ export class UserService implements IUserService {
                     message: "Incorrect password.",
                 };
             }
-
+    
             const token = generateToken(existingUser);
             const refreshToken = generateRefreshToken(existingUser);
+    
+            await this._userRepository.storeRefreshToken(existingUser._id.toString(), refreshToken);
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
@@ -204,6 +206,12 @@ export class UserService implements IUserService {
                 maxAge: 24 * 60 * 60 * 1000, 
             });
 
+            res.cookie(Cookie.userRefreshJWT, refreshToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                maxAge: 7 * 24 * 60 * 60 * 1000, 
+            });
+    
             return {
                 success: true,
                 message: "Login successful.",
@@ -216,6 +224,50 @@ export class UserService implements IUserService {
             return {
                 success: false,
                 message: "Login failed. Please try again.",
+            };
+        }
+    }
+
+
+    async refreshToken(refreshToken: string, res: Response): Promise<IResponse> {
+        try {
+            const decoded = verifyToken(refreshToken);
+            const userId = decoded.id;
+
+            const storedRefreshToken = await this._userRepository.getRefreshToken(userId);
+            if (!storedRefreshToken || storedRefreshToken !== refreshToken) {
+                return {
+                    success: false,
+                    message: "Invalid or expired refresh token.",
+                };
+            }
+    
+            const user = await this._userRepository.findById(userId);
+            if (!user) {
+                return {
+                    success: false,
+                    message: "User not found.",
+                };
+            }
+
+            const newAccessToken = generateToken(user);
+    
+            res.cookie(Cookie.userJWT, newAccessToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                maxAge: 24 * 60 * 60 * 1000, 
+            });
+    
+            return {
+                success: true,
+                message: "Token refreshed successfully.",
+                token: newAccessToken,
+            };
+        } catch (error) {
+            console.error("Error during token refresh:", error);
+            return {
+                success: false,
+                message: "Failed to refresh token.",
             };
         }
     }

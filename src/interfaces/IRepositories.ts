@@ -29,6 +29,9 @@ export interface IUserRepository extends IBaseRepository<UserDoc> {
     hasRequestedInstructor(email: string): Promise<boolean>;
     updateStudentProfile(email: string, updatedData: Partial<UserDoc>): Promise<UserDoc | null>;
     updateInstructorProfile(email: string, updatedData: Partial<UserDoc>): Promise<UserDoc | null>;
+    storeRefreshToken(userId: string, refreshToken: string): Promise<void>;
+    getRefreshToken(userId: string): Promise<string | null>;
+    clearRefreshToken(userId: string): Promise<void>;
 }
 
 export interface IAdminRepository extends IBaseRepository<AdminDoc> {

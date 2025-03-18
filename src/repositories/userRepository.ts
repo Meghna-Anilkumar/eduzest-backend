@@ -132,6 +132,25 @@ export class UserRepository extends BaseRepository<UserDoc> {
     async countInstructors(): Promise<number> {
         return this.count({ role: 'Instructor' });
     }
+
+    async storeRefreshToken(userId: string, refreshToken: string): Promise<void> {
+        await this._model.updateOne(
+            { _id: userId },
+            { refreshToken }
+        );
+    }
+
+    async getRefreshToken(userId: string): Promise<string | null> {
+        const user = await this._model.findById(userId).select("refreshToken");
+        return user?.refreshToken || null;
+    }
+
+    async clearRefreshToken(userId: string): Promise<void> {
+        await this._model.updateOne(
+            { _id: userId },
+            { $unset: { refreshToken: "" } }
+        );
+    }
 }
 
 export default UserRepository;

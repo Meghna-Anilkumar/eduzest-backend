@@ -43,6 +43,6 @@ userRouter.put(
     uploadToS3Single.single("profilePic"),
     userController.updateInstructorProfile.bind(userController) as RequestHandler
 );
-
+userRouter.post(USER_ROUTES.REFRESH_TOKEN, userController.refreshToken.bind(userController) as RequestHandler);
 
 export default userRouter   

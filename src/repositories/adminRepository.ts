@@ -78,7 +78,6 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
         const query: any = { role: "Instructor" };
         if (search) {
             query.$or = [
-                // { email: { $regex: search, $options: 'i' } }, 
                 { name: { $regex: search, $options: 'i' } }, 
             ];
         }
@@ -89,7 +88,6 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
         const query: any = { role: "Instructor" };
         if (search) {
             query.$or = [
-                // { email: { $regex: search, $options: 'i' } },
                 { name: { $regex: search, $options: 'i' } },
             ];
         }

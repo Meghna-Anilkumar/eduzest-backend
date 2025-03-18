@@ -118,6 +118,14 @@ const userSchema = new Schema<UserDoc>({
 
   experience:{
     type:String
+  },
+
+  refreshToken:{
+    type:String
+  },
+
+  refreshTokenExpires:{
+     type:String
   }
 
 });

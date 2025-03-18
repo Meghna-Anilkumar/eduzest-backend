@@ -35,9 +35,6 @@ app.use("/", userRouter);
 app.use("/admin", adminRouter);
 
 
-// app.get('/',(req,res)=>{
-//   res.json('hiiiii')
-// })
 
 
 app.all("*", (req: Request, res: Response) => {

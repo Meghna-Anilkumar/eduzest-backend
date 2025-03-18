@@ -9,7 +9,9 @@ export class CategoryRepository extends BaseRepository<CategoryDoc> implements I
     }
 
     async findByName(categoryName: string): Promise<CategoryDoc | null> {
-        return this._model.findOne({ name: categoryName });
+        return this._model.findOne({
+            categoryName: { $regex: new RegExp(`^${categoryName.trim()}$`, 'i') }
+        });
     }
 
     async toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null> {

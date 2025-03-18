@@ -12,7 +12,8 @@ export const USER_ROUTES={
     INSTRUCTOR_PROFILE:'/instructor-profile',
     CHANGE_PASSWORD:'/change-password',
     GOOGLE_AUTH:'/google-auth',
-    INSTRUCTOR_APPLY:'/instructor-apply'
+    INSTRUCTOR_APPLY:'/instructor-apply',
+    REFRESH_TOKEN:'/refresh-token'
 }
 
 

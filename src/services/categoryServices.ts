@@ -15,26 +15,29 @@ export class CategoryService implements ICategoryService {
     // Create a new category
     async createCategory(categoryData: Partial<CategoryDoc>): Promise<IResponse> {
         try {
-            if (!categoryData.categoryName?.trim()) {
+            const trimmedName = categoryData.categoryName?.trim();
+            
+            if (!trimmedName) {
                 return {
                     success: false,
                     message: "Category name is required."
                 };
             }
-
-            const existingCategory = await this._categoryRepository.findByName(categoryData.categoryName);
+    
+            const existingCategory = await this._categoryRepository.findByName(trimmedName);
             if (existingCategory) {
                 return {
                     success: false,
                     message: "Category already exists."
                 };
             }
-
+    
             const newCategory = await this._categoryRepository.create({
                 ...categoryData,
+                categoryName: trimmedName,
                 isActive: true
             });
-
+    
             return {
                 success: true,
                 message: "Category created successfully.",

@@ -6,6 +6,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { uploadToS3 } from "../utils/s3";
 
 
+
 class UserController {
     constructor(private _userService: IUserService) { }
 
@@ -84,6 +85,33 @@ class UserController {
     }
 
 
+    //refresh token
+    async refreshToken(req: Request, res: Response) {
+        try {
+            const refreshToken = req.cookies[Cookie.userRefreshJWT];
+            if (!refreshToken) {
+                return res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "No refresh token provided.",
+                });
+            }
+
+            const result = await this._userService.refreshToken(refreshToken, res);
+
+            res.status(result.success ? Status.OK : Status.UN_AUTHORISED).json({
+                success: result.success,
+                message: result.message,
+                token: result.token,
+            });
+        } catch (error) {
+            console.error("Error during token refresh:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+
 
     //get user data
     async getUser(req: Request, res: Response): Promise<void> {
@@ -112,6 +140,9 @@ class UserController {
     async logout(req: Request, res: Response, next: NextFunction) {
         try {
             res.clearCookie(Cookie.userJWT, {
+                httpOnly: true,
+            });
+            res.clearCookie(Cookie.userRefreshJWT, {
                 httpOnly: true,
             });
 
@@ -340,15 +371,15 @@ class UserController {
         try {
             const { name, email, gender, dob, phone, qualification, aboutMe, profile, experience, address, socialMedia } = req.body;
             const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-    
+
             console.log("Request files:", files);
             console.log("Request body:", req.body);
-    
+
             let profilePicUrl = null;
             let cvUrl = null;
-    
+
             const profileData = profile ? JSON.parse(profile) : {};
-    
+
             if (files && files['profilePic'] && files['profilePic'][0]) {
                 try {
                     profilePicUrl = await uploadToS3(files['profilePic'][0], 'profile');
@@ -369,7 +400,7 @@ class UserController {
                     message: "Profile picture is required"
                 });
             }
-    
+
             if (files && files['cv'] && files['cv'][0]) {
                 try {
                     cvUrl = await uploadToS3(files['cv'][0], 'document');
@@ -387,7 +418,7 @@ class UserController {
                     message: "CV is required"
                 });
             }
-    
+
             const applicationData = {
                 name,
                 email,
@@ -404,7 +435,7 @@ class UserController {
                 experience,
                 socialMedia: socialMedia ? JSON.parse(socialMedia) : undefined
             };
-    
+
             const result = await this._userService.applyForInstructor(applicationData);
             res.status(result.success ? 201 : 400).json(result);
         } catch (error) {
@@ -415,7 +446,7 @@ class UserController {
             });
         }
     }
-    
+
 
     async updateInstructorProfile(req: Request, res: Response) {
         try {

@@ -20,6 +20,7 @@ export interface IUserService {
     googleAuth(googleUser: { email: string; name: string; username: string }, res: Response): Promise<IResponse>;
     applyForInstructor(data: Partial<UserDoc>): Promise<IResponse>;
     updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse>;
+    refreshToken(refreshToken: string, res: Response): Promise<IResponse>
 }
 
 
