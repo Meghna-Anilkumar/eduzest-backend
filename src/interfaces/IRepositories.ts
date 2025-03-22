@@ -3,6 +3,9 @@ import { UserDoc } from './IUser';
 import { AdminDoc } from './IAdmin';
 import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
+import { ICourse } from './ICourse';
+import { Types } from "mongoose";
+
 
 export interface IBaseRepository<T extends Document> {
     findAll(filter: Record<string, unknown>, skip: number, sort: any, limit?: number): Promise<T[]>;
@@ -59,9 +62,15 @@ export interface IOtpRepository extends IBaseRepository<OtpDoc> {
     isOtpExpired(email: string): Promise<boolean>;
 }
 
+
 export interface ICategoryRepository extends IBaseRepository<CategoryDoc> {
-    findByName(categoryName: string): Promise<CategoryDoc | null>;
-    toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null>;
-    getAllCategories(skip: number, limit: number, search?: string): Promise<CategoryDoc[]>; 
-    countCategories(search?: string): Promise<number>;
+  findByName(categoryName: string): Promise<CategoryDoc| null>;
+  toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null>;
+  getAllCategories(skip: number, limit: number, search?: string): Promise<CategoryDoc[]>;
+  countCategories(search?: string): Promise<number>;
+}
+
+export interface ICourseRepository extends IBaseRepository<ICourse>{
+    createCourse(courseData: Partial<ICourse>): Promise<ICourse>; 
+    findByTitleAndInstructor(title: string, instructorId: Types.ObjectId): Promise<ICourse | null>;
 }

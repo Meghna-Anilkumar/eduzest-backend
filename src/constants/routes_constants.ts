@@ -32,3 +32,8 @@ export const ADMIN_ROUTES={
     DELETE_CATEGORY: '/delete-category/:categoryId',
     GET_REQUESTDETAILS:'/getRequestDetails' 
 }
+
+
+export const INSTRUCTOR_ROUTES={
+    CREATE_COURSE:'/create-course'
+}

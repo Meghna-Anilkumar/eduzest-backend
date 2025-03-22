@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
 import { CategoryService } from "../services/categoryServices";
 import { Status } from "../utils/enums";
+import { ICategoryService } from "../interfaces/IServices";
 
 class CategoryController {
-    private _categoryService: CategoryService;
-
-    constructor(categoryService: CategoryService) {
-        this._categoryService = categoryService;
-    }
+  constructor(private _categoryService: ICategoryService) {}
 
     // Create a new category
     async createCategory(req: Request, res: Response): Promise<void> {

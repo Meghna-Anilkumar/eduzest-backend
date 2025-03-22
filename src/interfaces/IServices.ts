@@ -2,6 +2,7 @@ import { UserDoc } from "./IUser";
 import { CategoryDoc } from "./ICategory";
 import { IResponse } from "./IResponse";
 import { Response } from "express";
+import { ICourse } from "./ICourse";
 
 
 export interface IUserService {
@@ -32,5 +33,12 @@ export interface IAdminService {
 
 
 export interface ICategoryService {
-    createCategory(categoryData: Partial<CategoryDoc>): Promise<IResponse>
+    createCategory(categoryData: Partial<CategoryDoc>): Promise<IResponse>;
+    getAllCategories(page: number, limit: number, search?: string): Promise<IResponse>;
+    editCategory(categoryId: string, updatedData: Partial<CategoryDoc>): Promise<IResponse>;
+    deleteCategory(categoryId: string): Promise<IResponse>;
+}
+
+export interface ICourseService {
+    createCourse(courseData: Partial<ICourse>): Promise<IResponse>;
 }

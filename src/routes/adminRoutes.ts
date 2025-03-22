@@ -38,7 +38,7 @@ adminRouter.get(ADMIN_ROUTES.GET_REQUESTDETAILS,authenticateAdmin(),adminControl
 
 // Category management 
 adminRouter.post(ADMIN_ROUTES.ADD_CATEGORY,authenticateAdmin(), categoryController.createCategory.bind(categoryController));
-adminRouter.get(ADMIN_ROUTES.FETCHALL_CATEGORIES, authenticateAdmin(), categoryController.getAllCategories.bind(categoryController));
+adminRouter.get(ADMIN_ROUTES.FETCHALL_CATEGORIES, categoryController.getAllCategories.bind(categoryController));
 adminRouter.put(ADMIN_ROUTES.EDIT_CATEGORY, authenticateAdmin(), categoryController.editCategory.bind(categoryController));
 adminRouter.put(ADMIN_ROUTES.DELETE_CATEGORY, authenticateAdmin(), categoryController.deleteCategory.bind(categoryController));
 

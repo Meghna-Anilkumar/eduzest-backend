@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import userRouter from "./routes/userRoutes";
 import adminRouter from "./routes/adminRoutes";
+import instructorRouter from "./routes/instructorRoutes";
 import cookieParser from "cookie-parser";
 
 
@@ -33,6 +34,7 @@ app.use(
 
 app.use("/", userRouter);
 app.use("/admin", adminRouter);
+app.use("/instructor", instructorRouter);
 
 
 
