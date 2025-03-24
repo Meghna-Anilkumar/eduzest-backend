@@ -13,7 +13,8 @@ export const USER_ROUTES={
     CHANGE_PASSWORD:'/change-password',
     GOOGLE_AUTH:'/google-auth',
     INSTRUCTOR_APPLY:'/instructor-apply',
-    REFRESH_TOKEN:'/refresh-token'
+    REFRESH_TOKEN:'/refresh-token',
+    REFRESH_SIGNED_URL: "/refresh-signed-url", 
 }
 
 
@@ -35,5 +36,6 @@ export const ADMIN_ROUTES={
 
 
 export const INSTRUCTOR_ROUTES={
-    CREATE_COURSE:'/create-course'
+    CREATE_COURSE:'/create-course',
+    GET_ALL_COURSES: '/courses'
 }

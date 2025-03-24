@@ -436,3 +436,427 @@
 [2025-03-22 11:26:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
 [2025-03-22 11:34:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
 [2025-03-22 11:34:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:19] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:20] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:20] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:21] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:21] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:22] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:22] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:29] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:29] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:31] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:31] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:33] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:41] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:41] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:42] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:47] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:47] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:47] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:47] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:47] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:47] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:48] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:48] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:48] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:48] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:22:48] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 15:22:49] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 15:23:10] [INFO] [REQUEST] POST /instructor/create-course
+[2025-03-22 15:23:13] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-03-22 16:55:31] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:55:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:10] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:10] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:12] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:12] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:17] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:56:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:56:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:57:01] [INFO] [REQUEST] POST /instructor/create-course
+[2025-03-22 16:57:03] [INFO] [RESPONSE] Status: 400 Message: A course with this title already exists for this instructor.
+[2025-03-22 16:57:10] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:57:10] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 16:57:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 16:57:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 18:40:22] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 18:40:22] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 18:40:30] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 18:40:30] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 18:40:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 18:40:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 18:40:44] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 18:40:44] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 18:40:45] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 18:40:45] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:25] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:33] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:40] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:40] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:42] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:34:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:34:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:35:22] [INFO] [REQUEST] POST /instructor/create-course
+[2025-03-22 19:35:25] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-03-22 19:36:31] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:33] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:33] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:33] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:36:40] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:36:41] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 19:37:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 19:37:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:45:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:45:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:52] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:55:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:55:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:08] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:10] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:11] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:56:11] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:56:34] [INFO] [REQUEST] POST /instructor/create-course
+[2025-03-22 21:56:34] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-22 21:56:34] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-22 21:56:34] [INFO] [REQUEST] POST /refresh-token
+[2025-03-22 21:56:34] [INFO] [RESPONSE] Status: 401 Message: No refresh token provided.
+[2025-03-22 21:56:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-22 21:56:40] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-22 21:56:40] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-22 21:56:40] [INFO] [REQUEST] POST /refresh-token
+[2025-03-22 21:56:40] [INFO] [RESPONSE] Status: 401 Message: No refresh token provided.
+[2025-03-22 21:57:35] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-22 21:57:35] [INFO] [REQUEST] POST /google-auth
+[2025-03-22 21:57:36] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-22 21:57:40] [INFO] [REQUEST] GET /getUserdata
+[2025-03-22 21:57:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-22 21:57:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:57:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:57:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:57:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:57:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:57:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:57:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:57:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:58:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:58:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:58:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 21:58:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 21:58:29] [INFO] [REQUEST] POST /instructor/create-course
+[2025-03-22 21:58:35] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-03-22 22:01:11] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-22 22:01:11] [INFO] [REQUEST] POST /admin/login
+[2025-03-22 22:01:11] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-22 22:01:16] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-22 22:01:17] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-22 22:01:20] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=2&limit=10
+[2025-03-22 22:01:20] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-22 22:01:22] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-22 22:01:22] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-22 22:01:24] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-22 22:01:24] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-22 22:01:25] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-03-22 22:01:26] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-03-22 22:01:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-03-22 22:01:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-03-22 22:02:06] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-22 22:02:06] [INFO] [REQUEST] POST /logout
+[2025-03-22 22:02:06] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-22 22:02:32] [INFO] [REQUEST] OPTIONS /signup
+[2025-03-22 22:02:32] [INFO] [REQUEST] POST /signup
+[2025-03-22 22:02:38] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-03-22 22:02:57] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-03-22 22:02:57] [INFO] [REQUEST] POST /otp-verification
+[2025-03-22 22:02:58] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-03-22 22:03:23] [INFO] [REQUEST] OPTIONS /login
+[2025-03-22 22:03:23] [INFO] [REQUEST] POST /login
+[2025-03-22 22:03:24] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-22 22:03:27] [INFO] [REQUEST] GET /getUserdata
+[2025-03-22 22:03:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-22 22:04:31] [INFO] [REQUEST] POST /instructor-apply
+[2025-03-22 22:05:35] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-03-22 22:05:35] [INFO] [REQUEST] GET /getUserdata
+[2025-03-22 22:05:35] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully

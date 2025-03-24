@@ -14,12 +14,12 @@ const courseController = new CourseController(courseService);
 
 const instructorRouter = Router();
 
-// Add uploadCourseFiles middleware in the route chain
 instructorRouter.post(
     INSTRUCTOR_ROUTES.CREATE_COURSE,
-    authenticateUser("Instructor"), // Authentication middleware first
-    uploadCourseFiles,              // Multer middleware to handle file uploads
-    courseController.createCourse.bind(courseController) // Controller handler
+    authenticateUser("Instructor"), 
+    uploadCourseFiles,              
+    courseController.createCourse.bind(courseController) 
 );
+instructorRouter.get(INSTRUCTOR_ROUTES.GET_ALL_COURSES,authenticateUser("Instructor"),courseController.getAllCourses.bind(courseController))
 
 export default instructorRouter;

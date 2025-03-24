@@ -9,7 +9,7 @@ import { Types } from "mongoose";
 import { ICourse, IModule, ILesson } from "../interfaces/ICourse";
 
 class CourseController {
-  constructor(private _courseService: ICourseService) {}
+  constructor(private _courseService: ICourseService) { }
 
   async createCourse(req: AuthRequest, res: Response): Promise<void> {
     try {
@@ -119,40 +119,27 @@ class CourseController {
     }
   }
 
-//   async refreshPresignedUrls(req: AuthRequest, res: Response): Promise<void> {
-//     try {
-//       const { courseId } = req.params;
-//       const instructorId = req.user?.id;
 
-//       if (!instructorId) {
-//         res.status(Status.UN_AUTHORISED).json({
-//           success: false,
-//           message: "Instructor ID not found in token.",
-//         });
-//         return;
-//       }
+  async getAllCourses(req: Request, res: Response): Promise<void> {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string | undefined;
 
-//       const course = await this._courseService.findById(courseId);
-//       if (!course || course.instructorRef.toString() !== instructorId) {
-//         res.status(Status.FORBIDDEN).json({
-//           success: false,
-//           message: "You are not authorized to refresh URLs for this course.",
-//         });
-//         return;
-//       }
+      const response = await this._courseService.getAllCourses(page, limit, search);
+      res.status(Status.OK).json(response);
+    } catch (error) {
+      console.error("Error in getAllCourses controller:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Internal server error",
+      });
+    }
+  }
 
-//       const response = await this._courseService.refreshPresignedUrls(courseId);
-//       res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
-//     } catch (error) {
-//       console.error("Error in refreshPresignedUrls controller:", error);
-//       res.status(Status.INTERNAL_SERVER_ERROR).json({
-//         success: false,
-//         message: error instanceof Error ? error.message : "Internal server error.",
-//       });
-//     }
-//   }
 
-  
+
+
 }
 
 export default CourseController;

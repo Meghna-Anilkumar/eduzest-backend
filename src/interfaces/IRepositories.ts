@@ -42,14 +42,14 @@ export interface IAdminRepository extends IBaseRepository<AdminDoc> {
     createAdmin(adminData: Partial<AdminDoc>): Promise<AdminDoc>;
     getAllStudents(skip: number, limit: number, search?: string): Promise<UserDoc[]>;
     countStudents(search?: string): Promise<number>;
-    findUserById(id: string): Promise<UserDoc | null>; 
+    findUserById(id: string): Promise<UserDoc | null>;
     toggleBlockStatus(id: string, isBlocked: boolean): Promise<UserDoc | null>;
     getAllRequestedUsers(skip: number, limit: number): Promise<UserDoc[]>;
     countRequestedUsers(): Promise<number>;
     approveInstructorRequest(id: string): Promise<UserDoc | null>;
     rejectInstructorRequest(id: string): Promise<UserDoc | null>;
-    getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]>; 
-    countInstructors(search?: string): Promise<number>; 
+    getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]>;
+    countInstructors(search?: string): Promise<number>;
 }
 
 export interface IOtpRepository extends IBaseRepository<OtpDoc> {
@@ -64,13 +64,15 @@ export interface IOtpRepository extends IBaseRepository<OtpDoc> {
 
 
 export interface ICategoryRepository extends IBaseRepository<CategoryDoc> {
-  findByName(categoryName: string): Promise<CategoryDoc| null>;
-  toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null>;
-  getAllCategories(skip: number, limit: number, search?: string): Promise<CategoryDoc[]>;
-  countCategories(search?: string): Promise<number>;
+    findByName(categoryName: string): Promise<CategoryDoc | null>;
+    toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null>;
+    getAllCategories(skip: number, limit: number, search?: string): Promise<CategoryDoc[]>;
+    countCategories(search?: string): Promise<number>;
 }
 
-export interface ICourseRepository extends IBaseRepository<ICourse>{
-    createCourse(courseData: Partial<ICourse>): Promise<ICourse>; 
+export interface ICourseRepository extends IBaseRepository<ICourse> {
+    createCourse(courseData: Partial<ICourse>): Promise<ICourse>;
     findByTitleAndInstructor(title: string, instructorId: Types.ObjectId): Promise<ICourse | null>;
+    getAllCourses(query: any, page: number, limit: number): Promise<ICourse[]>;
+    countDocuments(query: any): Promise<number>;
 }

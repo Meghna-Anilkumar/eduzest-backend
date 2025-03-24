@@ -41,4 +41,5 @@ export interface ICategoryService {
 
 export interface ICourseService {
     createCourse(courseData: Partial<ICourse>): Promise<IResponse>;
+    getAllCourses(page: number, limit: number, search?: string): Promise<IResponse>;
 }

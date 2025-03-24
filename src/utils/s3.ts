@@ -22,6 +22,7 @@ export async function uploadToS3(file: Express.Multer.File, fileType: 'profile' 
     const fileExtension = file.originalname.split(".").pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${fileExtension}`;
     
+    // Different folder paths based on file type
     const key = fileType === 'profile' 
         ? `profile-images/${fileName}` 
         : `documents/${fileName}`;
@@ -37,9 +38,8 @@ export async function uploadToS3(file: Express.Multer.File, fileType: 'profile' 
 
     try {
         await s3Client.send(new PutObjectCommand(params));
-
         const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
-        const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 * 24 * 7 });
+        const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 * 24 * 7 }); 
 
         return signedUrl;
     } catch (error) {
