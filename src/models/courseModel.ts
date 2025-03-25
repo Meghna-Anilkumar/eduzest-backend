@@ -58,12 +58,12 @@ const courseSchema = new Schema<ICourse>({
         required: true
     },
     instructorRef: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: "Users",
         required: true
     },
     categoryRef: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: "Category",
         required: true
     },

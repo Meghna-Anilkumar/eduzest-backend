@@ -73,6 +73,8 @@ export interface ICategoryRepository extends IBaseRepository<CategoryDoc> {
 export interface ICourseRepository extends IBaseRepository<ICourse> {
     createCourse(courseData: Partial<ICourse>): Promise<ICourse>;
     findByTitleAndInstructor(title: string, instructorId: Types.ObjectId): Promise<ICourse | null>;
-    getAllCourses(query: any, page: number, limit: number): Promise<ICourse[]>;
+    getAllCoursesByInstructor(query: any, page: number, limit: number): Promise<ICourse[]>;
     countDocuments(query: any): Promise<number>;
+    getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]>
+    getCourseById(courseId: string): Promise<ICourse | null>
 }

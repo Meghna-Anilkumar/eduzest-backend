@@ -7,7 +7,7 @@ import { hashPassword, comparePassword } from '../utils/bcrypt';
 import { CustomError } from '../utils/CustomError';
 import { generateOTP } from '../utils/OTPGenerator';
 import { sendEmail } from '../utils/nodemailer';
-import { generateToken, generateRefreshToken, verifyToken } from '../utils/jwt';
+import { generateToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from '../utils/jwt';
 import { validateName, validateEmail, validatePassword, validateDOB, validateMobileNumber } from '../utils/validator';
 import { Response } from 'express';
 import { Cookie } from '../interfaces/IEnums';
@@ -163,14 +163,14 @@ export class UserService implements IUserService {
     async userLogin({ email, password }: { email: string; password: string }, res: Response): Promise<IResponse> {
         try {
             const existingUser = await this._userRepository.findByEmail(email);
-    
+
             if (!existingUser) {
                 return {
                     success: false,
                     message: "User not found.",
                 };
             }
-    
+
             const isBlocked = await this._userRepository.isUserBlocked(email);
             if (isBlocked) {
                 return {
@@ -178,7 +178,7 @@ export class UserService implements IUserService {
                     message: "Your account has been blocked. Please contact support.",
                 };
             }
-    
+
             const isVerified = await this._userRepository.isUserVerified(email);
             if (!isVerified) {
                 return {
@@ -186,7 +186,7 @@ export class UserService implements IUserService {
                     message: "Invalid credentials.",
                 };
             }
-    
+
             const isPasswordValid = await this._userRepository.validatePassword(email, password, comparePassword);
             if (!isPasswordValid) {
                 return {
@@ -194,24 +194,28 @@ export class UserService implements IUserService {
                     message: "Incorrect password.",
                 };
             }
-    
+
             const token = generateToken(existingUser);
             const refreshToken = generateRefreshToken(existingUser);
-    
+            console.log("Generated Access Token:", token);
+            console.log("Generated Refresh Token:", refreshToken);
+
             await this._userRepository.storeRefreshToken(existingUser._id.toString(), refreshToken);
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 24 * 60 * 60 * 1000, 
+                maxAge: 24 * 60 * 60 * 1000,
             });
 
             res.cookie(Cookie.userRefreshJWT, refreshToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 7 * 24 * 60 * 60 * 1000, 
+                maxAge: 7 * 24 * 60 * 60 * 1000,
             });
-    
+
+            console.log("Cookies set - userJWT:", token, "userRefreshJWT:", refreshToken);
+
             return {
                 success: true,
                 message: "Login successful.",
@@ -231,7 +235,7 @@ export class UserService implements IUserService {
 
     async refreshToken(refreshToken: string, res: Response): Promise<IResponse> {
         try {
-            const decoded = verifyToken(refreshToken);
+            const decoded = verifyRefreshToken(refreshToken); // Use verifyRefreshToken instead of verifyToken
             const userId = decoded.id;
 
             const storedRefreshToken = await this._userRepository.getRefreshToken(userId);
@@ -241,7 +245,7 @@ export class UserService implements IUserService {
                     message: "Invalid or expired refresh token.",
                 };
             }
-    
+
             const user = await this._userRepository.findById(userId);
             if (!user) {
                 return {
@@ -251,13 +255,13 @@ export class UserService implements IUserService {
             }
 
             const newAccessToken = generateToken(user);
-    
+
             res.cookie(Cookie.userJWT, newAccessToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                maxAge: 24 * 60 * 60 * 1000, 
+                maxAge: 24 * 60 * 60 * 1000,
             });
-    
+
             return {
                 success: true,
                 message: "Token refreshed successfully.",
@@ -271,11 +275,11 @@ export class UserService implements IUserService {
             };
         }
     }
-    
+
     // getUser 
     async getUser(token: string): Promise<IResponse> {
         try {
-            const payload = verifyToken(token); 
+            const payload = verifyAccessToken(token);
             const userId = payload.id;
 
             if (!userId) {
@@ -374,7 +378,7 @@ export class UserService implements IUserService {
             }
 
             const OTP = generateOTP();
-            console.log('otp:',OTP)
+            console.log('otp:', OTP)
             const otpExpiration = new Date(Date.now() + 2 * 60 * 1000);
             const existingOtp = await this._otpRepository.findByEmail(email);
 

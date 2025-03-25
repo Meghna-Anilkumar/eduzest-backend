@@ -43,7 +43,7 @@ export class CourseService {
         isRequested: true,
         isBlocked: false,
         studentsEnrolled: 0,
-        isPublished: false,
+        isPublished: true,
         isRejected: false,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -75,15 +75,21 @@ export class CourseService {
   }
 
 
-  async getAllCourses(page: number, limit: number, search?: string): Promise<IResponse> {
+  async getAllCoursesByInstructor(
+    instructorId: string,
+    page: number,
+    limit: number,
+    search?: string
+  ): Promise<IResponse> {
     try {
-      // Build query object for search
-      const query: any = {};
+      const query: any = {
+        instructorRef: new Types.ObjectId(instructorId),
+      };
       if (search) {
-        query.title = { $regex: new RegExp(search, "i") }; // Case-insensitive search on title
+        query.title = { $regex: new RegExp(search, "i") };
       }
 
-      const courses = await this._courseRepository.getAllCourses(query, page, limit);
+      const courses = await this._courseRepository.getAllCoursesByInstructor(query, page, limit);
 
       const totalCourses = await this._courseRepository.countDocuments(query);
 
@@ -105,6 +111,68 @@ export class CourseService {
       };
     }
   }
+
+  async getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse> {
+    try {
+      const query: any = {
+        isPublished: true,
+        isBlocked: false,
+      };
+
+      if (search) {
+        query.title = { $regex: new RegExp(search, "i") };
+      }
+
+      const courses = await this._courseRepository.getAllActiveCourses(query, page, limit);
+
+      const totalCourses = await this._courseRepository.countDocuments(query);
+
+      return {
+        success: true,
+        message: "Active courses fetched successfully.",
+        data: {
+          courses,
+          totalPages: Math.ceil(totalCourses / limit),
+          currentPage: page,
+          totalCourses,
+        },
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: "An error occurred while fetching active courses.",
+        error: { message: error instanceof Error ? error.message : "Unknown error" },
+      };
+    }
+  }
+
+  async getCourseById(courseId: string): Promise<IResponse> {
+    try {
+      const course = await this._courseRepository.getCourseById(courseId);
+  
+      if (!course) {
+        return {
+          success: false,
+          message: "Course not found.",
+        };
+      }
+  
+      return {
+        success: true,
+        message: "Course fetched successfully.",
+        data: course,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: "An error occurred while fetching the course.",
+        error: { 
+          message: error instanceof Error ? error.message : "Unknown error" 
+        },
+      };
+    }
+  }
+
 }
 
 

@@ -19,21 +19,53 @@ export class CourseRepository extends BaseRepository<ICourse> {
         });
     }
 
-    async getAllCourses(query: any, page: number, limit: number): Promise<ICourse[]> {
+    async getAllCoursesByInstructor(
+        query: any,
+        page: number,
+        limit: number
+    ): Promise<ICourse[]> {
         return this._model
-          .find(query)
-          .populate({
-            path: "instructorRef",
-            select: "name profile.profilePic", 
-          })
-          .populate("categoryRef", "categoryName")
-          .sort({ updatedAt: "desc" })
-          .skip((page - 1) * limit)
-          .limit(limit)
-          .exec();
-      }
-    
-      async countDocuments(query: any): Promise<number> {
+            .find(query)
+            .populate({
+                path: "instructorRef",
+                select: "name profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .sort({ updatedAt: "desc" })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .exec();
+    }
+
+    async countDocuments(query: any): Promise<number> {
         return this._model.countDocuments(query).exec();
-      }
+    }
+
+    async getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]> {
+        return this._model
+            .find(query)
+            .populate({
+                path: "instructorRef",
+                select: "name profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .sort({ updatedAt: "desc" })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .exec();
+    }
+    async getCourseById(courseId: string): Promise<ICourse | null> {
+        return this._model
+            .findById(courseId)
+            .populate({
+                path: "instructorRef",
+                select: "name email profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .populate({
+                path: "modules.lessons",
+                select: "title duration video"
+            })
+            .exec();
+    }
 }

@@ -37,7 +37,6 @@ class CourseController {
 
       const courseData: Partial<ICourse> = JSON.parse(req.body.courseData || "{}");
 
-      // Ensure instructorRef is set
       courseData.instructorRef = instructorRef;
 
       const thumbnailKey = `courses/${instructorRef}/${courseData.title}/thumbnail.${thumbnailFile.mimetype.split("/")[1]}`;
@@ -84,7 +83,7 @@ class CourseController {
                   Bucket: process.env.BUCKET_NAME!,
                   Key: videoKey,
                 }),
-                { expiresIn: 60 * 60 * 24 }
+                { expiresIn:3600 * 24 * 7  }
               );
 
               return {
@@ -120,13 +119,27 @@ class CourseController {
   }
 
 
-  async getAllCourses(req: Request, res: Response): Promise<void> {
+  async getAllCoursesByInstructor(req: AuthRequest, res: Response): Promise<void> {
     try {
+      const instructorId = req.user?.id;
+      if (!instructorId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: "Instructor ID not found in token.",
+        });
+        return;
+      }
+
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
       const search = req.query.search as string | undefined;
 
-      const response = await this._courseService.getAllCourses(page, limit, search);
+      const response = await this._courseService.getAllCoursesByInstructor(
+        instructorId,
+        page,
+        limit,
+        search
+      );
       res.status(Status.OK).json(response);
     } catch (error) {
       console.error("Error in getAllCourses controller:", error);
@@ -137,6 +150,52 @@ class CourseController {
     }
   }
 
+  async getAllActiveCourses(req: Request, res: Response): Promise<void> {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string | undefined;
+
+      const response = await this._courseService.getAllActiveCourses(page, limit, search);
+      res.status(Status.OK).json(response);
+    } catch (error) {
+      console.error("Error in getAllActiveCourses controller:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Internal server error",
+      });
+    }
+  }
+
+
+  async getCourseById(req: Request, res: Response): Promise<void> {
+    try {
+      const courseId = req.params.id;
+  
+      if (!courseId) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "Course ID is required.",
+        });
+        return;
+      }
+  
+      const response = await this._courseService.getCourseById(courseId);
+  
+      if (!response.success) {
+        res.status(response.error?.statusCode || Status.NOT_FOUND).json(response);
+        return;
+      }
+  
+      res.status(Status.OK).json(response);
+    } catch (error) {
+      console.error("Error in getCourseById controller:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : "Internal server error.",
+      });
+    }
+  }
 
 
 

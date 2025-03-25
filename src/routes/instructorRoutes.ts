@@ -20,6 +20,6 @@ instructorRouter.post(
     uploadCourseFiles,              
     courseController.createCourse.bind(courseController) 
 );
-instructorRouter.get(INSTRUCTOR_ROUTES.GET_ALL_COURSES,authenticateUser("Instructor"),courseController.getAllCourses.bind(courseController))
+instructorRouter.get(INSTRUCTOR_ROUTES.GET_ALL_COURSES_BYINSTRUCTOR,authenticateUser("Instructor"),courseController.getAllCoursesByInstructor.bind(courseController))
 
 export default instructorRouter;

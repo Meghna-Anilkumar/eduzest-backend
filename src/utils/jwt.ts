@@ -5,7 +5,8 @@ import { AdminDoc } from "../interfaces/IAdmin";
 
 dotenv.config();
 
-const secret = process.env.JWT_SECRET!;
+const accessTokenSecret = process.env.JWT_SECRET!;
+const refreshTokenSecret = process.env.JWT_REFRESH_SECRET!;
 
 
 interface TokenPayload {
@@ -22,7 +23,7 @@ export const generateToken = (user: UserDoc | AdminDoc): string => {
     role: user.role || "Student", 
     email: user.email,
   };
-  return jwt.sign(payload, secret, { expiresIn: "1d" });
+  return jwt.sign(payload, accessTokenSecret, { expiresIn: "1d" });
 };
 
 
@@ -32,9 +33,13 @@ export const generateRefreshToken = (user: UserDoc | AdminDoc): string => {
     role: user.role || "Student",
     email: user.email,
   };
-  return jwt.sign(payload, secret, { expiresIn: "7d" });
+  return jwt.sign(payload, refreshTokenSecret, { expiresIn: "7d" });
 };
 
-export const verifyToken = (token: string): TokenPayload => {
-  return jwt.verify(token, secret) as TokenPayload;
+export const verifyAccessToken = (token: string): TokenPayload => {
+  return jwt.verify(token, accessTokenSecret) as TokenPayload;
+};
+
+export const verifyRefreshToken = (token: string): TokenPayload => {
+  return jwt.verify(token, refreshTokenSecret) as TokenPayload;
 };
