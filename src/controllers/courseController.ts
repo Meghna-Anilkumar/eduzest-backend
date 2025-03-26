@@ -54,7 +54,7 @@ class CourseController {
           Bucket: process.env.BUCKET_NAME!,
           Key: thumbnailKey,
         }),
-        { expiresIn: 60 * 60 * 24 }
+        { expiresIn: 3600 * 24 * 7 }
       );
 
       let videoIndex = 0;
@@ -199,60 +199,128 @@ class CourseController {
 
   async editCourse(req: AuthRequest, res: Response): Promise<void> {
     try {
-        // Get instructor ID from authenticated user
-        const instructorId = req.user?.id;
-        if (!instructorId) {
-            res.status(Status.UN_AUTHORISED).json({
-                success: false,
-                message: "Instructor ID not found in token.",
-            });
-            return;
-        }
+      const instructorId = req.user?.id;
+      if (!instructorId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: "Instructor ID not found in token.",
+        });
+        return;
+      }
 
-        // Get course ID from request params
-        const courseId = req.params.id;
-        if (!courseId) {
-            res.status(Status.BAD_REQUEST).json({
-                success: false,
-                message: "Course ID is required.",
-            });
-            return;
-        }
+      const courseId = req.params.id;
+      if (!courseId) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "Course ID is required.",
+        });
+        return;
+      }
 
-        // Extract update data from request body
-        const updateData: Partial<ICourse> = req.body;
+      const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+      const thumbnailFile = files?.thumbnail?.[0];
+      const videoFiles = files?.videos || [];
 
-        // Validate that update data is not empty
-        if (Object.keys(updateData).length === 0) {
-            res.status(Status.BAD_REQUEST).json({
-                success: false,
-                message: "No update data provided.",
-            });
-            return;
-        }
+      let updateData: Partial<ICourse> = JSON.parse(req.body.courseData || "{}");
 
-        // Call service method to edit course
-        const response = await this._courseService.editCourse(
-            courseId, 
-            instructorId, 
-            updateData
+      if (Object.keys(updateData).length === 0) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "No update data provided.",
+        });
+        return;
+      }
+
+      // Handle thumbnail upload if present
+      if (thumbnailFile) {
+        const thumbnailKey = `courses/${instructorId}/${updateData.title || courseId}/thumbnail-${Date.now()}.${thumbnailFile.mimetype.split("/")[1]}`;
+        const thumbnailCommand = new PutObjectCommand({
+          Bucket: process.env.BUCKET_NAME!,
+          Key: thumbnailKey,
+          Body: thumbnailFile.buffer,
+          ContentType: thumbnailFile.mimetype,
+        });
+        await s3.send(thumbnailCommand);
+
+        const thumbnailUrl = await getSignedUrl(
+          s3,
+          new GetObjectCommand({
+            Bucket: process.env.BUCKET_NAME!,
+            Key: thumbnailKey,
+          }),
+          { expiresIn: 3600 * 24 * 7  }
         );
 
-        // Send appropriate response
-        if (response.success) {
-            res.status(Status.OK).json(response);
-        } else {
-            res.status(response.error?.statusCode || Status.NOT_FOUND).json(response);
-        }
-    } catch (error) {
-        console.error("Error in editCourse controller:", error);
-        res.status(Status.INTERNAL_SERVER_ERROR).json({
-            success: false,
-            message: error instanceof Error ? error.message : "Internal server error.",
-        });
-    }
-}
+        updateData.thumbnail = thumbnailUrl;
+      }
 
+      // Handle video uploads if present
+      if (videoFiles && videoFiles.length > 0) {
+        let videoIndex = 0;
+        const updatedModules: IModule[] = await Promise.all(
+          (updateData.modules || []).map(async (module: IModule, moduleIndex: number) => {
+            const lessons: ILesson[] = await Promise.all(
+              module.lessons.map(async (lesson: ILesson, lessonIndex: number) => {
+                // Check if the lesson's video field is empty or a placeholder (indicating a new video upload)
+                if (!lesson.video || lesson.video === '') {
+                  if (videoIndex >= videoFiles.length) {
+                    throw new Error(`Video missing for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}`);
+                  }
+                  const videoFile = videoFiles[videoIndex];
+                  videoIndex++;
+
+                  const videoKey = `courses/${instructorId}/${updateData.title || courseId}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}-${Date.now()}.${videoFile.mimetype.split("/")[1]}`;
+                  const videoCommand = new PutObjectCommand({
+                    Bucket: process.env.BUCKET_NAME!,
+                    Key: videoKey,
+                    Body: videoFile.buffer,
+                    ContentType: videoFile.mimetype,
+                  });
+                  await s3.send(videoCommand);
+
+                  const videoUrl = await getSignedUrl(
+                    s3,
+                    new GetObjectCommand({
+                      Bucket: process.env.BUCKET_NAME!,
+                      Key: videoKey,
+                    }),
+                    { expiresIn: 3600 * 24 * 7 }
+                  );
+
+                  return {
+                    ...lesson,
+                    video: videoUrl,
+                  } as ILesson;
+                }
+                return lesson;
+              })
+            );
+
+            return {
+              ...module,
+              lessons,
+            } as IModule;
+          })
+        );
+
+        updateData.modules = updatedModules;
+      }
+
+      const response = await this._courseService.editCourse(courseId, instructorId, updateData);
+
+      if (response.success) {
+        res.status(Status.OK).json(response);
+      } else {
+        res.status(response.error?.statusCode || Status.NOT_FOUND).json(response);
+      }
+    } catch (error) {
+      console.error("Error in editCourse controller:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : "Internal server error.",
+      });
+    }
+  }
 
 
 }
