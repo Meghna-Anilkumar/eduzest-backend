@@ -14,7 +14,7 @@ export const USER_ROUTES={
     GOOGLE_AUTH:'/google-auth',
     INSTRUCTOR_APPLY:'/instructor-apply',
     REFRESH_TOKEN:'/refresh-token',
-    REFRESH_SIGNED_URL: "/refresh-signed-url", 
+    REFRESH_SIGNED_URL: '/refresh-signed-url', 
     GET_ALL_ACTIVE_COURSES: '/active-courses',
     GET_COURSE_BY_ID: '/courses/:id'
 }
@@ -40,5 +40,5 @@ export const ADMIN_ROUTES={
 export const INSTRUCTOR_ROUTES={
     CREATE_COURSE:'/create-course',
     GET_ALL_COURSES_BYINSTRUCTOR: '/courses',
-    
+    EDIT_COURSE: '/courses/:id',
 }

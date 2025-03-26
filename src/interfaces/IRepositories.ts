@@ -5,6 +5,7 @@ import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
 import { ICourse } from './ICourse';
 import { Types } from "mongoose";
+import { IResponse } from './IResponse';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -77,4 +78,5 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     countDocuments(query: any): Promise<number>;
     getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]>
     getCourseById(courseId: string): Promise<ICourse | null>
+    editCourse( courseId: string, instructorId: string,  updateData: Partial<ICourse>): Promise<ICourse | null>;
 }

@@ -68,4 +68,37 @@ export class CourseRepository extends BaseRepository<ICourse> {
             })
             .exec();
     }
+    
+    async editCourse(
+        courseId: string, 
+        instructorId: string, 
+        updateData: Partial<ICourse>
+    ): Promise<ICourse | null> {
+        const course = await this._model.findOne({
+            _id: courseId,
+            instructorRef: new Types.ObjectId(instructorId),
+        });
+
+        if (!course) {
+            return null; 
+        }
+
+        return this._model
+            .findByIdAndUpdate(
+                courseId,
+                { $set: updateData },
+                { new: true, runValidators: true }
+            )
+            .populate({
+                path: "instructorRef",
+                select: "name email profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .populate({
+                path: "modules.lessons",
+                select: "title duration video",
+            })
+            .exec();
+    }
+
 }

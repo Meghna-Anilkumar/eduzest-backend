@@ -197,6 +197,62 @@ class CourseController {
     }
   }
 
+  async editCourse(req: AuthRequest, res: Response): Promise<void> {
+    try {
+        // Get instructor ID from authenticated user
+        const instructorId = req.user?.id;
+        if (!instructorId) {
+            res.status(Status.UN_AUTHORISED).json({
+                success: false,
+                message: "Instructor ID not found in token.",
+            });
+            return;
+        }
+
+        // Get course ID from request params
+        const courseId = req.params.id;
+        if (!courseId) {
+            res.status(Status.BAD_REQUEST).json({
+                success: false,
+                message: "Course ID is required.",
+            });
+            return;
+        }
+
+        // Extract update data from request body
+        const updateData: Partial<ICourse> = req.body;
+
+        // Validate that update data is not empty
+        if (Object.keys(updateData).length === 0) {
+            res.status(Status.BAD_REQUEST).json({
+                success: false,
+                message: "No update data provided.",
+            });
+            return;
+        }
+
+        // Call service method to edit course
+        const response = await this._courseService.editCourse(
+            courseId, 
+            instructorId, 
+            updateData
+        );
+
+        // Send appropriate response
+        if (response.success) {
+            res.status(Status.OK).json(response);
+        } else {
+            res.status(response.error?.statusCode || Status.NOT_FOUND).json(response);
+        }
+    } catch (error) {
+        console.error("Error in editCourse controller:", error);
+        res.status(Status.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: error instanceof Error ? error.message : "Internal server error.",
+        });
+    }
+}
+
 
 
 }

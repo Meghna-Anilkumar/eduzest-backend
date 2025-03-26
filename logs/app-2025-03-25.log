@@ -900,3 +900,101 @@
 [2025-03-25 21:49:11] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
 [2025-03-25 21:49:17] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
 [2025-03-25 21:49:17] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-25 21:52:58] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-25 21:52:58] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-25 21:53:01] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-25 21:53:02] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-25 21:53:03] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-25 21:53:04] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-25 21:54:52] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 21:54:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 21:54:54] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 21:54:54] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 21:54:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 21:54:54] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:01:53] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:01:55] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:01:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:01:55] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:02:00] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:02:00] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:02:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:02:00] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:02:09] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:02:09] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:02:09] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:02:09] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:14:43] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:14:44] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:14:44] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:14:45] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:22:36] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:22:36] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:22:36] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:22:36] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:22:43] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-25 22:22:43] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-25 22:22:45] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-25 22:22:45] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-25 22:23:06] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-25 22:23:07] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-25 22:23:08] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-25 22:23:08] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-25 22:23:11] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-25 22:23:12] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-25 22:23:13] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-25 22:23:13] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-25 22:28:21] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:28:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:28:23] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:28:23] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:28:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:28:24] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:36:11] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:36:12] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:36:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:36:12] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:37:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:37:10] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:37:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:37:10] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:43:14] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:43:14] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:43:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:43:14] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:47:43] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:47:44] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:47:44] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:47:44] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:47:46] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:47:47] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:47:47] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:47:47] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 22:53:41] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 22:53:41] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 22:53:41] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 22:53:41] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 23:01:07] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 23:01:08] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 23:01:08] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 23:01:08] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 23:01:10] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 23:01:11] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 23:01:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 23:01:11] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 23:03:43] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 23:03:43] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 23:03:43] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 23:03:44] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 23:03:45] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 23:03:46] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 23:03:46] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 23:03:46] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 23:04:46] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 23:04:46] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 23:04:46] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 23:04:47] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-03-25 23:05:07] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-03-25 23:05:07] [INFO] [REQUEST] GET /getUserdata
+[2025-03-25 23:05:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-03-25 23:05:08] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.

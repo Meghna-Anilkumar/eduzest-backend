@@ -44,4 +44,5 @@ export interface ICourseService {
     getAllCoursesByInstructor(instructorId: string, page: number, limit: number, search?: string): Promise<IResponse>;
     getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse>;
     getCourseById(courseId: string): Promise<IResponse>
+    editCourse( courseId: string,  instructorId: string,  updateData: Partial<ICourse> ): Promise<IResponse>;
 }

@@ -149,14 +149,14 @@ export class CourseService {
   async getCourseById(courseId: string): Promise<IResponse> {
     try {
       const course = await this._courseRepository.getCourseById(courseId);
-  
+
       if (!course) {
         return {
           success: false,
           message: "Course not found.",
         };
       }
-  
+
       return {
         success: true,
         message: "Course fetched successfully.",
@@ -166,13 +166,57 @@ export class CourseService {
       return {
         success: false,
         message: "An error occurred while fetching the course.",
-        error: { 
-          message: error instanceof Error ? error.message : "Unknown error" 
+        error: {
+          message: error instanceof Error ? error.message : "Unknown error"
         },
       };
     }
   }
 
+  async editCourse(
+    courseId: string,
+    instructorId: string,
+    updateData: Partial<ICourse>
+  ): Promise<IResponse> {
+    try {
+      // Validate input
+      if (!courseId || !instructorId) {
+        return {
+          success: false,
+          message: "Course ID and Instructor ID are required.",
+        };
+      }
+
+      // Attempt to edit the course
+      const updatedCourse = await this._courseRepository.editCourse(
+        courseId,
+        instructorId,
+        updateData
+      );
+
+      // Check if course was found and updated
+      if (!updatedCourse) {
+        return {
+          success: false,
+          message: "Course not found or you are not authorized to edit this course.",
+        };
+      }
+
+      return {
+        success: true,
+        message: "Course updated successfully.",
+        data: updatedCourse,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: "An error occurred while updating the course.",
+        error: {
+          message: error instanceof Error ? error.message : "Unknown error"
+        },
+      };
+    }
+  }
 }
 
 
