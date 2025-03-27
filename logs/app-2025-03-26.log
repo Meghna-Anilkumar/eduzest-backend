@@ -984,3 +984,10 @@
 [2025-03-26 22:50:13] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
 [2025-03-26 22:50:13] [INFO] [REQUEST] PUT /instructor/courses/67e29311bbd36b7517b60d7e
 [2025-03-26 22:50:14] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-03-26 22:53:18] [INFO] [REQUEST] GET /courses/67e29311bbd36b7517b60d7e
+[2025-03-26 22:53:18] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-26 22:55:25] [INFO] [REQUEST] OPTIONS /instructor/courses/67e29311bbd36b7517b60d7e
+[2025-03-26 22:55:25] [INFO] [REQUEST] PUT /instructor/courses/67e29311bbd36b7517b60d7e
+[2025-03-26 22:55:26] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-03-26 22:55:37] [INFO] [REQUEST] GET /courses/67e29311bbd36b7517b60d7e
+[2025-03-26 22:55:37] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
