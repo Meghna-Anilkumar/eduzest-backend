@@ -5,6 +5,8 @@ import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { generateToken } from '../utils/jwt';
 import { AdminDoc } from '../interfaces/IAdmin';
 import { Response } from 'express';
+import { sendEmail } from '../utils/nodemailer';
+
 
 export class AdminService implements IAdminService {
     constructor(
@@ -211,48 +213,48 @@ export class AdminService implements IAdminService {
         }
     }
 
+
+    //send rejection email
+
+
     // Reject instructor request
-    async rejectInstructor(_id: string): Promise<IResponse> {
+    async rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse> {
         try {
             const existingUser = await this._adminRepository.findUserById(_id);
-
+    
             if (!existingUser) {
-                return {
-                    success: false,
-                    message: "User not found.",
-                };
+                return { success: false, message: "User not found." };
             }
-
+    
             if (!existingUser.isRequested) {
-                return {
-                    success: false,
-                    message: "This user has not requested instructor approval.",
-                };
+                return { success: false, message: "This user has not requested instructor approval." };
             }
-            
+    
             const updatedUser = await this._adminRepository.rejectInstructorRequest(_id);
-
+    
             if (!updatedUser) {
-                return {
-                    success: false,
-                    message: "Failed to reject instructor request.",
-                };
+                return { success: false, message: "Failed to reject instructor request." };
             }
-
+    
+            // Send rejection email with custom message
+            await sendEmail(
+                existingUser.email,
+                "Instructor Request Rejected",
+                rejectionMessage,
+                `<p>Dear ${existingUser.name},</p><p>Your instructor request has been rejected. Reason: ${rejectionMessage}</p><p>Best regards,<br/>Admin Team</p>`
+            );
+    
             return {
                 success: true,
-                message: "User's instructor request has been rejected.",
+                message: "User's instructor request has been rejected, and an email has been sent.",
                 userData: updatedUser,
             };
         } catch (error) {
             console.error("Error rejecting instructor:", error);
-            return {
-                success: false,
-                message: "Failed to reject instructor request. Please try again.",
-            };
+            return { success: false, message: "Failed to reject instructor request. Please try again." };
         }
     }
-
+    
     // Fetch all instructors
     async fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse> {
         try {

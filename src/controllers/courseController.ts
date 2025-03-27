@@ -150,6 +150,8 @@ class CourseController {
     }
   }
 
+
+  
   async getAllActiveCourses(req: Request, res: Response): Promise<void> {
     try {
       const page = parseInt(req.query.page as string) || 1;
@@ -197,6 +199,8 @@ class CourseController {
     }
   }
 
+
+
   async editCourse(req: AuthRequest, res: Response): Promise<void> {
     try {
       const instructorId = req.user?.id;
@@ -231,7 +235,6 @@ class CourseController {
         return;
       }
 
-      // Handle thumbnail upload if present
       if (thumbnailFile) {
         const thumbnailKey = `courses/${instructorId}/${updateData.title || courseId}/thumbnail-${Date.now()}.${thumbnailFile.mimetype.split("/")[1]}`;
         const thumbnailCommand = new PutObjectCommand({
@@ -254,14 +257,13 @@ class CourseController {
         updateData.thumbnail = thumbnailUrl;
       }
 
-      // Handle video uploads if present
+
       if (videoFiles && videoFiles.length > 0) {
         let videoIndex = 0;
         const updatedModules: IModule[] = await Promise.all(
           (updateData.modules || []).map(async (module: IModule, moduleIndex: number) => {
             const lessons: ILesson[] = await Promise.all(
               module.lessons.map(async (lesson: ILesson, lessonIndex: number) => {
-                // Check if the lesson's video field is empty or a placeholder (indicating a new video upload)
                 if (!lesson.video || lesson.video === '') {
                   if (videoIndex >= videoFiles.length) {
                     throw new Error(`Video missing for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}`);

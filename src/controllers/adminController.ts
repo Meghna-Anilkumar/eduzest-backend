@@ -154,19 +154,25 @@ class AdminController {
     async rejectInstructor(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-
+            const { message } = req.body; 
+    
             if (!id) {
                 res.status(Status.BAD_REQUEST).json({ success: false, message: "User ID is required." });
                 return;
             }
-
-            const response = await this._adminService.rejectInstructor(id);
-
+    
+            if (!message?.trim()) {
+                res.status(Status.BAD_REQUEST).json({ success: false, message: "Rejection message is required." });
+                return;
+            }
+    
+            const response = await this._adminService.rejectInstructor(id, message); // Pass both ID and message
+    
             if (!response.success) {
                 res.status(Status.NOT_FOUND).json(response);
                 return;
             }
-
+    
             res.status(Status.OK).json(response);
         } catch (error) {
             console.error("Error in rejectInstructor Controller:", error);
@@ -176,6 +182,7 @@ class AdminController {
             });
         }
     }
+    
 
 
 
