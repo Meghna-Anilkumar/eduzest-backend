@@ -214,9 +214,6 @@ export class AdminService implements IAdminService {
     }
 
 
-    //send rejection email
-
-
     // Reject instructor request
     async rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse> {
         try {
@@ -236,7 +233,6 @@ export class AdminService implements IAdminService {
                 return { success: false, message: "Failed to reject instructor request." };
             }
     
-            // Send rejection email with custom message
             await sendEmail(
                 existingUser.email,
                 "Instructor Request Rejected",

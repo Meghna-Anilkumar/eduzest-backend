@@ -23,21 +23,21 @@ export class CourseService {
       if (existingCourse) {
         return {
           success: false,
-          message: "A course with this title already exists for this instructor.",
+          message: "Course with this title already exists",
         };
       }
 
       const categoryRef = new Types.ObjectId(courseData.categoryRef as unknown as string);
 
-      const defaultTrial: ITrial = {
-        video: courseData.trial?.video || undefined,
-      } as ITrial;
+      // const defaultTrial: ITrial = {
+      //   video: courseData.trial?.video || undefined,
+      // } as ITrial;
 
       const newCourse = await this._courseRepository.createCourse({
         ...courseData,
         title: trimmedTitle,
         categoryRef,
-        trial: courseData.trial || defaultTrial,
+        // trial: courseData.trial || defaultTrial,
         pricing: courseData.pricing || { type: "free", amount: 0 },
         attachments: courseData.attachments || undefined,
         isRequested: true,
@@ -179,7 +179,6 @@ export class CourseService {
     updateData: Partial<ICourse>
   ): Promise<IResponse> {
     try {
-      // Validate input
       if (!courseId || !instructorId) {
         return {
           success: false,
@@ -187,14 +186,12 @@ export class CourseService {
         };
       }
 
-      // Attempt to edit the course
       const updatedCourse = await this._courseRepository.editCourse(
         courseId,
         instructorId,
         updateData
       );
 
-      // Check if course was found and updated
       if (!updatedCourse) {
         return {
           success: false,

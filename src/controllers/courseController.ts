@@ -83,7 +83,7 @@ class CourseController {
                   Bucket: process.env.BUCKET_NAME!,
                   Key: videoKey,
                 }),
-                { expiresIn:3600 * 24 * 7  }
+                { expiresIn: 3600 * 24 * 7 }
               );
 
               return {
@@ -151,7 +151,7 @@ class CourseController {
   }
 
 
-  
+
   async getAllActiveCourses(req: Request, res: Response): Promise<void> {
     try {
       const page = parseInt(req.query.page as string) || 1;
@@ -173,7 +173,7 @@ class CourseController {
   async getCourseById(req: Request, res: Response): Promise<void> {
     try {
       const courseId = req.params.id;
-  
+
       if (!courseId) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -181,14 +181,14 @@ class CourseController {
         });
         return;
       }
-  
+
       const response = await this._courseService.getCourseById(courseId);
-  
+
       if (!response.success) {
         res.status(response.error?.statusCode || Status.NOT_FOUND).json(response);
         return;
       }
-  
+
       res.status(Status.OK).json(response);
     } catch (error) {
       console.error("Error in getCourseById controller:", error);
@@ -251,7 +251,7 @@ class CourseController {
             Bucket: process.env.BUCKET_NAME!,
             Key: thumbnailKey,
           }),
-          { expiresIn: 3600 * 24 * 7  }
+          { expiresIn: 3600 * 24 * 7 }
         );
 
         updateData.thumbnail = thumbnailUrl;

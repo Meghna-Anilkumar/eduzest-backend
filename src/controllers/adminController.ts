@@ -1,16 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import { AdminService } from "../services/adminServices";
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
+import { IAdminService } from "../interfaces/IServices";
 
 
 
 class AdminController {
-    private _adminService: AdminService;
+    constructor( private _adminService: IAdminService) { }
 
-    constructor(adminService: AdminService) {
-        this._adminService = adminService;
-    }
 
     //admin login
     async adminLogin(req: Request, res: Response): Promise<void> {
@@ -166,7 +163,7 @@ class AdminController {
                 return;
             }
     
-            const response = await this._adminService.rejectInstructor(id, message); // Pass both ID and message
+            const response = await this._adminService.rejectInstructor(id, message); 
     
             if (!response.success) {
                 res.status(Status.NOT_FOUND).json(response);

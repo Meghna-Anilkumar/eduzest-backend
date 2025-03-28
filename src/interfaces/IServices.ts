@@ -27,8 +27,13 @@ export interface IUserService {
 
 export interface IAdminService {
     adminLogin(data: { email: string; password: string }, res: Response): Promise<IResponse>;
-    fetchAllStudents(page: number, limit: number): Promise<IResponse>;
+    fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse> 
     blockUnblockUser(_id: string): Promise<IResponse>
+    fetchAllRequestedUsers(page: number, limit: number): Promise<IResponse>
+    approveInstructor(_id: string): Promise<IResponse> 
+    rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse>
+    fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse> 
+    fetchRequestDetails(_id: string): Promise<IResponse>
 }
 
 

@@ -1,13 +1,12 @@
 import { Types } from "mongoose";
-import { CustomError } from "../utils/CustomError"; // Adjust the path as needed
+import { CustomError } from "../utils/CustomError"; 
 import { ICourse, IModule, ILesson } from "../interfaces/ICourse";
-import { ICategoryRepository } from "../interfaces/IRepositories"; // Adjust the path as needed
+import { ICategoryRepository } from "../interfaces/IRepositories";
 
 export const validateCourseData = async (
   courseData: Partial<ICourse>,
   categoryRepository: ICategoryRepository
 ): Promise<void> => {
-  // Validate required fields
   const requiredFields: (keyof ICourse)[] = [
     "title",
     "description",
