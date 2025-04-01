@@ -13,19 +13,23 @@ import {
     uploadToS3Multiple
 } from '../config/multerConfig';
 import { authenticateUser } from "../middlewares/authMiddleware";
+import PaymentService from "../services/paymentServices";
+import PaymentRepository from "../repositories/paymentRepository";
 
 
 const userRepository = new UserRepository();
 const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
 const categoryRepository = new CategoryRepository(); 
+const paymentRepository=new PaymentRepository
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository); 
 const courseService = new CourseService(courseRepository, categoryRepository); 
 
 // Instantiate controllers
-const userController = new UserController(userService);
+const userController = new UserController(userService,paymentService);
 const courseController = new CourseController(courseService);
 
 const userRouter = Router();
@@ -59,5 +63,16 @@ userRouter.post(USER_ROUTES.REFRESH_TOKEN, userController.refreshToken.bind(user
 
 userRouter.get(USER_ROUTES.GET_ALL_ACTIVE_COURSES,courseController.getAllActiveCourses.bind(courseController) as RequestHandler);
 userRouter.get(USER_ROUTES.GET_COURSE_BY_ID,courseController.getCourseById.bind(courseController))
+userRouter.post(
+    USER_ROUTES.CREATE_PAYMENT_INTENT,
+    authenticateUser(), // Ensure the user is authenticated
+    userController.createPaymentIntent.bind(userController) as RequestHandler
+  );
+  
+  userRouter.post(
+    USER_ROUTES.CONFIRM_PAYMENT,
+    authenticateUser(), // Ensure the user is authenticated
+    userController.confirmPayment.bind(userController) as RequestHandler
+  );
 
 export default userRouter   

@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-import { IUserService } from "../interfaces/IServices";
+import { IUserService, IPaymentService } from "../interfaces/IServices";
 import { Status } from "../utils/enums";
 import { Cookie } from "../interfaces/IEnums";
 import { OAuth2Client } from 'google-auth-library';
 import { uploadToS3 } from "../utils/s3";
+import { AuthRequest } from "../interfaces/AuthRequest";
 
 
 
 class UserController {
-    constructor(private _userService: IUserService) { }
+    constructor(private _userService: IUserService,
+        private _paymentService: IPaymentService
+    ) { }
 
     async signupUser(req: Request, res: Response) {
         try {
@@ -480,10 +483,49 @@ class UserController {
     }
 
 
+    async createPaymentIntent(req: AuthRequest, res: Response) {
+        try {
+            const { courseId, amount, paymentType } = req.body;
+            // Get the userId from the decoded token that was attached by your auth middleware
+            const userId = req.user?.id; // Make sure this matches how you store the user ID in the token
+    
+            if (!userId) {
+                return res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "User not authenticated",
+                });
+            }
+    
+            const result = await this._paymentService.createPaymentIntent(userId, courseId, amount, paymentType);
+    
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+        } catch (error) {
+            console.error("Error creating payment intent:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+    
+    async confirmPayment(req: Request, res: Response) {
+        try {
+            const { paymentId } = req.body;
 
+            const result = await this._paymentService.confirmPayment(paymentId);
 
-
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+        } catch (error) {
+            console.error("Error confirming payment:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
 }
+
+
 
 
 

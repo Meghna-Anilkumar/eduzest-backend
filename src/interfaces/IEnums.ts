@@ -4,3 +4,9 @@ export enum Cookie {
     userRefreshJWT = "userRefreshJWT"
   }
 
+
+  export enum Role{
+    admin='Admin',
+    student='Student',
+    instructor='Instructor'
+  }

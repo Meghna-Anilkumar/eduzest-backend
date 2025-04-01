@@ -4,6 +4,7 @@ import { Admin } from "../models/adminModel";
 import { Users } from "../models/userModel";
 import { BaseRepository } from "./baseRepository";
 import { IAdminRepository } from "../interfaces/IRepositories";
+import { Role } from '../interfaces/IEnums';
 
 export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminRepository {
     private userModel = Users; 
@@ -21,7 +22,7 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     }
 
     async getAllStudents(skip: number, limit: number, search?: string): Promise<UserDoc[]> {
-        const query: any = { role: "Student" };
+        const query: any = { role: Role.student };
         if (search) {
             query.$or = [
                 { email: { $regex: search, $options: 'i' } }, 
@@ -32,7 +33,7 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     }
 
     async countStudents(search?: string): Promise<number> {
-        const query: any = { role: "Student" };
+        const query: any = { role: Role.student };
         if (search) {
             query.$or = [
                 // { email: { $regex: search, $options: 'i' } },
@@ -61,7 +62,7 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     async approveInstructorRequest(id: string): Promise<UserDoc | null> {
         return this.userModel.findByIdAndUpdate(
             id,
-            { role: "Instructor", isRequested: false, isRejected: false },
+            { role: Role.instructor, isRequested: false, isRejected: false },
             { new: true }
         );
     }
@@ -75,7 +76,7 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     }
 
     async getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]> {
-        const query: any = { role: "Instructor" };
+        const query: any = { role: Role.instructor };
         if (search) {
             query.$or = [
                 { name: { $regex: search, $options: 'i' } }, 
@@ -85,7 +86,7 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     }
 
     async countInstructors(search?: string): Promise<number> {
-        const query: any = { role: "Instructor" };
+        const query: any = { role: Role.instructor};
         if (search) {
             query.$or = [
                 { name: { $regex: search, $options: 'i' } },

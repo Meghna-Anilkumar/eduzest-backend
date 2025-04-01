@@ -1,0 +1,14 @@
+[2025-04-01 08:56:30] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-04-01 08:56:31] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-01 09:12:49] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-04-01 09:12:50] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-01 09:14:02] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-04-01 09:14:02] [INFO] [REQUEST] POST /create-payment-intent
+[2025-04-01 09:14:03] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-04-01 09:14:04] [INFO] [REQUEST] OPTIONS /confirm-payment
+[2025-04-01 09:14:04] [INFO] [REQUEST] POST /confirm-payment
+[2025-04-01 09:14:05] [INFO] [RESPONSE] Status: 200 Message: Payment confirmed successfully
+[2025-04-01 09:14:05] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-04-01 09:14:05] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-01 09:14:11] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-04-01 09:14:12] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.

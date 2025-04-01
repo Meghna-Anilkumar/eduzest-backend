@@ -51,3 +51,14 @@ export interface ICourseService {
     getCourseById(courseId: string): Promise<IResponse>
     editCourse( courseId: string,  instructorId: string,  updateData: Partial<ICourse> ): Promise<IResponse>;
 }
+
+
+export interface IPaymentService {
+    createPaymentIntent(
+      userId: string,
+      courseId: string,
+      amount: number,
+      paymentType: "debit" | "credit"
+    ): Promise<IResponse>;
+    confirmPayment(paymentId: string): Promise<IResponse>;
+  }

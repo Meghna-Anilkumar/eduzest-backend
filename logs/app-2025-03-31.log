@@ -1,0 +1,210 @@
+[2025-03-31 13:30:11] [INFO] [REQUEST] GET /getUserdata
+[2025-03-31 13:30:11] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-03-31 13:30:11] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-03-31 13:30:11] [INFO] [REQUEST] POST /users/refresh-token
+[2025-03-31 13:30:11] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-03-31 13:30:53] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-31 13:30:54] [INFO] [REQUEST] POST /google-auth
+[2025-03-31 13:30:54] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-31 14:11:02] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-31 14:11:02] [INFO] [REQUEST] POST /logout
+[2025-03-31 14:11:02] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-31 14:51:42] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-03-31 14:51:42] [INFO] [REQUEST] POST /google-auth
+[2025-03-31 14:51:42] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-03-31 19:08:56] [INFO] [REQUEST] OPTIONS /logout
+[2025-03-31 19:08:56] [INFO] [REQUEST] POST /logout
+[2025-03-31 19:08:56] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-31 19:09:14] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-03-31 19:09:14] [INFO] [REQUEST] POST /admin/login
+[2025-03-31 19:09:14] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-03-31 19:09:18] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-03-31 19:09:18] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-03-31 19:09:23] [INFO] [REQUEST] POST /admin/logout
+[2025-03-31 19:09:23] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-03-31 19:09:46] [INFO] [REQUEST] OPTIONS /login
+[2025-03-31 19:09:46] [INFO] [REQUEST] POST /login
+[2025-03-31 19:09:46] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-03-31 19:19:32] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:19:33] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:19:35] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 19:19:36] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:39:17] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:39:18] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:39:32] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 19:39:32] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:40:45] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:40:45] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:40:48] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 19:40:48] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:42:35] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:42:35] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:42:38] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 19:42:39] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:47:48] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:47:48] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:47:50] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 19:47:50] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:48:00] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 19:48:00] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:48:05] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:48:06] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:48:07] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 19:48:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:48:17] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 19:48:17] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:48:29] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 19:48:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:51:50] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:51:50] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:51:59] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 19:51:59] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:59:13] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:59:14] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:59:16] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 19:59:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 19:59:20] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 19:59:20] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 19:59:23] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 19:59:24] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:07:39] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:07:39] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:07:42] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:07:42] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:08:12] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:08:12] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:18:47] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:26:12] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 20:26:12] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 20:26:15] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:26:15] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:26:25] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:26:26] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:29:05] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 20:29:05] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 20:29:08] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 20:29:08] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:29:10] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 20:29:10] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 20:29:16] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:29:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:29:19] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:29:19] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:31:35] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:31:35] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:31:51] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:31:51] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:31:59] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 20:32:00] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 20:32:03] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:03] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:10] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:10] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:21] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:21] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:24] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 20:32:24] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 20:32:29] [INFO] [REQUEST] GET /courses/67e4f42ca57ab52b884d68b4
+[2025-03-31 20:32:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:31] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 20:32:31] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 20:32:33] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:33] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:42] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:42] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:46] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:46] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:32:55] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:32:55] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:33:21] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:33:21] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:33:45] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:33:45] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:48:48] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:48:49] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:49:07] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:49:08] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:50:17] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:50:17] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 20:50:22] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 20:50:22] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:10:33] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:10:34] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:10:51] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:10:52] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:11:01] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:11:01] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:19:23] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:19:23] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:28:07] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:28:08] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:28:10] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:28:10] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:28:20] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:28:20] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:28:26] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:28:26] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:28:29] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:28:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:29:15] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:29:15] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:29:17] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:29:17] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:29:32] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:29:33] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:29:57] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:29:58] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:29:58] [INFO] [RESPONSE] Status: 400 Message: Invalid userId or courseId
+[2025-03-31 22:47:07] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:47:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:47:29] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:47:30] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:47:33] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:51:12] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:51:13] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:51:18] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:51:18] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:51:19] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:51:25] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:51:25] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:51:26] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:51:37] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:51:37] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:51:37] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:54:19] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:54:19] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:54:20] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:54:25] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:54:25] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:54:26] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:54:46] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 22:54:46] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 22:54:47] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 22:54:48] [INFO] [REQUEST] OPTIONS /confirm-payment
+[2025-03-31 22:54:48] [INFO] [REQUEST] POST /confirm-payment
+[2025-03-31 22:54:48] [INFO] [RESPONSE] Status: 200 Message: Payment confirmed successfully
+[2025-03-31 22:54:48] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:54:48] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 22:55:12] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 22:55:12] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 23:14:56] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 23:14:56] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 23:15:02] [INFO] [REQUEST] GET /courses/67e5267aa57ab52b884d6b39
+[2025-03-31 23:15:02] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 23:15:08] [INFO] [REQUEST] GET /active-courses?page=1&limit=10
+[2025-03-31 23:15:08] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-03-31 23:15:09] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 23:15:10] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 23:15:12] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 23:15:12] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 23:15:12] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 23:15:29] [INFO] [REQUEST] OPTIONS /create-payment-intent
+[2025-03-31 23:15:29] [INFO] [REQUEST] POST /create-payment-intent
+[2025-03-31 23:15:30] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-03-31 23:15:31] [INFO] [REQUEST] OPTIONS /confirm-payment
+[2025-03-31 23:15:31] [INFO] [REQUEST] POST /confirm-payment
+[2025-03-31 23:15:31] [INFO] [RESPONSE] Status: 200 Message: Payment confirmed successfully
+[2025-03-31 23:15:31] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 23:15:31] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-03-31 23:15:36] [INFO] [REQUEST] GET /courses/67e2d708cd47f8d8e5e10517
+[2025-03-31 23:15:36] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.

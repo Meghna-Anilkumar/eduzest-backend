@@ -5,7 +5,8 @@ import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
 import { ICourse } from './ICourse';
 import { Types } from "mongoose";
-import { IResponse } from './IResponse';
+import { PaymentDoc } from '../models/paymentModel';
+import { EnrollmentDoc } from '../models/enrollmentModel';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -78,5 +79,25 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     countDocuments(query: any): Promise<number>;
     getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]>
     getCourseById(courseId: string): Promise<ICourse | null>
-    editCourse( courseId: string, instructorId: string,  updateData: Partial<ICourse>): Promise<ICourse | null>;
+    editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
+}
+
+
+export interface IPaymentRepository {
+    findByUserId(userId: string): Promise<PaymentDoc[]>;
+    findByCourseId(courseId: string): Promise<PaymentDoc[]>;
+    updatePaymentStatus(paymentId: string, status: PaymentDoc["status"]): Promise<PaymentDoc | null>;
+    createPayment(paymentData: Partial<PaymentDoc>): Promise<PaymentDoc>;
+}
+
+
+export interface IEnrollmentRepository {
+    findByUserId(userId: string): Promise<EnrollmentDoc[]>;
+    findByCourseId(courseId: string): Promise<EnrollmentDoc[]>;
+    findByUserAndCourse(userId: string, courseId: string): Promise<EnrollmentDoc | null>;
+    createEnrollment(enrollmentData: Partial<EnrollmentDoc>): Promise<EnrollmentDoc>;
+    updateCompletionStatus(
+        enrollmentId: string,
+        status: EnrollmentDoc["completionStatus"]
+    ): Promise<EnrollmentDoc | null>;
 }
