@@ -27,12 +27,12 @@ export interface IUserService {
 
 export interface IAdminService {
     adminLogin(data: { email: string; password: string }, res: Response): Promise<IResponse>;
-    fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse> 
+    fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse>
     blockUnblockUser(_id: string): Promise<IResponse>
     fetchAllRequestedUsers(page: number, limit: number): Promise<IResponse>
-    approveInstructor(_id: string): Promise<IResponse> 
+    approveInstructor(_id: string): Promise<IResponse>
     rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse>
-    fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse> 
+    fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse>
     fetchRequestDetails(_id: string): Promise<IResponse>
 }
 
@@ -49,16 +49,20 @@ export interface ICourseService {
     getAllCoursesByInstructor(instructorId: string, page: number, limit: number, search?: string): Promise<IResponse>;
     getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse>;
     getCourseById(courseId: string): Promise<IResponse>
-    editCourse( courseId: string,  instructorId: string,  updateData: Partial<ICourse> ): Promise<IResponse>;
+    editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<IResponse>;
 }
 
 
 export interface IPaymentService {
     createPaymentIntent(
-      userId: string,
-      courseId: string,
-      amount: number,
-      paymentType: "debit" | "credit"
+        userId: string,
+        courseId: string,
+        amount: number,
+        paymentType: "debit" | "credit"
     ): Promise<IResponse>;
     confirmPayment(paymentId: string): Promise<IResponse>;
-  }
+}
+
+export interface IEnrollCourseService {
+    enrollFreeCourse(userId: string, courseId: string): Promise<IResponse>;
+}

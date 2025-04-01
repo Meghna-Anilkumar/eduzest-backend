@@ -19,6 +19,7 @@ export const USER_ROUTES = {
     GET_COURSE_BY_ID: '/courses/:id',
     CREATE_PAYMENT_INTENT: '/create-payment-intent',
     CONFIRM_PAYMENT: '/confirm-payment',
+    ENROLL_COURSE:'/enroll-course'
 
 }
 

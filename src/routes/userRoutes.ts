@@ -15,22 +15,28 @@ import {
 import { authenticateUser } from "../middlewares/authMiddleware";
 import PaymentService from "../services/paymentServices";
 import PaymentRepository from "../repositories/paymentRepository";
+import EnrollmentRepository from "../repositories/enrollmentRepository";
+import EnrollCourseService from "../services/enrollmentServices";
+import EnrollCourseController from "../controllers/enrollCourseController";
 
 
 const userRepository = new UserRepository();
 const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
-const categoryRepository = new CategoryRepository(); 
-const paymentRepository=new PaymentRepository
+const categoryRepository = new CategoryRepository();
+const paymentRepository = new PaymentRepository()
+const enrollmentRepository = new EnrollmentRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository); 
-const courseService = new CourseService(courseRepository, categoryRepository); 
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
+const courseService = new CourseService(courseRepository, categoryRepository);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository);
 
 // Instantiate controllers
-const userController = new UserController(userService,paymentService);
+const userController = new UserController(userService, paymentService);
 const courseController = new CourseController(courseService);
+const enrollCourseController = new EnrollCourseController(enrollCourseService)
 
 const userRouter = Router();
 
@@ -43,10 +49,10 @@ userRouter.post(USER_ROUTES.RESEND_OTP, userController.resendOtp.bind(userContro
 userRouter.post(USER_ROUTES.FORGOT_PASS, userController.forgotPassword.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.RESET_PASS, userController.resetPassword.bind(userController) as RequestHandler)
 userRouter.put(
-    USER_ROUTES.STUDENT_PROFILE,authenticateUser(),
+    USER_ROUTES.STUDENT_PROFILE, authenticateUser(),
     uploadToS3Single.single("profilePic"),
     userController.updateStudentProfile.bind(userController) as RequestHandler
-); 
+);
 userRouter.put(USER_ROUTES.CHANGE_PASSWORD, userController.changePassword.bind(userController) as RequestHandler)
 userRouter.post(USER_ROUTES.GOOGLE_AUTH, userController.googleAuth.bind(userController) as RequestHandler)
 userRouter.post(
@@ -61,18 +67,24 @@ userRouter.put(
 );
 userRouter.post(USER_ROUTES.REFRESH_TOKEN, userController.refreshToken.bind(userController) as RequestHandler);
 
-userRouter.get(USER_ROUTES.GET_ALL_ACTIVE_COURSES,courseController.getAllActiveCourses.bind(courseController) as RequestHandler);
-userRouter.get(USER_ROUTES.GET_COURSE_BY_ID,courseController.getCourseById.bind(courseController))
+userRouter.get(USER_ROUTES.GET_ALL_ACTIVE_COURSES, courseController.getAllActiveCourses.bind(courseController) as RequestHandler);
+userRouter.get(USER_ROUTES.GET_COURSE_BY_ID, courseController.getCourseById.bind(courseController))
 userRouter.post(
     USER_ROUTES.CREATE_PAYMENT_INTENT,
-    authenticateUser(), // Ensure the user is authenticated
+    authenticateUser(),
     userController.createPaymentIntent.bind(userController) as RequestHandler
-  );
-  
-  userRouter.post(
+);
+
+userRouter.post(
     USER_ROUTES.CONFIRM_PAYMENT,
-    authenticateUser(), // Ensure the user is authenticated
+    authenticateUser(),
     userController.confirmPayment.bind(userController) as RequestHandler
-  );
+);
+
+userRouter.post(
+    USER_ROUTES.ENROLL_COURSE,
+    authenticateUser(),
+    enrollCourseController.enrollFreeCourse.bind(enrollCourseController) as RequestHandler
+);
 
 export default userRouter   

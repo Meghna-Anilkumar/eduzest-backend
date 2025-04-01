@@ -1,0 +1,75 @@
+import { IEnrollmentRepository } from "../interfaces/IRepositories";
+import { UserRepository } from "../repositories/userRepository";
+import { CourseRepository } from "../repositories/courseRepository";
+import { IResponse } from "../interfaces/IResponse";
+import { Types } from "mongoose";
+
+export class EnrollCourseService {
+  constructor(
+    private enrollmentRepository: IEnrollmentRepository,
+    private userRepository: UserRepository,
+    private courseRepository: CourseRepository
+  ) {}
+
+
+  async enrollFreeCourse(userId: string, courseId: string): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
+        return { success: false, message: "Invalid userId or courseId" };
+      }
+
+      const userObjectId = new Types.ObjectId(userId);
+      const courseObjectId = new Types.ObjectId(courseId);
+
+      const user = await this.userRepository.findById(userId);
+      if (!user) {
+        return { success: false, message: "User not found" };
+      }
+
+      // Check if course exists
+      const course = await this.courseRepository.findById(courseId);
+      if (!course) {
+        return { success: false, message: "Course not found" };
+      }
+
+      // Check if the course is free
+      if (course.pricing.type !== "free") {
+        return { success: false, message: "This course is not free. Please proceed with payment." };
+      }
+
+      // Check if user is already enrolled
+      const existingEnrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
+      if (existingEnrollment) {
+        return { success: false, message: "User is already enrolled in this course" };
+      }
+
+      // Create the enrollment
+      const enrollment = await this.enrollmentRepository.createEnrollment({
+        userId: userObjectId,
+        courseId: courseObjectId,
+        enrolledAt: new Date(),
+        completionStatus: "enrolled",
+      });
+
+      // Increment the studentsEnrolled count in the Course collection
+      await this.courseRepository.update(
+        { _id: courseObjectId },
+        { $inc: { studentsEnrolled: 1 } }
+      );
+
+      return {
+        success: true,
+        message: "Successfully enrolled in the free course",
+        data: enrollment,
+      };
+    } catch (error) {
+      console.error("Error enrolling user in free course:", error);
+      return {
+        success: false,
+        message: "Failed to enroll in the free course",
+      };
+    }
+  }
+}
+
+export default EnrollCourseService;
