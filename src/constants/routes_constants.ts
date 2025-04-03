@@ -17,10 +17,10 @@ export const USER_ROUTES = {
     REFRESH_SIGNED_URL: '/refresh-signed-url',
     GET_ALL_ACTIVE_COURSES: '/active-courses',
     GET_COURSE_BY_ID: '/courses/:id',
-    CREATE_PAYMENT_INTENT: '/create-payment-intent',
-    CONFIRM_PAYMENT: '/confirm-payment',
-    ENROLL_COURSE:'/enroll-course'
-
+    // CREATE_PAYMENT_INTENT: '/create-payment-intent',
+    // CONFIRM_PAYMENT: '/confirm-payment',
+    // ENROLL_COURSE:'/enroll-course',
+    // CHECK_ENROLLMENT: '/check-enrollment/:courseId',
 }
 
 
@@ -46,3 +46,12 @@ export const INSTRUCTOR_ROUTES = {
     GET_ALL_COURSES_BYINSTRUCTOR: '/courses',
     EDIT_COURSE: '/courses/:id',
 }
+
+
+export const STUDENT_ROUTES = {
+    CREATE_PAYMENT_INTENT: '/create-payment-intent',
+    CONFIRM_PAYMENT: '/confirm-payment',
+    ENROLL_COURSE: '/enroll-course',
+    CHECK_ENROLLMENT: '/check-enrollment/:courseId',
+    GET_ENROLLMENTS: '/enrollments',
+};

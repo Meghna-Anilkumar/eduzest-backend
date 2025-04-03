@@ -70,6 +70,72 @@ export class EnrollCourseService {
       };
     }
   }
+
+
+  async checkEnrollment(userId: string, courseId: string): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
+        return { success: false, message: "Invalid userId or courseId" };
+      }
+
+      const user = await this.userRepository.findById(userId);
+      if (!user) {
+        return { success: false, message: "User not found" };
+      }
+
+      const course = await this.courseRepository.findById(courseId);
+      if (!course) {
+        return { success: false, message: "Course not found" };
+      }
+
+      const enrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
+      if (!enrollment) {
+        return {
+          success: true,
+          message: "User is not enrolled in this course",
+          data: { isEnrolled: false },
+        };
+      }
+
+      return {
+        success: true,
+        message: "User is enrolled in this course",
+        data: { isEnrolled: true, enrollment },
+      };
+    } catch (error) {
+      console.error("Error checking enrollment:", error);
+      return {
+        success: false,
+        message: "Failed to check enrollment status",
+      };
+    }
+  }
+
+  async getEnrollmentsByUserId(userId: string): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId)) {
+        return { success: false, message: "Invalid userId" };
+      }
+
+      const user = await this.userRepository.findById(userId);
+      if (!user) {
+        return { success: false, message: "User not found" };
+      }
+
+      const enrollments = await this.enrollmentRepository.findByUserId(userId);
+      return {
+        success: true,
+        message: "Enrollments fetched successfully",
+        data: enrollments,
+      };
+    } catch (error) {
+      console.error("Error fetching enrollments for user:", error);
+      return {
+        success: false,
+        message: "Failed to fetch enrollments",
+      };
+    }
+  }
 }
 
 export default EnrollCourseService;

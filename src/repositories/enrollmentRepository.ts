@@ -10,7 +10,11 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
 
   // Find all enrollments for a specific user
   async findByUserId(userId: string): Promise<EnrollmentDoc[]> {
-    return this.findAll({ userId: new Types.ObjectId(userId) }, 0, { enrolledAt: -1 });
+    return this._model
+      .find({ userId: new Types.ObjectId(userId) })
+      .sort({ enrolledAt: -1 })
+      .limit(5)
+      .populate('courseId'); // Assumes 'courseId' is a ref to a Course model
   }
 
   // Find all enrollments for a specific course

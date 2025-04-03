@@ -69,22 +69,28 @@ userRouter.post(USER_ROUTES.REFRESH_TOKEN, userController.refreshToken.bind(user
 
 userRouter.get(USER_ROUTES.GET_ALL_ACTIVE_COURSES, courseController.getAllActiveCourses.bind(courseController) as RequestHandler);
 userRouter.get(USER_ROUTES.GET_COURSE_BY_ID, courseController.getCourseById.bind(courseController))
-userRouter.post(
-    USER_ROUTES.CREATE_PAYMENT_INTENT,
-    authenticateUser(),
-    userController.createPaymentIntent.bind(userController) as RequestHandler
-);
+// userRouter.post(
+//     USER_ROUTES.CREATE_PAYMENT_INTENT,
+//     authenticateUser(),
+//     userController.createPaymentIntent.bind(userController) as RequestHandler
+// );
 
-userRouter.post(
-    USER_ROUTES.CONFIRM_PAYMENT,
-    authenticateUser(),
-    userController.confirmPayment.bind(userController) as RequestHandler
-);
+// userRouter.post(
+//     USER_ROUTES.CONFIRM_PAYMENT,
+//     authenticateUser(),
+//     userController.confirmPayment.bind(userController) as RequestHandler
+// );
 
-userRouter.post(
-    USER_ROUTES.ENROLL_COURSE,
-    authenticateUser(),
-    enrollCourseController.enrollFreeCourse.bind(enrollCourseController) as RequestHandler
-);
+// userRouter.post(
+//     USER_ROUTES.ENROLL_COURSE,
+//     authenticateUser(),
+//     enrollCourseController.enrollFreeCourse.bind(enrollCourseController) as RequestHandler
+// );
+
+// userRouter.get(
+//     USER_ROUTES.CHECK_ENROLLMENT,
+//     authenticateUser(),
+//     enrollCourseController.checkEnrollment.bind(enrollCourseController)
+// );
 
 export default userRouter   

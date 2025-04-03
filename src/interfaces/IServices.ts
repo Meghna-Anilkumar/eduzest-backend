@@ -65,4 +65,6 @@ export interface IPaymentService {
 
 export interface IEnrollCourseService {
     enrollFreeCourse(userId: string, courseId: string): Promise<IResponse>;
+    checkEnrollment(userId: string, courseId: string): Promise<IResponse>;
+    getEnrollmentsByUserId(userId: string): Promise<IResponse>;
 }
