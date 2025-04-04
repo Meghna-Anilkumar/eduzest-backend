@@ -14,7 +14,7 @@ export class PaymentService implements IPaymentService {
     private paymentRepository: PaymentRepository,
     private userRepository: UserRepository,
     private courseRepository: CourseRepository,
-    private enrollmentRepository: EnrollmentRepository 
+    private enrollmentRepository: EnrollmentRepository
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: "2025-02-24.acacia",
@@ -28,7 +28,6 @@ export class PaymentService implements IPaymentService {
     paymentType: "debit" | "credit"
   ): Promise<IResponse> {
     try {
-      // Validate and convert string IDs to ObjectId
       if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
         console.log("Invalid IDs:", { userId, courseId });
         return { success: false, message: "Invalid userId or courseId" };
@@ -55,14 +54,13 @@ export class PaymentService implements IPaymentService {
         return { success: false, message: "Invalid amount" };
       }
 
-      // Check if the user is already enrolled
       const existingEnrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
       if (existingEnrollment) {
         return { success: false, message: "User is already enrolled in this course" };
       }
 
       const paymentIntent = await this.stripe.paymentIntents.create({
-        amount: amount * 100, // Convert to cents
+        amount: amount * 100,
         currency: "inr",
         payment_method_types: ["card"],
         metadata: { userId, courseId },
@@ -102,7 +100,6 @@ export class PaymentService implements IPaymentService {
       if (paymentIntent.status === "succeeded") {
         const updatedPayment = await this.paymentRepository.updatePaymentStatus(paymentId, "completed");
 
-        // Create an enrollment entry in the Enrollment collection
         const enrollment = await this.enrollmentRepository.createEnrollment({
           userId: payment.userId,
           courseId: payment.courseId,
@@ -110,7 +107,6 @@ export class PaymentService implements IPaymentService {
           completionStatus: "enrolled",
         });
 
-        // Increment the studentsEnrolled count in the Course collection
         await this.courseRepository.update(
           { _id: payment.courseId },
           { $inc: { studentsEnrolled: 1 } }

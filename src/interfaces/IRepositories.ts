@@ -77,7 +77,12 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     findByTitleAndInstructor(title: string, instructorId: Types.ObjectId): Promise<ICourse | null>;
     getAllCoursesByInstructor(query: any, page: number, limit: number): Promise<ICourse[]>;
     countDocuments(query: any): Promise<number>;
-    getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]>
+    getAllActiveCourses(
+        query: any,
+        page: number,
+        limit: number,
+        sort?: any
+      ): Promise<ICourse[]>;
     getCourseById(courseId: string): Promise<ICourse | null>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
 }

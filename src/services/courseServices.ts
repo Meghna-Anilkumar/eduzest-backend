@@ -112,7 +112,13 @@ export class CourseService {
     }
   }
 
-  async getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse> {
+  async getAllActiveCourses(
+    page: number,
+    limit: number,
+    search?: string,
+    filters?: { level?: string; pricingType?: string },
+    sort?: { field: string; order: string }
+  ): Promise<IResponse> {
     try {
       const query: any = {
         isPublished: true,
@@ -123,8 +129,33 @@ export class CourseService {
         query.title = { $regex: new RegExp(search, "i") };
       }
 
-      const courses = await this._courseRepository.getAllActiveCourses(query, page, limit);
+      if (filters?.level) {
+        query.level = filters.level;
+      }
+      if (filters?.pricingType) {
+        query["pricing.type"] = filters.pricingType;
+      }
 
+      const sortQuery: any = {};
+      if (sort) {
+        switch (sort.field) {
+          case "price":
+            sortQuery["pricing.amount"] = sort.order === "asc" ? 1 : -1;
+            break;
+          case "updatedAt":
+            sortQuery.updatedAt = sort.order === "asc" ? 1 : -1;
+            break;
+          case "studentsEnrolled":
+            sortQuery.studentsEnrolled = sort.order === "asc" ? 1 : -1;
+            break;
+          default:
+            sortQuery.updatedAt = -1;
+        }
+      } else {
+        sortQuery.updatedAt = -1; // Default sort
+      }
+
+      const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
       const totalCourses = await this._courseRepository.countDocuments(query);
 
       return {

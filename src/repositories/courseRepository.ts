@@ -41,19 +41,20 @@ export class CourseRepository extends BaseRepository<ICourse> {
         return this._model.countDocuments(query).exec();
     }
 
-    async getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]> {
+    async getAllActiveCourses(query: any, page: number, limit: number, sort?: any): Promise<ICourse[]> {
         return this._model
-            .find(query)
-            .populate({
-                path: "instructorRef",
-                select: "name profile.profilePic",
-            })
-            .populate("categoryRef", "categoryName")
-            .sort({ updatedAt: "desc" })
-            .skip((page - 1) * limit)
-            .limit(limit)
-            .exec();
-    }
+          .find(query)
+          .populate({
+            path: "instructorRef",
+            select: "name profile.profilePic",
+          })
+          .populate("categoryRef", "categoryName")
+          .sort(sort || { updatedAt: "desc" }) 
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .exec();
+      }
+
     async getCourseById(courseId: string): Promise<ICourse | null> {
         return this._model
             .findById(courseId)

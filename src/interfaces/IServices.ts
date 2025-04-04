@@ -2,7 +2,7 @@ import { UserDoc } from "./IUser";
 import { CategoryDoc } from "./ICategory";
 import { IResponse } from "./IResponse";
 import { Response } from "express";
-import { ICourse } from "./ICourse";
+import { ICourse,FilterOptions,SortOptions } from "./ICourse";
 
 
 export interface IUserService {
@@ -47,7 +47,13 @@ export interface ICategoryService {
 export interface ICourseService {
     createCourse(courseData: Partial<ICourse>): Promise<IResponse>;
     getAllCoursesByInstructor(instructorId: string, page: number, limit: number, search?: string): Promise<IResponse>;
-    getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse>;
+    getAllActiveCourses(
+        page: number,
+        limit: number,
+        search?: string,
+        filters?: FilterOptions,
+        sort?: SortOptions
+      ): Promise<IResponse>;
     getCourseById(courseId: string): Promise<IResponse>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<IResponse>;
 }

@@ -54,3 +54,13 @@ export interface ICourse extends Document {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface FilterOptions {
+    level?: "beginner" | "intermediate" | "advanced";
+    pricingType?: "free" | "paid";
+  }
+  
+  export interface SortOptions {
+    field: "price" | "updatedAt" | "studentsEnrolled";
+    order: "asc" | "desc";
+  }

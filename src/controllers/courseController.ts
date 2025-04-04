@@ -6,7 +6,7 @@ import { Status } from "../utils/enums";
 import { AuthRequest } from "../interfaces/AuthRequest";
 import { s3 } from "../config/s3Config";
 import { Types } from "mongoose";
-import { ICourse, IModule, ILesson } from "../interfaces/ICourse";
+import { ICourse, IModule, ILesson,FilterOptions,SortOptions } from "../interfaces/ICourse";
 
 class CourseController {
   constructor(private _courseService: ICourseService) { }
@@ -152,13 +152,40 @@ class CourseController {
 
 
 
-  async getAllActiveCourses(req: Request, res: Response): Promise<void> {
+async getAllActiveCourses(req: Request, res: Response): Promise<void> {
     try {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
       const search = req.query.search as string | undefined;
+      const level = req.query.level as string | undefined;
+      const pricingType = req.query.pricingType as string | undefined;
+      const sortField = req.query.sortField as string | undefined;
+      const sortOrder = req.query.sortOrder as string | undefined;
 
-      const response = await this._courseService.getAllActiveCourses(page, limit, search);
+      // Validate and cast filter values to match FilterOptions
+      const filters: FilterOptions = {};
+      if (level) {
+        // Ensure level matches "beginner", "intermediate", or "advanced"
+        if (["beginner", "intermediate", "advanced"].includes(level)) {
+          filters.level = level as "beginner" | "intermediate" | "advanced";
+        }
+      }
+      if (pricingType) {
+        // Ensure pricingType matches "free" or "paid"
+        if (["free", "paid"].includes(pricingType)) {
+          filters.pricingType = pricingType as "free" | "paid";
+        }
+      }
+
+      // Construct sort options
+      const sort: SortOptions | undefined = sortField
+        ? {
+            field: sortField as "price" | "updatedAt" | "studentsEnrolled",
+            order: (sortOrder as "asc" | "desc") || "desc",
+          }
+        : undefined;
+
+      const response = await this._courseService.getAllActiveCourses(page, limit, search, filters, sort);
       res.status(Status.OK).json(response);
     } catch (error) {
       console.error("Error in getAllActiveCourses controller:", error);
