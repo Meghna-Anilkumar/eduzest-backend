@@ -8,7 +8,7 @@ import OtpRepository from "../repositories/otpRepository";
 import { authenticateUser } from "../middlewares/authMiddleware";
 import PaymentService from "../services/paymentServices";
 import PaymentRepository from "../repositories/paymentRepository";
-import EnrollmentRepository from "../repositories/enrollmentRepository";
+import {EnrollmentRepository} from "../repositories/enrollmentRepository";
 import CategoryRepository from "../repositories/categoryRepository";
 import EnrollCourseService from "../services/enrollmentServices";
 import EnrollCourseController from "../controllers/enrollCourseController";
@@ -65,6 +65,12 @@ studentRouter.get(
   STUDENT_ROUTES.GET_ENROLLMENTS,
   authenticateUser(),
   enrollCourseController.getEnrollmentsByUserId.bind(enrollCourseController)
+);
+
+studentRouter.get(
+  STUDENT_ROUTES.GET_PAYMENT_HISTORY,
+  authenticateUser(),
+  userController.getPaymentHistory.bind(userController) as RequestHandler
 );
 
 export default studentRouter;

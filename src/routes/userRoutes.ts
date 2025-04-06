@@ -15,7 +15,7 @@ import {
 import { authenticateUser } from "../middlewares/authMiddleware";
 import PaymentService from "../services/paymentServices";
 import PaymentRepository from "../repositories/paymentRepository";
-import EnrollmentRepository from "../repositories/enrollmentRepository";
+import {EnrollmentRepository} from "../repositories/enrollmentRepository";
 import EnrollCourseService from "../services/enrollmentServices";
 import EnrollCourseController from "../controllers/enrollCourseController";
 

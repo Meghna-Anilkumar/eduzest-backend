@@ -93,6 +93,13 @@ export interface IPaymentRepository {
     findByCourseId(courseId: string): Promise<PaymentDoc[]>;
     updatePaymentStatus(paymentId: string, status: PaymentDoc["status"]): Promise<PaymentDoc | null>;
     createPayment(paymentData: Partial<PaymentDoc>): Promise<PaymentDoc>;
+    getPaymentsByUser(
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+      ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
 }
 
 
@@ -105,4 +112,5 @@ export interface IEnrollmentRepository {
         enrollmentId: string,
         status: EnrollmentDoc["completionStatus"]
     ): Promise<EnrollmentDoc | null>;
+
 }

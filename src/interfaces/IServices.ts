@@ -2,7 +2,7 @@ import { UserDoc } from "./IUser";
 import { CategoryDoc } from "./ICategory";
 import { IResponse } from "./IResponse";
 import { Response } from "express";
-import { ICourse,FilterOptions,SortOptions } from "./ICourse";
+import { ICourse, FilterOptions, SortOptions } from "./ICourse";
 
 
 export interface IUserService {
@@ -53,7 +53,7 @@ export interface ICourseService {
         search?: string,
         filters?: FilterOptions,
         sort?: SortOptions
-      ): Promise<IResponse>;
+    ): Promise<IResponse>;
     getCourseById(courseId: string): Promise<IResponse>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<IResponse>;
 }
@@ -67,6 +67,13 @@ export interface IPaymentService {
         paymentType: "debit" | "credit"
     ): Promise<IResponse>;
     confirmPayment(paymentId: string): Promise<IResponse>;
+    getPaymentsByUser(
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+      ): Promise<IResponse>;
 }
 
 export interface IEnrollCourseService {

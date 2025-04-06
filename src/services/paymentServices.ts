@@ -129,6 +129,30 @@ export class PaymentService implements IPaymentService {
       return { success: false, message: "Failed to confirm payment" };
     }
   }
+
+  async getPaymentsByUser(
+    userId: string,
+    page: number,
+    limit: number,
+    search?: string,
+    sort?: { field: string; order: "asc" | "desc" }
+  ): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId)) {
+        return { success: false, message: "Invalid userId" };
+      }
+
+      const result = await this.paymentRepository.getPaymentsByUser(userId, page, limit, search, sort);
+      return {
+        success: true,
+        message: "Payments retrieved successfully",
+        data: result,
+      };
+    } catch (error) {
+      console.error("Error retrieving payments:", error);
+      return { success: false, message: "Failed to retrieve payments" };
+    }
+  }
 }
 
 export default PaymentService;

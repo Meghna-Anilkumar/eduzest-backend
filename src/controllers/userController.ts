@@ -486,18 +486,17 @@ class UserController {
     async createPaymentIntent(req: AuthRequest, res: Response) {
         try {
             const { courseId, amount, paymentType } = req.body;
-            // Get the userId from the decoded token that was attached by your auth middleware
-            const userId = req.user?.id; // Make sure this matches how you store the user ID in the token
-    
+            const userId = req.user?.id;
+
             if (!userId) {
                 return res.status(Status.UN_AUTHORISED).json({
                     success: false,
                     message: "User not authenticated",
                 });
             }
-    
+
             const result = await this._paymentService.createPaymentIntent(userId, courseId, amount, paymentType);
-    
+
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
         } catch (error) {
             console.error("Error creating payment intent:", error);
@@ -507,7 +506,7 @@ class UserController {
             });
         }
     }
-    
+
     async confirmPayment(req: Request, res: Response) {
         try {
             const { paymentId } = req.body;
@@ -523,6 +522,43 @@ class UserController {
             });
         }
     }
+
+    async getPaymentHistory(req: AuthRequest, res: Response): Promise<void> {
+        try {
+            const userId = req.user?.id;
+            
+            // Check if userId is undefined
+            if (!userId) {
+                res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "User not authenticated",
+                });
+                return; // Exit the function if the user is not authenticated
+            }
+    
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const search = req.query.search as string | undefined;
+            const sortField = req.query.sortField as string | undefined;
+            const sortOrder = req.query.sortOrder as string | undefined;
+    
+            const sort = sortField
+                ? { field: sortField as "amount" | "createdAt" | "status", order: (sortOrder as "asc" | "desc") || "desc" }
+                : undefined;
+    
+            // Pass userId to the service function now that it's guaranteed to be a string
+            const result = await this._paymentService.getPaymentsByUser(userId, page, limit, search, sort);
+    
+            res.status(Status.OK).json(result);
+        } catch (error) {
+            console.error("Error fetching payment history:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+    
 }
 
 

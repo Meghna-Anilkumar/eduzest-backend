@@ -162,22 +162,18 @@ async getAllActiveCourses(req: Request, res: Response): Promise<void> {
       const sortField = req.query.sortField as string | undefined;
       const sortOrder = req.query.sortOrder as string | undefined;
 
-      // Validate and cast filter values to match FilterOptions
       const filters: FilterOptions = {};
       if (level) {
-        // Ensure level matches "beginner", "intermediate", or "advanced"
         if (["beginner", "intermediate", "advanced"].includes(level)) {
           filters.level = level as "beginner" | "intermediate" | "advanced";
         }
       }
       if (pricingType) {
-        // Ensure pricingType matches "free" or "paid"
         if (["free", "paid"].includes(pricingType)) {
           filters.pricingType = pricingType as "free" | "paid";
         }
       }
 
-      // Construct sort options
       const sort: SortOptions | undefined = sortField
         ? {
             field: sortField as "price" | "updatedAt" | "studentsEnrolled",

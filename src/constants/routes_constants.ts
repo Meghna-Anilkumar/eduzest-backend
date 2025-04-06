@@ -54,4 +54,5 @@ export const STUDENT_ROUTES = {
     ENROLL_COURSE: '/enroll-course',
     CHECK_ENROLLMENT: '/check-enrollment/:courseId',
     GET_ENROLLMENTS: '/enrollments',
+    GET_PAYMENT_HISTORY:'/payment-history'
 };
