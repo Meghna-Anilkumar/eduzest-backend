@@ -38,8 +38,8 @@ export interface ICourse extends Document {
     title: string;
     description: string;
     thumbnail: string;
-    instructorRef: Types.ObjectId; 
-    categoryRef: Types.ObjectId; 
+    instructorRef: Types.ObjectId;
+    categoryRef: Types.ObjectId;
     language: string;
     level: "beginner" | "intermediate" | "advanced";
     modules: IModule[];
@@ -58,9 +58,17 @@ export interface ICourse extends Document {
 export interface FilterOptions {
     level?: "beginner" | "intermediate" | "advanced";
     pricingType?: "free" | "paid";
-  }
-  
-  export interface SortOptions {
+}
+
+export interface SortOptions {
     field: "price" | "updatedAt" | "studentsEnrolled";
     order: "asc" | "desc";
+}
+
+
+export interface ICourseUpdate extends Partial<ICourse> {
+    // Allow only Types.ObjectId or undefined, matching ICourse
+    instructorRef?: Types.ObjectId;
+    categoryRef?: Types.ObjectId;
   }
+

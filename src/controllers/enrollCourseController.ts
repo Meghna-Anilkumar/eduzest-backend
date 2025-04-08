@@ -3,6 +3,8 @@ import EnrollCourseService from "../services/enrollmentServices";
 import { Status } from "../utils/enums";
 import { verifyAccessToken } from "../utils/jwt";
 import { IEnrollCourseService } from "../interfaces/IServices";
+import { s3Service } from "../services/s3Service";
+import { ICourse } from "../interfaces/ICourse";
 
 class EnrollCourseController {
   private enrollCourseService: IEnrollCourseService;
@@ -90,6 +92,27 @@ class EnrollCourseController {
       }
   
       const result = await this.enrollCourseService.getEnrollmentsByUserId(userId);
+      console.log("Raw enrollments data:", JSON.stringify(result.data, null, 2));
+  
+      // Add signed URLs to course content in enrollments
+      if (result.success && result.data && Array.isArray(result.data)) {
+        const enrollmentsWithSignedUrls = await Promise.all(
+          result.data.map(async (enrollment) => {
+            if (enrollment.courseId) {
+              console.log("Transforming courseId:", JSON.stringify(enrollment.courseId, null, 2));
+              enrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId as ICourse);
+            } else {
+              console.log("No courseId found in enrollment:", JSON.stringify(enrollment, null, 2));
+            }
+            return enrollment;
+          })
+        );
+  
+        result.data = enrollmentsWithSignedUrls;
+      } else {
+        console.log("Result data is not an array or is empty:", result);
+      }
+  
       res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error fetching enrollments by user ID:", error);
@@ -99,7 +122,6 @@ class EnrollCourseController {
       });
     }
   }
-  
 }
 
 

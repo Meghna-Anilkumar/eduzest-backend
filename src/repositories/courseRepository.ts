@@ -24,7 +24,7 @@ export class CourseRepository extends BaseRepository<ICourse> {
         page: number,
         limit: number
     ): Promise<ICourse[]> {
-        return this._model
+        const courses = await this._model
             .find(query)
             .populate({
                 path: "instructorRef",
@@ -35,25 +35,26 @@ export class CourseRepository extends BaseRepository<ICourse> {
             .skip((page - 1) * limit)
             .limit(limit)
             .exec();
+        console.log("Courses from repository:", JSON.stringify(courses, null, 2));
+        return courses;
     }
-
     async countDocuments(query: any): Promise<number> {
         return this._model.countDocuments(query).exec();
     }
 
     async getAllActiveCourses(query: any, page: number, limit: number, sort?: any): Promise<ICourse[]> {
         return this._model
-          .find(query)
-          .populate({
-            path: "instructorRef",
-            select: "name profile.profilePic",
-          })
-          .populate("categoryRef", "categoryName")
-          .sort(sort || { updatedAt: "desc" }) 
-          .skip((page - 1) * limit)
-          .limit(limit)
-          .exec();
-      }
+            .find(query)
+            .populate({
+                path: "instructorRef",
+                select: "name profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .sort(sort || { updatedAt: "desc" })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .exec();
+    }
 
     async getCourseById(courseId: string): Promise<ICourse | null> {
         return this._model
@@ -69,10 +70,10 @@ export class CourseRepository extends BaseRepository<ICourse> {
             })
             .exec();
     }
-    
+
     async editCourse(
-        courseId: string, 
-        instructorId: string, 
+        courseId: string,
+        instructorId: string,
         updateData: Partial<ICourse>
     ): Promise<ICourse | null> {
         const course = await this._model.findOne({
@@ -81,7 +82,7 @@ export class CourseRepository extends BaseRepository<ICourse> {
         });
 
         if (!course) {
-            return null; 
+            return null;
         }
 
         return this._model
