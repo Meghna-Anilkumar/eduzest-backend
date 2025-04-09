@@ -34,8 +34,8 @@ export interface ICourseDTO {
   title: string;
   description: string;
   thumbnail: string;
-  instructorRef: string;
-  categoryRef: string;
+  instructorRef: { _id: string; name?: string; profile?: { profilePic: string } } | string; 
+  categoryRef: { _id: string; categoryName?: string } | string;
   language: string;
   level: "beginner" | "intermediate" | "advanced";
   modules: IModuleDTO[];

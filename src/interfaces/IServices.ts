@@ -3,7 +3,7 @@ import { CategoryDoc } from "./ICategory";
 import { IResponse } from "./IResponse";
 import { Response } from "express";
 import { ICourse, FilterOptions, SortOptions } from "./ICourse";
-
+import { IReview } from "./IReview";
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -73,11 +73,17 @@ export interface IPaymentService {
         limit: number,
         search?: string,
         sort?: { field: string; order: "asc" | "desc" }
-      ): Promise<IResponse>;
+    ): Promise<IResponse>;
 }
 
 export interface IEnrollCourseService {
     enrollFreeCourse(userId: string, courseId: string): Promise<IResponse>;
     checkEnrollment(userId: string, courseId: string): Promise<IResponse>;
     getEnrollmentsByUserId(userId: string): Promise<IResponse>;
+}
+
+
+export interface IReviewService {
+    addReview(userId: string, reviewData: Partial<IReview>): Promise<IResponse>;
+    // getCourseReviews(courseId: string, page: number, limit: number): Promise<IResponse>;
 }

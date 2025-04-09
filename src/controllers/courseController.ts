@@ -202,7 +202,6 @@ class CourseController {
         return;
       }
 
-      // Add signed URLs to the course data before sending the response
       const courseWithSignedUrls = await s3Service.addSignedUrlsToCourse(response.data as ICourse);
       response.data = courseWithSignedUrls;
 
@@ -219,11 +218,7 @@ class CourseController {
 
   async editCourse(req: AuthRequest, res: Response): Promise<void> {
     try {
-      console.log("Full request params:", req.params);
-      console.log("Full request path:", req.path);
-      console.log("Request body:", req.body);
-      console.log("Request files:", req.files);
-
+    
       const instructorId = req.user?.id;
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
@@ -234,10 +229,8 @@ class CourseController {
       }
 
       const courseId = req.params.id;
-      console.log("Received courseId from params:", courseId);
-
+    
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
-        console.log("courseId validation failed. courseId:", courseId, "isValid:", Types.ObjectId.isValid(courseId));
         res.status(Status.BAD_REQUEST).json({
           success: false,
           message: "Valid Course ID is required.",
@@ -260,7 +253,6 @@ class CourseController {
       if (rawUpdateData.isRequested !== undefined) updateData.isRequested = rawUpdateData.isRequested;
       if (rawUpdateData.isPublished !== undefined) updateData.isPublished = rawUpdateData.isPublished;
 
-      console.log("Parsed updateData (before normalization):", JSON.stringify(updateData, null, 2));
 
       if (typeof rawUpdateData.instructorRef === 'string') {
         const instructorIdMatch = rawUpdateData.instructorRef.match(/'([a-fA-F0-9]{24})'/);
@@ -297,25 +289,24 @@ class CourseController {
         console.log("Ignoring signed URL in rawUpdateData.thumbnail:", rawUpdateData.thumbnail);
       }
 
-      // Process modules only if provided in rawUpdateData
       if (rawUpdateData.modules) {
-        // Initial transformation to handle signed URLs
         let modules: IModule[] = rawUpdateData.modules.map((module: IModule) => ({
           ...module,
           lessons: module.lessons.map((lesson: ILesson) => {
             if (lesson.video && lesson.video.startsWith("http")) {
               const url = new URL(lesson.video);
-              const key = url.pathname.slice(1);
-              console.log(`Extracted S3 key from signed URL for lesson ${lesson.lessonNumber}:`, key);
+              let key = url.pathname.slice(1);
+              key = decodeURIComponent(key);
               return { ...lesson, video: key };
+            } else if (lesson.video) {
+              const decodedVideo = decodeURIComponent(lesson.video);
+              return { ...lesson, video: decodedVideo };
             }
             return lesson;
           }),
         }));
 
-        // Handle new video uploads
         if (videoFiles.length > 0) {
-          console.log("Processing video files for modules. Video count:", videoFiles.length);
           let videoIndex = 0;
           modules = await Promise.all(
             modules.map(async (module: IModule, moduleIndex: number) => {
@@ -324,7 +315,6 @@ class CourseController {
                   if (videoIndex < videoFiles.length && (!lesson.video || lesson.video === "")) {
                     const videoFile = videoFiles[videoIndex];
                     const videoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}.${videoFile.mimetype.split("/")[1]}`;
-                    console.log(`Uploading video for lesson ${lessonIndex + 1} in module ${moduleIndex + 1} to S3 with key:`, videoKey);
                     await s3Service.uploadFile(videoKey, videoFile.buffer, videoFile.mimetype);
                     videoIndex++;
                     return { ...lesson, video: videoKey } as ILesson;
@@ -337,19 +327,12 @@ class CourseController {
           );
         }
 
-        updateData.modules = modules; // Assign the processed modules
-        console.log("Modules processed:", JSON.stringify(updateData.modules, null, 2));
+        updateData.modules = modules;
       }
-
-      console.log("Final updateData sent to service:", JSON.stringify(updateData, null, 2));
       const response = await this._courseService.editCourse(courseId, instructorId, updateData);
-      console.log("Service response:", JSON.stringify(response, null, 2));
-
       if (response.success && response.data) {
         response.data = await s3Service.addSignedUrlsToCourse(response.data as ICourse);
-        console.log("Final response data with signed URLs:", JSON.stringify(response.data, null, 2));
       }
-
       res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
     } catch (error) {
       console.error("Error in editCourse controller:", error);
@@ -359,7 +342,6 @@ class CourseController {
       });
     }
   }
-
 }
 
 export default CourseController;

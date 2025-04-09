@@ -33,7 +33,6 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
   ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }> {
     const query: any = { userId: new Types.ObjectId(userId) };
 
-    // Apply search if provided (search by courseId or userId as a string for simplicity)
     if (search) {
       query.$or = [
         { "courseId": { $regex: search, $options: "i" } },

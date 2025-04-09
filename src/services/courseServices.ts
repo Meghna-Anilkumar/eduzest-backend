@@ -152,10 +152,11 @@ export class CourseService {
             sortQuery.updatedAt = -1;
         }
       } else {
-        sortQuery.updatedAt = -1; // Default sort
+        sortQuery.updatedAt = -1; 
       }
 
       const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
+      console.log("Courses with populated data:", JSON.stringify(courses, null, 2));
       const totalCourses = await this._courseRepository.countDocuments(query);
 
       return {

@@ -7,6 +7,7 @@ import { ICourse } from './ICourse';
 import { Types } from "mongoose";
 import { PaymentDoc } from '../models/paymentModel';
 import { EnrollmentDoc } from '../models/enrollmentModel';
+import { IReview } from './IReview';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -82,7 +83,7 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
         page: number,
         limit: number,
         sort?: any
-      ): Promise<ICourse[]>;
+    ): Promise<ICourse[]>;
     getCourseById(courseId: string): Promise<ICourse | null>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
 }
@@ -99,7 +100,7 @@ export interface IPaymentRepository {
         limit: number,
         search?: string,
         sort?: { field: string; order: "asc" | "desc" }
-      ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
 }
 
 
@@ -112,5 +113,12 @@ export interface IEnrollmentRepository {
         enrollmentId: string,
         status: EnrollmentDoc["completionStatus"]
     ): Promise<EnrollmentDoc | null>;
+}
 
+
+export interface IReviewRepository {
+    createReview(reviewData: Partial<IReview>): Promise<IReview>;
+    findByUserAndCourse(userId: string, courseId: string): Promise<IReview | null>;
+    getReviewsByCourse(courseId: string, skip: number, limit: number): Promise<IReview[]>;
+    countReviewsByCourse(courseId: string): Promise<number>;
 }

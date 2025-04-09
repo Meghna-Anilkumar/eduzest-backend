@@ -45,48 +45,55 @@ export class S3Service {
     });
     return await getSignedUrl(this.s3, command, { expiresIn });
   }
-  async addSignedUrlsToCourse(course: ICourse): Promise<ICourseDTO> {
-  const signedCourse: ICourseDTO = {
-    _id: (course._id as unknown as Types.ObjectId).toString(),
-    title: course.title,
-    description: course.description,
-    thumbnail: course.thumbnail ? await this.getSignedUrl(course.thumbnail) : "",
-    instructorRef: course.instructorRef.toString(),
-    categoryRef: course.categoryRef.toString(),
-    language: course.language,
-    level: course.level,
-    modules: await Promise.all(
-      course.modules.map(async (module) => ({
-        moduleTitle: module.moduleTitle,
-        lessons: await Promise.all(
-          module.lessons.map(async (lesson) => ({
-            lessonNumber: lesson.lessonNumber,
-            title: lesson.title,
-            description: lesson.description,
-            video: await this.getSignedUrl(lesson.video),
-            duration: lesson.duration,
-            objectives: lesson.objectives,
-          }))
-        ),
-      }))
-    ),
-    trial: {
-      video: course.trial?.video ? await this.getSignedUrl(course.trial.video) : undefined,
-    },
-    pricing: course.pricing,
-    attachments: course.attachments,
-    isRequested: course.isRequested,
-    isBlocked: course.isBlocked,
-    studentsEnrolled: course.studentsEnrolled,
-    isPublished: course.isPublished,
-    isRejected: course.isRejected,
-    createdAt: course.createdAt,
-    updatedAt: course.updatedAt,
-  };
 
-  return signedCourse;
-}
-  
+
+
+  async addSignedUrlsToCourse(course: ICourse): Promise<ICourseDTO> {
+    const signedCourse: ICourseDTO = {
+      _id: (course._id as unknown as Types.ObjectId).toString(),
+      title: course.title,
+      description: course.description,
+      thumbnail: course.thumbnail ? await this.getSignedUrl(course.thumbnail) : "",
+      instructorRef: course.instructorRef instanceof Types.ObjectId
+        ? course.instructorRef.toString()
+        : course.instructorRef,
+      categoryRef: course.categoryRef instanceof Types.ObjectId
+        ? course.categoryRef.toString()
+        : course.categoryRef,
+      language: course.language,
+      level: course.level,
+      modules: await Promise.all(
+        course.modules.map(async (module) => ({
+          moduleTitle: module.moduleTitle,
+          lessons: await Promise.all(
+            module.lessons.map(async (lesson) => ({
+              lessonNumber: lesson.lessonNumber,
+              title: lesson.title,
+              description: lesson.description,
+              video: lesson.video ? await this.getSignedUrl(lesson.video) : "",
+              duration: lesson.duration,
+              objectives: lesson.objectives,
+            }))
+          ),
+        }))
+      ),
+      trial: {
+        video: course.trial?.video ? await this.getSignedUrl(course.trial.video) : undefined,
+      },
+      pricing: course.pricing,
+      attachments: course.attachments,
+      isRequested: course.isRequested,
+      isBlocked: course.isBlocked,
+      studentsEnrolled: course.studentsEnrolled,
+      isPublished: course.isPublished,
+      isRejected: course.isRejected,
+      createdAt: course.createdAt,
+      updatedAt: course.updatedAt,
+    };
+
+    return signedCourse;
+  }
+
   async addSignedUrlsToCourses(courses: ICourse[]): Promise<ICourseDTO[]> {
     return await Promise.all(courses.map((course) => this.addSignedUrlsToCourse(course)));
   }

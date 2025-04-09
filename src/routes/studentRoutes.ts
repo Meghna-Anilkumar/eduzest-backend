@@ -12,65 +12,74 @@ import {EnrollmentRepository} from "../repositories/enrollmentRepository";
 import CategoryRepository from "../repositories/categoryRepository";
 import EnrollCourseService from "../services/enrollmentServices";
 import EnrollCourseController from "../controllers/enrollCourseController";
+import ReviewRepository from "../repositories/reviewRepository"; 
+import { ReviewService } from "../services/reviewServices";
+import ReviewController from "../controllers/reviewController";
 import { STUDENT_ROUTES } from "../constants/routes_constants";
+import { Role } from "../interfaces/IEnums";
 
-// Instantiate repositories
+
 const userRepository = new UserRepository();
 const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
 const paymentRepository = new PaymentRepository();
 const enrollmentRepository = new EnrollmentRepository();
 const categoryRepository = new CategoryRepository();
+const reviewRepository = new ReviewRepository();
 
-// Instantiate services
+
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository,categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository);
+const reviewService = new ReviewService(reviewRepository, enrollmentRepository); 
 
-// Instantiate controllers
+
 const userController = new UserController(userService, paymentService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService);
+const reviewController = new ReviewController(reviewService); 
 
 const studentRouter = Router();
 
-// Create Payment Intent (for paid courses)
 studentRouter.post(STUDENT_ROUTES.CREATE_PAYMENT_INTENT,authenticateUser(),
   userController.createPaymentIntent.bind(userController) as RequestHandler
 );
 
-// Confirm Payment (for paid courses)
 studentRouter.post(
   STUDENT_ROUTES.CONFIRM_PAYMENT,
   authenticateUser(),
   userController.confirmPayment.bind(userController)
 );
 
-// Enroll in a Free Course
 studentRouter.post(
   STUDENT_ROUTES.ENROLL_COURSE,
   authenticateUser(),
   enrollCourseController.enrollFreeCourse.bind(enrollCourseController)
 );
 
-// Check Enrollment Status
 studentRouter.get(
   STUDENT_ROUTES.CHECK_ENROLLMENT,
-  authenticateUser(),
+  authenticateUser(Role.student),
   enrollCourseController.checkEnrollment.bind(enrollCourseController)
 );
 
-// Get All Enrollments for a User
+
 studentRouter.get(
   STUDENT_ROUTES.GET_ENROLLMENTS,
-  authenticateUser(),
+  authenticateUser(Role.student),
   enrollCourseController.getEnrollmentsByUserId.bind(enrollCourseController)
 );
 
 studentRouter.get(
   STUDENT_ROUTES.GET_PAYMENT_HISTORY,
-  authenticateUser(),
+  authenticateUser(Role.student),
   userController.getPaymentHistory.bind(userController) as RequestHandler
+);
+
+studentRouter.post(
+  STUDENT_ROUTES.ADD_REVIEW,
+  authenticateUser(),
+  reviewController.addReview.bind(reviewController)
 );
 
 export default studentRouter;
