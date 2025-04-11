@@ -85,5 +85,6 @@ export interface IEnrollCourseService {
 
 export interface IReviewService {
     addReview(userId: string, reviewData: Partial<IReview>): Promise<IResponse>;
-    // getCourseReviews(courseId: string, page: number, limit: number): Promise<IResponse>;
+    getReviewsByCourse(courseId: string, page: number, limit: number): Promise<IResponse>;
+    getReviewByUserAndCourse(userId: string, courseId: string): Promise<IResponse>;
 }

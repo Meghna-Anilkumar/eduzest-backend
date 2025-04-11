@@ -5,7 +5,7 @@ const ReviewSchema = new Schema<IReview>(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Users",
       required: true,
     },
     courseId: {

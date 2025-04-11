@@ -15,9 +15,12 @@ import {
 import { authenticateUser } from "../middlewares/authMiddleware";
 import PaymentService from "../services/paymentServices";
 import PaymentRepository from "../repositories/paymentRepository";
-import {EnrollmentRepository} from "../repositories/enrollmentRepository";
+import { EnrollmentRepository } from "../repositories/enrollmentRepository";
 import EnrollCourseService from "../services/enrollmentServices";
 import EnrollCourseController from "../controllers/enrollCourseController";
+import ReviewController from "../controllers/reviewController";
+import { ReviewService } from "../services/reviewServices";
+import ReviewRepository from "../repositories/reviewRepository";
 
 
 const userRepository = new UserRepository();
@@ -26,17 +29,20 @@ const courseRepository = new CourseRepository();
 const categoryRepository = new CategoryRepository();
 const paymentRepository = new PaymentRepository()
 const enrollmentRepository = new EnrollmentRepository()
+const reviewRepository = new ReviewRepository();
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository);
+const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 
 // Instantiate controllers
 const userController = new UserController(userService, paymentService);
 const courseController = new CourseController(courseService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService)
+const reviewController = new ReviewController(reviewService);
 
 const userRouter = Router();
 

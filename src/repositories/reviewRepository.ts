@@ -3,6 +3,8 @@ import { Review } from "../models/reviewModel";
 import { BaseRepository } from "./baseRepository";
 import { IReviewRepository } from "../interfaces/IRepositories";
 import { IReview } from "../interfaces/IReview";
+// Import Users model correctly
+import { Users } from "../models/userModel";
 
 export class ReviewRepository extends BaseRepository<IReview> implements IReviewRepository {
   constructor() {
@@ -21,12 +23,20 @@ export class ReviewRepository extends BaseRepository<IReview> implements IReview
   }
 
   async getReviewsByCourse(courseId: string, skip: number, limit: number): Promise<IReview[]> {
+    if (!Types.ObjectId.isValid(courseId)) {
+      throw new Error("Invalid courseId format");
+    }
+    
     return this._model
       .find({ courseId: new Types.ObjectId(courseId) })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
-      .populate("userId", "name");
+      .populate({
+        path: "userId",
+        model: "Users",
+        select: "name profile"
+      });
   }
 
   async countReviewsByCourse(courseId: string): Promise<number> {

@@ -82,4 +82,7 @@ studentRouter.post(
   reviewController.addReview.bind(reviewController)
 );
 
+studentRouter.get(STUDENT_ROUTES.GET_REVIEW, reviewController.getReviewsByCourse.bind(reviewController) as RequestHandler);
+
+
 export default studentRouter;

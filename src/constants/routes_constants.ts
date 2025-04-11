@@ -17,10 +17,7 @@ export const USER_ROUTES = {
     REFRESH_SIGNED_URL: '/refresh-signed-url',
     GET_ALL_ACTIVE_COURSES: '/active-courses',
     GET_COURSE_BY_ID: '/courses/:id',
-    // CREATE_PAYMENT_INTENT: '/create-payment-intent',
-    // CONFIRM_PAYMENT: '/confirm-payment',
-    // ENROLL_COURSE:'/enroll-course',
-    // CHECK_ENROLLMENT: '/check-enrollment/:courseId',
+    GET_REVIEWS: "/courses/:courseId/reviews"
 }
 
 
@@ -55,5 +52,6 @@ export const STUDENT_ROUTES = {
     CHECK_ENROLLMENT: '/check-enrollment/:courseId',
     GET_ENROLLMENTS: '/enrollments',
     GET_PAYMENT_HISTORY:'/payment-history',
-    ADD_REVIEW:'/reviews'
+    ADD_REVIEW:'/reviews',
+    GET_REVIEW: "/review/:courseId",
 };

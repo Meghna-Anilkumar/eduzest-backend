@@ -85,4 +85,57 @@ export class ReviewService implements IReviewService {
       };
     }
   }
+
+
+  async getReviewsByCourse(courseId: string, skip: number = 0, limit: number = 10): Promise<IResponse> {
+    try {
+      const reviews = await this._reviewRepository.getReviewsByCourse(courseId, skip, limit);
+      const totalReviews = await this._reviewRepository.countReviewsByCourse(courseId);
+
+      return {
+        success: true,
+        message: "Reviews fetched successfully.",
+        data: { reviews, totalReviews },
+      };
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      return {
+        success: false,
+        message: error instanceof Error ? error.message : "Failed to fetch reviews. Please try again.",
+      };
+    }
+  }
+
+
+  async getReviewByUserAndCourse(userId: string, courseId: string): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
+        return {
+          success: false,
+          message: "Invalid userId or courseId format.",
+        };
+      }
+
+      const review = await this._reviewRepository.findByUserAndCourse(userId, courseId);
+
+      if (!review) {
+        return {
+          success: false,
+          message: "No review found for this user and course.",
+        };
+      }
+
+      return {
+        success: true,
+        message: "Review fetched successfully.",
+        data: review,
+      };
+    } catch (error) {
+      console.error("Error fetching review by user and course:", error);
+      return {
+        success: false,
+        message: "Failed to fetch review. Please try again.",
+      };
+    }
+  }
 }
