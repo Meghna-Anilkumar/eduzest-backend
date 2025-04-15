@@ -1,0 +1,210 @@
+[2025-04-12 10:17:49] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:17:49] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:17:49] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-12 10:17:49] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-12 10:17:49] [INFO] [REQUEST] POST /users/refresh-token
+[2025-04-12 10:17:49] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-12 10:17:50] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 10:17:56] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 10:17:57] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 10:17:58] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:17:58] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:17:58] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-12 10:17:58] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-12 10:17:58] [INFO] [REQUEST] POST /users/refresh-token
+[2025-04-12 10:17:58] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-12 10:17:58] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 10:18:05] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 10:18:05] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 10:18:08] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:18:08] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:18:08] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-12 10:18:08] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-12 10:18:08] [INFO] [REQUEST] POST /users/refresh-token
+[2025-04-12 10:18:08] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-12 10:18:08] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 10:18:27] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-12 10:18:27] [INFO] [REQUEST] POST /logout
+[2025-04-12 10:18:27] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-12 10:18:34] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 10:18:34] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 10:18:36] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:18:36] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 10:18:36] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 10:18:36] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-12 10:22:52] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 10:22:52] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 10:22:52] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 10:22:52] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 10:23:11] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-12 10:23:12] [INFO] [REQUEST] POST /google-auth
+[2025-04-12 10:23:12] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-12 11:23:12] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 11:23:13] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 11:23:15] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 11:23:15] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 11:23:15] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 11:23:15] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 11:25:23] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 11:25:23] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 11:25:26] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 11:25:26] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 11:25:26] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 11:25:27] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 11:25:27] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 13:01:33] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 13:01:33] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 13:01:37] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 13:01:37] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 13:01:37] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 13:01:38] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 13:01:38] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 13:01:38] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 13:03:12] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 13:03:13] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 13:03:13] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 13:03:13] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 13:04:23] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 13:04:24] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 13:04:27] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 13:04:27] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 13:04:27] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 13:04:27] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 13:04:27] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:45:32] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 20:45:33] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 20:45:44] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 20:45:46] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 20:45:48] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:45:48] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:45:48] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 20:45:49] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 20:45:49] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 20:45:49] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:45:49] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 20:46:10] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 20:46:10] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 20:46:12] [INFO] [REQUEST] GET /courses/67f5c3150a3211ae10306ddf
+[2025-04-12 20:46:12] [INFO] [REQUEST] GET /student/check-enrollment/67f5c3150a3211ae10306ddf
+[2025-04-12 20:46:12] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 20:46:12] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 20:46:12] [INFO] [REQUEST] GET /courses/67f5c3150a3211ae10306ddf/reviews?skip=0&limit=10
+[2025-04-12 20:46:12] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:46:12] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 20:46:15] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 20:46:15] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 20:46:18] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:46:18] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:46:18] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 20:46:18] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 20:46:18] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 20:46:18] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:46:19] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 20:46:40] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:46:40] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:46:40] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 20:46:40] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 20:46:40] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 20:46:41] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:46:41] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 20:58:14] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:58:14] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:58:15] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 20:58:15] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 20:58:15] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:58:16] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 20:58:16] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 20:58:29] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:58:29] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 20:58:29] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-12 20:58:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 20:58:29] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 20:58:29] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 20:58:30] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:01:01] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-12 21:01:01] [INFO] [REQUEST] POST /logout
+[2025-04-12 21:01:01] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-12 21:01:01] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:01:02] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:01:18] [INFO] [REQUEST] OPTIONS /login
+[2025-04-12 21:01:18] [INFO] [REQUEST] POST /login
+[2025-04-12 21:01:20] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-12 21:01:25] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:01:27] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:01:29] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:01:29] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:01:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:01:29] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-12 21:01:29] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 21:01:29] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:01:33] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:01:33] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:01:34] [INFO] [REQUEST] GET /courses/67f5c3150a3211ae10306ddf
+[2025-04-12 21:01:34] [INFO] [REQUEST] GET /student/check-enrollment/67f5c3150a3211ae10306ddf
+[2025-04-12 21:01:34] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:01:34] [INFO] [REQUEST] GET /courses/67f5c3150a3211ae10306ddf/reviews?skip=0&limit=10
+[2025-04-12 21:01:34] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-12 21:01:35] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:01:37] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:01:37] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:01:38] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-12 21:01:38] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-12 21:01:38] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:01:38] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/reviews?skip=0&limit=10
+[2025-04-12 21:01:38] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-12 21:01:38] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:01:40] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:01:40] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:01:42] [INFO] [REQUEST] GET /courses/67f61b700ee7af4df05c0b6f
+[2025-04-12 21:01:42] [INFO] [REQUEST] GET /student/check-enrollment/67f61b700ee7af4df05c0b6f
+[2025-04-12 21:01:42] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:01:42] [INFO] [REQUEST] GET /courses/67f61b700ee7af4df05c0b6f/reviews?skip=0&limit=10
+[2025-04-12 21:01:42] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 21:01:42] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:01:46] [INFO] [REQUEST] OPTIONS /student/enroll-course
+[2025-04-12 21:01:46] [INFO] [REQUEST] POST /student/enroll-course
+[2025-04-12 21:01:46] [INFO] [RESPONSE] Status: 200 Message: Successfully enrolled in the free course
+[2025-04-12 21:01:50] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:01:51] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:01:58] [INFO] [REQUEST] GET /courses/67f5c50f0a3211ae10306efe
+[2025-04-12 21:01:58] [INFO] [REQUEST] GET /student/check-enrollment/67f5c50f0a3211ae10306efe
+[2025-04-12 21:01:58] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:01:58] [INFO] [REQUEST] GET /courses/67f5c50f0a3211ae10306efe/reviews?skip=0&limit=10
+[2025-04-12 21:01:58] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 21:01:58] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:02:01] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:02:01] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:02:05] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-12 21:02:05] [INFO] [REQUEST] POST /logout
+[2025-04-12 21:02:05] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-12 21:02:15] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-12 21:02:15] [INFO] [REQUEST] POST /google-auth
+[2025-04-12 21:02:16] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-12 21:06:33] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:06:34] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:06:38] [INFO] [REQUEST] GET /courses/67f61b700ee7af4df05c0b6f
+[2025-04-12 21:06:38] [INFO] [REQUEST] GET /student/check-enrollment/67f61b700ee7af4df05c0b6f
+[2025-04-12 21:06:38] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:06:38] [INFO] [REQUEST] GET /courses/67f61b700ee7af4df05c0b6f/reviews?skip=0&limit=10
+[2025-04-12 21:06:38] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 21:06:38] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:06:41] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-12 21:06:42] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-12 21:06:44] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:06:44] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:06:44] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:06:44] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 21:06:44] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 21:06:44] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:06:47] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:06:47] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:06:47] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:06:47] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 21:06:47] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 21:06:47] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-12 21:07:28] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:07:28] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-12 21:07:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-12 21:07:29] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-12 21:07:29] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-12 21:07:29] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.

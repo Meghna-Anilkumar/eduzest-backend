@@ -5,7 +5,8 @@ export interface ILessonDTO {
   lessonNumber: string;
   title: string;
   description: string;
-  video: string;
+ 
+  videoKey: string; // Raw S3 key
   duration?: string;
   objectives?: string[];
 }
@@ -16,7 +17,8 @@ export interface IModuleDTO {
 }
 
 export interface ITrialDTO {
-  video?: string;
+  video?: string; // Signed URL
+  videoKey?: string; // Raw S3 key
 }
 
 export interface IPricing {
@@ -30,11 +32,12 @@ export interface IAttachment {
 }
 
 export interface ICourseDTO {
-  _id: string; // Add this
+  _id: string;
   title: string;
   description: string;
-  thumbnail: string;
-  instructorRef: { _id: string; name?: string; profile?: { profilePic: string } } | string; 
+  thumbnail: string; // Signed URL
+  thumbnailKey?: string; // Optional raw S3 key
+  instructorRef: { _id: string; name?: string; profile?: { profilePic: string } } | string;
   categoryRef: { _id: string; categoryName?: string } | string;
   language: string;
   level: "beginner" | "intermediate" | "advanced";

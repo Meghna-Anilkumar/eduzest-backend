@@ -8,6 +8,7 @@ export interface ILesson extends Document {
     video: string;
     duration?: string;
     objectives?: string[];
+    isNewVideo?: boolean;
 }
 
 // Interface for a Module

@@ -1,0 +1,1533 @@
+[2025-04-15 00:02:44] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 00:02:49] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 00:02:50] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 00:02:50] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 00:02:51] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 00:02:51] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 00:02:51] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 00:02:52] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:20:06] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:20:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:20:07] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:20:07] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:20:07] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:20:07] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:20:07] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:20:08] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:26:41] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:26:41] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:26:41] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:26:41] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:26:41] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:26:41] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:26:42] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:26:42] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:30:31] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:30:32] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:30:32] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:30:32] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:30:32] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:30:32] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:30:32] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:30:33] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:30:40] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:30:40] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:30:40] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:30:40] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:30:40] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:30:40] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:30:40] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:30:41] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:32:08] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:32:09] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:32:09] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:32:09] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 11:32:09] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:32:09] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:32:09] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:32:09] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:32:12] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 11:32:12] [INFO] [REQUEST] POST /logout
+[2025-04-15 11:32:12] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 11:32:23] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 11:32:23] [INFO] [REQUEST] POST /login
+[2025-04-15 11:32:24] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 11:32:29] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 11:32:29] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 11:32:31] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:32:31] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:32:31] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:32:31] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:32:31] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:32:31] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:32:31] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:32:32] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 11:39:37] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:39:38] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:39:38] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:39:38] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:39:38] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:39:38] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:39:38] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:39:49] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:39:49] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:39:50] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:39:50] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:39:50] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:39:50] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:39:50] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:40:16] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:40:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:40:17] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:40:17] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:40:17] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:40:17] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:40:17] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:47:01] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:47:01] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:47:01] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:47:02] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:47:02] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:47:02] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:47:02] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:54:40] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:54:41] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:54:41] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:54:41] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:54:41] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:54:41] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:54:41] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 11:58:11] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 11:58:11] [INFO] [REQUEST] POST /logout
+[2025-04-15 11:58:11] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 11:58:22] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 11:58:22] [INFO] [REQUEST] POST /login
+[2025-04-15 11:58:22] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 11:58:27] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 11:58:28] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 11:58:29] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:58:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 11:58:29] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:58:29] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 11:58:30] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 11:58:30] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 11:58:30] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:07:19] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:07:20] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:07:20] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:07:20] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:07:20] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 12:07:20] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:07:20] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:33:05] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:33:05] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:33:05] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:33:05] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:33:05] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 12:33:05] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:33:05] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:34:29] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:34:30] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:34:48] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 12:34:48] [INFO] [REQUEST] POST /logout
+[2025-04-15 12:34:48] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 12:34:53] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:34:53] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-15 12:34:53] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-15 12:34:53] [INFO] [REQUEST] GET /favicon.ico
+[2025-04-15 12:34:53] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-15 12:35:13] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 12:35:13] [INFO] [REQUEST] POST /login
+[2025-04-15 12:35:13] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 12:35:19] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 12:35:19] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 12:35:21] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 12:35:22] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:35:22] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 12:35:22] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 12:35:22] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:35:22] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:35:22] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 12:35:28] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 12:35:28] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 12:35:29] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:35:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:35:29] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:35:29] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:35:29] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:35:29] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 12:35:29] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 12:38:55] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:38:55] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:38:55] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:38:55] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:39:00] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:39:00] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:39:00] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:39:00] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:39:33] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:39:34] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 12:39:34] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:39:34] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 12:39:34] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 12:39:34] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 12:39:35] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:23:13] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:15] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:23:15] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:15] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:15] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:23:15] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:23:15] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:23:32] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:32] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:23:32] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:32] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:32] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:23:32] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:23:32] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:23:56] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:56] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:23:56] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:56] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:23:57] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:23:57] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:23:57] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:25:39] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:39] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:25:39] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:39] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:39] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:25:40] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:25:40] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:40] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:25:40] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:40] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:25:40] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:40] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:25:43] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:44] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:25:44] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:44] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:44] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:25:44] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:25:44] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:25:57] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:57] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:25:57] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:57] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:25:57] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:25:57] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:25:57] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:26:14] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:26:14] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:26:14] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:26:14] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:26:17] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:26:17] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:26:17] [INFO] [REQUEST] GET /student/check-enrollment/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:26:18] [INFO] [REQUEST] GET /student/review/67f65da9eb6fbdd6eee45aae
+[2025-04-15 13:26:18] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:26:18] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:26:18] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:26:36] [INFO] [REQUEST] GET /courses/67f65da9eb6fbdd6eee45aae/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnew+courseee%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:26:52] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 13:26:52] [INFO] [REQUEST] POST /logout
+[2025-04-15 13:26:52] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 13:27:00] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 13:27:00] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 13:27:01] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 13:27:08] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 13:27:08] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 13:27:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 13:27:10] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 13:27:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 13:27:10] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 13:27:37] [INFO] [REQUEST] OPTIONS /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:27:37] [INFO] [REQUEST] PUT /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:27:39] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 13:27:43] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 13:27:43] [INFO] [REQUEST] POST /logout
+[2025-04-15 13:27:43] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 13:27:56] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 13:27:56] [INFO] [REQUEST] POST /login
+[2025-04-15 13:27:57] [INFO] [RESPONSE] Status: 400 Message: Incorrect password.
+[2025-04-15 13:28:05] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 13:28:05] [INFO] [REQUEST] POST /login
+[2025-04-15 13:28:05] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 13:29:17] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-15 13:29:18] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-15 13:29:20] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:29:20] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:29:20] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:29:20] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-15 13:29:20] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/reviews?skip=0&limit=10
+[2025-04-15 13:29:20] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:29:23] [INFO] [REQUEST] OPTIONS /student/enroll-course
+[2025-04-15 13:29:23] [INFO] [REQUEST] POST /student/enroll-course
+[2025-04-15 13:29:23] [INFO] [RESPONSE] Status: 200 Message: Successfully enrolled in the free course
+[2025-04-15 13:29:27] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 13:29:27] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 13:29:30] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:29:30] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:29:30] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:29:30] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:29:30] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:29:30] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:29:30] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:29:49] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:30:00] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:30:23] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 13:30:23] [INFO] [REQUEST] POST /logout
+[2025-04-15 13:30:23] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 13:30:28] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 13:30:28] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 13:30:29] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 13:30:32] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 13:30:32] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 13:30:34] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 13:30:34] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 13:30:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 13:30:34] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 13:30:49] [INFO] [REQUEST] OPTIONS /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:30:49] [INFO] [REQUEST] PUT /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:30:51] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 13:30:55] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 13:30:55] [INFO] [REQUEST] POST /logout
+[2025-04-15 13:30:55] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 13:31:10] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 13:31:10] [INFO] [REQUEST] POST /login
+[2025-04-15 13:31:11] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 13:31:16] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 13:31:16] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 13:31:19] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:31:19] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:31:19] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:31:19] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:31:19] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:31:19] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:31:19] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:31:45] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:31:53] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 13:34:38] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:34:38] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:34:39] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:34:39] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:34:39] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:34:39] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:34:39] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:36:35] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:36:36] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:36:37] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:36:38] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:36:38] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:36:39] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:36:55] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:36:55] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:36:55] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:36:55] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:36:55] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:36:55] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:36:56] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:37:02] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:37:11] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 13:39:25] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:39:25] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:39:25] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:39:25] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:39:25] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:39:26] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:39:26] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:39:50] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:40:05] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 13:48:03] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:03] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 13:48:04] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:48:04] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:04] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:48:04] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:48:08] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:08] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:48:08] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:08] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:08] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:48:08] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:48:08] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:48:17] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:18] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:48:18] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:18] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:18] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:48:18] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:48:18] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:48:25] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:48:36] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:36] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:48:36] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:48:36] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:36] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:48:36] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:48:42] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:42] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 13:48:42] [INFO] [REQUEST] GET /student/check-enrollment/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:42] [INFO] [REQUEST] GET /student/review/67fcea92a856f564d8ee98c5
+[2025-04-15 13:48:42] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 13:48:42] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 13:48:42] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:48:46] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 13:49:22] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ffytfuyruy%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 13:51:34] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 13:51:34] [INFO] [REQUEST] POST /logout
+[2025-04-15 13:51:34] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 13:51:39] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 13:51:39] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 13:51:40] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 13:51:43] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 13:51:43] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 13:51:44] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 13:51:44] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 13:51:44] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 13:51:44] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 14:05:28] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:05:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:15:06] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:15:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:15:25] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:15:25] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:30:18] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:30:18] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:43:44] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:43:44] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:43:52] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:43:52] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:46:17] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:46:18] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:49:11] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:49:12] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:49:23] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:49:24] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:50:21] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:50:22] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 14:53:25] [INFO] [REQUEST] OPTIONS /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:53:25] [INFO] [REQUEST] PUT /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:53:25] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 14:53:43] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 14:53:43] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 14:53:43] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 14:53:43] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 14:54:35] [INFO] [REQUEST] OPTIONS /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:54:35] [INFO] [REQUEST] PUT /instructor/courses/67fcea92a856f564d8ee98c5
+[2025-04-15 14:54:35] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 15:08:16] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 15:08:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:08:28] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 15:08:28] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:13:22] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 15:13:23] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:13:46] [INFO] [REQUEST] GET /courses/67fcea92a856f564d8ee98c5
+[2025-04-15 15:13:46] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:17:38] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:17:38] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:17:38] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:17:39] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:17:50] [INFO] [REQUEST] OPTIONS /instructor/courses/67fce52b34f4d8638e5eb38c
+[2025-04-15 15:17:50] [INFO] [REQUEST] PUT /instructor/courses/67fce52b34f4d8638e5eb38c
+[2025-04-15 15:17:51] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:18:09] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:09] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:18:09] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:09] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:18:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:17] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:17] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:17] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:19] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:18:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:19] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:18:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:24] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:18:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:24] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:18:37] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:37] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:18:37] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:37] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:18:43] [INFO] [REQUEST] OPTIONS /instructor/courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 15:18:43] [INFO] [REQUEST] PUT /instructor/courses/67f65da9eb6fbdd6eee45aae
+[2025-04-15 15:18:43] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:18:46] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:46] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:18:46] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:46] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:18:52] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:52] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:18:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:52] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:18:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:54] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:18:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:18:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:18:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:18:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:10] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:10] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:10] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:10] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:14] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:14] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:15] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:17] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:18] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 15:19:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:18] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 15:19:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:37] [INFO] [REQUEST] POST /instructor/create-course
+[2025-04-15 15:19:39] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-04-15 15:19:39] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:19:39] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:19:39] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:19:40] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:19:47] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:19:47] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:19:47] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:21:17] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:21:17] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:21:20] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:21:26] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:21:26] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:21:26] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:21:42] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:21:42] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:21:43] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:26:08] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:26:09] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:35:02] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:35:03] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:35:31] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:35:32] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:35:39] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:35:40] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:41:24] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:41:24] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:48:35] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:49:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:49:03] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:49:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:49:04] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:49:08] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:49:08] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:49:08] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:49:09] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:49:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:49:11] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:49:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:49:11] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:49:15] [INFO] [REQUEST] GET /courses/67f5c3150a3211ae10306ddf/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:49:19] [INFO] [REQUEST] GET /courses/67f5c3150a3211ae10306ddf/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython+course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:49:37] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 15:49:37] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 15:49:37] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 15:49:37] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 15:49:57] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:49:57] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:50:01] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:50:04] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:50:12] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:50:16] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:50:25] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:51:57] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:51:58] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:52:12] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:52:31] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:52:47] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:53:35] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:54:21] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:54:25] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:54:45] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:54:45] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:54:50] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:56:27] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:56:28] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:56:31] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:56:35] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:56:42] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:56:44] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:58:34] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:58:34] [INFO] [REQUEST] PUT /instructor/courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:58:38] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 15:58:41] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:58:48] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:58:51] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 15:58:54] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:59:02] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 15:59:02] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 15:59:05] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:59:09] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:59:11] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 15:59:14] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:59:26] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:59:31] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 15:59:33] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:59:36] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 15:59:40] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 15:59:44] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 16:02:51] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:02:52] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:03:05] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:03:05] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:03:13] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:03:30] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 16:03:35] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 16:30:02] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:30:04] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:30:05] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:30:05] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:30:23] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 16:31:49] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 16:31:50] [INFO] [REQUEST] POST /logout
+[2025-04-15 16:31:50] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 16:32:03] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 16:32:03] [INFO] [REQUEST] POST /login
+[2025-04-15 16:32:03] [INFO] [RESPONSE] Status: 400 Message: Incorrect password.
+[2025-04-15 16:32:10] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 16:32:10] [INFO] [REQUEST] POST /login
+[2025-04-15 16:32:11] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 16:32:15] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-15 16:32:15] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-15 16:32:18] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 16:32:19] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 16:32:22] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:32:23] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:32:23] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:32:23] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:32:23] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 16:32:23] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:32:23] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 16:33:03] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 16:33:03] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 16:33:19] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:33:19] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:33:19] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:33:19] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:33:19] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 16:33:19] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 16:33:19] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:33:49] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:33:49] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:33:49] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:33:49] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:33:49] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 16:33:49] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:33:49] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 16:35:32] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:35:34] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:35:34] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:35:34] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-15 16:35:34] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 16:35:34] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 16:35:34] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/stream?videoKey=courses%2F67cdde4e30cdba190892403c%2Freact+course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:37:28] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 16:37:28] [INFO] [REQUEST] POST /logout
+[2025-04-15 16:37:28] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 16:37:35] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 16:37:36] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 16:37:36] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 16:37:44] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-15 16:37:44] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-15 16:37:47] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:37:47] [INFO] [REQUEST] GET /student/check-enrollment/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:37:47] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-15 16:37:47] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:37:47] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/reviews?skip=0&limit=10
+[2025-04-15 16:37:47] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 16:37:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 16:37:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 16:37:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 16:37:59] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 16:37:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 16:37:59] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 16:38:06] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:38:11] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 16:38:14] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 16:39:24] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:39:24] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:39:27] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:39:36] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 16:41:19] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 16:41:20] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 16:41:30] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 16:41:41] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 16:41:49] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 16:58:39] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 16:58:39] [INFO] [REQUEST] POST /logout
+[2025-04-15 16:58:39] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 16:58:52] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 16:58:52] [INFO] [REQUEST] POST /login
+[2025-04-15 16:58:53] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 16:58:59] [INFO] [REQUEST] GET /active-courses?page=1&limit=100
+[2025-04-15 16:58:59] [INFO] [REQUEST] GET /student/payment-history?userId=some-user-id&page=1&limit=5&search=&sortField=createdAt&sortOrder=desc
+[2025-04-15 16:58:59] [INFO] [RESPONSE] Status: 200 Message: Payments retrieved successfully
+[2025-04-15 16:58:59] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-15 16:59:49] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 16:59:49] [INFO] [REQUEST] POST /logout
+[2025-04-15 16:59:49] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 16:59:54] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 16:59:54] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 16:59:55] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 17:16:40] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:16:40] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:16:41] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:16:41] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:16:41] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:16:42] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:16:49] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:16:57] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 17:17:05] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 17:26:22] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 17:26:23] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 17:26:28] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 17:26:28] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 17:26:33] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:26:38] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 17:26:41] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 17:26:44] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:26:46] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 17:26:48] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 17:27:21] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20
+[2025-04-15 17:27:21] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 17:27:29] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:27:51] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 17:27:56] [INFO] [REQUEST] GET /courses/67fe2bb3e0360d20a35d2c20/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fruubgt868y%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 17:33:53] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:53] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:33:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:53] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:33:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:54] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:33:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:33:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:06] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:06] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:07] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:16] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:16] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:18] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 17:34:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:18] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 17:34:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:56] [INFO] [REQUEST] POST /instructor/create-course
+[2025-04-15 17:34:59] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-04-15 17:34:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:34:59] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:34:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:34:59] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:35:04] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:35:08] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 17:35:17] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:49:53] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 17:49:53] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 17:50:01] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 17:50:05] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:50:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:50:07] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:50:07] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:50:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:50:07] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:50:11] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:50:15] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 17:50:48] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:50:48] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:50:51] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 17:53:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:53:30] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:53:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:53:30] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:53:35] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:53:35] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 17:53:52] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:53:52] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:53:54] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 17:55:46] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:55:46] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:55:46] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:55:46] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:56:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 17:56:00] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 17:56:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 17:56:01] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 17:56:10] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 17:56:33] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:56:33] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:56:35] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 17:57:22] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 17:57:22] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:04:55] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:04:57] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:05:00] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:05:09] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:05:26] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:05:26] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:05:27] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 18:27:51] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:27:51] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:27:55] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:28:01] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:28:21] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:28:21] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:28:23] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 18:28:38] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 18:28:38] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 18:28:38] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 18:28:38] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 18:28:42] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 18:28:42] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 18:28:42] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 18:28:42] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 18:28:58] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:28:58] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:29:00] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 18:40:20] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:40:20] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:40:23] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:40:24] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:40:28] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:40:28] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:40:31] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:40:32] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:40:36] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:40:40] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:40:40] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:40:44] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:42:13] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:42:13] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:42:16] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:42:16] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:42:20] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:42:24] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:42:24] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:43:48] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:43:48] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:43:51] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:43:51] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:43:53] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:43:57] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:43:57] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:46:58] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:46:58] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:46:58] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 18:47:02] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:47:22] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:47:22] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:47:26] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-15 18:47:55] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:47:55] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:47:59] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:48:00] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:56:31] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:56:32] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 18:56:35] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 18:56:35] [INFO] [RESPONSE] Status: 500 Message: User: arn:aws:iam::211125411993:user/Meghna-Eduzest is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::eduzest-images" because no identity-based policy allows the s3:ListBucket action
+[2025-04-15 18:56:38] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:56:38] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:56:38] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 18:56:56] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:56:56] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:56:59] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 18:57:01] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:57:23] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:57:23] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 18:57:25] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 18:57:27] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 18:57:31] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 19:03:51] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:03:51] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 19:03:55] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 19:04:00] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 19:04:14] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:04:15] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:04:19] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 19:04:23] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-3.mp4
+[2025-04-15 19:04:27] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 19:04:30] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 19:08:15] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:08:15] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 19:08:18] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 19:08:35] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:08:35] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:08:41] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 19:08:45] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-4-1744724315290.mp4
+[2025-04-15 19:08:48] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-3-1744724315290.mp4
+[2025-04-15 19:08:51] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2-1744724315289.mp4
+[2025-04-15 19:08:54] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1-1744724315283.mp4
+[2025-04-15 19:09:05] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:09:05] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:09:08] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 19:09:11] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1-1744724345631.mp4
+[2025-04-15 19:09:14] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-5-1744724345635.mp4
+[2025-04-15 19:09:17] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-4-1744724345634.mp4
+[2025-04-15 19:35:50] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-15 19:35:50] [INFO] [REQUEST] POST /google-auth
+[2025-04-15 19:35:52] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-15 19:36:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:36:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:36:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:36:03] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 19:36:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:36:08] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 19:36:15] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1-1744724345631.mp4
+[2025-04-15 19:36:19] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2-1744724345632.mp4
+[2025-04-15 19:36:21] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-3-1744724345633.mp4
+[2025-04-15 19:46:39] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:46:41] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 19:46:44] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1-1744724345631.mp4
+[2025-04-15 19:46:50] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-3-1744724345633.mp4
+[2025-04-15 19:46:52] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-5-1744724345635.mp4
+[2025-04-15 19:47:01] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:47:01] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:47:03] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 19:47:06] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2-1744726621307.mp4
+[2025-04-15 19:47:15] [INFO] [REQUEST] OPTIONS /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:47:15] [INFO] [REQUEST] PUT /instructor/courses/67fe4b6b35e3efadf1f3ff68
+[2025-04-15 19:47:21] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-15 19:47:24] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-2-1744726635286.mp4
+[2025-04-15 19:47:27] [INFO] [REQUEST] GET /courses/67fe4b6b35e3efadf1f3ff68/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fnewwwwwwwwwwwwwwwww%2Fmodule-1%2Flesson-1-1744726635285.mp4
+[2025-04-15 19:51:53] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:53] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 19:51:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:53] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 19:51:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:51:54] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:51:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:51:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:07] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:08] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:08] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:09] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:09] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:20] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:20] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:20] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:20] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:21] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-15 19:52:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:52:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:52:21] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-15 19:52:57] [INFO] [REQUEST] POST /instructor/create-course
+[2025-04-15 19:53:00] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-04-15 19:53:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-15 19:53:00] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-15 19:53:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-15 19:53:00] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-15 19:53:05] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ftttttttttttttttttttttttttt%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 19:53:09] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ftttttttttttttttttttttttttt%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 19:53:17] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ftttttttttttttttttttttttttt%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 19:53:30] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-15 19:53:30] [INFO] [REQUEST] POST /logout
+[2025-04-15 19:53:30] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-15 19:53:42] [INFO] [REQUEST] OPTIONS /login
+[2025-04-15 19:53:42] [INFO] [REQUEST] POST /login
+[2025-04-15 19:53:42] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-15 19:53:46] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-15 19:53:46] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-15 19:53:49] [INFO] [REQUEST] GET /courses/67f5c50f0a3211ae10306efe
+[2025-04-15 19:53:49] [INFO] [REQUEST] GET /student/check-enrollment/67f5c50f0a3211ae10306efe
+[2025-04-15 19:53:49] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-15 19:53:49] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 19:53:49] [INFO] [REQUEST] GET /courses/67f5c50f0a3211ae10306efe/reviews?skip=0&limit=10
+[2025-04-15 19:53:49] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 19:53:53] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-15 19:53:53] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-15 19:53:55] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a
+[2025-04-15 19:53:55] [INFO] [REQUEST] GET /student/check-enrollment/67fe6bc4b16fe390e7f6158a
+[2025-04-15 19:53:55] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 19:53:55] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/reviews?skip=0&limit=10
+[2025-04-15 19:53:55] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-15 19:53:55] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 19:53:57] [INFO] [REQUEST] OPTIONS /student/enroll-course
+[2025-04-15 19:53:57] [INFO] [REQUEST] POST /student/enroll-course
+[2025-04-15 19:53:58] [INFO] [RESPONSE] Status: 200 Message: Successfully enrolled in the free course
+[2025-04-15 19:54:03] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-15 19:54:03] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-15 19:54:05] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a
+[2025-04-15 19:54:05] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-15 19:54:05] [INFO] [REQUEST] GET /student/check-enrollment/67fe6bc4b16fe390e7f6158a
+[2025-04-15 19:54:05] [INFO] [REQUEST] GET /student/review/67fe6bc4b16fe390e7f6158a
+[2025-04-15 19:54:05] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-15 19:54:06] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-15 19:54:06] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ftttttttttttttttttttttttttt%2Fmodule-1%2Flesson-1.mp4
+[2025-04-15 19:54:24] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ftttttttttttttttttttttttttt%2Fmodule-1%2Flesson-2.mp4
+[2025-04-15 19:54:50] [INFO] [REQUEST] OPTIONS /student/reviews
+[2025-04-15 19:54:50] [INFO] [REQUEST] POST /student/reviews
+[2025-04-15 19:54:51] [INFO] [RESPONSE] Status: 200 Message: Review added successfully.
+[2025-04-15 19:55:03] [INFO] [REQUEST] GET /courses/67fe6bc4b16fe390e7f6158a/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Ftttttttttttttttttttttttttt%2Fmodule-1%2Flesson-1.mp4

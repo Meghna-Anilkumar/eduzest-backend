@@ -927,3 +927,33 @@ Use mongoose.model(name, schema)
 [2025-04-11 16:54:30] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
 [2025-04-11 21:44:23] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
 [2025-04-11 21:44:25] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-11 21:50:54] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-11 21:50:54] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-11 21:51:00] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-11 21:51:00] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-11 21:51:03] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 21:51:03] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-11 21:51:03] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 21:51:03] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-11 22:31:23] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:31:25] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-11 22:31:25] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:31:25] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-11 22:32:49] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:32:50] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-11 22:32:50] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:32:51] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-11 22:57:38] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:57:40] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-11 22:57:41] [INFO] [REQUEST] GET /student/review/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:57:41] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-11 22:58:23] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-11 22:58:24] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-11 22:58:38] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-11 22:58:39] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-11 22:58:45] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:58:45] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-11 22:58:45] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-11 22:58:45] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-11 22:58:45] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c/reviews?skip=0&limit=10
+[2025-04-11 22:58:45] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server

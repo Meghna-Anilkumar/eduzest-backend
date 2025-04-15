@@ -71,6 +71,24 @@ export class CourseRepository extends BaseRepository<ICourse> {
             .exec();
     }
 
+    async getCourseByInstructor(courseId: string, instructorId: string): Promise<ICourse | null> {
+        return this._model
+            .findOne({
+                _id: courseId,
+                instructorRef: new Types.ObjectId(instructorId),
+            })
+            .populate({
+                path: "instructorRef",
+                select: "name email profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .populate({
+                path: "modules.lessons",
+                select: "title duration video",
+            })
+            .exec();
+    }
+
     async editCourse(
         courseId: string,
         instructorId: string,

@@ -55,6 +55,7 @@ export interface ICourseService {
         sort?: SortOptions
     ): Promise<IResponse>;
     getCourseById(courseId: string): Promise<IResponse>
+    getCourseByInstructor(courseId: string, instructorId: string): Promise<IResponse>;
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<IResponse>;
 }
 
@@ -87,4 +88,5 @@ export interface IReviewService {
     addReview(userId: string, reviewData: Partial<IReview>): Promise<IResponse>;
     getReviewsByCourse(courseId: string, page: number, limit: number): Promise<IResponse>;
     getReviewByUserAndCourse(userId: string, courseId: string): Promise<IResponse>;
+
 }

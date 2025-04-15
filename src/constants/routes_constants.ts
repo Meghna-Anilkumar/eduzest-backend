@@ -17,6 +17,7 @@ export const USER_ROUTES = {
     REFRESH_SIGNED_URL: '/refresh-signed-url',
     GET_ALL_ACTIVE_COURSES: '/active-courses',
     GET_COURSE_BY_ID: '/courses/:id',
+    STREAM_VIDEO: "/courses/:courseId/stream",
     GET_REVIEWS: "/courses/:courseId/reviews"
 }
 
@@ -42,6 +43,7 @@ export const INSTRUCTOR_ROUTES = {
     CREATE_COURSE: '/create-course',
     GET_ALL_COURSES_BYINSTRUCTOR: '/courses',
     EDIT_COURSE: '/courses/:id',
+    GET_COURSE_BYINSTRUCTOR:'/courses/:id'
 }
 
 

@@ -40,7 +40,7 @@ const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 
 // Instantiate controllers
 const userController = new UserController(userService, paymentService);
-const courseController = new CourseController(courseService);
+const courseController = new CourseController(courseService,enrollCourseService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService)
 const reviewController = new ReviewController(reviewService);
 
@@ -75,6 +75,11 @@ userRouter.post(USER_ROUTES.REFRESH_TOKEN, userController.refreshToken.bind(user
 
 userRouter.get(USER_ROUTES.GET_ALL_ACTIVE_COURSES, courseController.getAllActiveCourses.bind(courseController) as RequestHandler);
 userRouter.get(USER_ROUTES.GET_COURSE_BY_ID, courseController.getCourseById.bind(courseController))
-
+userRouter.get(USER_ROUTES.GET_REVIEWS,reviewController.getReviewsByCourse.bind(reviewController)) 
+userRouter.get(
+    USER_ROUTES.STREAM_VIDEO,
+    authenticateUser(),
+    courseController.streamVideo.bind(courseController) as RequestHandler
+  );
 
 export default userRouter   

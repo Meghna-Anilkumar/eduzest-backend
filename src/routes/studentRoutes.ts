@@ -59,7 +59,6 @@ studentRouter.post(
 
 studentRouter.get(
   STUDENT_ROUTES.CHECK_ENROLLMENT,
-  authenticateUser(Role.student),
   enrollCourseController.checkEnrollment.bind(enrollCourseController)
 );
 

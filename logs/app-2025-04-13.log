@@ -1,0 +1,24 @@
+[2025-04-13 22:45:00] [INFO] [REQUEST] GET /courses/67f61c2d0ee7af4df05c0c7c
+[2025-04-13 22:45:01] [INFO] [REQUEST] GET /student/check-enrollment/67f61c2d0ee7af4df05c0c7c
+[2025-04-13 22:45:01] [INFO] [RESPONSE] Status: 401 Message: User not authenticated
+[2025-04-13 22:45:01] [INFO] [REQUEST] POST /users/refresh-token
+[2025-04-13 22:45:01] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-13 22:45:04] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-13 22:45:07] [INFO] [REQUEST] GET /getUserdata
+[2025-04-13 22:45:07] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-13 22:45:07] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-13 22:45:07] [INFO] [REQUEST] POST /users/refresh-token
+[2025-04-13 22:45:07] [INFO] [RESPONSE] Status: 404 Message: The requested URL not found on this server
+[2025-04-13 22:45:16] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-13 22:45:16] [INFO] [REQUEST] POST /google-auth
+[2025-04-13 22:45:16] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-13 22:45:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-13 22:45:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-13 22:45:36] [INFO] [REQUEST] GET /getUserdata
+[2025-04-13 22:45:36] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-13 22:45:36] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-13 22:45:36] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-13 22:47:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-13 22:47:20] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-13 22:47:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-13 22:47:21] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.

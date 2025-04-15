@@ -1,18 +1,19 @@
 import { PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Request, Response } from "express";
-import { ICourseService } from "../interfaces/IServices";
+import { ICourseService, IEnrollCourseService } from "../interfaces/IServices";
 import { Status } from "../utils/enums";
 import { AuthRequest } from "../interfaces/AuthRequest";
-import { s3 } from "../config/s3Config";
 import { Types } from "mongoose";
 import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } from "../interfaces/ICourse";
+import { ILessonDTO,IModuleDTO } from "../interfaces/ICourseDTO";
 import { s3Service } from "../services/s3Service";
 
 
 
 class CourseController {
-  constructor(private _courseService: ICourseService) { }
+  constructor(private _courseService: ICourseService,
+    private _enrollmentService: IEnrollCourseService) { }
 
   async createCourse(req: AuthRequest, res: Response): Promise<void> {
     try {
@@ -215,11 +216,11 @@ class CourseController {
     }
   }
 
-
-  async editCourse(req: AuthRequest, res: Response): Promise<void> {
+  async getCourseByInstructor(req: AuthRequest, res: Response): Promise<void> {
     try {
-    
       const instructorId = req.user?.id;
+      const courseId = req.params.id;
+
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
@@ -228,6 +229,46 @@ class CourseController {
         return;
       }
 
+      if (!courseId || !Types.ObjectId.isValid(courseId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "Valid Course ID is required.",
+        });
+        return;
+      }
+
+      const response = await this._courseService.getCourseByInstructor(courseId, instructorId);
+
+      if (!response.success || !response.data) {
+        res.status(response.error?.statusCode || Status.NOT_FOUND).json(response);
+        return;
+      }
+
+      const courseWithSignedUrls = await s3Service.addSignedUrlsToCourse(response.data as ICourse);
+      response.data = courseWithSignedUrls;
+
+      res.status(Status.OK).json(response);
+    } catch (error) {
+      console.error("Error in getCourseByInstructor controller:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : "Internal server error.",
+      });
+    }
+  }
+
+
+  async editCourse(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const instructorId = req.user?.id;
+      if (!instructorId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: "Instructor ID not found in token.",
+        });
+        return;
+      }
+  
       const courseId = req.params.id;
     
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
@@ -237,14 +278,14 @@ class CourseController {
         });
         return;
       }
-
+  
       const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
       const thumbnailFile = files?.thumbnail?.[0];
       const videoFiles = files?.videos || [];
-
+  
       const rawUpdateData = req.body.courseData ? JSON.parse(req.body.courseData) : {};
       const updateData: ICourseUpdate = {};
-
+  
       if (rawUpdateData.title) updateData.title = rawUpdateData.title;
       if (rawUpdateData.description) updateData.description = rawUpdateData.description;
       if (rawUpdateData.language) updateData.language = rawUpdateData.language;
@@ -252,8 +293,7 @@ class CourseController {
       if (rawUpdateData.pricing) updateData.pricing = rawUpdateData.pricing;
       if (rawUpdateData.isRequested !== undefined) updateData.isRequested = rawUpdateData.isRequested;
       if (rawUpdateData.isPublished !== undefined) updateData.isPublished = rawUpdateData.isPublished;
-
-
+  
       if (typeof rawUpdateData.instructorRef === 'string') {
         const instructorIdMatch = rawUpdateData.instructorRef.match(/'([a-fA-F0-9]{24})'/);
         if (instructorIdMatch && instructorIdMatch[1]) {
@@ -264,7 +304,7 @@ class CourseController {
       } else if (rawUpdateData.instructorRef && typeof rawUpdateData.instructorRef === 'object' && '_id' in rawUpdateData.instructorRef) {
         updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef._id);
       }
-
+  
       if (typeof rawUpdateData.categoryRef === 'string') {
         const categoryIdMatch = rawUpdateData.categoryRef.match(/'([a-fA-F0-9]{24})'/);
         if (categoryIdMatch && categoryIdMatch[1]) {
@@ -275,7 +315,7 @@ class CourseController {
       } else if (rawUpdateData.categoryRef && typeof rawUpdateData.categoryRef === 'object' && '_id' in rawUpdateData.categoryRef) {
         updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef._id);
       }
-
+  
       if (thumbnailFile) {
         const thumbnailKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/thumbnail.${thumbnailFile.mimetype.split("/")[1]}`;
         console.log("Uploading thumbnail to S3 with key:", thumbnailKey);
@@ -288,8 +328,24 @@ class CourseController {
       } else {
         console.log("Ignoring signed URL in rawUpdateData.thumbnail:", rawUpdateData.thumbnail);
       }
-
+  
       if (rawUpdateData.modules) {
+        // Create a map to track which videos are associated with which lesson
+        const videoMap: Map<string, number> = new Map();
+        
+        // First parse the incoming data to identify which lessons need new videos
+        if (videoFiles.length > 0 && req.body.videoMapping) {
+          // Parse the mapping of videos to lesson positions
+          try {
+            const videoMapping = JSON.parse(req.body.videoMapping);
+            Object.entries(videoMapping).forEach(([index, lessonIdentifier]) => {
+              videoMap.set(lessonIdentifier as string, parseInt(index));
+            });
+          } catch (error) {
+            console.error("Error parsing video mapping:", error);
+          }
+        }
+  
         let modules: IModule[] = rawUpdateData.modules.map((module: IModule) => ({
           ...module,
           lessons: module.lessons.map((lesson: ILesson) => {
@@ -305,19 +361,37 @@ class CourseController {
             return lesson;
           }),
         }));
-
+  
         if (videoFiles.length > 0) {
-          let videoIndex = 0;
           modules = await Promise.all(
             modules.map(async (module: IModule, moduleIndex: number) => {
               const lessons: ILesson[] = await Promise.all(
                 module.lessons.map(async (lesson: ILesson, lessonIndex: number) => {
-                  if (videoIndex < videoFiles.length && (!lesson.video || lesson.video === "")) {
-                    const videoFile = videoFiles[videoIndex];
-                    const videoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}.${videoFile.mimetype.split("/")[1]}`;
-                    await s3Service.uploadFile(videoKey, videoFile.buffer, videoFile.mimetype);
-                    videoIndex++;
-                    return { ...lesson, video: videoKey } as ILesson;
+                  // Create a unique identifier for this lesson
+                  const lessonIdentifier = `${moduleIndex}-${lessonIndex}`;
+                  
+                  // Check if this lesson has a new video assigned in the mapping
+                  if (videoMap.has(lessonIdentifier)) {
+                    const videoIndex = videoMap.get(lessonIdentifier)!;
+                    
+                    if (videoIndex >= 0 && videoIndex < videoFiles.length) {
+                      const videoFile = videoFiles[videoIndex];
+                      // Create a unique key for this video using both module and lesson indices
+                      const videoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}-${Date.now()}.${videoFile.mimetype.split("/")[1]}`;
+                      await s3Service.uploadFile(videoKey, videoFile.buffer, videoFile.mimetype);
+                      return { ...lesson, video: videoKey } as ILesson;
+                    }
+                  } else if (!lesson.video || lesson.video === "") {
+                    // Fallback to the old behavior if no mapping is provided
+                    // This is mainly for backward compatibility
+                    const availableVideoIndex = 0; // Use first available video
+                    if (availableVideoIndex < videoFiles.length) {
+                      const videoFile = videoFiles[availableVideoIndex];
+                      // Add timestamp to ensure uniqueness
+                      const videoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}-${Date.now()}.${videoFile.mimetype.split("/")[1]}`;
+                      await s3Service.uploadFile(videoKey, videoFile.buffer, videoFile.mimetype);
+                      return { ...lesson, video: videoKey } as ILesson;
+                    }
                   }
                   return lesson;
                 })
@@ -326,9 +400,10 @@ class CourseController {
             })
           );
         }
-
+  
         updateData.modules = modules;
       }
+      
       const response = await this._courseService.editCourse(courseId, instructorId, updateData);
       if (response.success && response.data) {
         response.data = await s3Service.addSignedUrlsToCourse(response.data as ICourse);
@@ -340,6 +415,126 @@ class CourseController {
         success: false,
         message: error instanceof Error ? error.message : "Internal server error.",
       });
+    }
+  }
+
+
+  async streamVideo(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const userId = req.user?.id;
+      const courseId = req.params.courseId;
+      let videoKey = req.query.videoKey as string;
+  
+      console.log("streamVideo request:", { userId, courseId, videoKey });
+  
+      if (!userId || !courseId || !videoKey) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "User ID, course ID, and video key are required.",
+        });
+        return;
+      }
+  
+      // Sanitize videoKey, allowing spaces and proper decoding
+      videoKey = decodeURIComponent(videoKey).replace(/[^a-zA-Z0-9\s\/._-]/g, "");
+      console.log("Sanitized videoKey:", videoKey);
+      if (!videoKey.startsWith(`courses/`)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "Invalid video key.",
+        });
+        return;
+      }
+  
+      // Verify enrollment
+      // const isEnrolled = await this._enrollmentService.checkEnrollment(userId, courseId);
+      // console.log("Enrollment check result:", isEnrolled);
+      // if (!isEnrolled) {
+      //   res.status(Status.FORBIDDEN).json({
+      //     success: false,
+      //     message: "You must be enrolled to stream this video.",
+      //   });
+      //   return;
+      // }
+  
+      // Handle range request
+      const range = req.headers.range;
+      let start = 0;
+      let end: number | undefined;
+      let contentLength: number | undefined;
+  
+      // Get object metadata using HeadObjectCommand
+      const metadata = await s3Service.getObject(videoKey, true);
+      if (!metadata.ContentLength) {
+        res.status(Status.INTERNAL_SERVER_ERROR).json({
+          success: false,
+          message: `Unable to determine video size for key: ${videoKey}`,
+        });
+        return;
+      }
+      const totalLength = metadata.ContentLength;
+      contentLength = totalLength;
+  
+      if (range) {
+        const parts = range.replace(/bytes=/, "").split("-");
+        start = parseInt(parts[0], 10);
+        end = parts[1] ? parseInt(parts[1], 10) : totalLength - 1;
+  
+        if (start >= totalLength || end >= totalLength || start > end) {
+          res.status(206).json({
+            success: false,
+            message: "Range out of bounds",
+          });
+          return;
+        }
+  
+        contentLength = end - start + 1;
+      }
+  
+      // Fetch the stream with range if specified
+      const { Body, ContentType } = await s3Service.getObject(videoKey, false, range ? `bytes=${start}-${end}` : undefined);
+      if (!Body) {
+        res.status(Status.NOT_FOUND).json({
+          success: false,
+          message: `Video not found for key: ${videoKey}`,
+        });
+        return;
+      }
+  
+      // Set headers
+      res.setHeader("Content-Type", ContentType || "video/mp4");
+      res.setHeader("Accept-Ranges", "bytes");
+  
+      if (range && contentLength && totalLength) {
+        res.setHeader("Content-Range", `bytes ${start}-${end}/${totalLength}`);
+        res.setHeader("Content-Length", contentLength);
+        res.status(Status.PARTIAL_CONTENT);
+      } else {
+        res.setHeader("Content-Length", contentLength);
+        res.status(Status.OK);
+      }
+  
+      // Pipe the stream to response
+      Body.pipe(res);
+    } catch (error) {
+      console.error("Error in streamVideo controller:", error);
+      const errorMessage = error instanceof Error ? error.message : "Internal server error.";
+      if (errorMessage.includes("AccessDenied")) {
+        res.status(Status.FORBIDDEN).json({
+          success: false,
+          message: "Access denied. Please contact support to verify your permissions.",
+        });
+      } else if (errorMessage.includes("NoSuchKey")) {
+        res.status(Status.NOT_FOUND).json({
+          success: false,
+          message: `Video not found for key: ${req.query.videoKey}`,
+        });
+      } else {
+        res.status(Status.INTERNAL_SERVER_ERROR).json({
+          success: false,
+          message: errorMessage,
+        });
+      }
     }
   }
 }

@@ -6,26 +6,6 @@
     "auditLog": "logs\\.7f51793010d5ab60fc8ed266ecf162bebd71329a-audit.json",
     "files": [
         {
-            "date": 1743737572486,
-            "name": "logs\\app-2025-04-04.log",
-            "hash": "b1ea0fd3a3a73e45d3d29c7a0df51d8c9545a1518794cc6de3b9d7806455932e"
-        },
-        {
-            "date": 1743823491362,
-            "name": "logs\\app-2025-04-05.log",
-            "hash": "6d72bd1c6bc36686c56065824ddd2827be44ed08cd419ad4ee268fce28093a55"
-        },
-        {
-            "date": 1743914020094,
-            "name": "logs\\app-2025-04-06.log",
-            "hash": "b418c05e511a0a3c16931f8658a6570e018f9213f144ee72ac730873b906ff8d"
-        },
-        {
-            "date": 1744033914729,
-            "name": "logs\\app-2025-04-07.log",
-            "hash": "3499eb9ddb0e1bf6646234a72f135e61960d96702f5636b5991a53205e4a002a"
-        },
-        {
             "date": 1744079528914,
             "name": "logs\\app-2025-04-08.log",
             "hash": "4dcc4b17e50615153396083d3521e108c4036f56e15dfd5d0d280baa9592f16c"
@@ -44,6 +24,26 @@
             "date": 1744310574598,
             "name": "logs\\app-2025-04-11.log",
             "hash": "0d2b3c549b0becc771601a2ec4312d361480f5b31a034533314f93ccdd9f6f4e"
+        },
+        {
+            "date": 1744433173194,
+            "name": "logs\\app-2025-04-12.log",
+            "hash": "95b75342db6f81c584eebd9dc642df2cbe1d2111f9c65f8c5be32b1475c9502a"
+        },
+        {
+            "date": 1744522537036,
+            "name": "logs\\app-2025-04-13.log",
+            "hash": "d5fc9ba0b4a156e25a3374e89d0bfb9c4b1ce97b71c9ae1b9cd647e956280e71"
+        },
+        {
+            "date": 1744601488419,
+            "name": "logs\\app-2025-04-14.log",
+            "hash": "9501f32aea176e0f3a1ba02631706dec4da065cb727921d8e4182812a185426a"
+        },
+        {
+            "date": 1744655564424,
+            "name": "logs\\app-2025-04-15.log",
+            "hash": "9013bfac48703361eb300f3bf2f2c51a26199affdd794120277c6f2352b2b36a"
         }
     ],
     "hashType": "sha256"

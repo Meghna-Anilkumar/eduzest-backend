@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { IResponse } from "../interfaces/IResponse";
-import { ICourse, ITrial } from "../interfaces/ICourse";
+import { ICourse} from "../interfaces/ICourse";
 import { ICourseRepository } from "../interfaces/IRepositories";
 import { ICategoryRepository } from "../interfaces/IRepositories";
 import { validateCourseData } from "../utils/courseValidation";
@@ -200,6 +200,51 @@ export class CourseService {
         message: "An error occurred while fetching the course.",
         error: {
           message: error instanceof Error ? error.message : "Unknown error"
+        },
+      };
+    }
+  }
+
+  async getCourseByInstructor(courseId: string, instructorId: string): Promise<IResponse> {
+    try {
+      if (!courseId || !Types.ObjectId.isValid(courseId)) {
+        return {
+          success: false,
+          message: "Valid Course ID is required.",
+          error: { message: "Invalid course ID."},
+        };
+      }
+  
+      if (!instructorId || !Types.ObjectId.isValid(instructorId)) {
+        return {
+          success: false,
+          message: "Valid Instructor ID is required.",
+          error: { message: "Invalid instructor ID." }
+        };
+      }
+  
+      const course = await this._courseRepository.getCourseByInstructor(courseId, instructorId);
+  
+      if (!course) {
+        return {
+          success: false,
+          message: "Course not found or you are not authorized to access this course.",
+          error: { message: "Course not found."},
+        };
+      }
+  
+      return {
+        success: true,
+        message: "Course fetched successfully.",
+        data: course,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: "An error occurred while fetching the course.",
+        error: {
+          message: error instanceof Error ? error.message : "Unknown error",
+         
         },
       };
     }
