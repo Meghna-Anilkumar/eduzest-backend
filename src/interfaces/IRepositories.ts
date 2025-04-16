@@ -8,6 +8,7 @@ import { Types } from "mongoose";
 import { PaymentDoc } from '../models/paymentModel';
 import { EnrollmentDoc } from '../models/enrollmentModel';
 import { IReview } from './IReview';
+import { LessonProgress } from '../models/enrollmentModel';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -114,6 +115,14 @@ export interface IEnrollmentRepository {
         enrollmentId: string,
         status: EnrollmentDoc["completionStatus"]
     ): Promise<EnrollmentDoc | null>;
+    updateLessonProgress(
+        userId: string,
+        courseId: string,
+        lessonId: string,
+        progress: number
+    ): Promise<EnrollmentDoc | null>;
+
+    getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]>;
 }
 
 

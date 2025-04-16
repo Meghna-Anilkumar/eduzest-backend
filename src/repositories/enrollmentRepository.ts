@@ -1,11 +1,15 @@
-import { EnrollmentDoc, Enrollments } from "../models/enrollmentModel";
+import { EnrollmentDoc, Enrollments, LessonProgress } from "../models/enrollmentModel";
 import { BaseRepository } from "./baseRepository";
 import { IEnrollmentRepository } from "../interfaces/IRepositories";
 import { Types } from "mongoose";
+import { IRedisService } from "../interfaces/IServices";
 
 export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implements IEnrollmentRepository {
-  constructor() {
+  private redisService: IRedisService;
+
+  constructor(redisService: IRedisService) {
     super(Enrollments);
+    this.redisService = redisService;
   }
 
   async findByUserId(userId: string): Promise<EnrollmentDoc[]> {
@@ -36,5 +40,56 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     status: EnrollmentDoc["completionStatus"]
   ): Promise<EnrollmentDoc | null> {
     return this.update({ _id: enrollmentId }, { completionStatus: status }, { new: true });
+  }
+
+  async updateLessonProgress(
+    userId: string,
+    courseId: string,
+    lessonId: string,
+    progress: number
+  ): Promise<EnrollmentDoc | null> {
+    const enrollment = await this.findByUserAndCourse(userId, courseId);
+    if (!enrollment) return null;
+
+    const lessonProgress = enrollment.lessonProgress.find(
+      (lp) => lp.lessonId.toString() === lessonId
+    );
+
+    const newProgress = Math.min(progress, 100);
+    const updatedProgress = {
+      lessonId: new Types.ObjectId(lessonId),
+      progress: newProgress,
+      isCompleted: newProgress >= 90,
+      lastWatched: new Date(),
+    };
+
+    if (lessonProgress) {
+      if (newProgress > lessonProgress.progress) {
+        lessonProgress.progress = newProgress;
+        lessonProgress.isCompleted = newProgress >= 90 || lessonProgress.isCompleted;
+      }
+      lessonProgress.lastWatched = updatedProgress.lastWatched;
+    } else {
+      enrollment.lessonProgress.push(updatedProgress);
+    }
+
+    const updatedEnrollment = await enrollment.save();
+
+    await this.redisService.setProgress(userId, courseId, enrollment.lessonProgress);
+
+    return updatedEnrollment;
+  }
+
+
+  async getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]> {
+    const cachedProgress = await this.redisService.getProgress(userId, courseId);
+    if (cachedProgress) {
+      return cachedProgress;
+    }
+
+    const enrollment = await this.findByUserAndCourse(userId, courseId);
+    const progress = enrollment?.lessonProgress || [];
+    await this.redisService.setProgress(userId, courseId, progress);
+    return progress;
   }
 }

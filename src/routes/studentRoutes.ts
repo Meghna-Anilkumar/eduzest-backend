@@ -16,14 +16,15 @@ import ReviewRepository from "../repositories/reviewRepository";
 import { ReviewService } from "../services/reviewServices";
 import ReviewController from "../controllers/reviewController";
 import { STUDENT_ROUTES } from "../constants/routes_constants";
-import { Role } from "../interfaces/IEnums";
+import { Role } from "../utils/Enum";
+import { redisService, RedisService } from "../services/redisService";
 
 
 const userRepository = new UserRepository();
 const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
 const paymentRepository = new PaymentRepository();
-const enrollmentRepository = new EnrollmentRepository();
+const enrollmentRepository = new EnrollmentRepository(redisService);
 const categoryRepository = new CategoryRepository();
 const reviewRepository = new ReviewRepository();
 
@@ -31,7 +32,7 @@ const reviewRepository = new ReviewRepository();
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository,categoryRepository);
-const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository,redisService);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository); 
 
 
@@ -82,6 +83,18 @@ studentRouter.post(
 );
 
 studentRouter.get(STUDENT_ROUTES.GET_REVIEW, reviewController.getReviewsByCourse.bind(reviewController) as RequestHandler);
+
+studentRouter.post(
+  STUDENT_ROUTES.UPDATE_LESSON_PROGRESS,
+  authenticateUser(),
+  enrollCourseController.updateLessonProgress.bind(enrollCourseController)
+);
+
+studentRouter.get(
+  STUDENT_ROUTES.GET_LESSON_PROGRESS,
+  authenticateUser(),
+  enrollCourseController.getLessonProgress.bind(enrollCourseController)
+);
 
 
 export default studentRouter;

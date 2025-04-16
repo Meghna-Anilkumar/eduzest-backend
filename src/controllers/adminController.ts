@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Status } from "../utils/enums";
-import { Cookie } from "../interfaces/IEnums";
+import { Cookie } from "../utils/Enum";
 import { IAdminService } from "../interfaces/IServices";
 
 

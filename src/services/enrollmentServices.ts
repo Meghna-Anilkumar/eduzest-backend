@@ -3,12 +3,14 @@ import { UserRepository } from "../repositories/userRepository";
 import { CourseRepository } from "../repositories/courseRepository";
 import { IResponse } from "../interfaces/IResponse";
 import { Types } from "mongoose";
+import { IRedisService } from "../interfaces/IServices";
 
 export class EnrollCourseService {
   constructor(
     private enrollmentRepository: IEnrollmentRepository,
     private userRepository: UserRepository,
-    private courseRepository: CourseRepository
+    private courseRepository: CourseRepository,
+    private redisService: IRedisService
   ) {}
 
 
@@ -133,6 +135,58 @@ export class EnrollCourseService {
       return {
         success: false,
         message: "Failed to fetch enrollments",
+      };
+    }
+  }
+
+
+  async updateLessonProgress(
+    userId: string,
+    courseId: string,
+    lessonId: string,
+    progress: number
+  ): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId) || !Types.ObjectId.isValid(lessonId)) {
+        return { success: false, message: "Invalid userId, courseId, or lessonId" };
+      }
+
+      const enrollment = await this.enrollmentRepository.updateLessonProgress(userId, courseId, lessonId, progress);
+      if (!enrollment) {
+        return { success: false, message: "Enrollment not found" };
+      }
+
+      return {
+        success: true,
+        message: "Lesson progress updated successfully",
+        data: enrollment.lessonProgress,
+      };
+    } catch (error) {
+      console.error("Error updating lesson progress:", error);
+      return {
+        success: false,
+        message: "Failed to update lesson progress",
+      };
+    }
+  }
+
+  async getLessonProgress(userId: string, courseId: string): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
+        return { success: false, message: "Invalid userId or courseId" };
+      }
+
+      const progress = await this.enrollmentRepository.getLessonProgress(userId, courseId);
+      return {
+        success: true,
+        message: "Lesson progress fetched successfully",
+        data: progress,
+      };
+    } catch (error) {
+      console.error("Error fetching lesson progress:", error);
+      return {
+        success: false,
+        message: "Failed to fetch lesson progress",
       };
     }
   }

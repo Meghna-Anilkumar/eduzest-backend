@@ -10,7 +10,7 @@ import { sendEmail } from '../utils/nodemailer';
 import { generateToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from '../utils/jwt';
 import { validateName, validateEmail, validatePassword, validateDOB, validateMobileNumber } from '../utils/validator';
 import { Response } from 'express';
-import { Cookie } from '../interfaces/IEnums';
+import { Cookie } from '../utils/Enum';
 import * as crypto from 'crypto';
 import { IUserRepository, IOtpRepository } from '../interfaces/IRepositories';
 

@@ -108,9 +108,11 @@ export class S3Service {
       level: course.level,
       modules: await Promise.all(
         course.modules.map(async (module) => ({
+          _id: (module._id as unknown as Types.ObjectId).toString(),
           moduleTitle: module.moduleTitle,
           lessons: await Promise.all(
             module.lessons.map(async (lesson) => ({
+              _id: (lesson._id as unknown as Types.ObjectId).toString(),
               lessonNumber: lesson.lessonNumber,
               title: lesson.title,
               description: lesson.description,

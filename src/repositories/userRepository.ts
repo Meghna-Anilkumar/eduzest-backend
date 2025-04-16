@@ -1,7 +1,7 @@
 import { UserDoc } from "../interfaces/IUser";
 import { Users } from "../models/userModel";
 import { BaseRepository } from "./baseRepository";
-import { Role } from '../interfaces/IEnums';
+import { Role } from '../utils/Enum';
 
 
 export class UserRepository extends BaseRepository<UserDoc> {

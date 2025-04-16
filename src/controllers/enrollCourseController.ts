@@ -122,6 +122,72 @@ class EnrollCourseController {
       });
     }
   }
+
+
+  async updateLessonProgress(req: Request, res: Response): Promise<void> {
+    try {
+      const { courseId, lessonId, progress } = req.body;
+      console.log(req.body,'progreeeeeeeeeeesssssssssssssssss')
+      const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
+
+      if (!userId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: "User not authenticated",
+        });
+        return;
+      }
+
+      if (!courseId || !lessonId || progress === undefined) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "Course ID, lesson ID, and progress are required",
+        });
+        return;
+      }
+
+      const result = await this.enrollCourseService.updateLessonProgress(userId, courseId, lessonId, progress);
+      res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+    } catch (error) {
+      console.error("Error updating lesson progress:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Internal Server Error",
+      });
+    }
+  }
+
+  async getLessonProgress(req: Request, res: Response): Promise<void> {
+    try {
+      const { courseId } = req.params;
+      const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
+
+      if (!userId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: "User not authenticated",
+        });
+        return;
+      }
+
+      if (!courseId) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: "Course ID is required",
+        });
+        return;
+      }
+
+      const result = await this.enrollCourseService.getLessonProgress(userId, courseId);
+      res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+    } catch (error) {
+      console.error("Error fetching lesson progress:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Internal Server Error",
+      });
+    }
+  }
 }
 
 

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { IUserService, IPaymentService } from "../interfaces/IServices";
 import { Status } from "../utils/enums";
-import { Cookie } from "../interfaces/IEnums";
+import { Cookie } from "../utils/Enum";
 import { OAuth2Client } from 'google-auth-library';
 import { uploadToS3 } from "../utils/s3";
 import { AuthRequest } from "../interfaces/AuthRequest";

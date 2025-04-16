@@ -2,17 +2,18 @@ import { Document, Types } from "mongoose";
 
 // Interface for a Lesson
 export interface ILesson extends Document {
+    _id: string;
     lessonNumber: string;
     title: string;
     description: string;
     video: string;
     duration?: string;
     objectives?: string[];
-    isNewVideo?: boolean;
 }
 
 // Interface for a Module
 export interface IModule extends Document {
+    _id: string;
     moduleTitle: string;
     lessons: ILesson[];
 }

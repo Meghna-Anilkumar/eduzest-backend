@@ -21,6 +21,7 @@ import EnrollCourseController from "../controllers/enrollCourseController";
 import ReviewController from "../controllers/reviewController";
 import { ReviewService } from "../services/reviewServices";
 import ReviewRepository from "../repositories/reviewRepository";
+import { redisService, RedisService } from "../services/redisService";
 
 
 const userRepository = new UserRepository();
@@ -28,14 +29,14 @@ const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
 const categoryRepository = new CategoryRepository();
 const paymentRepository = new PaymentRepository()
-const enrollmentRepository = new EnrollmentRepository()
+const enrollmentRepository = new EnrollmentRepository(redisService)
 const reviewRepository = new ReviewRepository();
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
-const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository,redisService);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 
 // Instantiate controllers

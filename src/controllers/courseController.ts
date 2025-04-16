@@ -435,7 +435,6 @@ class CourseController {
         return;
       }
   
-      // Sanitize videoKey, allowing spaces and proper decoding
       videoKey = decodeURIComponent(videoKey).replace(/[^a-zA-Z0-9\s\/._-]/g, "");
       console.log("Sanitized videoKey:", videoKey);
       if (!videoKey.startsWith(`courses/`)) {

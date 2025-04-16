@@ -56,4 +56,6 @@ export const STUDENT_ROUTES = {
     GET_PAYMENT_HISTORY:'/payment-history',
     ADD_REVIEW:'/reviews',
     GET_REVIEW: "/review/:courseId",
+    UPDATE_LESSON_PROGRESS: "/update-lesson-progress",
+    GET_LESSON_PROGRESS: "/lesson-progress/:courseId",
 };

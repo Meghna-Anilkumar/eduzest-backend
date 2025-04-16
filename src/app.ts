@@ -8,6 +8,7 @@ import adminRouter from "./routes/adminRoutes";
 import instructorRouter from "./routes/instructorRoutes";
 import cookieParser from "cookie-parser";
 import studentRouter from "./routes/studentRoutes";
+import { redisService } from "./services/redisService";
 
 
 dotenv.config();
@@ -48,6 +49,8 @@ app.all("*", (req: Request, res: Response) => {
     message: 'The requested URL not found on this server'
   })
 })
+
+
 
 
 export default app;

@@ -10,13 +10,14 @@ import EnrollCourseService from "../services/enrollmentServices";
 import { EnrollmentRepository } from "../repositories/enrollmentRepository";
 import { UserService } from "../services/userServices";
 import UserRepository from "../repositories/userRepository";
+import { redisService, RedisService } from "../services/redisService";
 
 const userRepository = new UserRepository();
 const courseRepository = new CourseRepository();
 const categoryRepository=new CategoryRepository()
-const enrollmentRepository = new EnrollmentRepository()
+const enrollmentRepository = new EnrollmentRepository(redisService)
 const courseService = new CourseService(courseRepository,categoryRepository);
-const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository,redisService);
 const courseController = new CourseController(courseService,enrollCourseService);
 
 const instructorRouter = Router();

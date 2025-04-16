@@ -1,7 +1,7 @@
-// interfaces/ICourseDTO.ts
 import { Types } from "mongoose";
 
 export interface ILessonDTO {
+  _id: string;
   lessonNumber: string;
   title: string;
   description: string;
@@ -12,6 +12,7 @@ export interface ILessonDTO {
 }
 
 export interface IModuleDTO {
+  _id: string;
   moduleTitle: string;
   lessons: ILessonDTO[];
 }

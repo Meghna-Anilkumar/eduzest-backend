@@ -4,7 +4,7 @@ import { Admin } from "../models/adminModel";
 import { Users } from "../models/userModel";
 import { BaseRepository } from "./baseRepository";
 import { IAdminRepository } from "../interfaces/IRepositories";
-import { Role } from '../interfaces/IEnums';
+import { Role } from '../utils/Enum';
 
 export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminRepository {
     private userModel = Users; 
