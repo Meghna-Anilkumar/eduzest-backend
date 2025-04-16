@@ -8,6 +8,7 @@ import { Types } from "mongoose";
 import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } from "../interfaces/ICourse";
 import { ILessonDTO,IModuleDTO } from "../interfaces/ICourseDTO";
 import { s3Service } from "../services/s3Service";
+import { ILessonData,IModuleData,IUpdate } from "../interfaces/ILessonData";
 
 
 
@@ -270,7 +271,6 @@ class CourseController {
       }
   
       const courseId = req.params.id;
-    
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -279,13 +279,36 @@ class CourseController {
         return;
       }
   
+      // Fetch the existing course to preserve unchanged fields
+      const existingCourseResponse = await this._courseService.getCourseById(courseId);
+      if (!existingCourseResponse.success || !existingCourseResponse.data) {
+        res.status(Status.NOT_FOUND).json({
+          success: false,
+          message: "Course not found.",
+        });
+        return;
+      }
+      const existingCourse = existingCourseResponse.data as ICourse;
+  
       const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
       const thumbnailFile = files?.thumbnail?.[0];
       const videoFiles = files?.videos || [];
   
       const rawUpdateData = req.body.courseData ? JSON.parse(req.body.courseData) : {};
+  
+      // Log incoming data
+      console.log('editCourse incoming data:', {
+        courseId,
+        instructorId,
+        rawUpdateData: JSON.stringify(rawUpdateData, null, 2),
+        thumbnailFile: thumbnailFile ? thumbnailFile.originalname : null,
+        videoFilesCount: videoFiles.length,
+        videoFiles: videoFiles.map(f => f.originalname),
+      });
+  
       const updateData: ICourseUpdate = {};
   
+      // Populate scalar fields
       if (rawUpdateData.title) updateData.title = rawUpdateData.title;
       if (rawUpdateData.description) updateData.description = rawUpdateData.description;
       if (rawUpdateData.language) updateData.language = rawUpdateData.language;
@@ -294,120 +317,183 @@ class CourseController {
       if (rawUpdateData.isRequested !== undefined) updateData.isRequested = rawUpdateData.isRequested;
       if (rawUpdateData.isPublished !== undefined) updateData.isPublished = rawUpdateData.isPublished;
   
-      if (typeof rawUpdateData.instructorRef === 'string') {
-        const instructorIdMatch = rawUpdateData.instructorRef.match(/'([a-fA-F0-9]{24})'/);
-        if (instructorIdMatch && instructorIdMatch[1]) {
-          updateData.instructorRef = new Types.ObjectId(instructorIdMatch[1]);
-        } else {
-          console.log("Failed to extract instructorRef ID, using as-is:", rawUpdateData.instructorRef);
-        }
-      } else if (rawUpdateData.instructorRef && typeof rawUpdateData.instructorRef === 'object' && '_id' in rawUpdateData.instructorRef) {
+      // Handle instructorRef
+      if (typeof rawUpdateData.instructorRef === 'string' && Types.ObjectId.isValid(rawUpdateData.instructorRef)) {
+        updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef);
+      } else if (rawUpdateData.instructorRef?._id && Types.ObjectId.isValid(rawUpdateData.instructorRef._id)) {
         updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef._id);
       }
   
-      if (typeof rawUpdateData.categoryRef === 'string') {
-        const categoryIdMatch = rawUpdateData.categoryRef.match(/'([a-fA-F0-9]{24})'/);
-        if (categoryIdMatch && categoryIdMatch[1]) {
-          updateData.categoryRef = new Types.ObjectId(categoryIdMatch[1]);
-        } else {
-          console.log("Failed to extract categoryRef ID, using as-is:", rawUpdateData.categoryRef);
-        }
-      } else if (rawUpdateData.categoryRef && typeof rawUpdateData.categoryRef === 'object' && '_id' in rawUpdateData.categoryRef) {
+      // Handle categoryRef
+      if (typeof rawUpdateData.categoryRef === 'string' && Types.ObjectId.isValid(rawUpdateData.categoryRef)) {
+        updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef);
+      } else if (rawUpdateData.categoryRef?._id && Types.ObjectId.isValid(rawUpdateData.categoryRef._id)) {
         updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef._id);
       }
   
+      // Handle thumbnail upload
       if (thumbnailFile) {
-        const thumbnailKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/thumbnail.${thumbnailFile.mimetype.split("/")[1]}`;
+        const thumbnailKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || existingCourse.title}/thumbnail-${Date.now()}.${thumbnailFile.mimetype.split("/")[1]}`;
         console.log("Uploading thumbnail to S3 with key:", thumbnailKey);
         await s3Service.uploadFile(thumbnailKey, thumbnailFile.buffer, thumbnailFile.mimetype);
         updateData.thumbnail = thumbnailKey;
-      } else if (!rawUpdateData.thumbnail) {
-        console.log("No new thumbnail provided and no thumbnail in rawUpdateData; preserving existing value.");
       } else if (rawUpdateData.thumbnail && !rawUpdateData.thumbnail.startsWith("http")) {
         updateData.thumbnail = rawUpdateData.thumbnail;
-      } else {
-        console.log("Ignoring signed URL in rawUpdateData.thumbnail:", rawUpdateData.thumbnail);
       }
   
+      // Handle modules and lessons
       if (rawUpdateData.modules) {
-        // Create a map to track which videos are associated with which lesson
+        // Parse video mapping
         const videoMap: Map<string, number> = new Map();
-        
-        // First parse the incoming data to identify which lessons need new videos
         if (videoFiles.length > 0 && req.body.videoMapping) {
-          // Parse the mapping of videos to lesson positions
           try {
             const videoMapping = JSON.parse(req.body.videoMapping);
-            Object.entries(videoMapping).forEach(([index, lessonIdentifier]) => {
-              videoMap.set(lessonIdentifier as string, parseInt(index));
+            Object.entries(videoMapping).forEach(([lessonKey, index]) => {
+              videoMap.set(lessonKey, parseInt(index as string));
             });
           } catch (error) {
-            console.error("Error parsing video mapping:", error);
+            console.error("Error parsing videoMapping:", error);
           }
         }
   
-        let modules: IModule[] = rawUpdateData.modules.map((module: IModule) => ({
-          ...module,
-          lessons: module.lessons.map((lesson: ILesson) => {
-            if (lesson.video && lesson.video.startsWith("http")) {
-              const url = new URL(lesson.video);
-              let key = url.pathname.slice(1);
-              key = decodeURIComponent(key);
-              return { ...lesson, video: key };
-            } else if (lesson.video) {
-              const decodedVideo = decodeURIComponent(lesson.video);
-              return { ...lesson, video: decodedVideo };
-            }
-            return lesson;
-          }),
-        }));
+        // Log video mapping
+        console.log('videoMap:', Array.from(videoMap.entries()));
   
-        if (videoFiles.length > 0) {
-          modules = await Promise.all(
-            modules.map(async (module: IModule, moduleIndex: number) => {
-              const lessons: ILesson[] = await Promise.all(
-                module.lessons.map(async (lesson: ILesson, lessonIndex: number) => {
-                  // Create a unique identifier for this lesson
-                  const lessonIdentifier = `${moduleIndex}-${lessonIndex}`;
-                  
-                  // Check if this lesson has a new video assigned in the mapping
-                  if (videoMap.has(lessonIdentifier)) {
-                    const videoIndex = videoMap.get(lessonIdentifier)!;
-                    
-                    if (videoIndex >= 0 && videoIndex < videoFiles.length) {
-                      const videoFile = videoFiles[videoIndex];
-                      // Create a unique key for this video using both module and lesson indices
-                      const videoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}-${Date.now()}.${videoFile.mimetype.split("/")[1]}`;
-                      await s3Service.uploadFile(videoKey, videoFile.buffer, videoFile.mimetype);
-                      return { ...lesson, video: videoKey } as ILesson;
-                    }
-                  } else if (!lesson.video || lesson.video === "") {
-                    // Fallback to the old behavior if no mapping is provided
-                    // This is mainly for backward compatibility
-                    const availableVideoIndex = 0; // Use first available video
-                    if (availableVideoIndex < videoFiles.length) {
-                      const videoFile = videoFiles[availableVideoIndex];
-                      // Add timestamp to ensure uniqueness
-                      const videoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || "course"}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}-${Date.now()}.${videoFile.mimetype.split("/")[1]}`;
-                      await s3Service.uploadFile(videoKey, videoFile.buffer, videoFile.mimetype);
-                      return { ...lesson, video: videoKey } as ILesson;
-                    }
+        // Process modules and lessons
+        updateData.modules = await Promise.all(
+          rawUpdateData.modules.map(async (module: any, moduleIndex: number) => {
+            // Log module data
+            console.log(`Processing module ${moduleIndex + 1}:`, {
+              moduleTitle: module.moduleTitle,
+              lessonCount: module.lessons.length,
+              lessons: module.lessons.map((l: any) => ({
+                id: l._id,
+                title: l.title,
+                lessonNumber: l.lessonNumber,
+                videoKey: l.videoKey || l.video,
+              })),
+            });
+  
+            const lessons = await Promise.all(
+              module.lessons.map(async (lesson: any, lessonIndex: number) => {
+                // Determine lesson identifier
+                const lessonKey = lesson._id && Types.ObjectId.isValid(lesson._id)
+                  ? lesson._id.toString()
+                  : `new-lesson-${moduleIndex}-${lessonIndex}`;
+  
+                // Log lesson processing
+                console.log(`Processing lesson ${lessonIndex + 1} in module ${moduleIndex + 1}:`, {
+                  lessonKey,
+                  lessonData: lesson,
+                  hasVideoKey: !!lesson.videoKey,
+                  hasVideo: !!lesson.video,
+                });
+  
+                // Find the existing lesson (if it exists) to preserve the video field
+                let existingVideoKey: string | undefined;
+                if (lesson._id && Types.ObjectId.isValid(lesson._id)) {
+                  const existingModule = existingCourse.modules[moduleIndex];
+                  if (existingModule) {
+                    const existingLesson = existingModule.lessons.find(
+                      (l) => l._id.toString() === lesson._id.toString()
+                    );
+                    existingVideoKey = existingLesson?.video;
+                    console.log(`Existing lesson found for ${lessonKey}:`, {
+                      existingVideoKey,
+                      existingLesson: existingLesson ? {
+                        id: existingLesson._id,
+                        title: existingLesson.title,
+                        video: existingLesson.video,
+                      } : null,
+                    });
                   }
-                  return lesson;
-                })
-              );
-              return { ...module, lessons } as IModule;
-            })
-          );
-        }
+                }
   
-        updateData.modules = modules;
+                // Get existing video information from incoming data
+                let videoKey = lesson.videoKey || lesson.video || "";
+                if (videoKey && videoKey.startsWith("http")) {
+                  const url = new URL(videoKey);
+                  videoKey = decodeURIComponent(url.pathname.slice(1));
+                } else if (videoKey) {
+                  videoKey = decodeURIComponent(videoKey);
+                }
+  
+                // Handle video upload if there's a new video for this lesson
+                if (videoMap.has(lessonKey)) {
+                  const videoIndex = videoMap.get(lessonKey)!;
+                  if (videoIndex >= 0 && videoIndex < videoFiles.length) {
+                    const videoFile = videoFiles[videoIndex];
+                    const newVideoKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || existingCourse.title}/module-${moduleIndex + 1}/lesson-${lessonIndex + 1}-${Date.now()}.${videoFile.mimetype.split("/")[1]}`;
+                    console.log(`Uploading video for lesson ${lessonKey} to S3 with key: ${newVideoKey}`);
+                    await s3Service.uploadFile(newVideoKey, videoFile.buffer, videoFile.mimetype);
+                    videoKey = newVideoKey;
+                  } else {
+                    console.warn(`Invalid video index for lesson ${lessonKey}:`, {
+                      videoIndex,
+                      videoFilesCount: videoFiles.length,
+                    });
+                  }
+                }
+  
+                // Use existing video key if no new video is provided and no videoKey is in the incoming data
+                if (!videoKey && existingVideoKey) {
+                  videoKey = existingVideoKey;
+                  console.log(`Falling back to existing videoKey for lesson ${lessonKey}:`, videoKey);
+                }
+  
+                // Validate that videoKey is not empty
+                if (!videoKey) {
+                  console.error(`Video validation failed for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}:`, {
+                    lessonKey,
+                    incomingVideoKey: lesson.videoKey,
+                    incomingVideo: lesson.video,
+                    existingVideoKey,
+                    videoMapHasKey: videoMap.has(lessonKey),
+                    videoMapIndex: videoMap.get(lessonKey),
+                  });
+                  throw new Error(`Video is required for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}`);
+                }
+  
+                // Create sanitized lesson object
+                const sanitizedLesson: ILessonData = {
+                  lessonNumber: lesson.lessonNumber,
+                  title: lesson.title,
+                  description: lesson.description,
+                  video: videoKey,
+                  videoKey: videoKey,
+                  duration: lesson.duration,
+                  objectives: lesson.objectives,
+                  _id: lesson._id && Types.ObjectId.isValid(lesson._id) ? lesson._id.toString() : undefined,
+                };
+  
+                // Log sanitized lesson
+                console.log(`Sanitized lesson ${lessonKey}:`, sanitizedLesson);
+  
+                return sanitizedLesson;
+              })
+            );
+  
+            // Return sanitized module
+            const sanitizedModule: IModuleData = {
+              moduleTitle: module.moduleTitle,
+              lessons: lessons,
+              _id: module._id && Types.ObjectId.isValid(module._id) ? module._id.toString() : undefined,
+            };
+  
+            return sanitizedModule;
+          })
+        );
       }
-      
+  
+      // Log final updateData
+      console.log('Final updateData:', JSON.stringify(updateData, null, 2));
+  
+      // Update the course
       const response = await this._courseService.editCourse(courseId, instructorId, updateData);
       if (response.success && response.data) {
         response.data = await s3Service.addSignedUrlsToCourse(response.data as ICourse);
       }
+  
       res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
     } catch (error) {
       console.error("Error in editCourse controller:", error);

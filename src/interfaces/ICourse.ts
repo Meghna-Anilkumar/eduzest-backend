@@ -7,6 +7,7 @@ export interface ILesson extends Document {
     title: string;
     description: string;
     video: string;
+    videoKey?: string; 
     duration?: string;
     objectives?: string[];
 }

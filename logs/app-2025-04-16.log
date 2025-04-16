@@ -945,3 +945,133 @@
 [2025-04-16 15:33:46] [INFO] [REQUEST] GET /student/payment-history?userId=some-user-id&page=1&limit=5&search=&sortField=createdAt&sortOrder=desc
 [2025-04-16 15:33:46] [INFO] [RESPONSE] Status: 200 Message: Payments retrieved successfully
 [2025-04-16 15:33:46] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-16 16:46:59] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-16 16:46:59] [INFO] [REQUEST] POST /logout
+[2025-04-16 16:46:59] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-16 16:47:08] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-16 16:47:08] [INFO] [REQUEST] POST /google-auth
+[2025-04-16 16:47:09] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-16 16:47:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-16 16:47:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-16 16:47:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-16 16:47:20] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-16 16:47:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-16 16:47:21] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-16 16:47:27] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
+[2025-04-16 16:47:35] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-2.mp4
+[2025-04-16 16:47:56] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
+[2025-04-16 16:48:00] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-2.mp4
+[2025-04-16 16:48:24] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 16:48:24] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 16:48:24] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 16:56:27] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 16:56:27] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 16:56:31] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
+[2025-04-16 16:56:35] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-2.mp4
+[2025-04-16 16:56:52] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 16:56:52] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 16:56:52] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 17:10:28] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:10:30] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 17:10:47] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:10:47] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:10:47] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 17:11:11] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:11:11] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 17:11:45] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:11:45] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:11:46] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 17:34:59] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:35:00] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 17:35:16] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:35:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 17:35:57] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:35:57] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:35:57] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 17:40:07] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:40:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 17:40:28] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:40:28] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 17:40:28] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 18:06:14] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:06:15] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 18:06:30] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:06:30] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:06:30] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 18:41:32] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:41:33] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 18:41:50] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:41:50] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:41:50] [INFO] [RESPONSE] Status: 400 Message: An error occurred while updating the course.
+[2025-04-16 18:52:34] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:52:35] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 18:52:55] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:52:55] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 18:52:55] [INFO] [RESPONSE] Status: 500 Message: Video is required for lesson 3 in module 1
+[2025-04-16 19:00:29] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:00:30] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 19:00:51] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:00:51] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:00:52] [INFO] [RESPONSE] Status: 500 Message: Video is required for lesson 3 in module 1
+[2025-04-16 19:18:43] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:18:44] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 19:18:52] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:18:52] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 19:18:57] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
+[2025-04-16 19:19:01] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-2.mp4
+[2025-04-16 19:19:22] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:19:22] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:19:25] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-16 19:19:28] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
+[2025-04-16 19:19:32] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-2.mp4
+[2025-04-16 19:19:35] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-3-1744811362919.mp4
+[2025-04-16 19:20:09] [INFO] [REQUEST] OPTIONS /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:20:09] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:20:09] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-16 19:20:09] [INFO] [REQUEST] PUT /instructor/courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:20:09] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-16 19:20:38] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-16 19:20:38] [INFO] [REQUEST] POST /logout
+[2025-04-16 19:20:38] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-16 19:20:49] [INFO] [REQUEST] OPTIONS /login
+[2025-04-16 19:20:49] [INFO] [REQUEST] POST /login
+[2025-04-16 19:20:49] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-16 19:20:59] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-16 19:20:59] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-16 19:21:01] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:01] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 19:21:01] [INFO] [REQUEST] GET /student/check-enrollment/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:01] [INFO] [REQUEST] GET /student/review/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:01] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-16 19:21:01] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-16 19:21:01] [INFO] [REQUEST] GET /student/lesson-progress/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:02] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-16 19:21:02] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
+[2025-04-16 19:21:07] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-16 19:21:07] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-16 19:21:07] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-16 19:21:12] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-16 19:21:12] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-16 19:21:13] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-16 19:21:17] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-16 19:21:17] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-16 19:21:18] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-16 19:21:21] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-2.mp4
+[2025-04-16 19:21:31] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-16 19:21:31] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-16 19:21:32] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-16 19:21:37] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-16 19:21:37] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-16 19:21:37] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-16 19:21:42] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-16 19:21:42] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-16 19:21:42] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-16 19:21:47] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:48] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-16 19:21:48] [INFO] [REQUEST] GET /student/check-enrollment/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:48] [INFO] [REQUEST] GET /student/review/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:48] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-16 19:21:48] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-16 19:21:48] [INFO] [REQUEST] GET /student/lesson-progress/67ff622e4ff3fb0fb614469d
+[2025-04-16 19:21:48] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-16 19:21:48] [INFO] [REQUEST] GET /courses/67ff622e4ff3fb0fb614469d/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fjaaavaaaaaaaaaaaaaaaaa%2Fmodule-1%2Flesson-1.mp4
