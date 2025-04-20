@@ -1,12 +1,23 @@
 import { Schema, model, Document, Types } from "mongoose";
 
 export interface PaymentDoc extends Document {
-  userId: Types.ObjectId; // Changed to Types.ObjectId
-  courseId: Types.ObjectId; // Changed to Types.ObjectId
+  userId: Types.ObjectId;
+  courseId: Types.ObjectId;
   paymentType: "debit" | "credit";
   status: "pending" | "completed" | "failed" | "refunded";
   amount: number;
   stripePaymentId?: string;
+  instructorPayout: {
+    instructorId: Types.ObjectId;
+    amount: number;
+    status: "pending" | "completed" | "failed";
+    transactionId?: string;
+  };
+  adminPayout: {
+    amount: number;
+    status: "pending" | "completed" | "failed";
+    transactionId?: string;
+  };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -39,6 +50,39 @@ const paymentSchema = new Schema<PaymentDoc>(
     },
     stripePaymentId: {
       type: String,
+    },
+    instructorPayout: {
+      instructorId: {
+        type: Schema.Types.ObjectId,
+        ref: "Users",
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      status: {
+        type: String,
+        enum: ["pending", "completed", "failed"],
+        default: "pending",
+      },
+      transactionId: {
+        type: String,
+      },
+    },
+    adminPayout: {
+      amount: {
+        type: Number,
+        required: true,
+      },
+      status: {
+        type: String,
+        enum: ["pending", "completed", "failed"],
+        default: "pending",
+      },
+      transactionId: {
+        type: String,
+      },
     },
     createdAt: {
       type: Date,

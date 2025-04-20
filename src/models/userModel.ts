@@ -14,23 +14,19 @@ const userSchema = new Schema<UserDoc>({
     type: Boolean,
     default: false
   },
-
   profile: {
     dob: {
       type: String,
     },
-
     gender: {
       type: String,
       enum: ['Male', 'Female', 'Other'],
     },
-
     profilePic: {
       type: String
     },
-
-    address:{
-      type:String
+    address: {
+      type: String
     }
   },
   updatedAt: {
@@ -54,7 +50,6 @@ const userSchema = new Schema<UserDoc>({
   phone: {
     type: Number
   },
-
   qualification: {
     type: String
   },
@@ -74,7 +69,6 @@ const userSchema = new Schema<UserDoc>({
         type: String
       }
     }],
-    
   },
   instructorDetails: {
     createdCourses: [{
@@ -82,52 +76,45 @@ const userSchema = new Schema<UserDoc>({
       ref: 'Course'
     }],
     profit: {
-      type: Schema.Types.Decimal128
+      type: Number, // Changed to Number for easier arithmetic operations
+      default: 0
     },
     rating: {
-      type: Schema.Types.Decimal128
+      type: Number,
+      default: 0
     }
   },
   isGoogleAuth: {
     type: Boolean,
     default: false
   },
-
   aboutMe: {
     type: String
   },
-
   cv: {
     type: String,
   },
-
   socialMedia: {
     linkedin: { type: String },
     github: { type: String }
   },
-
   isRequested: {
     type: Boolean,
     default: false,
   },
-
   isRejected: {
     type: Boolean,
     default: false
   },
-
-  experience:{
-    type:String
+  experience: {
+    type: String
   },
-
-  refreshToken:{
-    type:String
+  refreshToken: {
+    type: String
   },
-
-  refreshTokenExpires:{
-     type:String
+  refreshTokenExpires: {
+    type: String
   }
-
 });
 
 export const Users = model<UserDoc>('Users', userSchema);

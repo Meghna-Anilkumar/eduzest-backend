@@ -6,9 +6,9 @@ import { Status } from "../utils/enums";
 import { AuthRequest } from "../interfaces/AuthRequest";
 import { Types } from "mongoose";
 import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } from "../interfaces/ICourse";
-import { ILessonDTO,IModuleDTO } from "../interfaces/ICourseDTO";
+import { ILessonDTO, IModuleDTO } from "../interfaces/ICourseDTO";
 import { s3Service } from "../services/s3Service";
-import { ILessonData,IModuleData,IUpdate } from "../interfaces/ILessonData";
+import { ILessonData, IModuleData, IUpdate } from "../interfaces/ILessonData";
 
 
 
@@ -164,7 +164,6 @@ class CourseController {
 
       const response = await this._courseService.getAllActiveCourses(page, limit, search, filters, sort);
 
-      // Add this block to include signed URLs in the response
       if (response.success && response.data) {
         const { courses, ...pagination } = response.data as { courses: ICourse[]; totalPages: number; currentPage: number; totalCourses: number };
         const coursesWithSignedUrls = await s3Service.addSignedUrlsToCourses(courses);
@@ -269,7 +268,7 @@ class CourseController {
         });
         return;
       }
-  
+
       const courseId = req.params.id;
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
@@ -278,8 +277,6 @@ class CourseController {
         });
         return;
       }
-  
-      // Fetch the existing course to preserve unchanged fields
       const existingCourseResponse = await this._courseService.getCourseById(courseId);
       if (!existingCourseResponse.success || !existingCourseResponse.data) {
         res.status(Status.NOT_FOUND).json({
@@ -289,14 +286,13 @@ class CourseController {
         return;
       }
       const existingCourse = existingCourseResponse.data as ICourse;
-  
+
       const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
       const thumbnailFile = files?.thumbnail?.[0];
       const videoFiles = files?.videos || [];
-  
+
       const rawUpdateData = req.body.courseData ? JSON.parse(req.body.courseData) : {};
-  
-      // Log incoming data
+
       console.log('editCourse incoming data:', {
         courseId,
         instructorId,
@@ -305,9 +301,9 @@ class CourseController {
         videoFilesCount: videoFiles.length,
         videoFiles: videoFiles.map(f => f.originalname),
       });
-  
+
       const updateData: ICourseUpdate = {};
-  
+
       // Populate scalar fields
       if (rawUpdateData.title) updateData.title = rawUpdateData.title;
       if (rawUpdateData.description) updateData.description = rawUpdateData.description;
@@ -316,21 +312,21 @@ class CourseController {
       if (rawUpdateData.pricing) updateData.pricing = rawUpdateData.pricing;
       if (rawUpdateData.isRequested !== undefined) updateData.isRequested = rawUpdateData.isRequested;
       if (rawUpdateData.isPublished !== undefined) updateData.isPublished = rawUpdateData.isPublished;
-  
+
       // Handle instructorRef
       if (typeof rawUpdateData.instructorRef === 'string' && Types.ObjectId.isValid(rawUpdateData.instructorRef)) {
         updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef);
       } else if (rawUpdateData.instructorRef?._id && Types.ObjectId.isValid(rawUpdateData.instructorRef._id)) {
         updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef._id);
       }
-  
+
       // Handle categoryRef
       if (typeof rawUpdateData.categoryRef === 'string' && Types.ObjectId.isValid(rawUpdateData.categoryRef)) {
         updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef);
       } else if (rawUpdateData.categoryRef?._id && Types.ObjectId.isValid(rawUpdateData.categoryRef._id)) {
         updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef._id);
       }
-  
+
       // Handle thumbnail upload
       if (thumbnailFile) {
         const thumbnailKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || existingCourse.title}/thumbnail-${Date.now()}.${thumbnailFile.mimetype.split("/")[1]}`;
@@ -340,7 +336,7 @@ class CourseController {
       } else if (rawUpdateData.thumbnail && !rawUpdateData.thumbnail.startsWith("http")) {
         updateData.thumbnail = rawUpdateData.thumbnail;
       }
-  
+
       // Handle modules and lessons
       if (rawUpdateData.modules) {
         // Parse video mapping
@@ -355,10 +351,10 @@ class CourseController {
             console.error("Error parsing videoMapping:", error);
           }
         }
-  
+
         // Log video mapping
         console.log('videoMap:', Array.from(videoMap.entries()));
-  
+
         // Process modules and lessons
         updateData.modules = await Promise.all(
           rawUpdateData.modules.map(async (module: any, moduleIndex: number) => {
@@ -373,14 +369,14 @@ class CourseController {
                 videoKey: l.videoKey || l.video,
               })),
             });
-  
+
             const lessons = await Promise.all(
               module.lessons.map(async (lesson: any, lessonIndex: number) => {
                 // Determine lesson identifier
                 const lessonKey = lesson._id && Types.ObjectId.isValid(lesson._id)
                   ? lesson._id.toString()
                   : `new-lesson-${moduleIndex}-${lessonIndex}`;
-  
+
                 // Log lesson processing
                 console.log(`Processing lesson ${lessonIndex + 1} in module ${moduleIndex + 1}:`, {
                   lessonKey,
@@ -388,7 +384,7 @@ class CourseController {
                   hasVideoKey: !!lesson.videoKey,
                   hasVideo: !!lesson.video,
                 });
-  
+
                 // Find the existing lesson (if it exists) to preserve the video field
                 let existingVideoKey: string | undefined;
                 if (lesson._id && Types.ObjectId.isValid(lesson._id)) {
@@ -408,7 +404,7 @@ class CourseController {
                     });
                   }
                 }
-  
+
                 // Get existing video information from incoming data
                 let videoKey = lesson.videoKey || lesson.video || "";
                 if (videoKey && videoKey.startsWith("http")) {
@@ -417,7 +413,7 @@ class CourseController {
                 } else if (videoKey) {
                   videoKey = decodeURIComponent(videoKey);
                 }
-  
+
                 // Handle video upload if there's a new video for this lesson
                 if (videoMap.has(lessonKey)) {
                   const videoIndex = videoMap.get(lessonKey)!;
@@ -434,13 +430,13 @@ class CourseController {
                     });
                   }
                 }
-  
+
                 // Use existing video key if no new video is provided and no videoKey is in the incoming data
                 if (!videoKey && existingVideoKey) {
                   videoKey = existingVideoKey;
                   console.log(`Falling back to existing videoKey for lesson ${lessonKey}:`, videoKey);
                 }
-  
+
                 // Validate that videoKey is not empty
                 if (!videoKey) {
                   console.error(`Video validation failed for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}:`, {
@@ -453,7 +449,7 @@ class CourseController {
                   });
                   throw new Error(`Video is required for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}`);
                 }
-  
+
                 // Create sanitized lesson object
                 const sanitizedLesson: ILessonData = {
                   lessonNumber: lesson.lessonNumber,
@@ -465,35 +461,35 @@ class CourseController {
                   objectives: lesson.objectives,
                   _id: lesson._id && Types.ObjectId.isValid(lesson._id) ? lesson._id.toString() : undefined,
                 };
-  
+
                 // Log sanitized lesson
                 console.log(`Sanitized lesson ${lessonKey}:`, sanitizedLesson);
-  
+
                 return sanitizedLesson;
               })
             );
-  
+
             // Return sanitized module
             const sanitizedModule: IModuleData = {
               moduleTitle: module.moduleTitle,
               lessons: lessons,
               _id: module._id && Types.ObjectId.isValid(module._id) ? module._id.toString() : undefined,
             };
-  
+
             return sanitizedModule;
           })
         );
       }
-  
+
       // Log final updateData
       console.log('Final updateData:', JSON.stringify(updateData, null, 2));
-  
+
       // Update the course
       const response = await this._courseService.editCourse(courseId, instructorId, updateData);
       if (response.success && response.data) {
         response.data = await s3Service.addSignedUrlsToCourse(response.data as ICourse);
       }
-  
+
       res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
     } catch (error) {
       console.error("Error in editCourse controller:", error);
@@ -510,9 +506,9 @@ class CourseController {
       const userId = req.user?.id;
       const courseId = req.params.courseId;
       let videoKey = req.query.videoKey as string;
-  
+
       console.log("streamVideo request:", { userId, courseId, videoKey });
-  
+
       if (!userId || !courseId || !videoKey) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -520,7 +516,7 @@ class CourseController {
         });
         return;
       }
-  
+
       videoKey = decodeURIComponent(videoKey).replace(/[^a-zA-Z0-9\s\/._-]/g, "");
       console.log("Sanitized videoKey:", videoKey);
       if (!videoKey.startsWith(`courses/`)) {
@@ -530,25 +526,8 @@ class CourseController {
         });
         return;
       }
-  
-      // Verify enrollment
-      // const isEnrolled = await this._enrollmentService.checkEnrollment(userId, courseId);
-      // console.log("Enrollment check result:", isEnrolled);
-      // if (!isEnrolled) {
-      //   res.status(Status.FORBIDDEN).json({
-      //     success: false,
-      //     message: "You must be enrolled to stream this video.",
-      //   });
-      //   return;
-      // }
-  
-      // Handle range request
-      const range = req.headers.range;
-      let start = 0;
-      let end: number | undefined;
-      let contentLength: number | undefined;
-  
-      // Get object metadata using HeadObjectCommand
+
+      // Step 1: Get file metadata to determine size
       const metadata = await s3Service.getObject(videoKey, true);
       if (!metadata.ContentLength) {
         res.status(Status.INTERNAL_SERVER_ERROR).json({
@@ -557,50 +536,78 @@ class CourseController {
         });
         return;
       }
-      const totalLength = metadata.ContentLength;
-      contentLength = totalLength;
-  
-      if (range) {
-        const parts = range.replace(/bytes=/, "").split("-");
-        start = parseInt(parts[0], 10);
-        end = parts[1] ? parseInt(parts[1], 10) : totalLength - 1;
-  
-        if (start >= totalLength || end >= totalLength || start > end) {
-          res.status(206).json({
-            success: false,
-            message: "Range out of bounds",
-          });
-          return;
-        }
-  
-        contentLength = end - start + 1;
+
+      const fileSize = metadata.ContentLength;
+      const contentType = metadata.ContentType || "video/mp4";
+
+      // Step 2: Parse range header
+      const range = req.headers.range;
+
+      // If no range request, return a 200 with a chunk of the beginning of the video
+      if (!range) {
+        // For initial requests without range, send a small chunk (e.g., first 1MB)
+        const INITIAL_CHUNK_SIZE = 1024 * 1024; // 1MB
+        const endByte = Math.min(INITIAL_CHUNK_SIZE - 1, fileSize - 1);
+
+        const { Body } = await s3Service.getObject(videoKey, false, `bytes=0-${endByte}`);
+
+        res.writeHead(200, {
+          "Content-Type": contentType,
+          "Content-Length": endByte + 1,
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "public, max-age=31536000", // Cache for 1 year
+          "Content-Range": `bytes 0-${endByte}/${fileSize}`
+        });
+
+        if (Body) Body.pipe(res);
+        return;
       }
-  
-      // Fetch the stream with range if specified
-      const { Body, ContentType } = await s3Service.getObject(videoKey, false, range ? `bytes=${start}-${end}` : undefined);
+
+      // Step 3: Parse the range header
+      const parts = range.replace(/bytes=/, "").split("-");
+      const start = parseInt(parts[0], 10);
+
+      // If end is not specified, set chunk size to 1MB or remaining file size
+      const CHUNK_SIZE = 1024 * 1024; // 1MB chunks
+      let end = parts[1] ? parseInt(parts[1], 10) : Math.min(start + CHUNK_SIZE - 1, fileSize - 1);
+
+      // Ensure end doesn't exceed file size
+      end = Math.min(end, fileSize - 1);
+
+      // Calculate content length
+      const contentLength = end - start + 1;
+
+      // Step 4: Validate range
+      if (start >= fileSize || end >= fileSize || start > end) {
+        res.status(416).set({
+          "Content-Range": `bytes */${fileSize}`
+        }).end();
+        return;
+      }
+
+      // Step 5: Get and stream the specific range
+      const { Body } = await s3Service.getObject(videoKey, false, `bytes=${start}-${end}`);
+
       if (!Body) {
         res.status(Status.NOT_FOUND).json({
           success: false,
-          message: `Video not found for key: ${videoKey}`,
+          message: `Video chunk not found for key: ${videoKey}`,
         });
         return;
       }
-  
-      // Set headers
-      res.setHeader("Content-Type", ContentType || "video/mp4");
-      res.setHeader("Accept-Ranges", "bytes");
-  
-      if (range && contentLength && totalLength) {
-        res.setHeader("Content-Range", `bytes ${start}-${end}/${totalLength}`);
-        res.setHeader("Content-Length", contentLength);
-        res.status(Status.PARTIAL_CONTENT);
-      } else {
-        res.setHeader("Content-Length", contentLength);
-        res.status(Status.OK);
-      }
-  
-      // Pipe the stream to response
+
+      // Step 6: Set response headers for partial content
+      res.writeHead(206, {
+        "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+        "Accept-Ranges": "bytes",
+        "Content-Length": contentLength,
+        "Content-Type": contentType,
+        "Cache-Control": "public, max-age=31536000" // Cache chunks for 1 year
+      });
+
+      // Step 7: Pipe the stream to response
       Body.pipe(res);
+
     } catch (error) {
       console.error("Error in streamVideo controller:", error);
       const errorMessage = error instanceof Error ? error.message : "Internal server error.";

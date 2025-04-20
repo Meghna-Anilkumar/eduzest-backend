@@ -35,7 +35,8 @@ export const ADMIN_ROUTES = {
     FETCHALL_CATEGORIES: '/fetch-all-categories',
     EDIT_CATEGORY: '/edit-category/:categoryId',
     DELETE_CATEGORY: '/delete-category/:categoryId',
-    GET_REQUESTDETAILS: '/getRequestDetails'
+    GET_REQUESTDETAILS: '/getRequestDetails',
+    GET_TRANSACTIONS:'/getTransactions'
 }
 
 
@@ -43,7 +44,8 @@ export const INSTRUCTOR_ROUTES = {
     CREATE_COURSE: '/create-course',
     GET_ALL_COURSES_BYINSTRUCTOR: '/courses',
     EDIT_COURSE: '/courses/:id',
-    GET_COURSE_BYINSTRUCTOR:'/courses/:id'
+    GET_COURSE_BYINSTRUCTOR:'/courses/:id',
+    GET_TRANSACTIONS:'/getTransactions'
 }
 
 

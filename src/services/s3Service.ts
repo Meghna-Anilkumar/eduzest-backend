@@ -56,7 +56,7 @@ export class S3Service {
       return {
         Body: body,
         ContentType: response.ContentType,
-        ContentLength: response.ContentLength || undefined, // Ensure ContentLength is optional
+        ContentLength: response.ContentLength || undefined, 
       };
     } catch (error) {
       console.error(`Error fetching S3 object for key ${key}:`, error);

@@ -21,7 +21,7 @@ import EnrollCourseController from "../controllers/enrollCourseController";
 import ReviewController from "../controllers/reviewController";
 import { ReviewService } from "../services/reviewServices";
 import ReviewRepository from "../repositories/reviewRepository";
-import { redisService, RedisService } from "../services/redisService";
+import { redisService } from "../services/redisService";
 
 
 const userRepository = new UserRepository();

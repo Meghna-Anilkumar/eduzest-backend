@@ -8,16 +8,25 @@ import AdminRepository from "../repositories/adminRepository";
 import CategoryController from "../controllers/categoryController";
 import { CategoryService } from "../services/categoryServices";
 import CategoryRepository from "../repositories/categoryRepository";
+import PaymentService from "../services/paymentServices";
+import PaymentRepository from "../repositories/paymentRepository";
+import {CourseRepository} from "../repositories/courseRepository";
+import {EnrollmentRepository} from "../repositories/enrollmentRepository";
+import { redisService } from "../services/redisService";
 
 
 const userRepository = new UserRepository();
 const adminRepository = new AdminRepository()
 const categoryRepository = new CategoryRepository();
+const paymentRepository = new PaymentRepository()
+const courseRepository = new CourseRepository();
+const enrollmentRepository = new EnrollmentRepository(redisService);
 
 const adminService = new AdminService(adminRepository);
 const categoryService=new CategoryService(categoryRepository)
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 
-const adminController = new AdminController(adminService);
+const adminController = new AdminController(adminService,paymentService);
 const categoryController = new CategoryController(categoryService);
 
 
@@ -41,6 +50,10 @@ adminRouter.post(ADMIN_ROUTES.ADD_CATEGORY,authenticateAdmin(), categoryControll
 adminRouter.get(ADMIN_ROUTES.FETCHALL_CATEGORIES, categoryController.getAllCategories.bind(categoryController));
 adminRouter.put(ADMIN_ROUTES.EDIT_CATEGORY, authenticateAdmin(), categoryController.editCategory.bind(categoryController));
 adminRouter.put(ADMIN_ROUTES.DELETE_CATEGORY, authenticateAdmin(), categoryController.deleteCategory.bind(categoryController));
+
+
+//transactions
+adminRouter.get(ADMIN_ROUTES.GET_TRANSACTIONS,authenticateAdmin(),adminController.getAdminPayouts.bind(adminController))
 
 
 export default adminRouter

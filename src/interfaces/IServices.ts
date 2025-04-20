@@ -76,6 +76,19 @@ export interface IPaymentService {
         search?: string,
         sort?: { field: string; order: "asc" | "desc" }
     ): Promise<IResponse>;
+    getInstructorPayouts(
+        instructorId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<IResponse>;
+    getAdminPayouts(
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<IResponse>;
 }
 
 export interface IEnrollCourseService {

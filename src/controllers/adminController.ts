@@ -2,11 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import { Status } from "../utils/enums";
 import { Cookie } from "../utils/Enum";
 import { IAdminService } from "../interfaces/IServices";
+import { IPaymentService } from "../interfaces/IServices";
 
 
 
 class AdminController {
-    constructor( private _adminService: IAdminService) { }
+    constructor(private _adminService: IAdminService,
+        private _paymentService: IPaymentService
+    ) { }
 
 
     //admin login
@@ -19,7 +22,7 @@ class AdminController {
                 return;
             }
 
-            const response = await this._adminService.adminLogin({ email, password },res);
+            const response = await this._adminService.adminLogin({ email, password }, res);
 
             if (!response.success) {
                 res.status(Status.UN_AUTHORISED).json(response);
@@ -44,7 +47,7 @@ class AdminController {
         try {
             const page = parseInt(req.query.page as string) || 1;
             const limit = parseInt(req.query.limit as string) || 10;
-            const search = req.query.search as string | undefined; 
+            const search = req.query.search as string | undefined;
 
             const response = await this._adminService.fetchAllStudents(page, limit, search);
             res.status(Status.OK).json(response);
@@ -151,25 +154,25 @@ class AdminController {
     async rejectInstructor(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const { message } = req.body; 
-    
+            const { message } = req.body;
+
             if (!id) {
                 res.status(Status.BAD_REQUEST).json({ success: false, message: "User ID is required." });
                 return;
             }
-    
+
             if (!message?.trim()) {
                 res.status(Status.BAD_REQUEST).json({ success: false, message: "Rejection message is required." });
                 return;
             }
-    
-            const response = await this._adminService.rejectInstructor(id, message); 
-    
+
+            const response = await this._adminService.rejectInstructor(id, message);
+
             if (!response.success) {
                 res.status(Status.NOT_FOUND).json(response);
                 return;
             }
-    
+
             res.status(Status.OK).json(response);
         } catch (error) {
             console.error("Error in rejectInstructor Controller:", error);
@@ -179,7 +182,7 @@ class AdminController {
             });
         }
     }
-    
+
 
 
 
@@ -188,9 +191,9 @@ class AdminController {
         try {
             const page = parseInt(req.query.page as string) || 1;
             const limit = parseInt(req.query.limit as string) || 10;
-            const search = req.query.search as string | undefined; 
+            const search = req.query.search as string | undefined;
 
-            const response = await this._adminService.fetchAllInstructors(page, limit,search);
+            const response = await this._adminService.fetchAllInstructors(page, limit, search);
 
             res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
         } catch (error) {
@@ -229,6 +232,39 @@ class AdminController {
             });
         }
     }
+
+
+    async getAdminPayouts(req: Request, res: Response): Promise<void> {
+        try {
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const search = req.query.search as string | undefined;
+            const sortField = req.query.sortField as string | undefined;
+            const sortOrder = req.query.sortOrder as string | undefined;
+
+            const sort = sortField
+                ? { field: sortField, order: (sortOrder as "asc" | "desc") || "desc" }
+                : undefined;
+
+            const result = await this._paymentService.getAdminPayouts(
+                page,
+                limit,
+                search,
+                sort
+            );
+
+            res.status(Status.OK).json(result);
+        } catch (error) {
+            console.error("Error fetching admin payouts:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+
+    
 
 
 

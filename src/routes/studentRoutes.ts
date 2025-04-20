@@ -17,7 +17,7 @@ import { ReviewService } from "../services/reviewServices";
 import ReviewController from "../controllers/reviewController";
 import { STUDENT_ROUTES } from "../constants/routes_constants";
 import { Role } from "../utils/Enum";
-import { redisService, RedisService } from "../services/redisService";
+import { redisService } from "../services/redisService";
 
 
 const userRepository = new UserRepository();

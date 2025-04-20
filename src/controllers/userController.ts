@@ -526,7 +526,7 @@ class UserController {
     async getPaymentHistory(req: AuthRequest, res: Response): Promise<void> {
         try {
             const userId = req.user?.id;
-            
+
             // Check if userId is undefined
             if (!userId) {
                 res.status(Status.UN_AUTHORISED).json({
@@ -535,20 +535,20 @@ class UserController {
                 });
                 return; // Exit the function if the user is not authenticated
             }
-    
+
             const page = parseInt(req.query.page as string) || 1;
             const limit = parseInt(req.query.limit as string) || 10;
             const search = req.query.search as string | undefined;
             const sortField = req.query.sortField as string | undefined;
             const sortOrder = req.query.sortOrder as string | undefined;
-    
+
             const sort = sortField
                 ? { field: sortField as "amount" | "createdAt" | "status", order: (sortOrder as "asc" | "desc") || "desc" }
                 : undefined;
-    
+
             // Pass userId to the service function now that it's guaranteed to be a string
             const result = await this._paymentService.getPaymentsByUser(userId, page, limit, search, sort);
-    
+
             res.status(Status.OK).json(result);
         } catch (error) {
             console.error("Error fetching payment history:", error);
@@ -558,7 +558,50 @@ class UserController {
             });
         }
     }
-    
+
+
+    async getInstructorPayouts(req: AuthRequest, res: Response): Promise<void> {
+        try {
+            const instructorId = req.user?.id;
+
+            // Check if instructorId is undefined
+            if (!instructorId) {
+                res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "Instructor not authenticated",
+                });
+                return;
+            }
+
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const search = req.query.search as string | undefined;
+            const sortField = req.query.sortField as string | undefined;
+            const sortOrder = req.query.sortOrder as string | undefined;
+
+            const sort = sortField
+                ? { field: sortField, order: (sortOrder as "asc" | "desc") || "desc" }
+                : undefined;
+
+            const result = await this._paymentService.getInstructorPayouts(
+                instructorId,
+                page,
+                limit,
+                search,
+                sort
+            );
+
+            res.status(Status.OK).json(result);
+        } catch (error) {
+            console.error("Error fetching instructor payouts:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+
 }
 
 

@@ -91,19 +91,32 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
 }
 
 
-export interface IPaymentRepository {
+export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
     findByUserId(userId: string): Promise<PaymentDoc[]>;
     findByCourseId(courseId: string): Promise<PaymentDoc[]>;
     updatePaymentStatus(paymentId: string, status: PaymentDoc["status"]): Promise<PaymentDoc | null>;
     createPayment(paymentData: Partial<PaymentDoc>): Promise<PaymentDoc>;
     getPaymentsByUser(
-        userId: string,
-        page: number,
-        limit: number,
-        search?: string,
-        sort?: { field: string; order: "asc" | "desc" }
+      userId: string,
+      page: number,
+      limit: number,
+      search?: string,
+      sort?: { field: string; order: "asc" | "desc" }
     ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
-}
+    getInstructorPayouts(
+      instructorId: string,
+      page: number,
+      limit: number,
+      search?: string,
+      sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+    getAdminPayouts(
+      page: number,
+      limit: number,
+      search?: string,
+      sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+  }
 
 
 export interface IEnrollmentRepository {

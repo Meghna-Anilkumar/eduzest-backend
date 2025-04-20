@@ -56,7 +56,94 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
     return { data, total, page, limit };
   }
 
-  
+  async getInstructorPayouts(
+    instructorId: string,
+    page: number,
+    limit: number,
+    search?: string,
+    sort?: { field: string; order: "asc" | "desc" }
+  ): Promise<{ data: any[]; total: number; page: number; limit: number }> {
+    const query: any = { "instructorPayout.instructorId": new Types.ObjectId(instructorId) };
+
+    if (search) {
+      query.$or = [
+        { "courseId": { $regex: search, $options: "i" } },
+        { "instructorPayout.transactionId": { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const sortOptions: any = sort ? { [sort.field]: sort.order === "asc" ? 1 : -1 } : { createdAt: -1 };
+
+    const skip = (page - 1) * limit;
+    
+    // Get payments with populated user and course data
+    const [payments, total] = await Promise.all([
+      this._model
+        .find(query)
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(limit)
+        .populate("userId", "name")
+        .populate("courseId", "title")
+        .lean(),
+      this._model.countDocuments(query),
+    ]);
+
+    // Format data to include student name
+    const data = payments.map(payment => ({
+      transactionId: payment.instructorPayout.transactionId || 'N/A',
+      date: payment.createdAt,
+      course: payment.courseId ? (payment.courseId as any).title : 'Unknown',
+      studentName: payment.userId ? (payment.userId as any).name : 'Unknown',
+      amount: payment.instructorPayout.amount
+    }));
+
+    return { data, total, page, limit };
+  }
+
+  async getAdminPayouts(
+    page: number,
+    limit: number,
+    search?: string,
+    sort?: { field: string; order: "asc" | "desc" }
+  ): Promise<{ data: any[]; total: number; page: number; limit: number }> {
+    const query: any = {};
+
+    if (search) {
+      query.$or = [
+        { "courseId": { $regex: search, $options: "i" } },
+        { "adminPayout.transactionId": { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const sortOptions: any = sort ? { [sort.field]: sort.order === "asc" ? 1 : -1 } : { createdAt: -1 };
+
+    const skip = (page - 1) * limit;
+    
+    // Get payments with populated user and course data
+    const [payments, total] = await Promise.all([
+      this._model
+        .find(query)
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(limit)
+        .populate("userId", "name")
+        .populate("courseId", "title")
+        .lean(),
+      this._model.countDocuments(query),
+    ]);
+
+    // Format data to include student name
+    const data = payments.map(payment => ({
+      transactionId: payment.adminPayout.transactionId || 'N/A',
+      date: payment.createdAt,
+      course: payment.courseId ? (payment.courseId as any).title : 'Unknown',
+      studentName: payment.userId ? (payment.userId as any).name : 'Unknown',
+      amount: payment.adminPayout.amount
+    }));
+
+    return { data, total, page, limit };
+  }
 }
 
 export default PaymentRepository;
