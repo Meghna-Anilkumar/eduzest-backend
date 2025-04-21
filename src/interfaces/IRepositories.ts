@@ -9,6 +9,7 @@ import { PaymentDoc } from '../models/paymentModel';
 import { EnrollmentDoc } from '../models/enrollmentModel';
 import { IReview } from './IReview';
 import { LessonProgress } from '../models/enrollmentModel';
+import { IAssessment } from './IAssessments';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -97,26 +98,26 @@ export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
     updatePaymentStatus(paymentId: string, status: PaymentDoc["status"]): Promise<PaymentDoc | null>;
     createPayment(paymentData: Partial<PaymentDoc>): Promise<PaymentDoc>;
     getPaymentsByUser(
-      userId: string,
-      page: number,
-      limit: number,
-      search?: string,
-      sort?: { field: string; order: "asc" | "desc" }
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
     ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
     getInstructorPayouts(
-      instructorId: string,
-      page: number,
-      limit: number,
-      search?: string,
-      sort?: { field: string; order: "asc" | "desc" }
+        instructorId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
     ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
     getAdminPayouts(
-      page: number,
-      limit: number,
-      search?: string,
-      sort?: { field: string; order: "asc" | "desc" }
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
     ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
-  }
+}
 
 
 export interface IEnrollmentRepository {
@@ -144,4 +145,15 @@ export interface IReviewRepository {
     findByUserAndCourse(userId: string, courseId: string): Promise<IReview | null>;
     getReviewsByCourse(courseId: string, skip: number, limit: number): Promise<IReview[]>;
     countReviewsByCourse(courseId: string): Promise<number>;
+}
+
+
+export interface IAssessmentRepository {
+    createAssessment(assessmentData: Partial<IAssessment>): Promise<IAssessment>;
+    findByCourseAndModule(courseId: string, moduleTitle: string, page: number, limit: number): Promise<IAssessment[]>;
+    countByCourseAndModule(courseId: string, moduleTitle: string): Promise<number>;
+    findByIdAndInstructor(assessmentId: string, instructorId: string): Promise<IAssessment | null>;
+    updateAssessment(assessmentId: string, instructorId: string, updateData: Partial<IAssessment>): Promise<IAssessment | null>;
+    deleteAssessment(assessmentId: string, instructorId: string): Promise<boolean>;
+    getCourseIdsByInstructor(instructorId: string): Promise<Types.ObjectId[]>;
 }

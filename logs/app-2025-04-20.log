@@ -110,3 +110,5 @@
 [2025-04-20 16:56:24] [INFO] [REQUEST] GET /courses/680094d0c1a02343f4ba441b/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fneww%20coursee%2Fmodule-1%2Flesson-1.mp4
 [2025-04-20 22:12:55] [INFO] [REQUEST] GET /courses/680094d0c1a02343f4ba441b
 [2025-04-20 22:14:17] [INFO] [RESPONSE] Status: 404 Message: An error occurred while fetching the course.
+[2025-04-20 22:52:16] [INFO] [REQUEST] GET /courses/680094d0c1a02343f4ba441b
+[2025-04-20 22:52:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.

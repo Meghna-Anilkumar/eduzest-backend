@@ -45,7 +45,9 @@ export const INSTRUCTOR_ROUTES = {
     GET_ALL_COURSES_BYINSTRUCTOR: '/courses',
     EDIT_COURSE: '/courses/:id',
     GET_COURSE_BYINSTRUCTOR:'/courses/:id',
-    GET_TRANSACTIONS:'/getTransactions'
+    GET_TRANSACTIONS:'/getTransactions',
+    CREATE_ASSESSMENT:'/courses/:courseId/modules/:moduleTitle/assessments',
+    GET_ASSESSMENTS:'/courses/:courseId/modules/:moduleTitle/assessments'
 }
 
 

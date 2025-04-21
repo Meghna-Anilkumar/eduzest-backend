@@ -5,6 +5,7 @@ import { Response } from "express";
 import { ICourse, FilterOptions, SortOptions } from "./ICourse";
 import { IReview } from "./IReview";
 import { LessonProgress } from "../models/enrollmentModel";
+import { IAssessment } from "./IAssessments";
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -120,4 +121,23 @@ export interface IRedisService {
     getProgress(userId: string, courseId: string): Promise<LessonProgress[] | null>;
     setProgress(userId: string, courseId: string, progress: LessonProgress[], expirySeconds?: number): Promise<void>;
     clearProgress(userId: string, courseId: string): Promise<void>;
+}
+
+export interface IAssessmentService {
+    createAssessment(
+        courseId: string,
+        moduleTitle: string,
+        instructorId: string,
+        assessmentData: Partial<IAssessment>
+    ): Promise<IResponse>;
+    getAssessmentsByCourseAndModule(
+        courseId: string,
+        moduleTitle: string,
+        instructorId: string,
+        page: number,
+        limit: number
+    ): Promise<IResponse>;
+    getAssessmentById(assessmentId: string, instructorId: string): Promise<IResponse>;
+    updateAssessment(assessmentId: string, instructorId: string, updateData: Partial<IAssessment>): Promise<IResponse>;
+    deleteAssessment(assessmentId: string, instructorId: string): Promise<IResponse>;
 }
