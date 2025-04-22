@@ -140,4 +140,25 @@ export interface IAssessmentService {
     getAssessmentById(assessmentId: string, instructorId: string): Promise<IResponse>;
     updateAssessment(assessmentId: string, instructorId: string, updateData: Partial<IAssessment>): Promise<IResponse>;
     deleteAssessment(assessmentId: string, instructorId: string): Promise<IResponse>;
+    getAssessmentsForStudent(
+        courseId: string,
+        moduleTitle: string,
+        studentId: string,
+        page: number,
+        limit: number
+    ): Promise<IResponse>;
+    getAssessmentsForStudent(
+        courseId: string,
+        moduleTitle: string,
+        studentId: string,
+        page: number,
+        limit: number
+      ): Promise<IResponse>;
+      submitAssessment(
+        assessmentId: string,
+        studentId: string,
+        answers: { questionId: string; selectedAnswer: string }[]
+      ): Promise<IResponse>;
+      getAssessmentResult(assessmentId: string, studentId: string): Promise<IResponse>;
+      getAssessmentByIdForStudent(assessmentId: string, studentId: string): Promise<IResponse>;
 }

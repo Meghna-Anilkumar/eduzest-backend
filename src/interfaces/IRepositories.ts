@@ -10,6 +10,7 @@ import { EnrollmentDoc } from '../models/enrollmentModel';
 import { IReview } from './IReview';
 import { LessonProgress } from '../models/enrollmentModel';
 import { IAssessment } from './IAssessments';
+import { IAssessmentResult } from './IAssessments';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -156,4 +157,7 @@ export interface IAssessmentRepository {
     updateAssessment(assessmentId: string, instructorId: string, updateData: Partial<IAssessment>): Promise<IAssessment | null>;
     deleteAssessment(assessmentId: string, instructorId: string): Promise<boolean>;
     getCourseIdsByInstructor(instructorId: string): Promise<Types.ObjectId[]>;
+    findById(assessmentId: string): Promise<IAssessment | null>;
+    createOrUpdateResult(resultData: Partial<IAssessmentResult>): Promise<IAssessmentResult>;
+    findResultByAssessmentAndStudent(assessmentId: string, studentId: string): Promise<IAssessmentResult | null>;
 }

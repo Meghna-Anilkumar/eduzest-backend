@@ -36,7 +36,7 @@ export const ADMIN_ROUTES = {
     EDIT_CATEGORY: '/edit-category/:categoryId',
     DELETE_CATEGORY: '/delete-category/:categoryId',
     GET_REQUESTDETAILS: '/getRequestDetails',
-    GET_TRANSACTIONS:'/getTransactions'
+    GET_TRANSACTIONS: '/getTransactions'
 }
 
 
@@ -44,10 +44,12 @@ export const INSTRUCTOR_ROUTES = {
     CREATE_COURSE: '/create-course',
     GET_ALL_COURSES_BYINSTRUCTOR: '/courses',
     EDIT_COURSE: '/courses/:id',
-    GET_COURSE_BYINSTRUCTOR:'/courses/:id',
-    GET_TRANSACTIONS:'/getTransactions',
-    CREATE_ASSESSMENT:'/courses/:courseId/modules/:moduleTitle/assessments',
-    GET_ASSESSMENTS:'/courses/:courseId/modules/:moduleTitle/assessments'
+    GET_COURSE_BYINSTRUCTOR: '/courses/:id',
+    GET_TRANSACTIONS: '/getTransactions',
+    CREATE_ASSESSMENT: '/courses/:courseId/modules/:moduleTitle/assessments',
+    GET_ASSESSMENTS: '/courses/:courseId/modules/:moduleTitle/assessments',
+    EDIT_ASSESSMENT: '/assessments/:assessmentId',
+    DELETE_ASSESSMENT: '/assessments/:assessmentId',
 }
 
 
@@ -57,9 +59,14 @@ export const STUDENT_ROUTES = {
     ENROLL_COURSE: '/enroll-course',
     CHECK_ENROLLMENT: '/check-enrollment/:courseId',
     GET_ENROLLMENTS: '/enrollments',
-    GET_PAYMENT_HISTORY:'/payment-history',
-    ADD_REVIEW:'/reviews',
+    GET_PAYMENT_HISTORY: '/payment-history',
+    ADD_REVIEW: '/reviews',
     GET_REVIEW: "/review/:courseId",
     UPDATE_LESSON_PROGRESS: "/update-lesson-progress",
     GET_LESSON_PROGRESS: "/lesson-progress/:courseId",
+    GET_ASSESSMENTS_FOR_STUDENT: '/courses/:courseId/modules/:moduleTitle/assessments',
+    // GET_ASSESSMENT_BY_ID: '/assessments/:assessmentId',
+    SUBMIT_ASSESSMENT: '/assessments/:assessmentId/submit',
+    GET_ASSESSMENT_RESULT: '/assessments/:assessmentId/result',
+    GET_ASSESSMENT_BY_ID_FOR_STUDENT:'/assessments/:assessmentId',
 };

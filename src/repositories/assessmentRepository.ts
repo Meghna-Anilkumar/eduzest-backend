@@ -1,11 +1,15 @@
 import { Types } from 'mongoose';
-import { IAssessment } from '../interfaces/IAssessments';
+import { IAssessment, IAssessmentResult } from '../interfaces/IAssessments';
 import { BaseRepository } from './baseRepository';
 import { Assessment } from '../models/assessmentModel';
+import { AssessmentResult } from '../models/assessmentResultModel';
 
 export class AssessmentRepository extends BaseRepository<IAssessment> {
+  private _resultModel: typeof AssessmentResult;
+
   constructor() {
     super(Assessment);
+    this._resultModel = AssessmentResult;
   }
 
   async createAssessment(assessmentData: Partial<IAssessment>): Promise<IAssessment> {
@@ -81,5 +85,58 @@ export class AssessmentRepository extends BaseRepository<IAssessment> {
       instructorRef: new Types.ObjectId(instructorId),
     }).select('_id');
     return courses.map(course => course._id);
+  }
+
+  async findById(assessmentId: string): Promise<IAssessment | null> {
+    return this._model.findById(assessmentId).exec();
+  }
+
+  async createOrUpdateResult(resultData: Partial<IAssessmentResult>): Promise<IAssessmentResult> {
+    console.log("AssessmentRepository: createOrUpdateResult called with data", resultData);
+    const existingResult = await this._resultModel.findOne({
+      assessmentId: resultData.assessmentId,
+      studentId: resultData.studentId,
+    });
+
+    if (existingResult) {
+      console.log("AssessmentRepository: Existing result found, updating", { id: existingResult._id });
+      const updatedResult = await this._resultModel
+        .findByIdAndUpdate(
+          existingResult._id,
+          {
+            $push: { attempts: resultData.attempts![0] },
+            $set: {
+              bestScore: resultData.bestScore,
+              earnedPoints: resultData.earnedPoints,
+              status: resultData.status,
+              updatedAt: new Date(),
+            },
+          },
+          { new: true, runValidators: true }
+        )
+        .exec();
+      console.log("AssessmentRepository: Updated result", updatedResult);
+      if (!updatedResult) {
+        throw new Error("Failed to update assessment result");
+      }
+      return updatedResult;
+    }
+
+    console.log("AssessmentRepository: No existing result, creating new");
+    const newResult = await this._resultModel.create(resultData);
+    console.log("AssessmentRepository: Created new result", newResult);
+    return newResult;
+  }
+
+  async findResultByAssessmentAndStudent(
+    assessmentId: string,
+    studentId: string
+  ): Promise<IAssessmentResult | null> {
+    return this._resultModel
+      .findOne({
+        assessmentId: new Types.ObjectId(assessmentId),
+        studentId: new Types.ObjectId(studentId),
+      })
+      .exec();
   }
 }

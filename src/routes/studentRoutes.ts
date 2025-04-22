@@ -8,11 +8,14 @@ import OtpRepository from "../repositories/otpRepository";
 import { authenticateUser } from "../middlewares/authMiddleware";
 import PaymentService from "../services/paymentServices";
 import PaymentRepository from "../repositories/paymentRepository";
-import {EnrollmentRepository} from "../repositories/enrollmentRepository";
+import AssessmentController from "../controllers/assessmentController";
+import { EnrollmentRepository } from "../repositories/enrollmentRepository";
+import { AssessmentRepository } from "../repositories/assessmentRepository";
+import { AssessmentService } from "../services/assessmentService";
 import CategoryRepository from "../repositories/categoryRepository";
 import EnrollCourseService from "../services/enrollmentServices";
 import EnrollCourseController from "../controllers/enrollCourseController";
-import ReviewRepository from "../repositories/reviewRepository"; 
+import ReviewRepository from "../repositories/reviewRepository";
 import { ReviewService } from "../services/reviewServices";
 import ReviewController from "../controllers/reviewController";
 import { STUDENT_ROUTES } from "../constants/routes_constants";
@@ -26,23 +29,26 @@ const courseRepository = new CourseRepository();
 const paymentRepository = new PaymentRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
 const categoryRepository = new CategoryRepository();
+const assessmentRepository = new AssessmentRepository();
 const reviewRepository = new ReviewRepository();
 
 
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
-const courseService = new CourseService(courseRepository,categoryRepository);
-const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository,redisService);
-const reviewService = new ReviewService(reviewRepository, enrollmentRepository); 
+const courseService = new CourseService(courseRepository, categoryRepository);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, redisService);
+const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
+const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
 
 
 const userController = new UserController(userService, paymentService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService);
-const reviewController = new ReviewController(reviewService); 
+const reviewController = new ReviewController(reviewService);
+const assessmentController = new AssessmentController(assessmentService);
 
 const studentRouter = Router();
 
-studentRouter.post(STUDENT_ROUTES.CREATE_PAYMENT_INTENT,authenticateUser(),
+studentRouter.post(STUDENT_ROUTES.CREATE_PAYMENT_INTENT, authenticateUser(),
   userController.createPaymentIntent.bind(userController) as RequestHandler
 );
 
@@ -96,5 +102,35 @@ studentRouter.get(
   enrollCourseController.getLessonProgress.bind(enrollCourseController)
 );
 
+studentRouter.get(
+  STUDENT_ROUTES.GET_ASSESSMENTS_FOR_STUDENT,
+  authenticateUser("Student"),
+  assessmentController.getAssessmentsForStudent.bind(assessmentController)
+);
+
+// studentRouter.get(
+//   STUDENT_ROUTES.GET_ASSESSMENT_BY_ID,
+//   authenticateUser("Student"),
+//   assessmentController.getAssessmentById.bind(assessmentController)
+// );
+
+studentRouter.post(
+  STUDENT_ROUTES.SUBMIT_ASSESSMENT,
+  authenticateUser("Student"),
+  assessmentController.submitAssessment.bind(assessmentController)
+);
+
+studentRouter.get(
+  STUDENT_ROUTES.GET_ASSESSMENT_RESULT,
+  authenticateUser("Student"),
+  assessmentController.getAssessmentResult.bind(assessmentController)
+);
+
+
+studentRouter.get(
+  STUDENT_ROUTES.GET_ASSESSMENT_BY_ID_FOR_STUDENT,
+  authenticateUser("Student"),
+  assessmentController.getAssessmentByIdForStudent.bind(assessmentController)
+)
 
 export default studentRouter;

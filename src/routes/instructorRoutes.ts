@@ -33,7 +33,7 @@ const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, redisService);
-const assessmentService = new AssessmentService(assessmentRepository);
+const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
 
 // Instantiate controllers
 const courseController = new CourseController(courseService, enrollCourseService);
@@ -85,6 +85,18 @@ instructorRouter.get(
     INSTRUCTOR_ROUTES.GET_ASSESSMENTS,
     authenticateUser("Instructor"),
     assessmentController.getAssessmentsByCourseAndModule.bind(assessmentController)
+);
+
+instructorRouter.put(
+    INSTRUCTOR_ROUTES.EDIT_ASSESSMENT,
+    authenticateUser('Instructor'),
+    assessmentController.updateAssessment.bind(assessmentController)
+);
+
+instructorRouter.delete(
+    INSTRUCTOR_ROUTES.DELETE_ASSESSMENT,
+    authenticateUser('Instructor'),
+    assessmentController.deleteAssessment.bind(assessmentController)
 );
 
 export default instructorRouter;
