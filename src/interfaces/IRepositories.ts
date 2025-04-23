@@ -56,6 +56,8 @@ export interface IAdminRepository extends IBaseRepository<AdminDoc> {
     rejectInstructorRequest(id: string): Promise<UserDoc | null>;
     getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]>;
     countInstructors(search?: string): Promise<number>;
+    getStudentGrowth(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; count: number }[]>;
+
 }
 
 export interface IOtpRepository extends IBaseRepository<OtpDoc> {
@@ -118,6 +120,7 @@ export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
         search?: string,
         sort?: { field: string; order: "asc" | "desc" }
     ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+    getRevenueOverview(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; amount: number }[]>;
 }
 
 

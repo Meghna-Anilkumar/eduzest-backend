@@ -22,7 +22,7 @@ const paymentRepository = new PaymentRepository()
 const courseRepository = new CourseRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
 
-const adminService = new AdminService(adminRepository);
+const adminService = new AdminService(adminRepository,courseRepository,paymentRepository);
 const categoryService=new CategoryService(categoryRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 
@@ -55,5 +55,8 @@ adminRouter.put(ADMIN_ROUTES.DELETE_CATEGORY, authenticateAdmin(), categoryContr
 //transactions
 adminRouter.get(ADMIN_ROUTES.GET_TRANSACTIONS,authenticateAdmin(),adminController.getAdminPayouts.bind(adminController))
 
+
+//dashboard
+adminRouter.get(ADMIN_ROUTES.GET_DASHBOARD_STATS,authenticateAdmin(),adminController.getDashboardStats.bind(adminController))
 
 export default adminRouter

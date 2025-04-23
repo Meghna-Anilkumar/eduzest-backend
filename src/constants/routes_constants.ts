@@ -36,7 +36,8 @@ export const ADMIN_ROUTES = {
     EDIT_CATEGORY: '/edit-category/:categoryId',
     DELETE_CATEGORY: '/delete-category/:categoryId',
     GET_REQUESTDETAILS: '/getRequestDetails',
-    GET_TRANSACTIONS: '/getTransactions'
+    GET_TRANSACTIONS: '/getTransactions',
+    GET_DASHBOARD_STATS:'/dashboard-stats'
 }
 
 

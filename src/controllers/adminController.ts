@@ -264,6 +264,22 @@ class AdminController {
     }
 
 
+
+    async getDashboardStats(req: Request, res: Response): Promise<void> {
+        try {
+            const { period = "day" } = req.query;
+            const validPeriods = ["day", "month", "year"];
+            if (!validPeriods.includes(period as string)) {
+                res.status(400).json({ success: false, message: "Invalid period parameter" });
+                return;
+            }
+            const response = await this._adminService.getDashboardStats(period as "day" | "month" | "year");
+            res.status(response.success ? 200 : 400).json(response);
+        } catch (error) {
+            console.error("Error in getDashboardStats:", error);
+            res.status(500).json({ success: false, message: "Internal server error" });
+        }
+    }
     
 
 

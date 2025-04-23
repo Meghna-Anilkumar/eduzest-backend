@@ -1,4 +1,4 @@
-import { IAdminRepository } from '../interfaces/IRepositories';
+import { IAdminRepository,ICourseRepository,IPaymentRepository } from '../interfaces/IRepositories';
 import { IResponse } from '../interfaces/IResponse';
 import { IAdminService } from '../interfaces/IServices';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
@@ -11,6 +11,8 @@ import { sendEmail } from '../utils/nodemailer';
 export class AdminService implements IAdminService {
     constructor(
         private _adminRepository: IAdminRepository,
+        private _courseRepository: ICourseRepository,
+        private _paymentRepository: IPaymentRepository
     ) {}
 
     // Admin login
@@ -303,6 +305,79 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
+    async getDashboardStats(period: "day" | "month" | "year" = "day"): Promise<IResponse> {
+        try {
+          // Calculate the date range based on the period
+          const endDate = new Date();
+          const startDate = new Date();
+          let rangeLength: number;
+      
+          if (period === "day") {
+            rangeLength = 30; // Last 30 days
+            startDate.setDate(endDate.getDate() - rangeLength);
+          } else if (period === "month") {
+            rangeLength = 12; // Last 12 months
+            startDate.setMonth(endDate.getMonth() - rangeLength);
+          } else {
+            rangeLength = 5; // Last 5 years
+            startDate.setFullYear(endDate.getFullYear() - rangeLength);
+          }
+      
+          // Fetch total counts and payments
+          const [totalStudents, totalInstructors, activeCourses, payments, studentGrowthData, revenueData] =
+            await Promise.all([
+              this._adminRepository.countStudents(),
+              this._adminRepository.countInstructors(),
+              this._courseRepository.countDocuments({ isPublished: true }),
+              this._paymentRepository.findAll({ status: "completed" }, 0, { createdAt: -1 }),
+              this._adminRepository.getStudentGrowth(startDate, endDate, period),
+              this._paymentRepository.getRevenueOverview(startDate, endDate, period),
+            ]);
+      
+          const totalRevenue = payments.reduce((sum, payment) => sum + payment.adminPayout.amount, 0);
+      
+          // Format student growth and revenue data with user-friendly labels
+          const studentGrowth = studentGrowthData.map((item) => ({
+            date:
+              period === "day"
+                ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) // e.g., "Apr 23"
+                : period === "month"
+                ? new Date(item.date).toLocaleString("en-US", { month: "short", year: "numeric" }) // e.g., "Apr 2024"
+                : item.date, // e.g., "2024"
+            count: item.count,
+          }));
+      
+          const revenueOverview = revenueData.map((item) => ({
+            date:
+              period === "day"
+                ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) // e.g., "Apr 23"
+                : period === "month"
+                ? new Date(item.date).toLocaleString("en-US", { month: "short", year: "numeric" }) // e.g., "Apr 2024"
+                : item.date, // e.g., "2024"
+            amount: item.amount,
+          }));
+      
+          return {
+            success: true,
+            message: "Dashboard statistics fetched successfully",
+            data: {
+              totalStudents,
+              totalInstructors,
+              activeCourses,
+              totalRevenue,
+              studentGrowth,
+              revenueOverview,
+            },
+          };
+        } catch (error) {
+          console.error("Error fetching dashboard stats:", error);
+          return {
+            success: false,
+            message: "Failed to fetch dashboard statistics",
+          };
+        }
+      }
 }
 
 export default AdminService;

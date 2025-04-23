@@ -6,6 +6,7 @@ import { ICourse, FilterOptions, SortOptions } from "./ICourse";
 import { IReview } from "./IReview";
 import { LessonProgress } from "../models/enrollmentModel";
 import { IAssessment } from "./IAssessments";
+import { DashboardStats } from "./IDashboardStats";
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -36,6 +37,7 @@ export interface IAdminService {
     rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse>
     fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse>
     fetchRequestDetails(_id: string): Promise<IResponse>
+    getDashboardStats(period?: "day" | "month" | "year"): any;
 }
 
 

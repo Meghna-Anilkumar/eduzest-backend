@@ -144,6 +144,71 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
 
     return { data, total, page, limit };
   }
+
+
+  async getRevenueOverview(
+    startDate: Date,
+    endDate: Date,
+    period: "day" | "month" | "year"
+  ): Promise<{ date: string; amount: number }[]> {
+    const dateFormat = period === "day" ? "%Y-%m-%d" : period === "month" ? "%Y-%m" : "%Y";
+  
+    // Cap the endDate at the current date
+    const today = new Date();
+    const effectiveEndDate = endDate > today ? today : endDate;
+  
+    const result = await this._model.aggregate([
+      {
+        $match: {
+          status: "completed",
+          createdAt: { $gte: startDate, $lte: effectiveEndDate },
+        },
+      },
+      {
+        $group: {
+          _id: { $dateToString: { format: dateFormat, date: "$createdAt" } },
+          amount: { $sum: "$adminPayout.amount" },
+        },
+      },
+      {
+        $project: {
+          date: "$_id",
+          amount: 1,
+          _id: 0,
+        },
+      },
+      { $sort: { date: 1 } },
+    ]);
+  
+    // Generate all periods up to today
+    const periods: { date: string; amount: number }[] = [];
+    let currentDate = new Date(startDate);
+  
+    while (currentDate <= effectiveEndDate) {
+      const dateStr =
+        period === "day"
+          ? currentDate.toISOString().split("T")[0] // e.g., "2024-04-23"
+          : period === "month"
+          ? `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}` // e.g., "2024-04"
+          : currentDate.getFullYear().toString(); // e.g., "2024"
+  
+      const found = result.find((item: { date: string; amount: number }) => item.date === dateStr);
+      periods.push({
+        date: dateStr,
+        amount: found ? found.amount : 0,
+      });
+  
+      if (period === "day") {
+        currentDate.setDate(currentDate.getDate() + 1);
+      } else if (period === "month") {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      } else {
+        currentDate.setFullYear(currentDate.getFullYear() + 1);
+      }
+    }
+  
+    return periods;
+  }
 }
 
 export default PaymentRepository;
