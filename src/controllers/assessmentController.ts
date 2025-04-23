@@ -6,7 +6,7 @@ import { IAssessment } from '../interfaces/IAssessments';
 import { Types } from 'mongoose';
 
 class AssessmentController {
-  constructor(private _assessmentService: IAssessmentService) {}
+  constructor(private _assessmentService: IAssessmentService) { }
 
   async createAssessment(req: AuthRequest, res: Response): Promise<void> {
     try {
@@ -331,7 +331,7 @@ class AssessmentController {
         });
         return;
       }
-  
+
       const { assessmentId } = req.params;
       if (!assessmentId || !Types.ObjectId.isValid(assessmentId)) {
         res.status(Status.BAD_REQUEST).json({
@@ -340,10 +340,10 @@ class AssessmentController {
         });
         return;
       }
-  
+
       // Assuming you have or will add this method to your service interface
       const response = await this._assessmentService.getAssessmentByIdForStudent(assessmentId, studentId);
-  
+
       res.status(response.success ? Status.OK : Status.NOT_FOUND).json(response);
     } catch (error) {
       console.error('Error in getAssessmentByIdForStudent controller:', error);
@@ -353,6 +353,79 @@ class AssessmentController {
       });
     }
   }
+
+
+  async getCourseProgress(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const studentId = req.user?.id;
+      if (!studentId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: 'Student ID not found in token.',
+        });
+        return;
+      }
+
+      const { courseId } = req.params;
+      if (!courseId || !Types.ObjectId.isValid(courseId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: 'Valid Course ID is required.',
+        });
+        return;
+      }
+
+      const response = await this._assessmentService.getCourseProgress(courseId, studentId);
+      res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
+    } catch (error) {
+      console.error('Error in getCourseProgress controller:', error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : 'Internal server error.',
+      });
+    }
+  }
+
+  async getAllAssessmentsForCourse(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const studentId = req.user?.id;
+      if (!studentId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: 'Student ID not found in token.',
+        });
+        return;
+      }
+
+      const { courseId } = req.params;
+      if (!courseId || !Types.ObjectId.isValid(courseId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: 'Valid Course ID is required.',
+        });
+        return;
+      }
+
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 100;
+
+      const response = await this._assessmentService.getAllAssessmentsForCourse(
+        courseId,
+        studentId,
+        page,
+        limit
+      );
+
+      res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
+    } catch (error) {
+      console.error('Error in getAllAssessmentsForCourse controller:', error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : 'Internal server error.',
+      });
+    }
+  }
+
 
 }
 

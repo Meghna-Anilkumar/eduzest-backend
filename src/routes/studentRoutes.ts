@@ -133,4 +133,6 @@ studentRouter.get(
   assessmentController.getAssessmentByIdForStudent.bind(assessmentController)
 )
 
+studentRouter.get(STUDENT_ROUTES.GET_COURSE_PROGRESS, authenticateUser("Student"), assessmentController.getCourseProgress.bind(assessmentController));
+studentRouter.get(STUDENT_ROUTES.GET_ASSESSMENTS_BY_COURSE,authenticateUser("Student"),assessmentController.getAllAssessmentsForCourse.bind(assessmentController))
 export default studentRouter;

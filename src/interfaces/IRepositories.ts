@@ -160,4 +160,10 @@ export interface IAssessmentRepository {
     findById(assessmentId: string): Promise<IAssessment | null>;
     createOrUpdateResult(resultData: Partial<IAssessmentResult>): Promise<IAssessmentResult>;
     findResultByAssessmentAndStudent(assessmentId: string, studentId: string): Promise<IAssessmentResult | null>;
+    countAssessmentsByCourse(courseId: string): Promise<number>;
+    countPassedAssessmentsByStudent(courseId: string, studentId: string): Promise<number>;
+    countByCourse(courseId: string): Promise<number>;
+    countAssessmentsByCourse(courseId: string): Promise<number>;
+    findByCourse(courseId: string, page: number, limit: number): Promise<IAssessment[]>;
+
 }

@@ -268,7 +268,7 @@ export class AssessmentService implements IAssessmentService {
                 };
             });
 
-            const passed = score / assessment.totalMarks >= 0.7; // 70% passing threshold
+            const passed = score / assessment.totalMarks >= 0.7;
 
             const resultData: Partial<IAssessmentResult> = {
                 assessmentId: new Types.ObjectId(assessmentId),
@@ -310,31 +310,31 @@ export class AssessmentService implements IAssessmentService {
 
     async getAssessmentResult(assessmentId: string, studentId: string): Promise<IResponse> {
         try {
+            console.log("AssessmentService: getAssessmentResult", { assessmentId, studentId });
             const result = await this._assessmentRepository.findResultByAssessmentAndStudent(assessmentId, studentId);
             if (!result) {
+                console.log("AssessmentService: No submission found", { assessmentId, studentId });
                 return {
                     success: false,
                     message: 'No submission found for this assessment.',
                 };
             }
 
+            console.log("AssessmentService: Result retrieved", result);
+            const latestAttempt = result.attempts[result.attempts.length - 1];
             return {
                 success: true,
                 message: 'Assessment result retrieved successfully.',
                 data: {
-                    assessmentId: result.assessmentId,
-                    courseId: result.courseId,
-                    moduleTitle: result.moduleTitle,
-                    studentId: result.studentId,
-                    attempts: result.attempts,
-                    bestScore: result.bestScore,
+                    score: latestAttempt.score,
                     totalPoints: result.totalPoints,
-                    earnedPoints: result.earnedPoints,
+                    passed: latestAttempt.passed,
+                    attempts: result.attempts,
                     status: result.status,
                 },
             };
         } catch (error) {
-            console.error('Error in getAssessmentResult service:', error);
+            console.error('AssessmentService: Error in getAssessmentResult:', error);
             return {
                 success: false,
                 message: error instanceof Error ? error.message : 'Failed to retrieve assessment result.',
@@ -344,15 +344,82 @@ export class AssessmentService implements IAssessmentService {
 
     async getAssessmentByIdForStudent(assessmentId: string, studentId: string): Promise<IResponse> {
         try {
-          const assessment = await this._assessmentRepository.findById(assessmentId);
-          if (!assessment) {
+            const assessment = await this._assessmentRepository.findById(assessmentId);
+            if (!assessment) {
+                return {
+                    success: false,
+                    message: 'Assessment not found.',
+                };
+            }
+
+            const enrollment = await this._enrollmentRepository.findByUserAndCourse(studentId, assessment.courseId.toString());
+            if (!enrollment) {
+                return {
+                    success: false,
+                    message: 'Student is not enrolled in this course.',
+                };
+            }
+
             return {
-              success: false,
-              message: 'Assessment not found.',
+                success: true,
+                message: 'Assessment retrieved successfully.',
+                data: assessment,
             };
-          }
-    
-          const enrollment = await this._enrollmentRepository.findByUserAndCourse(studentId, assessment.courseId.toString());
+        } catch (error) {
+            console.error('Error in getAssessmentByIdForStudent service:', error);
+            return {
+                success: false,
+                message: error instanceof Error ? error.message : 'Failed to retrieve assessment.',
+            };
+        }
+    }
+
+
+    async getCourseProgress(courseId: string, studentId: string): Promise<IResponse> {
+        try {
+            console.log("AssessmentService: getCourseProgress", { courseId, studentId });
+            const enrollment = await this._enrollmentRepository.findByUserAndCourse(studentId, courseId);
+            if (!enrollment) {
+                console.log("AssessmentService: Student not enrolled", { studentId, courseId });
+                return {
+                    success: false,
+                    message: 'Student is not enrolled in this course.',
+                };
+            }
+
+            const totalAssessments = await this._assessmentRepository.countAssessmentsByCourse(courseId);
+            const passedAssessments = await this._assessmentRepository.countPassedAssessmentsByStudent(courseId, studentId);
+
+            console.log("AssessmentService: Course progress calculated", { totalAssessments, passedAssessments });
+
+            const progress = totalAssessments === 0 ? 0 : (passedAssessments / totalAssessments) * 100;
+
+            return {
+                success: true,
+                message: 'Course progress retrieved successfully.',
+                data: {
+                    totalAssessments,
+                    passedAssessments,
+                    progress: Number(progress.toFixed(2)),
+                },
+            };
+        } catch (error) {
+            console.error('AssessmentService: Error in getCourseProgress:', error);
+            return {
+                success: false,
+                message: error instanceof Error ? error.message : 'Failed to retrieve course progress.',
+            };
+        }
+    }
+
+    async getAllAssessmentsForCourse(
+        courseId: string,
+        studentId: string,
+        page: number,
+        limit: number
+      ): Promise<IResponse> {
+        try {
+          const enrollment = await this._enrollmentRepository.findByUserAndCourse(studentId, courseId);
           if (!enrollment) {
             return {
               success: false,
@@ -360,18 +427,31 @@ export class AssessmentService implements IAssessmentService {
             };
           }
     
+          const assessments = await this._assessmentRepository.findByCourse(
+            courseId,
+            page,
+            limit
+          );
+    
+          const total = await this._assessmentRepository.countByCourse(courseId);
+    
           return {
             success: true,
-            message: 'Assessment retrieved successfully.',
-            data: assessment,
+            message: 'Assessments retrieved successfully.',
+            data: {
+              assessments,
+              total,
+              page,
+              limit,
+              totalPages: Math.ceil(total / limit),
+            },
           };
         } catch (error) {
-          console.error('Error in getAssessmentByIdForStudent service:', error);
+          console.error('Error in getAllAssessmentsForCourse service:', error);
           return {
             success: false,
-            message: error instanceof Error ? error.message : 'Failed to retrieve assessment.',
+            message: error instanceof Error ? error.message : 'Failed to retrieve assessments.',
           };
         }
       }
-
 }

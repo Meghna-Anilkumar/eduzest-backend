@@ -161,4 +161,12 @@ export interface IAssessmentService {
       ): Promise<IResponse>;
       getAssessmentResult(assessmentId: string, studentId: string): Promise<IResponse>;
       getAssessmentByIdForStudent(assessmentId: string, studentId: string): Promise<IResponse>;
+      getCourseProgress(courseId: string, studentId: string): Promise<IResponse>;
+      getAllAssessmentsForCourse(
+        courseId: string,
+        studentId: string,
+        page: number,
+        limit: number
+      ): Promise<IResponse>;
+      
 }

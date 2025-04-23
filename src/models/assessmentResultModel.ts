@@ -58,21 +58,15 @@ const assessmentResultSchema = new Schema<IAssessmentResult>(
   { timestamps: true }
 );
 
-// Ensure unique submission per student and assessment
 assessmentResultSchema.index({ assessmentId: 1, studentId: 1 }, { unique: true });
 
-// Pre-save hook to update bestScore, earnedPoints, and status
 assessmentResultSchema.pre('save', function (next) {
   if (this.isModified('attempts')) {
-    // Calculate bestScore
     this.bestScore = this.attempts.reduce((max, attempt) => Math.max(max, attempt.score), 0);
-
-    // Calculate earnedPoints (sum of best scores could be handled differently if multiple assessments)
     this.earnedPoints = this.bestScore;
 
-    // Update status based on attempts
-    const latestAttempt = this.attempts[this.attempts.length - 1];
-    if (latestAttempt && latestAttempt.passed) {
+    const hasPassedAttempt = this.attempts.some(attempt => attempt.passed);
+    if (hasPassedAttempt) {
       this.status = 'passed';
     } else if (this.attempts.length > 0) {
       this.status = 'failed';

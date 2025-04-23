@@ -139,4 +139,49 @@ export class AssessmentRepository extends BaseRepository<IAssessment> {
       })
       .exec();
   }
+
+
+  async countAssessmentsByCourse(courseId: string): Promise<number> {
+    console.log("AssessmentRepository: countAssessmentsByCourse", { courseId });
+    return this._model.countDocuments({
+      courseId: new Types.ObjectId(courseId),
+    }).exec();
+  }
+
+  async countPassedAssessmentsByStudent(courseId: string, studentId: string): Promise<number> {
+    console.log("AssessmentRepository: countPassedAssessmentsByStudent", { courseId, studentId });
+    return this._resultModel
+      .countDocuments({
+        courseId: new Types.ObjectId(courseId),
+        studentId: new Types.ObjectId(studentId),
+        status: 'passed',
+      })
+      .exec();
+  }
+
+  async findByCourse(
+    courseId: string,
+    page: number,
+    limit: number
+  ): Promise<IAssessment[]> {
+    return this._model
+      .find({
+        courseId: new Types.ObjectId(courseId),
+      })
+      .sort({ updatedAt: 'desc' })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+  }
+
+  async countByCourse(courseId: string): Promise<number> {
+    return this._model.countDocuments({
+      courseId: new Types.ObjectId(courseId),
+    }).exec();
+  }
+
 }
+
+
+
+
