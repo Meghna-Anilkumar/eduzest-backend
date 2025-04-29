@@ -54,17 +54,17 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     }
 
     async getAllRequestedUsers(skip: number, limit: number): Promise<UserDoc[]> {
-        return this.userModel.find({ isRequested: true }).skip(skip).limit(limit);
+        return this.userModel.find({ isRequested: true, isApproved: false }).skip(skip).limit(limit);
     }
 
     async countRequestedUsers(): Promise<number> {
-        return this.userModel.countDocuments({ isRequested: true });
+        return this.userModel.countDocuments({ isRequested: true ,isApproved: false });
     }
 
     async approveInstructorRequest(id: string): Promise<UserDoc | null> {
         return this.userModel.findByIdAndUpdate(
             id,
-            { role: Role.instructor, isRequested: false, isRejected: false },
+            {isApproved:true, isRejected: false },
             { new: true }
         );
     }

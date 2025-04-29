@@ -127,7 +127,6 @@ class EnrollCourseController {
   async updateLessonProgress(req: Request, res: Response): Promise<void> {
     try {
       const { courseId, lessonId, progress } = req.body;
-      console.log(req.body,'progreeeeeeeeeeesssssssssssssssss')
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
 
       if (!userId) {
@@ -188,6 +187,33 @@ class EnrollCourseController {
       });
     }
   }
+
+  async getInstructorCourseStats(req: Request, res: Response): Promise<void> {
+    try {
+      const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
+
+      if (!userId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: "User not authenticated",
+        });
+        return;
+      }
+
+      const result = await this.enrollCourseService.getInstructorCourseStats(userId);
+      res.status(Status.OK).json({
+        success: true,
+        data: result,
+      });
+    } catch (error) {
+      console.error("Error fetching instructor course stats:", error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Internal Server Error",
+      });
+    }
+  }
+
 }
 
 

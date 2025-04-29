@@ -1,0 +1,6 @@
+[2025-04-26 09:18:41] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-26 09:18:43] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-26 09:47:47] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-26 09:47:47] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-26 12:23:46] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-26 12:23:47] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.

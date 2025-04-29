@@ -1,17 +1,22 @@
 import { IEnrollmentRepository } from "../interfaces/IRepositories";
-import { UserRepository } from "../repositories/userRepository";
-import { CourseRepository } from "../repositories/courseRepository";
+import { IUserRepository } from "../interfaces/IRepositories";
+import { ICourseRepository } from "../interfaces/IRepositories";
 import { IResponse } from "../interfaces/IResponse";
 import { Types } from "mongoose";
 import { IRedisService } from "../interfaces/IServices";
+import { CourseStats } from "../interfaces/ICourseStats";
+import { PaymentDoc } from "../models/paymentModel";
+import { ICourse } from "../interfaces/ICourse";
+import { EnrollmentDoc } from "../models/enrollmentModel";
+import { IPaymentRepository } from "../interfaces/IRepositories";
 
 export class EnrollCourseService {
   constructor(
-    private enrollmentRepository: IEnrollmentRepository,
-    private userRepository: UserRepository,
-    private courseRepository: CourseRepository,
-    private redisService: IRedisService
-  ) {}
+    private _enrollmentRepository: IEnrollmentRepository,
+    private _userRepository: IUserRepository,
+    private _courseRepository: ICourseRepository,
+    private _paymentRepository: IPaymentRepository,
+  ) { }
 
 
   async enrollFreeCourse(userId: string, courseId: string): Promise<IResponse> {
@@ -23,13 +28,13 @@ export class EnrollCourseService {
       const userObjectId = new Types.ObjectId(userId);
       const courseObjectId = new Types.ObjectId(courseId);
 
-      const user = await this.userRepository.findById(userId);
+      const user = await this._userRepository.findById(userId);
       if (!user) {
         return { success: false, message: "User not found" };
       }
 
       // Check if course exists
-      const course = await this.courseRepository.findById(courseId);
+      const course = await this._courseRepository.findById(courseId);
       if (!course) {
         return { success: false, message: "Course not found" };
       }
@@ -40,13 +45,13 @@ export class EnrollCourseService {
       }
 
       // Check if user is already enrolled
-      const existingEnrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
+      const existingEnrollment = await this._enrollmentRepository.findByUserAndCourse(userId, courseId);
       if (existingEnrollment) {
         return { success: false, message: "User is already enrolled in this course" };
       }
 
       // Create the enrollment
-      const enrollment = await this.enrollmentRepository.createEnrollment({
+      const enrollment = await this._enrollmentRepository.createEnrollment({
         userId: userObjectId,
         courseId: courseObjectId,
         enrolledAt: new Date(),
@@ -54,7 +59,7 @@ export class EnrollCourseService {
       });
 
       // Increment the studentsEnrolled count in the Course collection
-      await this.courseRepository.update(
+      await this._courseRepository.update(
         { _id: courseObjectId },
         { $inc: { studentsEnrolled: 1 } }
       );
@@ -80,17 +85,17 @@ export class EnrollCourseService {
         return { success: false, message: "Invalid userId or courseId" };
       }
 
-      const user = await this.userRepository.findById(userId);
+      const user = await this._userRepository.findById(userId);
       if (!user) {
         return { success: false, message: "User not found" };
       }
 
-      const course = await this.courseRepository.findById(courseId);
+      const course = await this._courseRepository.findById(courseId);
       if (!course) {
         return { success: false, message: "Course not found" };
       }
 
-      const enrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
+      const enrollment = await this._enrollmentRepository.findByUserAndCourse(userId, courseId);
       if (!enrollment) {
         return {
           success: true,
@@ -119,12 +124,12 @@ export class EnrollCourseService {
         return { success: false, message: "Invalid userId" };
       }
 
-      const user = await this.userRepository.findById(userId);
+      const user = await this._userRepository.findById(userId);
       if (!user) {
         return { success: false, message: "User not found" };
       }
 
-      const enrollments = await this.enrollmentRepository.findByUserId(userId);
+      const enrollments = await this._enrollmentRepository.findByUserId(userId);
       return {
         success: true,
         message: "Enrollments fetched successfully",
@@ -151,7 +156,7 @@ export class EnrollCourseService {
         return { success: false, message: "Invalid userId, courseId, or lessonId" };
       }
 
-      const enrollment = await this.enrollmentRepository.updateLessonProgress(userId, courseId, lessonId, progress);
+      const enrollment = await this._enrollmentRepository.updateLessonProgress(userId, courseId, lessonId, progress);
       if (!enrollment) {
         return { success: false, message: "Enrollment not found" };
       }
@@ -176,7 +181,7 @@ export class EnrollCourseService {
         return { success: false, message: "Invalid userId or courseId" };
       }
 
-      const progress = await this.enrollmentRepository.getLessonProgress(userId, courseId);
+      const progress = await this._enrollmentRepository.getLessonProgress(userId, courseId);
       return {
         success: true,
         message: "Lesson progress fetched successfully",
@@ -190,6 +195,58 @@ export class EnrollCourseService {
       };
     }
   }
+
+
+  async getInstructorCourseStats(instructorId: string): Promise<CourseStats[]> {
+    try {
+      const courses: ICourse[] = await this._courseRepository.getAllCoursesByInstructor(
+        { instructorRef: new Types.ObjectId(instructorId) },
+        1,
+        10
+      );
+
+      const courseStats: CourseStats[] = [];
+
+      for (const course of courses) {
+        const courseId = course._id as Types.ObjectId;
+
+        const enrollments: EnrollmentDoc[] = await this._enrollmentRepository.findByCourseId(courseId.toString());
+
+        const totalEnrollments = enrollments.length;
+        const completedEnrollments = enrollments.filter(
+          (e) => e.completionStatus === "completed"
+        ).length;
+        const completionRate = totalEnrollments > 0 ? (completedEnrollments / totalEnrollments) * 100 : 0;
+
+        const totalProgress = enrollments.reduce((sum, e) => {
+          const progress = e.lessonProgress.reduce((p, lp) => p + lp.progress, 0);
+          return sum + (progress / (e.lessonProgress.length || 1));
+        }, 0);
+        const averageProgress = totalEnrollments > 0 ? totalProgress / totalEnrollments : 0;
+
+        const payments: PaymentDoc[] = await this._paymentRepository.findByCourseId(courseId.toString());
+        const totalRevenue = payments.reduce((sum: number, p: PaymentDoc) => {
+          return sum + (p.instructorPayout?.amount || 0);
+        }, 0);
+
+        courseStats.push({
+          courseId: courseId.toString(),
+          title: course.title,
+          totalEnrollments,
+          completedEnrollments,
+          completionRate: Number(completionRate.toFixed(2)),
+          totalRevenue,
+          averageProgress: Number(averageProgress.toFixed(2)),
+        });
+      }
+
+      return courseStats;
+    } catch (error) {
+      console.error("Error fetching instructor course stats:", error);
+      throw new Error("Could not fetch course statistics");
+    }
+  }
+
 }
 
 export default EnrollCourseService;

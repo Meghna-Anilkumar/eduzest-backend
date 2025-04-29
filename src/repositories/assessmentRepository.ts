@@ -3,6 +3,7 @@ import { IAssessment, IAssessmentResult } from '../interfaces/IAssessments';
 import { BaseRepository } from './baseRepository';
 import { Assessment } from '../models/assessmentModel';
 import { AssessmentResult } from '../models/assessmentResultModel';
+import { Course } from '../models/courseModel';
 
 export class AssessmentRepository extends BaseRepository<IAssessment> {
   private _resultModel: typeof AssessmentResult;
@@ -179,6 +180,8 @@ export class AssessmentRepository extends BaseRepository<IAssessment> {
       courseId: new Types.ObjectId(courseId),
     }).exec();
   }
+
+
 
 }
 

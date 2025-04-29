@@ -235,7 +235,7 @@ export class UserService implements IUserService {
 
     async refreshToken(refreshToken: string, res: Response): Promise<IResponse> {
         try {
-            const decoded = verifyRefreshToken(refreshToken); // Use verifyRefreshToken instead of verifyToken
+            const decoded = verifyRefreshToken(refreshToken);
             const userId = decoded.id;
 
             const storedRefreshToken = await this._userRepository.getRefreshToken(userId);
@@ -754,6 +754,46 @@ export class UserService implements IUserService {
                 error: {
                     message: "An error occurred while updating the profile."
                 }
+            };
+        }
+    }
+
+
+    async switchToInstructor(userId: string, res: Response): Promise<IResponse> {
+        try {
+            const user = await this._userRepository.findById(userId)
+            if (!user) {
+                return {
+                    success: false,
+                    message: 'user not found'
+                }
+            }
+            if (user.role === 'Instructor') {
+                return {
+                    success: false,
+                    message: 'already an instructor'
+                }
+            }
+            await this._userRepository.clearRefreshToken(userId);
+            const updatedUser = await this._userRepository.switchToInstructorRole(userId)
+            if (!updatedUser) {
+                return {
+                    success: false,
+                    message: "Failed to update user role.",
+                };
+            }
+            return {
+                success: true,
+                message: "User role changed to Instructor. Please log in again.",
+                redirectURL: "/login",
+                userData: updatedUser
+            };
+        }
+        catch (error) {
+            console.error("Error switching to Instructor role:", error);
+            return {
+                success: false,
+                message: "An error occurred while switching to Instructor role.",
             };
         }
     }

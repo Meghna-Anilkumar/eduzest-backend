@@ -6,7 +6,8 @@ import { ICourse, FilterOptions, SortOptions } from "./ICourse";
 import { IReview } from "./IReview";
 import { LessonProgress } from "../models/enrollmentModel";
 import { IAssessment } from "./IAssessments";
-import { DashboardStats } from "./IDashboardStats";
+import { CourseStats } from "./ICourseStats";
+
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -25,6 +26,7 @@ export interface IUserService {
     applyForInstructor(data: Partial<UserDoc>): Promise<IResponse>;
     updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse>;
     refreshToken(refreshToken: string, res: Response): Promise<IResponse>
+    switchToInstructor(userId: string, res: Response): Promise<IResponse>
 }
 
 
@@ -105,6 +107,7 @@ export interface IEnrollCourseService {
         progress: number
     ): Promise<IResponse>
     getLessonProgress(userId: string, courseId: string): Promise<IResponse>
+    getInstructorCourseStats(instructorId: string): Promise<CourseStats[]> 
 }
 
 

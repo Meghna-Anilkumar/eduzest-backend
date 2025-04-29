@@ -1,12 +1,9 @@
-import { PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Request, Response } from "express";
 import { ICourseService, IEnrollCourseService } from "../interfaces/IServices";
 import { Status } from "../utils/enums";
 import { AuthRequest } from "../interfaces/AuthRequest";
 import { Types } from "mongoose";
 import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } from "../interfaces/ICourse";
-import { ILessonDTO, IModuleDTO } from "../interfaces/ICourseDTO";
 import { s3Service } from "../services/s3Service";
 import { ILessonData, IModuleData, IUpdate } from "../interfaces/ILessonData";
 

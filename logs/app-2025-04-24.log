@@ -1,0 +1,1625 @@
+[2025-04-24 05:01:25] [INFO] [REQUEST] OPTIONS /student-profile
+[2025-04-24 05:01:25] [INFO] [REQUEST] PUT /student-profile
+[2025-04-24 05:01:27] [INFO] [RESPONSE] Status: 200 Message: Profile updated successfully.
+[2025-04-24 05:01:53] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 05:01:53] [INFO] [REQUEST] POST /logout
+[2025-04-24 05:01:53] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 05:02:34] [INFO] [REQUEST] OPTIONS /signup
+[2025-04-24 05:02:34] [INFO] [REQUEST] POST /signup
+[2025-04-24 05:02:39] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-04-24 05:02:52] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-04-24 05:02:52] [INFO] [REQUEST] POST /otp-verification
+[2025-04-24 05:02:53] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-04-24 05:03:09] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 05:03:09] [INFO] [REQUEST] POST /login
+[2025-04-24 05:03:10] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 05:03:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 05:03:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 05:04:28] [INFO] [REQUEST] POST /instructor-apply
+[2025-04-24 05:04:50] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-04-24 05:04:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 05:04:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 05:05:09] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-04-24 05:05:09] [INFO] [REQUEST] POST /admin/login
+[2025-04-24 05:05:09] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-04-24 05:05:09] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-04-24 05:05:11] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-04-24 05:05:11] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-04-24 05:05:11] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-04-24 05:05:11] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-04-24 05:05:11] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-04-24 05:05:16] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 05:05:16] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 05:05:28] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/680978927b1e1811db0fd89c
+[2025-04-24 05:05:28] [INFO] [REQUEST] PATCH /admin/approve-instructor/680978927b1e1811db0fd89c
+[2025-04-24 05:05:28] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-04-24 05:05:28] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 05:05:29] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 05:05:34] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 05:05:35] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 05:05:35] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 05:05:35] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 05:05:48] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 05:05:48] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-24 05:05:48] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 05:57:25] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 05:57:25] [INFO] [REQUEST] POST /logout
+[2025-04-24 05:57:25] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 05:57:53] [INFO] [REQUEST] OPTIONS /signup
+[2025-04-24 05:57:53] [INFO] [REQUEST] POST /signup
+[2025-04-24 05:57:58] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-04-24 05:58:10] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-04-24 05:58:10] [INFO] [REQUEST] POST /otp-verification
+[2025-04-24 05:58:11] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-04-24 05:58:24] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 05:58:24] [INFO] [REQUEST] POST /login
+[2025-04-24 05:58:25] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 05:58:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 05:58:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 05:59:34] [INFO] [REQUEST] POST /instructor-apply
+[2025-04-24 05:59:47] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-04-24 05:59:47] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 05:59:47] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 05:59:52] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 05:59:52] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 05:59:57] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/68098589a77233b4994b24d4
+[2025-04-24 05:59:57] [INFO] [REQUEST] PATCH /admin/approve-instructor/68098589a77233b4994b24d4
+[2025-04-24 05:59:57] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-04-24 05:59:57] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 05:59:57] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:00:09] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:09] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:14] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:14] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:15] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:16] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:19] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:20] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:23] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:23] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:23] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:23] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:23] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:27] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:32] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:32] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:00:32] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:00:32] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 06:00:32] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-24 06:00:32] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 06:03:12] [INFO] [REQUEST] OPTIONS /signup
+[2025-04-24 06:03:12] [INFO] [REQUEST] POST /signup
+[2025-04-24 06:03:17] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-04-24 06:03:31] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-04-24 06:03:31] [INFO] [REQUEST] POST /otp-verification
+[2025-04-24 06:03:31] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-04-24 06:05:56] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 06:05:56] [INFO] [REQUEST] POST /login
+[2025-04-24 06:05:56] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 06:06:03] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:06:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:07:26] [INFO] [REQUEST] POST /instructor-apply
+[2025-04-24 06:07:38] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-04-24 06:07:38] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:07:38] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:16:06] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:16:06] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:27:45] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 06:27:45] [INFO] [REQUEST] POST /logout
+[2025-04-24 06:27:45] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 06:30:12] [INFO] [REQUEST] POST /login
+[2025-04-24 06:30:13] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 06:33:13] [INFO] [REQUEST] POST /refresh-token
+[2025-04-24 06:33:13] [INFO] [RESPONSE] Status: 200 Message: Token refreshed successfully.
+[2025-04-24 06:40:24] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 06:40:24] [INFO] [REQUEST] POST /login
+[2025-04-24 06:40:25] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 06:40:29] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:40:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:41:46] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:41:47] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:43:03] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-04-24 06:43:04] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-04-24 06:43:04] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-04-24 06:43:04] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-04-24 06:43:04] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-04-24 06:43:05] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-04-24 06:43:06] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 06:43:06] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:43:10] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/680986c874e438a07d909522
+[2025-04-24 06:43:10] [INFO] [REQUEST] PATCH /admin/approve-instructor/680986c874e438a07d909522
+[2025-04-24 06:43:10] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-04-24 06:43:10] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 06:43:10] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:43:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:43:21] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-24 06:43:21] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-24 06:43:21] [INFO] [REQUEST] POST /refresh-token
+[2025-04-24 06:43:21] [INFO] [RESPONSE] Status: 200 Message: Token refreshed successfully.
+[2025-04-24 06:43:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:43:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:43:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:43:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:43:34] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 06:43:34] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 06:43:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:43:51] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 06:43:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:43:52] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 06:45:11] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 06:45:11] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 06:45:18] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:45:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:45:22] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 06:45:22] [INFO] [REQUEST] POST /logout
+[2025-04-24 06:45:22] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 06:45:47] [INFO] [REQUEST] OPTIONS /signup
+[2025-04-24 06:45:47] [INFO] [REQUEST] POST /signup
+[2025-04-24 06:45:52] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-04-24 06:46:05] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-04-24 06:46:05] [INFO] [REQUEST] POST /otp-verification
+[2025-04-24 06:46:05] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-04-24 06:46:19] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 06:46:19] [INFO] [REQUEST] POST /login
+[2025-04-24 06:46:20] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 06:46:28] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 06:46:29] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 06:47:40] [INFO] [REQUEST] GET /courses/68006e0ece7af0883779c29a
+[2025-04-24 06:47:40] [INFO] [REQUEST] GET /student/check-enrollment/68006e0ece7af0883779c29a
+[2025-04-24 06:47:41] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 06:47:41] [INFO] [REQUEST] GET /courses/68006e0ece7af0883779c29a/reviews?skip=0&limit=10
+[2025-04-24 06:47:41] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-24 06:47:41] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 06:48:04] [INFO] [REQUEST] OPTIONS /student/create-payment-intent
+[2025-04-24 06:48:04] [INFO] [REQUEST] POST /student/create-payment-intent
+[2025-04-24 06:48:06] [INFO] [RESPONSE] Status: 200 Message: Payment intent created successfully
+[2025-04-24 06:48:07] [INFO] [REQUEST] OPTIONS /student/confirm-payment
+[2025-04-24 06:48:07] [INFO] [REQUEST] POST /student/confirm-payment
+[2025-04-24 06:48:08] [INFO] [RESPONSE] Status: 200 Message: Payment confirmed successfully
+[2025-04-24 06:48:54] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:48:54] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-24 06:48:54] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-24 06:48:54] [INFO] [REQUEST] POST /refresh-token
+[2025-04-24 06:48:54] [INFO] [RESPONSE] Status: 200 Message: Token refreshed successfully.
+[2025-04-24 06:48:54] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:48:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:50:12] [INFO] [REQUEST] POST /instructor-apply
+[2025-04-24 06:50:21] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-04-24 06:50:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:50:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:50:31] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 06:50:32] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:50:54] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/680990c3955f42eac024ef29
+[2025-04-24 06:50:54] [INFO] [REQUEST] PATCH /admin/approve-instructor/680990c3955f42eac024ef29
+[2025-04-24 06:50:54] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-04-24 06:50:54] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 06:50:54] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:51:04] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-04-24 06:51:04] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-04-24 06:51:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:51:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:51:25] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:51:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:51:28] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 06:51:28] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-24 06:51:28] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 06:54:44] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:54:44] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:54:47] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 06:54:47] [INFO] [REQUEST] POST /logout
+[2025-04-24 06:54:47] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 06:55:14] [INFO] [REQUEST] OPTIONS /signup
+[2025-04-24 06:55:14] [INFO] [REQUEST] POST /signup
+[2025-04-24 06:55:19] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-04-24 06:55:31] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-04-24 06:55:31] [INFO] [REQUEST] POST /otp-verification
+[2025-04-24 06:55:31] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-04-24 06:55:46] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 06:55:46] [INFO] [REQUEST] POST /login
+[2025-04-24 06:55:47] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 06:56:09] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:56:09] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-24 06:56:09] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-24 06:56:09] [INFO] [REQUEST] POST /refresh-token
+[2025-04-24 06:56:10] [INFO] [RESPONSE] Status: 200 Message: Token refreshed successfully.
+[2025-04-24 06:56:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:56:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:57:13] [INFO] [REQUEST] POST /instructor-apply
+[2025-04-24 06:57:17] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-04-24 06:57:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:57:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:57:23] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 06:57:23] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:57:28] [INFO] [REQUEST] OPTIONS /admin/approve-instructor/680992fa6f89603abf91fd02
+[2025-04-24 06:57:28] [INFO] [REQUEST] PATCH /admin/approve-instructor/680992fa6f89603abf91fd02
+[2025-04-24 06:57:28] [INFO] [RESPONSE] Status: 200 Message: User has been approved as an Instructor successfully.
+[2025-04-24 06:57:28] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 06:57:28] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 06:57:48] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:57:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:57:48] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:57:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:58:21] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 06:58:21] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-24 06:58:21] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 06:59:15] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 06:59:16] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 06:59:16] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-24 06:59:16] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 06:59:16] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 07:00:46] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 07:00:46] [INFO] [RESPONSE] Status: 403 Message: Forbidden: Insufficient permissions
+[2025-04-24 07:00:46] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 07:02:09] [INFO] [REQUEST] OPTIONS /signup
+[2025-04-24 07:02:09] [INFO] [REQUEST] POST /signup
+[2025-04-24 07:02:14] [INFO] [RESPONSE] Status: 201 Message: Please verify your email for OTP verification.
+[2025-04-24 07:02:28] [INFO] [REQUEST] OPTIONS /otp-verification
+[2025-04-24 07:02:28] [INFO] [REQUEST] POST /otp-verification
+[2025-04-24 07:02:29] [INFO] [RESPONSE] Status: 200 Message: OTP verified successfully. Your account is now activated.
+[2025-04-24 07:02:42] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 07:02:42] [INFO] [REQUEST] POST /login
+[2025-04-24 07:02:43] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 07:03:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 07:03:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 07:04:26] [INFO] [REQUEST] POST /instructor-apply
+[2025-04-24 07:05:21] [INFO] [RESPONSE] Status: 201 Message: Application submitted successfully. Awaiting approval.
+[2025-04-24 07:05:21] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 07:05:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 07:05:33] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 07:05:33] [INFO] [REQUEST] POST /logout
+[2025-04-24 07:05:33] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 08:12:38] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-04-24 08:12:39] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-04-24 08:14:43] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-04-24 08:14:43] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-04-24 08:16:59] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-24 08:16:59] [INFO] [REQUEST] POST /google-auth
+[2025-04-24 08:16:59] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-24 08:17:09] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 08:17:09] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 08:17:48] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 08:17:49] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 08:19:50] [INFO] [REQUEST] GET /courses/68006e0ece7af0883779c29a
+[2025-04-24 08:19:50] [INFO] [REQUEST] GET /student/check-enrollment/68006e0ece7af0883779c29a
+[2025-04-24 08:19:51] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 08:19:51] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-24 08:19:51] [INFO] [REQUEST] GET /courses/68006e0ece7af0883779c29a/reviews?skip=0&limit=10
+[2025-04-24 08:19:51] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 08:20:09] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 08:20:09] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 08:20:56] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 08:20:56] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 08:20:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 08:20:57] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 08:20:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 08:20:58] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 08:21:33] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 08:21:33] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 08:21:33] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 08:21:34] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 08:21:47] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=j
+[2025-04-24 08:21:47] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 08:21:49] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 08:21:49] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 08:21:56] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 08:21:56] [INFO] [REQUEST] POST /logout
+[2025-04-24 08:21:56] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 08:22:15] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 08:22:15] [INFO] [REQUEST] POST /login
+[2025-04-24 08:22:15] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 08:22:18] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 08:22:19] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 08:22:22] [INFO] [REQUEST] GET /courses/68006e0ece7af0883779c29a
+[2025-04-24 08:22:22] [INFO] [REQUEST] GET /student/check-enrollment/68006e0ece7af0883779c29a
+[2025-04-24 08:22:22] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 08:22:22] [INFO] [REQUEST] GET /courses/68006e0ece7af0883779c29a/reviews?skip=0&limit=10
+[2025-04-24 08:22:22] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-24 08:22:22] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 08:31:34] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 08:31:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 08:53:22] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 08:53:22] [INFO] [REQUEST] POST /logout
+[2025-04-24 08:53:22] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 08:55:37] [INFO] [REQUEST] POST /admin/logout
+[2025-04-24 08:55:37] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 09:37:00] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-24 09:37:00] [INFO] [REQUEST] POST /google-auth
+[2025-04-24 09:37:01] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-24 09:37:10] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:37:10] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:37:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:37:12] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 09:37:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:37:13] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 09:37:31] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-24 09:37:31] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 09:38:36] [INFO] [REQUEST] OPTIONS /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments
+[2025-04-24 09:38:36] [INFO] [REQUEST] POST /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments
+[2025-04-24 09:38:36] [INFO] [RESPONSE] Status: 201 Message: Assessment created successfully.
+[2025-04-24 09:39:00] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-24 09:39:00] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 09:39:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:39:02] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 09:39:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:39:03] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 09:39:12] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 09:39:46] [INFO] [REQUEST] OPTIONS /instructor/courses/68006c86ce7af0883779c0fd
+[2025-04-24 09:39:46] [INFO] [REQUEST] PUT /instructor/courses/68006c86ce7af0883779c0fd
+[2025-04-24 09:39:49] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-04-24 09:39:56] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:39:57] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:40:48] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:48] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 09:40:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:49] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 09:40:49] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:49] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:49] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:53] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:55] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:55] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:40:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:04] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:04] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:04] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:04] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:05] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:05] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:05] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:05] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:05] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:06] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:06] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:06] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:07] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:07] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:07] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:07] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:09] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:09] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:09] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:09] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:11] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:11] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:24] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:26] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:26] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:26] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:30] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:30] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:31] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:31] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:31] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:32] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:32] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:32] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:32] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:32] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:32] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:33] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:33] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:33] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:33] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:35] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 09:41:35] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:35] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:41:35] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:41:35] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 09:41:35] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:42:31] [INFO] [REQUEST] POST /instructor/create-course
+[2025-04-24 09:42:34] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-04-24 09:42:34] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 09:42:34] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 09:42:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 09:42:34] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 09:43:28] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 09:43:28] [INFO] [REQUEST] POST /logout
+[2025-04-24 09:43:28] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 09:43:44] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 09:43:44] [INFO] [REQUEST] POST /login
+[2025-04-24 09:43:45] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 09:43:50] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 09:43:50] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 09:43:54] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 09:43:54] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 09:43:54] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-24 09:43:54] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 09:43:54] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/reviews?skip=0&limit=10
+[2025-04-24 09:43:55] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 09:44:02] [INFO] [REQUEST] OPTIONS /student/enroll-course
+[2025-04-24 09:44:02] [INFO] [REQUEST] POST /student/enroll-course
+[2025-04-24 09:44:02] [INFO] [RESPONSE] Status: 200 Message: Successfully enrolled in the free course
+[2025-04-24 09:44:10] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 09:44:10] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 09:44:11] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 09:44:11] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:44:11] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 09:44:11] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:44:11] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 09:44:12] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:44:12] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 09:44:12] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:44:12] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 09:44:12] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:44:16] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 09:44:16] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 09:44:16] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 09:44:16] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-24 09:44:16] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 09:44:16] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-24 09:44:16] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-24 09:44:17] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-24 09:44:17] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-24 09:44:17] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 09:44:17] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 09:44:32] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 09:44:32] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:44:32] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:44:32] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:44:37] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:44:37] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:44:37] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:44:47] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:44:47] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:44:47] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:44:52] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:44:52] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:44:59] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:44:59] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:00] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:04] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:05] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:05] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:10] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:10] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:10] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:12] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-24 09:45:15] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:15] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:15] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:15] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-24 09:45:16] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-24 09:45:20] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:20] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:20] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:25] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:25] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:25] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:28] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:45:31] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:45:31] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:31] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:31] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:36] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:36] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:37] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:45] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:45] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:45] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:50] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:50] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:50] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:45:55] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:45:55] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:45:55] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:06] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 09:46:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 09:46:07] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 09:46:07] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-24 09:46:07] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-24 09:46:07] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 09:46:07] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-24 09:46:07] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-24 09:46:07] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-24 09:46:07] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 09:46:08] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 09:46:11] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 09:46:11] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:11] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:11] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:16] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:16] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:16] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:21] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:21] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:21] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:26] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:26] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:26] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:35] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:46:38] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:46:38] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:38] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:39] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:39] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-24 09:46:43] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:43] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:43] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:48] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 09:46:48] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 09:46:48] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 09:46:54] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5
+[2025-04-24 09:46:54] [INFO] [RESPONSE] Status: 200 Message: Assessment retrieved successfully.
+[2025-04-24 09:46:54] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5/result
+[2025-04-24 09:46:54] [INFO] [RESPONSE] Status: 404 Message: No submission found for this assessment.
+[2025-04-24 09:47:14] [INFO] [REQUEST] OPTIONS /student/assessments/6809b944381e4a4b4087e6c5/submit
+[2025-04-24 09:47:14] [INFO] [REQUEST] POST /student/assessments/6809b944381e4a4b4087e6c5/submit
+[2025-04-24 09:47:14] [INFO] [RESPONSE] Status: 200 Message: Assessment submitted successfully.
+[2025-04-24 09:47:22] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 09:47:22] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 09:47:22] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 09:47:22] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:22] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 09:47:23] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:23] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 09:47:23] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:23] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 09:47:24] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:24] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 09:47:24] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:26] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 09:47:26] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:26] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/assessments?page=1&limit=100
+[2025-04-24 09:47:27] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 09:47:27] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5/result
+[2025-04-24 09:47:27] [INFO] [RESPONSE] Status: 200 Message: Assessment result retrieved successfully.
+[2025-04-24 09:47:27] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 09:47:27] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 09:47:48] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 09:47:49] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 09:47:49] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 09:47:49] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:49] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 09:47:49] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:49] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 09:47:49] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:49] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 09:47:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 09:47:50] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 09:47:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:42] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 10:08:43] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 10:08:43] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:08:44] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:44] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 10:08:44] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:44] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 10:08:44] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:44] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 10:08:45] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:45] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 10:08:45] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:46] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 10:08:47] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 10:08:47] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:08:47] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:47] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 10:08:47] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:47] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 10:08:47] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:47] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 10:08:48] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:48] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 10:08:48] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:08:51] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 10:08:51] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 10:08:51] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 10:08:51] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-24 10:08:51] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 10:08:51] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-24 10:08:51] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-24 10:08:51] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-24 10:08:51] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-24 10:08:52] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 10:08:52] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 10:09:57] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 10:09:57] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 10:09:58] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:09:58] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:09:58] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 10:09:58] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:09:58] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 10:09:58] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:09:58] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 10:09:58] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:09:58] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 10:09:59] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:10:08] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:10:08] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:10:08] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/assessments?page=1&limit=100
+[2025-04-24 10:10:09] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 10:10:09] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5/result
+[2025-04-24 10:10:09] [INFO] [RESPONSE] Status: 200 Message: Assessment result retrieved successfully.
+[2025-04-24 10:10:09] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 10:10:09] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 10:50:08] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 10:50:09] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 10:50:09] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:50:09] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:09] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 10:50:09] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:09] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 10:50:09] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:09] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 10:50:09] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:09] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 10:50:09] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:11] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:50:11] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:11] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/assessments?page=1&limit=100
+[2025-04-24 10:50:11] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 10:50:11] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5/result
+[2025-04-24 10:50:11] [INFO] [RESPONSE] Status: 200 Message: Assessment result retrieved successfully.
+[2025-04-24 10:50:11] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 10:50:11] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 10:50:13] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 10:50:13] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 10:50:13] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 10:50:13] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:13] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 10:50:13] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:13] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 10:50:13] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:13] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 10:50:13] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:13] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 10:50:14] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 10:50:17] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 10:50:17] [INFO] [REQUEST] POST /logout
+[2025-04-24 10:50:17] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 11:05:41] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-24 11:05:42] [INFO] [REQUEST] POST /google-auth
+[2025-04-24 11:05:42] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-24 11:05:47] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 11:05:48] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 11:05:58] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 11:05:58] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 11:05:58] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 11:05:58] [INFO] [RESPONSE] Status: 200 Message: User is not enrolled in this course
+[2025-04-24 11:05:58] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/reviews?skip=0&limit=10
+[2025-04-24 11:05:58] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 11:06:02] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 11:06:03] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 11:06:07] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&level=beginner&sortField=updatedAt&sortOrder=desc
+[2025-04-24 11:06:07] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 11:06:11] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:11] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:13] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 11:06:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:13] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 11:06:17] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:17] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:17] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:17] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:28] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 11:06:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:28] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 11:06:41] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:41] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:41] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:41] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:43] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:43] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:43] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:43] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:46] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:46] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:49] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:49] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:49] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:49] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:57] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:58] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:58] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:06:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:06:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:00] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:00] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:13] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:13] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:13] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:13] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:22] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:22] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:22] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:22] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-04-24 11:07:22] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:07:23] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-04-24 11:07:23] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 11:07:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 11:08:25] [INFO] [REQUEST] POST /instructor/create-course
+[2025-04-24 11:08:29] [INFO] [RESPONSE] Status: 400 Message: course with this title and level exists already
+[2025-04-24 12:16:01] [INFO] [REQUEST] POST /instructor/create-course
+[2025-04-24 12:16:05] [INFO] [RESPONSE] Status: 400 Message: course with this title and level exists already
+[2025-04-24 12:18:37] [INFO] [REQUEST] GET /instructor/getTransactions?page=1&limit=10
+[2025-04-24 12:18:37] [INFO] [RESPONSE] Status: 200 Message: Instructor payouts retrieved successfully
+[2025-04-24 12:18:39] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 12:18:39] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 12:18:39] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 12:18:39] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 12:19:01] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-24 12:19:01] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 12:19:51] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 12:22:43] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 12:22:43] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 12:24:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 12:24:50] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 12:24:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 12:24:50] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 12:24:59] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 12:24:59] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 12:24:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 12:24:59] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 12:26:21] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-24 12:26:22] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 12:33:01] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 12:33:01] [INFO] [REQUEST] POST /logout
+[2025-04-24 12:33:01] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 12:33:17] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-24 12:33:17] [INFO] [REQUEST] POST /google-auth
+[2025-04-24 12:33:17] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-24 12:40:34] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 12:40:35] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 12:40:48] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 12:40:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 12:40:50] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 12:40:50] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 12:40:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 12:40:51] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 12:40:54] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-24 12:40:54] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 12:41:12] [INFO] [REQUEST] GET /getUserdata
+[2025-04-24 12:41:12] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-24 12:41:12] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-24 12:41:12] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-24 12:41:19] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-24 12:41:19] [INFO] [REQUEST] POST /logout
+[2025-04-24 12:41:19] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-24 12:41:39] [INFO] [REQUEST] OPTIONS /login
+[2025-04-24 12:41:39] [INFO] [REQUEST] POST /login
+[2025-04-24 12:41:39] [INFO] [RESPONSE] Status: 200 Message: Login successful.
+[2025-04-24 12:41:45] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-24 12:41:45] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-24 12:42:00] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 12:42:00] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 12:42:00] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 12:42:00] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:00] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 12:42:00] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:00] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 12:42:01] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:01] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 12:42:01] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:01] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 12:42:01] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:03] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 12:42:03] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 12:42:03] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 12:42:03] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:03] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 12:42:04] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:04] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 12:42:04] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:04] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 12:42:04] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:04] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 12:42:04] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:07] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:07] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 12:42:07] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:07] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:07] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 12:42:07] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-24 12:42:07] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:07] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-24 12:42:07] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-24 12:42:07] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 12:42:07] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 12:42:14] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5
+[2025-04-24 12:42:14] [INFO] [RESPONSE] Status: 200 Message: Assessment retrieved successfully.
+[2025-04-24 12:42:14] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5/result
+[2025-04-24 12:42:14] [INFO] [RESPONSE] Status: 200 Message: Assessment result retrieved successfully.
+[2025-04-24 12:42:17] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:17] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 12:42:17] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:17] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:17] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 12:42:17] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-24 12:42:17] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-24 12:42:17] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-24 12:42:17] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-24 12:42:17] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 12:42:22] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 12:42:22] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 12:42:22] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 12:42:22] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:22] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 12:42:22] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:22] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 12:42:22] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:22] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 12:42:22] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:22] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 12:42:22] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:28] [INFO] [REQUEST] GET /courses/68087f901418b19cebc3bbd2
+[2025-04-24 12:42:28] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-24 12:42:28] [INFO] [REQUEST] GET /student/check-enrollment/68087f901418b19cebc3bbd2
+[2025-04-24 12:42:28] [INFO] [REQUEST] GET /student/review/68087f901418b19cebc3bbd2
+[2025-04-24 12:42:28] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-24 12:42:28] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-24 12:42:28] [INFO] [REQUEST] GET /student/lesson-progress/68087f901418b19cebc3bbd2
+[2025-04-24 12:42:28] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-24 12:42:28] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/modules/ffgggggg/assessments?page=1&limit=10
+[2025-04-24 12:42:28] [INFO] [REQUEST] GET /courses/68087f901418b19cebc3bbd2/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fyouuuuuuuuuuuuuuuu%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 12:42:28] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-24 12:42:35] [INFO] [REQUEST] GET /courses/68087f901418b19cebc3bbd2/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fyouuuuuuuuuuuuuuuu%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 12:42:35] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-24 12:42:35] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-24 12:42:35] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-24 12:42:35] [INFO] [REQUEST] GET /courses/68087f901418b19cebc3bbd2/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fyouuuuuuuuuuuuuuuu%2Fmodule-1%2Flesson-1.mp4
+[2025-04-24 12:42:49] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 12:42:50] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 12:42:50] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 12:42:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:50] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 12:42:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:50] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 12:42:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:50] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 12:42:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:42:50] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 12:42:50] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:51:15] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-24 12:51:15] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-24 12:51:15] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-24 12:51:16] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:51:16] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-24 12:51:16] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:51:16] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-24 12:51:16] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:51:16] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-24 12:51:16] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-24 12:51:17] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-24 12:51:17] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.

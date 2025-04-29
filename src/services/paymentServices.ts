@@ -1,20 +1,20 @@
 import Stripe from "stripe";
-import { PaymentRepository } from "../repositories/paymentRepository";
+import { IPaymentRepository } from "../interfaces/IRepositories";
 import { IResponse } from "../interfaces/IResponse";
 import { IPaymentService } from "../interfaces/IServices";
-import { UserRepository } from "../repositories/userRepository";
-import { CourseRepository } from "../repositories/courseRepository";
-import { EnrollmentRepository } from "../repositories/enrollmentRepository";
+import { IUserRepository } from "../interfaces/IRepositories";
+import { ICourseRepository } from "../interfaces/IRepositories";
+import { IEnrollmentRepository } from "../interfaces/IRepositories";
 import { Types } from "mongoose";
 
 export class PaymentService implements IPaymentService {
   private stripe: Stripe;
 
   constructor(
-    private paymentRepository: PaymentRepository,
-    private userRepository: UserRepository,
-    private courseRepository: CourseRepository,
-    private enrollmentRepository: EnrollmentRepository
+    private paymentRepository: IPaymentRepository,
+    private userRepository: IUserRepository,
+    private courseRepository: ICourseRepository,
+    private enrollmentRepository: IEnrollmentRepository
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: "2025-02-24.acacia",

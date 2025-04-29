@@ -106,6 +106,10 @@ const userSchema = new Schema<UserDoc>({
     type: Boolean,
     default: false
   },
+  isApproved:{
+    type:Boolean,
+    default:false
+  },
   experience: {
     type: String
   },

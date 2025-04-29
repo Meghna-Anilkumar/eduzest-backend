@@ -16,10 +16,24 @@ export class CourseService {
     try {
       await validateCourseData(courseData, this._categoryRepository);
       const trimmedTitle = courseData.title!.trim();
+      const level=courseData.level
       const existingCourse = await this._courseRepository.findByTitleAndInstructor(
         trimmedTitle,
         courseData.instructorRef as Types.ObjectId
       );
+      if(!level){
+        return{
+          success:false,
+          message:'course level is required'
+        }
+      }
+      const exists=await this._courseRepository.findByTitleAndLevel(trimmedTitle,level)
+      if ( exists){
+        return {
+          success:false,
+          message:'course with this title and level exists already'
+        }
+      }
       if (existingCourse) {
         return {
           success: false,
@@ -29,15 +43,10 @@ export class CourseService {
 
       const categoryRef = new Types.ObjectId(courseData.categoryRef as unknown as string);
 
-      // const defaultTrial: ITrial = {
-      //   video: courseData.trial?.video || undefined,
-      // } as ITrial;
-
       const newCourse = await this._courseRepository.createCourse({
         ...courseData,
         title: trimmedTitle,
         categoryRef,
-        // trial: courseData.trial || defaultTrial,
         pricing: courseData.pricing || { type: "free", amount: 0 },
         attachments: courseData.attachments || undefined,
         isRequested: true,

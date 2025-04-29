@@ -36,7 +36,7 @@ const reviewRepository = new ReviewRepository();
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
-const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, redisService);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
 

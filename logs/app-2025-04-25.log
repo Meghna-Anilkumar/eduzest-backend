@@ -1,0 +1,169 @@
+[2025-04-25 16:00:25] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-25 16:00:25] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: No token provided
+[2025-04-25 16:00:26] [INFO] [RESPONSE] Status: 401 Message: Unauthorized: Invalid token
+[2025-04-25 16:00:26] [INFO] [REQUEST] POST /refresh-token
+[2025-04-25 16:00:26] [INFO] [RESPONSE] Status: 200 Message: Token refreshed successfully.
+[2025-04-25 16:00:26] [INFO] [REQUEST] GET /student/enrollments
+[2025-04-25 16:00:27] [INFO] [RESPONSE] Status: 200 Message: Enrollments fetched successfully
+[2025-04-25 16:00:27] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/progress
+[2025-04-25 16:00:27] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-25 16:00:27] [INFO] [REQUEST] GET /student/courses/68087f901418b19cebc3bbd2/progress
+[2025-04-25 16:00:27] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-25 16:00:27] [INFO] [REQUEST] GET /student/courses/680094d0c1a02343f4ba441b/progress
+[2025-04-25 16:00:27] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-25 16:00:27] [INFO] [REQUEST] GET /student/courses/68006d6ece7af0883779c1b6/progress
+[2025-04-25 16:00:28] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-25 16:00:28] [INFO] [REQUEST] GET /student/courses/68006e0ece7af0883779c29a/progress
+[2025-04-25 16:00:28] [INFO] [RESPONSE] Status: 200 Message: Course progress retrieved successfully.
+[2025-04-25 16:05:35] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-25 16:05:35] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-25 16:05:35] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-25 16:05:35] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-25 16:05:35] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-25 16:05:35] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-25 16:05:35] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-25 16:05:39] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-25 16:05:46] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-25 16:05:46] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:05:46] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:05:47] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-25 16:05:48] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-25 16:05:51] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:05:51] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:05:57] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:05:57] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:05:57] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-25 16:51:59] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:00] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-25 16:52:00] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:00] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:00] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-25 16:52:00] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-25 16:52:00] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:06] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-25 16:52:06] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-25 16:52:12] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-25 16:52:16] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-25 16:52:17] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:52:17] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:52:20] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-25 16:52:20] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:52:22] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:52:22] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:52:22] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:52:28] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:29] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-25 16:52:29] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:29] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:29] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-25 16:52:29] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-25 16:52:29] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:29] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-25 16:52:29] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-25 16:52:29] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-25 16:52:37] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5
+[2025-04-25 16:52:37] [INFO] [RESPONSE] Status: 200 Message: Assessment retrieved successfully.
+[2025-04-25 16:52:37] [INFO] [REQUEST] GET /student/assessments/6809b944381e4a4b4087e6c5/result
+[2025-04-25 16:52:37] [INFO] [RESPONSE] Status: 200 Message: Assessment result retrieved successfully.
+[2025-04-25 16:52:41] [INFO] [REQUEST] GET /active-courses?page=1&limit=10&sortField=updatedAt&sortOrder=desc
+[2025-04-25 16:52:41] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-04-25 16:52:43] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:43] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:43] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-25 16:52:44] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-25 16:52:44] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/reviews?skip=0&limit=10
+[2025-04-25 16:52:44] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-25 16:52:46] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:46] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-25 16:52:46] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:46] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:46] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-25 16:52:46] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-25 16:52:46] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-25 16:52:46] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-25 16:52:46] [INFO] [REQUEST] GET /student/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=10
+[2025-04-25 16:52:46] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-25 16:52:46] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-25 16:53:19] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-1.mp4
+[2025-04-25 16:53:19] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:53:19] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:53:19] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:53:24] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:53:24] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:53:24] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:53:29] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:53:29] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:53:29] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:53:34] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:53:34] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:53:35] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:53:40] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:53:40] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:53:40] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:53:45] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:53:45] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:53:45] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:53:54] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:00] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:00] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:00] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:01] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:02] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:02] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:05] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:05] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:05] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:10] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-25 16:54:12] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-25 16:54:12] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:12] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:12] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:14] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-3-1745467786505.mp4
+[2025-04-25 16:54:17] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:17] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:17] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:22] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:22] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:22] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:27] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:27] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:27] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:27] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:28] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:30] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:31] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:32] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:32] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:32] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:34] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:37] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:37] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:37] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 16:54:41] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fpython%20course%2Fmodule-1%2Flesson-2.mp4
+[2025-04-25 16:54:42] [INFO] [REQUEST] OPTIONS /student/update-lesson-progress
+[2025-04-25 16:54:42] [INFO] [REQUEST] POST /student/update-lesson-progress
+[2025-04-25 16:54:43] [INFO] [RESPONSE] Status: 200 Message: Lesson progress updated successfully
+[2025-04-25 17:26:00] [INFO] [REQUEST] GET /courses/68006c86ce7af0883779c0fd
+[2025-04-25 17:26:01] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-04-25 17:26:01] [INFO] [REQUEST] GET /student/check-enrollment/68006c86ce7af0883779c0fd
+[2025-04-25 17:26:01] [INFO] [REQUEST] GET /student/review/68006c86ce7af0883779c0fd
+[2025-04-25 17:26:02] [INFO] [RESPONSE] Status: 200 Message: User is enrolled in this course
+[2025-04-25 17:26:02] [INFO] [REQUEST] GET /student/lesson-progress/68006c86ce7af0883779c0fd
+[2025-04-25 17:26:02] [INFO] [RESPONSE] Status: 200 Message: Reviews fetched successfully.
+[2025-04-25 17:26:18] [INFO] [REQUEST] OPTIONS /logout
+[2025-04-25 17:26:18] [INFO] [REQUEST] POST /logout
+[2025-04-25 17:26:18] [INFO] [RESPONSE] Status: 200 Message: User logged out successfully
+[2025-04-25 17:26:21] [INFO] [RESPONSE] Status: 200 Message: Lesson progress fetched successfully
+[2025-04-25 17:26:24] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-04-25 17:26:24] [INFO] [REQUEST] POST /google-auth
+[2025-04-25 17:26:24] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-04-25 17:26:28] [INFO] [REQUEST] GET /getUserdata
+[2025-04-25 17:26:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-25 17:26:30] [INFO] [REQUEST] GET /getUserdata
+[2025-04-25 17:26:30] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-04-25 17:26:30] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-04-25 17:26:30] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-04-25 17:26:35] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-25 17:26:35] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.
+[2025-04-25 17:26:44] [INFO] [REQUEST] GET /instructor/courses/68006c86ce7af0883779c0fd/modules/basics%20of%20python/assessments?page=1&limit=5
+[2025-04-25 17:26:44] [INFO] [RESPONSE] Status: 200 Message: Assessments retrieved successfully.

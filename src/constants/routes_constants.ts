@@ -18,7 +18,8 @@ export const USER_ROUTES = {
     GET_ALL_ACTIVE_COURSES: '/active-courses',
     GET_COURSE_BY_ID: '/courses/:id',
     STREAM_VIDEO: "/courses/:courseId/stream",
-    GET_REVIEWS: "/courses/:courseId/reviews"
+    GET_REVIEWS: "/courses/:courseId/reviews",
+    SWITCH_TO_INSTRUCTOR:'/switch-to-instructor'
 }
 
 
@@ -51,6 +52,7 @@ export const INSTRUCTOR_ROUTES = {
     GET_ASSESSMENTS: '/courses/:courseId/modules/:moduleTitle/assessments',
     EDIT_ASSESSMENT: '/assessments/:assessmentId',
     DELETE_ASSESSMENT: '/assessments/:assessmentId',
+    GET_COURSE_STATS:'/course-stats'
 }
 
 

@@ -59,14 +59,14 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     const updatedProgress = {
       lessonId: new Types.ObjectId(lessonId),
       progress: newProgress,
-      isCompleted: newProgress >= 90,
+      isCompleted: newProgress >= 100,
       lastWatched: new Date(),
     };
 
     if (lessonProgress) {
       if (newProgress > lessonProgress.progress) {
         lessonProgress.progress = newProgress;
-        lessonProgress.isCompleted = newProgress >= 90 || lessonProgress.isCompleted;
+        lessonProgress.isCompleted = newProgress >= 100 || lessonProgress.isCompleted;
       }
       lessonProgress.lastWatched = updatedProgress.lastWatched;
     } else {
@@ -92,4 +92,18 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     await this.redisService.setProgress(userId, courseId, progress);
     return progress;
   }
+
+  async updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null> {
+    return this._model
+      .findOneAndUpdate(
+        {
+          userId: new Types.ObjectId(userId),
+          courseId: new Types.ObjectId(courseId),
+        },
+        { $set: { completionStatus: status } },
+        { new: true }
+      )
+      .exec();
+  }
+
 }

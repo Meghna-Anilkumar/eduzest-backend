@@ -601,6 +601,40 @@ class UserController {
         }
     }
 
+    async switchToInstructor(req: AuthRequest, res: Response): Promise<void> {
+        try {
+            const id = req.user?.id;
+
+            if (!id) {
+                res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "User ID is required.",
+                });
+                return;
+            }
+
+            const result = await this._userService.switchToInstructor(id, res);
+            res.clearCookie(Cookie.userJWT, {
+                httpOnly: true,
+            });
+            res.clearCookie(Cookie.userRefreshJWT, {
+                httpOnly: true,
+            });
+            res.status(Status.OK).json({
+                success: result.success,
+                message: result.message,
+                userData: result.userData,
+                redirectURL: result.redirectURL,
+            });
+        } catch (error) {
+            console.error("Error in switchToInstructor:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+
 
 }
 

@@ -18,6 +18,7 @@ import PaymentService from "../services/paymentServices";
 import AssessmentController from "../controllers/assessmentController";
 import { AssessmentService } from "../services/assessmentService";
 import { AssessmentRepository } from "../repositories/assessmentRepository";
+import EnrollCourseController from "../controllers/enrollCourseController";
 
 // Instantiate repositories
 const userRepository = new UserRepository();
@@ -32,13 +33,14 @@ const assessmentRepository = new AssessmentRepository();
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
-const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, redisService);
+const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
 
 // Instantiate controllers
 const courseController = new CourseController(courseService, enrollCourseService);
 const userController = new UserController(userService, paymentService);
 const assessmentController = new AssessmentController(assessmentService);
+const enrollCourseController = new EnrollCourseController(enrollCourseService)
 
 // Create instructor router
 const instructorRouter = Router();
@@ -97,6 +99,12 @@ instructorRouter.delete(
     INSTRUCTOR_ROUTES.DELETE_ASSESSMENT,
     authenticateUser('Instructor'),
     assessmentController.deleteAssessment.bind(assessmentController)
+);
+
+instructorRouter.get(
+    INSTRUCTOR_ROUTES.GET_COURSE_STATS,
+    authenticateUser("Instructor"),
+    enrollCourseController.getInstructorCourseStats.bind(enrollCourseController)
 );
 
 export default instructorRouter;

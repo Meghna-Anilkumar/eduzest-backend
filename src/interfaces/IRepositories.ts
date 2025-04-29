@@ -41,6 +41,7 @@ export interface IUserRepository extends IBaseRepository<UserDoc> {
     storeRefreshToken(userId: string, refreshToken: string): Promise<void>;
     getRefreshToken(userId: string): Promise<string | null>;
     clearRefreshToken(userId: string): Promise<void>;
+    switchToInstructorRole(id: string): Promise<UserDoc | null> 
 }
 
 export interface IAdminRepository extends IBaseRepository<AdminDoc> {
@@ -92,6 +93,7 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     getCourseById(courseId: string): Promise<ICourse | null>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
     getCourseByInstructor(courseId: string, instructorId: string): Promise<ICourse | null>;
+    findByTitleAndLevel(title:string,level:string):Promise<ICourse|null>
 }
 
 
@@ -139,7 +141,7 @@ export interface IEnrollmentRepository {
         lessonId: string,
         progress: number
     ): Promise<EnrollmentDoc | null>;
-
+    updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null>
     getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]>;
 }
 
