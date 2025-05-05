@@ -107,7 +107,7 @@ export interface IEnrollCourseService {
         progress: number
     ): Promise<IResponse>
     getLessonProgress(userId: string, courseId: string): Promise<IResponse>
-    getInstructorCourseStats(instructorId: string): Promise<CourseStats[]> 
+    getInstructorCourseStats(instructorId: string): Promise<CourseStats[]>
 }
 
 
@@ -158,20 +158,27 @@ export interface IAssessmentService {
         studentId: string,
         page: number,
         limit: number
-      ): Promise<IResponse>;
-      submitAssessment(
+    ): Promise<IResponse>;
+    submitAssessment(
         assessmentId: string,
         studentId: string,
         answers: { questionId: string; selectedAnswer: string }[]
-      ): Promise<IResponse>;
-      getAssessmentResult(assessmentId: string, studentId: string): Promise<IResponse>;
-      getAssessmentByIdForStudent(assessmentId: string, studentId: string): Promise<IResponse>;
-      getCourseProgress(courseId: string, studentId: string): Promise<IResponse>;
-      getAllAssessmentsForCourse(
+    ): Promise<IResponse>;
+    getAssessmentResult(assessmentId: string, studentId: string): Promise<IResponse>;
+    getAssessmentByIdForStudent(assessmentId: string, studentId: string): Promise<IResponse>;
+    getCourseProgress(courseId: string, studentId: string): Promise<IResponse>;
+    getAllAssessmentsForCourse(
         courseId: string,
         studentId: string,
         page: number,
         limit: number
-      ): Promise<IResponse>;
-      
+    ): Promise<IResponse>;
+
+}
+
+
+
+export interface IChatService {
+    getMessages(courseId: string, page: number, limit: number): Promise<IResponse>;
+    sendMessage(userId: string, courseId: string, message: string): Promise<IResponse>;
 }

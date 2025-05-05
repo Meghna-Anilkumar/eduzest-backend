@@ -4,6 +4,7 @@ import { AdminDoc } from './IAdmin';
 import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
 import { ICourse } from './ICourse';
+import { IChat } from './IChat';
 import { Types } from "mongoose";
 import { PaymentDoc } from '../models/paymentModel';
 import { EnrollmentDoc } from '../models/enrollmentModel';
@@ -41,7 +42,7 @@ export interface IUserRepository extends IBaseRepository<UserDoc> {
     storeRefreshToken(userId: string, refreshToken: string): Promise<void>;
     getRefreshToken(userId: string): Promise<string | null>;
     clearRefreshToken(userId: string): Promise<void>;
-    switchToInstructorRole(id: string): Promise<UserDoc | null> 
+    switchToInstructorRole(id: string): Promise<UserDoc | null>
 }
 
 export interface IAdminRepository extends IBaseRepository<AdminDoc> {
@@ -93,7 +94,7 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     getCourseById(courseId: string): Promise<ICourse | null>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
     getCourseByInstructor(courseId: string, instructorId: string): Promise<ICourse | null>;
-    findByTitleAndLevel(title:string,level:string):Promise<ICourse|null>
+    findByTitleAndLevel(title: string, level: string): Promise<ICourse | null>
 }
 
 
@@ -171,4 +172,10 @@ export interface IAssessmentRepository {
     countAssessmentsByCourse(courseId: string): Promise<number>;
     findByCourse(courseId: string, page: number, limit: number): Promise<IAssessment[]>;
 
+}
+
+
+export interface IChatRepository extends IBaseRepository<IChat> {
+    findByCourseId(courseId: string, skip: number, limit: number): Promise<IChat[]>;
+    createMessage(chatData: Partial<IChat>): Promise<IChat>;
 }

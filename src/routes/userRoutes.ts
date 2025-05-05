@@ -2,6 +2,7 @@ import { RequestHandler, Router } from "express";
 import UserController from "../controllers/userController";
 import UserRepository from "../repositories/userRepository";
 import CourseController from "../controllers/courseController";
+import ChatController from "../controllers/chatController";
 import { CourseRepository } from "../repositories/courseRepository";
 import CategoryRepository from "../repositories/categoryRepository";
 import CourseService from "../services/courseServices";
@@ -22,6 +23,8 @@ import ReviewController from "../controllers/reviewController";
 import { ReviewService } from "../services/reviewServices";
 import ReviewRepository from "../repositories/reviewRepository";
 import { redisService } from "../services/redisService";
+import ChatRepository from "../repositories/chatRepository";
+import ChatService from "../services/chatService";
 
 
 const userRepository = new UserRepository();
@@ -31,6 +34,7 @@ const categoryRepository = new CategoryRepository();
 const paymentRepository = new PaymentRepository()
 const enrollmentRepository = new EnrollmentRepository(redisService)
 const reviewRepository = new ReviewRepository();
+const chatRepository=new ChatRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
@@ -38,11 +42,13 @@ const paymentService = new PaymentService(paymentRepository, userRepository, cou
 const courseService = new CourseService(courseRepository, categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
+const chatService=new ChatService(chatRepository,userRepository,courseRepository,enrollmentRepository)
 
 // Instantiate controllers
 const userController = new UserController(userService, paymentService);
 const courseController = new CourseController(courseService, enrollCourseService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService)
+const chatController=new ChatController(chatService)
 const reviewController = new ReviewController(reviewService);
 
 const userRouter = Router();
@@ -83,5 +89,9 @@ userRouter.get(
     authenticateUser(),
     courseController.streamVideo.bind(courseController) as RequestHandler
 );
+
+userRouter.get(USER_ROUTES.GET_ALL_MESSAGES, authenticateUser(), chatController.getMessages.bind(chatController));
+userRouter.post(USER_ROUTES.SEND_MESSAGE, authenticateUser(), chatController.sendMessage.bind(chatController));
+
 
 export default userRouter   

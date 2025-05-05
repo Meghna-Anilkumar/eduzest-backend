@@ -185,7 +185,6 @@ export class AssessmentService implements IAssessmentService {
         limit: number
     ): Promise<IResponse> {
         try {
-            // Verify enrollment
             const enrollment = await this._enrollmentRepository.findByUserAndCourse(studentId, courseId);
             if (!enrollment) {
                 return {
@@ -193,8 +192,6 @@ export class AssessmentService implements IAssessmentService {
                     message: 'Student is not enrolled in this course.',
                 };
             }
-
-            // Fetch assessments for the course and module
             const assessments = await this._assessmentRepository.findByCourseAndModule(
                 courseId,
                 moduleTitle,

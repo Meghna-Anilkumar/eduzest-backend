@@ -19,7 +19,9 @@ export const USER_ROUTES = {
     GET_COURSE_BY_ID: '/courses/:id',
     STREAM_VIDEO: "/courses/:courseId/stream",
     GET_REVIEWS: "/courses/:courseId/reviews",
-    SWITCH_TO_INSTRUCTOR:'/switch-to-instructor'
+    SWITCH_TO_INSTRUCTOR:'/switch-to-instructor',
+    SEND_MESSAGE:'/:courseId/messages',
+    GET_ALL_MESSAGES:'/:courseId/messages'
 }
 
 
