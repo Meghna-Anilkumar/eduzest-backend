@@ -19,7 +19,7 @@ const httpServer = createServer(app);
 console.log('[App] Initializing Socket.IO');
 initializeSocket(httpServer);
 
-console.log('[App] Setting up middleware');
+
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,13 +34,13 @@ app.use(
   })
 );
 
-console.log('[App] Mounting routes');
+
 app.use("/", userRouter);
 app.use("/admin", adminRouter);
 app.use("/instructor", instructorRouter);
 app.use("/student", studentRouter);
 
-console.log('[App] Setting up catch-all route');
+
 app.all("*", (req: Request, res: Response) => {
   console.log('[App] Catch-all route hit:', req.originalUrl);
   res.status(404).json({

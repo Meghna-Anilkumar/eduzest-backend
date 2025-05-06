@@ -6,7 +6,6 @@ import { IUserRepository } from '../interfaces/IRepositories';
 import { ICourseRepository } from '../interfaces/IRepositories';
 import { IEnrollmentRepository } from '../interfaces/IRepositories';
 
-
 export class ChatService implements IChatService {
   constructor(
     private _chatRepository: IChatRepository,
@@ -29,7 +28,6 @@ export class ChatService implements IChatService {
       const skip = (page - 1) * limit;
       const messages = await this._chatRepository.findByCourseId(courseId, skip, limit);
 
-      // Mark messages as read if userId is provided
       if (userId && Types.ObjectId.isValid(userId)) {
         await this._chatRepository.markMessagesAsRead(userId, courseId);
       }
@@ -48,10 +46,14 @@ export class ChatService implements IChatService {
     }
   }
 
-  async sendMessage(userId: string, courseId: string, message: string): Promise<IResponse> {
+  async sendMessage(userId: string, courseId: string, message: string, replyTo?: string): Promise<IResponse> {
     try {
       if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
         return { success: false, message: 'Invalid userId or courseId' };
+      }
+
+      if (replyTo && !Types.ObjectId.isValid(replyTo)) {
+        return { success: false, message: 'Invalid replyTo message ID' };
       }
 
       const user = await this._userRepository.findById(userId);
@@ -78,7 +80,8 @@ export class ChatService implements IChatService {
         courseId: new Types.ObjectId(courseId),
         senderId: new Types.ObjectId(userId),
         message: message.trim(),
-        readBy: [new Types.ObjectId(userId)] // Sender has read their own message
+        readBy: [new Types.ObjectId(userId)],
+        replyTo: replyTo ? new Types.ObjectId(replyTo) : null
       });
 
       return {
@@ -108,7 +111,7 @@ export class ChatService implements IChatService {
       console.error('Error in getChatGroupMetadata service:', error);
       return {
         success: false,
-        message: 'failed to fetch chat group meta data', // This matches the UI error
+        message: 'Failed to fetch chat group metadata',
       };
     }
   }

@@ -26,14 +26,17 @@ const chatSchema = new Schema<IChat>({
     type: Schema.Types.ObjectId,
     ref: 'Users',
     default: []
-  }]
+  }],
+  replyTo: {
+    type: Schema.Types.ObjectId,
+    ref: 'Chats',
+    default: null
+  }
 }, {
   timestamps: true
 });
 
 export const Chats = model<IChat>('Chats', chatSchema);
-
-
 
 const chatGroupMetadataSchema = new Schema<IChatGroupMetadata>({
   courseId: {

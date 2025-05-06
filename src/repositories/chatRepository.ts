@@ -20,7 +20,11 @@ export class ChatRepository extends BaseRepository<IChat> implements IChatReposi
         .sort({ timestamp: 1 })
         .skip(skip)
         .limit(limit)
-        .populate('senderId', 'name role profile.profilePic');
+        .populate('senderId', 'name role profile.profilePic')
+        .populate({
+          path: 'replyTo',
+          populate: { path: 'senderId', select: 'name role profile.profilePic' }
+        });
     } catch (error) {
       console.error('Error fetching chat messages:', error);
       throw new Error('Could not fetch chat messages');

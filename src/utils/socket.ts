@@ -93,7 +93,7 @@ export const initializeSocket = (server: HttpServer): Server => {
       }
 
       socket.userId = data.userId;
-      socket.join(data.userId); // Join a room for the user to receive metadata updates
+      socket.join(data.userId);
       console.log('[Socket] Authentication successful for user:', data.userId);
       socket.emit('authenticated', { message: 'Authentication successful' });
     });
@@ -127,7 +127,6 @@ export const initializeSocket = (server: HttpServer): Server => {
       console.log('[Socket] User joined course:', courseId);
       socket.emit('joined', { courseId, message: 'Joined course chat' });
 
-      // Mark messages as read
       await chatRepository.markMessagesAsRead(socket.userId, courseId);
       await emitChatGroupMetadataUpdate(courseId, [socket.userId]);
 
@@ -162,7 +161,7 @@ export const initializeSocket = (server: HttpServer): Server => {
       socket.emit('messages', response);
     });
 
-    socket.on('sendMessage', async (data: { courseId: string; message: string }) => {
+    socket.on('sendMessage', async (data: { courseId: string; message: string; replyTo?: string }) => {
       console.log('[Socket] SendMessage event received:', data);
       if (!socket.userId || !Types.ObjectId.isValid(data.courseId)) {
         console.error('[Socket] Invalid user or courseId:', { userId: socket.userId, courseId: data.courseId });
@@ -170,7 +169,7 @@ export const initializeSocket = (server: HttpServer): Server => {
         return;
       }
 
-      const response: IResponse = await chatService.sendMessage(socket.userId, data.courseId, data.message);
+      const response: IResponse = await chatService.sendMessage(socket.userId, data.courseId, data.message, data.replyTo);
       console.log('[Socket] SendMessage response:', response);
       if (!response.success || !response.data) {
         console.error('[Socket] SendMessage failed:', response.message);
@@ -182,6 +181,10 @@ export const initializeSocket = (server: HttpServer): Server => {
       const message = await chatRepository.findById(chatData._id.toString());
       if (message) {
         await message.populate('senderId', 'name role profile.profilePic');
+        await message.populate({
+          path: 'replyTo',
+          populate: { path: 'senderId', select: 'name role profile.profilePic' }
+        });
         console.log('[Socket] Populated message:', JSON.stringify(message, null, 2));
         io.to(data.courseId).emit('newMessage', message);
 
