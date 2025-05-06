@@ -1,4 +1,4 @@
-import { Server, Socket } from 'socket.io';
+import { Server, Socket, RemoteSocket } from 'socket.io';
 import { Server as HttpServer } from 'http';
 import { Types } from 'mongoose';
 import ChatService from '../services/chatService';
@@ -14,23 +14,62 @@ interface AuthenticatedSocket extends Socket {
   userId?: string;
 }
 
+interface OnlineUser {
+  userId: string;
+  name: string;
+  role: 'Student' | 'Instructor' | 'Admin';
+}
+
 export const initializeSocket = (server: HttpServer): Server => {
   console.log('[Socket] Initializing Socket.IO server');
   const io = new Server(server, {
     cors: {
       origin: process.env.ORIGIN || 'http://localhost:5173',
       methods: ['GET', 'POST'],
-      credentials: true
-    }
+      credentials: true,
+    },
   });
 
   console.log('[Socket] Setting up dependencies');
   const redisService = new RedisService();
-  const chatRepository = new ChatRepository();
+  const enrollmentRepository = new EnrollmentRepository(redisService);
+  const chatRepository = new ChatRepository(enrollmentRepository);
   const userRepository = new UserRepository();
   const courseRepository = new CourseRepository();
-  const enrollmentRepository = new EnrollmentRepository(redisService);
   const chatService = new ChatService(chatRepository, userRepository, courseRepository, enrollmentRepository);
+
+  const updateOnlineUsers = async (courseId: string) => {
+    const sockets = await io.in(courseId).fetchSockets() as RemoteSocket<any, any>[];
+    const userIds = [...new Set(
+      sockets
+        .map((socket) => (socket as unknown as AuthenticatedSocket).userId)
+        .filter((id): id is string => !!id)
+    )];
+    const users = await Promise.all(
+      userIds.map(async (userId) => {
+        const user = await userRepository.findById(userId);
+        return user
+          ? {
+            userId,
+            name: user.name,
+            role: user.role as 'Student' | 'Instructor' | 'Admin',
+          }
+          : null;
+      })
+    );
+    const onlineUsers: OnlineUser[] = users.filter((user): user is OnlineUser => user !== null);
+    io.to(courseId).emit('onlineUsers', onlineUsers);
+    await redisService.set(`onlineUsers:${courseId}`, JSON.stringify(onlineUsers), 3600);
+  };
+
+  const emitChatGroupMetadataUpdate = async (courseId: string, userIds: string[]) => {
+    for (const userId of userIds) {
+      const response = await chatService.getChatGroupMetadata(userId, [courseId]);
+      if (response.success && response.data) {
+        io.to(userId).emit('chatGroupMetadataUpdate', response.data);
+      }
+    }
+  };
 
   io.on('connection', (socket: AuthenticatedSocket) => {
     console.log('[Socket] A user connected:', socket.id);
@@ -54,6 +93,7 @@ export const initializeSocket = (server: HttpServer): Server => {
       }
 
       socket.userId = data.userId;
+      socket.join(data.userId); // Join a room for the user to receive metadata updates
       console.log('[Socket] Authentication successful for user:', data.userId);
       socket.emit('authenticated', { message: 'Authentication successful' });
     });
@@ -86,20 +126,27 @@ export const initializeSocket = (server: HttpServer): Server => {
       socket.join(courseId);
       console.log('[Socket] User joined course:', courseId);
       socket.emit('joined', { courseId, message: 'Joined course chat' });
+
+      // Mark messages as read
+      await chatRepository.markMessagesAsRead(socket.userId, courseId);
+      await emitChatGroupMetadataUpdate(courseId, [socket.userId]);
+
+      await updateOnlineUsers(courseId);
     });
 
-
-    socket.on('leaveCourse', (courseId: string) => {
+    socket.on('leaveCourse', async (courseId: string) => {
       console.log('[Socket] LeaveCourse event received:', courseId);
       if (!socket.userId || !Types.ObjectId.isValid(courseId)) {
         console.error('[Socket] Invalid user or courseId:', { userId: socket.userId, courseId });
         socket.emit('error', { message: 'Invalid user or courseId' });
         return;
       }
-    
+
       socket.leave(courseId);
       console.log('[Socket] User left course:', courseId);
       socket.emit('left', { courseId, message: 'Left course chat' });
+
+      await updateOnlineUsers(courseId);
     });
 
     socket.on('getMessages', async (data: { courseId: string; page: number; limit: number }) => {
@@ -110,7 +157,7 @@ export const initializeSocket = (server: HttpServer): Server => {
         return;
       }
 
-      const response: IResponse = await chatService.getMessages(data.courseId, data.page, data.limit);
+      const response: IResponse = await chatService.getMessages(data.courseId, data.page, data.limit, socket.userId);
       console.log('[Socket] GetMessages response:', response);
       socket.emit('messages', response);
     });
@@ -122,7 +169,7 @@ export const initializeSocket = (server: HttpServer): Server => {
         socket.emit('error', { message: 'Invalid user or courseId' });
         return;
       }
-    
+
       const response: IResponse = await chatService.sendMessage(socket.userId, data.courseId, data.message);
       console.log('[Socket] SendMessage response:', response);
       if (!response.success || !response.data) {
@@ -130,20 +177,34 @@ export const initializeSocket = (server: HttpServer): Server => {
         socket.emit('error', { message: response.message });
         return;
       }
-    
+
       const chatData = response.data as IChat;
       const message = await chatRepository.findById(chatData._id.toString());
       if (message) {
         await message.populate('senderId', 'name role profile.profilePic');
         console.log('[Socket] Populated message:', JSON.stringify(message, null, 2));
         io.to(data.courseId).emit('newMessage', message);
+
+        const course = await courseRepository.findById(data.courseId);
+        if (course) {
+          const enrollments = await enrollmentRepository.findByCourseId(data.courseId);
+          const userIds = [
+            course.instructorRef.toString(),
+            ...enrollments.map(e => e.userId.toString())
+          ];
+          await emitChatGroupMetadataUpdate(data.courseId, userIds);
+        }
       } else {
         console.error('[Socket] Message not found after saving:', chatData._id);
       }
     });
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', async () => {
       console.log('[Socket] User disconnected:', socket.id);
+      const rooms = Array.from(socket.rooms).filter((room) => room !== socket.id && room !== socket.userId);
+      for (const room of rooms) {
+        await updateOnlineUsers(room);
+      }
     });
   });
 

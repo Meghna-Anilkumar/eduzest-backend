@@ -21,7 +21,8 @@ export const USER_ROUTES = {
     GET_REVIEWS: "/courses/:courseId/reviews",
     SWITCH_TO_INSTRUCTOR:'/switch-to-instructor',
     SEND_MESSAGE:'/:courseId/messages',
-    GET_ALL_MESSAGES:'/:courseId/messages'
+    GET_ALL_MESSAGES:'/:courseId/messages',
+    GET_CHAT_GROUP_METADATA: '/metadata'
 }
 
 

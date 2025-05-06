@@ -12,6 +12,7 @@ import { IReview } from './IReview';
 import { LessonProgress } from '../models/enrollmentModel';
 import { IAssessment } from './IAssessments';
 import { IAssessmentResult } from './IAssessments';
+import { IChatGroupMetadata } from './IChat';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -178,4 +179,7 @@ export interface IAssessmentRepository {
 export interface IChatRepository extends IBaseRepository<IChat> {
     findByCourseId(courseId: string, skip: number, limit: number): Promise<IChat[]>;
     createMessage(chatData: Partial<IChat>): Promise<IChat>;
+    updateChatGroupMetadata(courseId: Types.ObjectId, senderId: Types.ObjectId, messageId: Types.ObjectId): Promise<void>
+    markMessagesAsRead(userId: string, courseId: string): Promise<void>
+    getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IChatGroupMetadata[]>
 }

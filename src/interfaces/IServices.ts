@@ -179,6 +179,7 @@ export interface IAssessmentService {
 
 
 export interface IChatService {
-    getMessages(courseId: string, page: number, limit: number): Promise<IResponse>;
+    getMessages(courseId: string, page: number, limit: number, userId?: string): Promise<IResponse>;
     sendMessage(userId: string, courseId: string, message: string): Promise<IResponse>;
+    getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IResponse>
 }

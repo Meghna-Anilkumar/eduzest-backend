@@ -8,4 +8,13 @@ export interface IChat extends Document {
     timestamp: Date;
     createdAt: Date;
     updatedAt: Date;
+    readBy: Types.ObjectId[]; 
+}
+
+
+export interface IChatGroupMetadata extends Document {
+    courseId: Types.ObjectId;
+    userId: Types.ObjectId;
+    lastMessage: Types.ObjectId | null; // Reference to the last chat message
+    unreadCount: number; // Number of unread messages for this user in this course
 }

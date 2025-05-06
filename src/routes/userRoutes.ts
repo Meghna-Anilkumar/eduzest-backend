@@ -34,7 +34,7 @@ const categoryRepository = new CategoryRepository();
 const paymentRepository = new PaymentRepository()
 const enrollmentRepository = new EnrollmentRepository(redisService)
 const reviewRepository = new ReviewRepository();
-const chatRepository=new ChatRepository()
+const chatRepository=new ChatRepository(enrollmentRepository)
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
@@ -92,6 +92,6 @@ userRouter.get(
 
 userRouter.get(USER_ROUTES.GET_ALL_MESSAGES, authenticateUser(), chatController.getMessages.bind(chatController));
 userRouter.post(USER_ROUTES.SEND_MESSAGE, authenticateUser(), chatController.sendMessage.bind(chatController));
-
+userRouter.post(USER_ROUTES.GET_CHAT_GROUP_METADATA, authenticateUser(), chatController.getChatGroupMetadata.bind(chatController));
 
 export default userRouter   
