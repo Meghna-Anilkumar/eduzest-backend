@@ -18,6 +18,8 @@ export class CourseRepository extends BaseRepository<ICourse> {
             instructorRef: instructorId,
         });
     }
+     
+
 
     async findByTitleAndLevel(title: string, level: string): Promise<ICourse | null> {
         return this._model.findOne({

@@ -16,7 +16,6 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     return this._model
       .find({ userId: new Types.ObjectId(userId) })
       .sort({ enrolledAt: -1 })
-      .limit(5)
       .populate("courseId");
   }
 

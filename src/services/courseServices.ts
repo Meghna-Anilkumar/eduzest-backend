@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { IResponse } from "../interfaces/IResponse";
-import { ICourse} from "../interfaces/ICourse";
+import { ICourse } from "../interfaces/ICourse";
 import { ICourseRepository } from "../interfaces/IRepositories";
 import { ICategoryRepository } from "../interfaces/IRepositories";
 import { validateCourseData } from "../utils/courseValidation";
@@ -16,22 +16,22 @@ export class CourseService {
     try {
       await validateCourseData(courseData, this._categoryRepository);
       const trimmedTitle = courseData.title!.trim();
-      const level=courseData.level
+      const level = courseData.level
       const existingCourse = await this._courseRepository.findByTitleAndInstructor(
         trimmedTitle,
         courseData.instructorRef as Types.ObjectId
       );
-      if(!level){
-        return{
-          success:false,
-          message:'course level is required'
+      if (!level) {
+        return {
+          success: false,
+          message: 'course level is required'
         }
       }
-      const exists=await this._courseRepository.findByTitleAndLevel(trimmedTitle,level)
-      if ( exists){
+      const exists = await this._courseRepository.findByTitleAndLevel(trimmedTitle, level)
+      if (exists) {
         return {
-          success:false,
-          message:'course with this title and level exists already'
+          success: false,
+          message: 'course with this title and level exists already'
         }
       }
       if (existingCourse) {
@@ -161,7 +161,7 @@ export class CourseService {
             sortQuery.updatedAt = -1;
         }
       } else {
-        sortQuery.updatedAt = -1; 
+        sortQuery.updatedAt = -1;
       }
 
       const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
@@ -220,10 +220,10 @@ export class CourseService {
         return {
           success: false,
           message: "Valid Course ID is required.",
-          error: { message: "Invalid course ID."},
+          error: { message: "Invalid course ID." },
         };
       }
-  
+
       if (!instructorId || !Types.ObjectId.isValid(instructorId)) {
         return {
           success: false,
@@ -231,17 +231,17 @@ export class CourseService {
           error: { message: "Invalid instructor ID." }
         };
       }
-  
+
       const course = await this._courseRepository.getCourseByInstructor(courseId, instructorId);
-  
+
       if (!course) {
         return {
           success: false,
           message: "Course not found or you are not authorized to access this course.",
-          error: { message: "Course not found."},
+          error: { message: "Course not found." },
         };
       }
-  
+
       return {
         success: true,
         message: "Course fetched successfully.",
@@ -253,7 +253,7 @@ export class CourseService {
         message: "An error occurred while fetching the course.",
         error: {
           message: error instanceof Error ? error.message : "Unknown error",
-         
+
         },
       };
     }
@@ -272,11 +272,24 @@ export class CourseService {
         };
       }
 
+      const title = updateData.title
+      if (title) {
+        const existingCourse = await this._courseRepository.findByTitleAndInstructor(title, new Types.ObjectId(instructorId))
+        if (existingCourse) {
+          return {
+            success: false,
+            message: "already existing course"
+          }
+        }
+      }
+
       const updatedCourse = await this._courseRepository.editCourse(
         courseId,
         instructorId,
         updateData
       );
+
+
 
       if (!updatedCourse) {
         return {

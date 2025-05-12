@@ -5,7 +5,7 @@ import { AuthRequest } from "../interfaces/AuthRequest";
 import { Types } from "mongoose";
 import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } from "../interfaces/ICourse";
 import { s3Service } from "../services/s3Service";
-import { ILessonData, IModuleData, IUpdate } from "../interfaces/ILessonData";
+import { ILessonData, IModuleData} from "../interfaces/ILessonData";
 
 
 
@@ -118,7 +118,7 @@ class CourseController {
           courses: coursesWithSignedUrls,
         };
       }
-
+ 
       res.status(Status.OK).json(response);
     } catch (error) {
       console.error("Error in getAllCoursesByInstructor controller:", error);
@@ -301,7 +301,6 @@ class CourseController {
 
       const updateData: ICourseUpdate = {};
 
-      // Populate scalar fields
       if (rawUpdateData.title) updateData.title = rawUpdateData.title;
       if (rawUpdateData.description) updateData.description = rawUpdateData.description;
       if (rawUpdateData.language) updateData.language = rawUpdateData.language;
@@ -310,21 +309,18 @@ class CourseController {
       if (rawUpdateData.isRequested !== undefined) updateData.isRequested = rawUpdateData.isRequested;
       if (rawUpdateData.isPublished !== undefined) updateData.isPublished = rawUpdateData.isPublished;
 
-      // Handle instructorRef
       if (typeof rawUpdateData.instructorRef === 'string' && Types.ObjectId.isValid(rawUpdateData.instructorRef)) {
         updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef);
       } else if (rawUpdateData.instructorRef?._id && Types.ObjectId.isValid(rawUpdateData.instructorRef._id)) {
         updateData.instructorRef = new Types.ObjectId(rawUpdateData.instructorRef._id);
       }
 
-      // Handle categoryRef
       if (typeof rawUpdateData.categoryRef === 'string' && Types.ObjectId.isValid(rawUpdateData.categoryRef)) {
         updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef);
       } else if (rawUpdateData.categoryRef?._id && Types.ObjectId.isValid(rawUpdateData.categoryRef._id)) {
         updateData.categoryRef = new Types.ObjectId(rawUpdateData.categoryRef._id);
       }
 
-      // Handle thumbnail upload
       if (thumbnailFile) {
         const thumbnailKey = `courses/${instructorId}/${updateData.title || rawUpdateData.title || existingCourse.title}/thumbnail-${Date.now()}.${thumbnailFile.mimetype.split("/")[1]}`;
         console.log("Uploading thumbnail to S3 with key:", thumbnailKey);
@@ -334,9 +330,7 @@ class CourseController {
         updateData.thumbnail = rawUpdateData.thumbnail;
       }
 
-      // Handle modules and lessons
       if (rawUpdateData.modules) {
-        // Parse video mapping
         const videoMap: Map<string, number> = new Map();
         if (videoFiles.length > 0 && req.body.videoMapping) {
           try {
@@ -349,13 +343,10 @@ class CourseController {
           }
         }
 
-        // Log video mapping
         console.log('videoMap:', Array.from(videoMap.entries()));
 
-        // Process modules and lessons
         updateData.modules = await Promise.all(
           rawUpdateData.modules.map(async (module: any, moduleIndex: number) => {
-            // Log module data
             console.log(`Processing module ${moduleIndex + 1}:`, {
               moduleTitle: module.moduleTitle,
               lessonCount: module.lessons.length,
@@ -369,12 +360,10 @@ class CourseController {
 
             const lessons = await Promise.all(
               module.lessons.map(async (lesson: any, lessonIndex: number) => {
-                // Determine lesson identifier
                 const lessonKey = lesson._id && Types.ObjectId.isValid(lesson._id)
                   ? lesson._id.toString()
                   : `new-lesson-${moduleIndex}-${lessonIndex}`;
 
-                // Log lesson processing
                 console.log(`Processing lesson ${lessonIndex + 1} in module ${moduleIndex + 1}:`, {
                   lessonKey,
                   lessonData: lesson,
@@ -382,7 +371,6 @@ class CourseController {
                   hasVideo: !!lesson.video,
                 });
 
-                // Find the existing lesson (if it exists) to preserve the video field
                 let existingVideoKey: string | undefined;
                 if (lesson._id && Types.ObjectId.isValid(lesson._id)) {
                   const existingModule = existingCourse.modules[moduleIndex];
@@ -402,7 +390,6 @@ class CourseController {
                   }
                 }
 
-                // Get existing video information from incoming data
                 let videoKey = lesson.videoKey || lesson.video || "";
                 if (videoKey && videoKey.startsWith("http")) {
                   const url = new URL(videoKey);
@@ -411,7 +398,6 @@ class CourseController {
                   videoKey = decodeURIComponent(videoKey);
                 }
 
-                // Handle video upload if there's a new video for this lesson
                 if (videoMap.has(lessonKey)) {
                   const videoIndex = videoMap.get(lessonKey)!;
                   if (videoIndex >= 0 && videoIndex < videoFiles.length) {
@@ -428,13 +414,11 @@ class CourseController {
                   }
                 }
 
-                // Use existing video key if no new video is provided and no videoKey is in the incoming data
                 if (!videoKey && existingVideoKey) {
                   videoKey = existingVideoKey;
                   console.log(`Falling back to existing videoKey for lesson ${lessonKey}:`, videoKey);
                 }
 
-                // Validate that videoKey is not empty
                 if (!videoKey) {
                   console.error(`Video validation failed for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}:`, {
                     lessonKey,
@@ -447,7 +431,6 @@ class CourseController {
                   throw new Error(`Video is required for lesson ${lessonIndex + 1} in module ${moduleIndex + 1}`);
                 }
 
-                // Create sanitized lesson object
                 const sanitizedLesson: ILessonData = {
                   lessonNumber: lesson.lessonNumber,
                   title: lesson.title,
@@ -524,7 +507,6 @@ class CourseController {
         return;
       }
 
-      // Step 1: Get file metadata to determine size
       const metadata = await s3Service.getObject(videoKey, true);
       if (!metadata.ContentLength) {
         res.status(Status.INTERNAL_SERVER_ERROR).json({
@@ -537,13 +519,10 @@ class CourseController {
       const fileSize = metadata.ContentLength;
       const contentType = metadata.ContentType || "video/mp4";
 
-      // Step 2: Parse range header
       const range = req.headers.range;
 
-      // If no range request, return a 200 with a chunk of the beginning of the video
       if (!range) {
-        // For initial requests without range, send a small chunk (e.g., first 1MB)
-        const INITIAL_CHUNK_SIZE = 1024 * 1024; // 1MB
+        const INITIAL_CHUNK_SIZE = 1024 * 1024;
         const endByte = Math.min(INITIAL_CHUNK_SIZE - 1, fileSize - 1);
 
         const { Body } = await s3Service.getObject(videoKey, false, `bytes=0-${endByte}`);
@@ -552,7 +531,7 @@ class CourseController {
           "Content-Type": contentType,
           "Content-Length": endByte + 1,
           "Accept-Ranges": "bytes",
-          "Cache-Control": "public, max-age=31536000", // Cache for 1 year
+          "Cache-Control": "public, max-age=31536000", 
           "Content-Range": `bytes 0-${endByte}/${fileSize}`
         });
 
@@ -560,21 +539,16 @@ class CourseController {
         return;
       }
 
-      // Step 3: Parse the range header
       const parts = range.replace(/bytes=/, "").split("-");
       const start = parseInt(parts[0], 10);
 
-      // If end is not specified, set chunk size to 1MB or remaining file size
-      const CHUNK_SIZE = 1024 * 1024; // 1MB chunks
+      const CHUNK_SIZE = 1024 * 1024; 
       let end = parts[1] ? parseInt(parts[1], 10) : Math.min(start + CHUNK_SIZE - 1, fileSize - 1);
 
-      // Ensure end doesn't exceed file size
       end = Math.min(end, fileSize - 1);
 
-      // Calculate content length
       const contentLength = end - start + 1;
 
-      // Step 4: Validate range
       if (start >= fileSize || end >= fileSize || start > end) {
         res.status(416).set({
           "Content-Range": `bytes */${fileSize}`
@@ -582,7 +556,6 @@ class CourseController {
         return;
       }
 
-      // Step 5: Get and stream the specific range
       const { Body } = await s3Service.getObject(videoKey, false, `bytes=${start}-${end}`);
 
       if (!Body) {
@@ -593,16 +566,14 @@ class CourseController {
         return;
       }
 
-      // Step 6: Set response headers for partial content
       res.writeHead(206, {
         "Content-Range": `bytes ${start}-${end}/${fileSize}`,
         "Accept-Ranges": "bytes",
         "Content-Length": contentLength,
         "Content-Type": contentType,
-        "Cache-Control": "public, max-age=31536000" // Cache chunks for 1 year
+        "Cache-Control": "public, max-age=31536000" 
       });
 
-      // Step 7: Pipe the stream to response
       Body.pipe(res);
 
     } catch (error) {

@@ -101,21 +101,31 @@ export class AssessmentRepository extends BaseRepository<IAssessment> {
 
     if (existingResult) {
       console.log("AssessmentRepository: Existing result found, updating", { id: existingResult._id });
+
+      const updatedAttempts = [...existingResult.attempts, resultData.attempts![0]];
+
+      const hasPassed = updatedAttempts.some(attempt => attempt.passed);
+
+      const bestScore = Math.max(...updatedAttempts.map(attempt => attempt.score));
+
+      const earnedPoints = resultData.attempts![0].score;
+
       const updatedResult = await this._resultModel
         .findByIdAndUpdate(
           existingResult._id,
           {
             $push: { attempts: resultData.attempts![0] },
             $set: {
-              bestScore: resultData.bestScore,
-              earnedPoints: resultData.earnedPoints,
-              status: resultData.status,
+              bestScore,
+              earnedPoints,
+              status: hasPassed ? 'passed' : 'failed',
               updatedAt: new Date(),
             },
           },
           { new: true, runValidators: true }
         )
         .exec();
+
       console.log("AssessmentRepository: Updated result", updatedResult);
       if (!updatedResult) {
         throw new Error("Failed to update assessment result");
@@ -124,7 +134,13 @@ export class AssessmentRepository extends BaseRepository<IAssessment> {
     }
 
     console.log("AssessmentRepository: No existing result, creating new");
-    const newResult = await this._resultModel.create(resultData);
+    const newResultData = {
+      ...resultData,
+      bestScore: resultData.attempts![0].score,
+      earnedPoints: resultData.attempts![0].score,
+      status: resultData.attempts![0].passed ? 'passed' : 'failed',
+    };
+    const newResult = await this._resultModel.create(newResultData);
     console.log("AssessmentRepository: Created new result", newResult);
     return newResult;
   }

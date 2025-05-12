@@ -76,7 +76,6 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
 
     const skip = (page - 1) * limit;
     
-    // Get payments with populated user and course data
     const [payments, total] = await Promise.all([
       this._model
         .find(query)
@@ -89,7 +88,6 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       this._model.countDocuments(query),
     ]);
 
-    // Format data to include student name
     const data = payments.map(payment => ({
       transactionId: payment.instructorPayout.transactionId || 'N/A',
       date: payment.createdAt,
@@ -119,8 +117,7 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
     const sortOptions: any = sort ? { [sort.field]: sort.order === "asc" ? 1 : -1 } : { createdAt: -1 };
 
     const skip = (page - 1) * limit;
-    
-    // Get payments with populated user and course data
+
     const [payments, total] = await Promise.all([
       this._model
         .find(query)
@@ -133,7 +130,7 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       this._model.countDocuments(query),
     ]);
 
-    // Format data to include student name
+
     const data = payments.map(payment => ({
       transactionId: payment.adminPayout.transactionId || 'N/A',
       date: payment.createdAt,
@@ -153,7 +150,6 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
   ): Promise<{ date: string; amount: number }[]> {
     const dateFormat = period === "day" ? "%Y-%m-%d" : period === "month" ? "%Y-%m" : "%Y";
   
-    // Cap the endDate at the current date
     const today = new Date();
     const effectiveEndDate = endDate > today ? today : endDate;
   
@@ -179,18 +175,17 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       },
       { $sort: { date: 1 } },
     ]);
-  
-    // Generate all periods up to today
+ 
     const periods: { date: string; amount: number }[] = [];
     let currentDate = new Date(startDate);
   
     while (currentDate <= effectiveEndDate) {
       const dateStr =
         period === "day"
-          ? currentDate.toISOString().split("T")[0] // e.g., "2024-04-23"
+          ? currentDate.toISOString().split("T")[0] 
           : period === "month"
-          ? `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}` // e.g., "2024-04"
-          : currentDate.getFullYear().toString(); // e.g., "2024"
+          ? `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}` 
+          : currentDate.getFullYear().toString(); 
   
       const found = result.find((item: { date: string; amount: number }) => item.date === dateStr);
       periods.push({

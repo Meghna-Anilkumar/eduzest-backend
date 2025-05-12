@@ -145,6 +145,7 @@ export interface IEnrollmentRepository {
     ): Promise<EnrollmentDoc | null>;
     updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null>
     getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]>;
+    
 }
 
 

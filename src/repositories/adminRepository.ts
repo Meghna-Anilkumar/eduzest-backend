@@ -1,6 +1,6 @@
 import { AdminDoc } from "../interfaces/IAdmin";
 import { UserDoc } from "../interfaces/IUser";
-import { EnrollmentDoc,Enrollments } from "../models/enrollmentModel";
+import { Enrollments } from "../models/enrollmentModel";
 import { Admin } from "../models/adminModel";
 import { Users } from "../models/userModel";
 import { BaseRepository } from "./baseRepository";

@@ -6,6 +6,7 @@ const optionSchema = new Schema<IOption>({
   text: { type: String, required: true, trim: true },
 });
 
+
 const questionSchema = new Schema<IQuestion>({
   id: { type: String, required: true },
   text: { type: String, required: true, trim: true },
@@ -18,6 +19,8 @@ const questionSchema = new Schema<IQuestion>({
     default: 1 
   },
 });
+
+
 const assessmentSchema = new Schema<IAssessment>(
   {
     courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
