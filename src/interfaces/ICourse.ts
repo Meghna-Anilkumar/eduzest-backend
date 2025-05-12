@@ -2,16 +2,19 @@ import { Document, Types } from "mongoose";
 
 // Interface for a Lesson
 export interface ILesson extends Document {
+    _id: string;
     lessonNumber: string;
     title: string;
     description: string;
     video: string;
+    videoKey?: string; 
     duration?: string;
     objectives?: string[];
 }
 
 // Interface for a Module
 export interface IModule extends Document {
+    _id: string;
     moduleTitle: string;
     lessons: ILesson[];
 }
@@ -38,8 +41,8 @@ export interface ICourse extends Document {
     title: string;
     description: string;
     thumbnail: string;
-    instructorRef: Types.ObjectId; 
-    categoryRef: Types.ObjectId; 
+    instructorRef: Types.ObjectId;
+    categoryRef: Types.ObjectId;
     language: string;
     level: "beginner" | "intermediate" | "advanced";
     modules: IModule[];
@@ -54,3 +57,21 @@ export interface ICourse extends Document {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface FilterOptions {
+    level?: "beginner" | "intermediate" | "advanced";
+    pricingType?: "free" | "paid";
+}
+
+export interface SortOptions {
+    field: "price" | "updatedAt" | "studentsEnrolled";
+    order: "asc" | "desc";
+}
+
+
+export interface ICourseUpdate extends Partial<ICourse> {
+    // Allow only Types.ObjectId or undefined, matching ICourse
+    instructorRef?: Types.ObjectId;
+    categoryRef?: Types.ObjectId;
+  }
+

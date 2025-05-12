@@ -39,6 +39,10 @@ export class CategoryRepository extends BaseRepository<CategoryDoc> implements I
         console.log("Total categories count:", count);
         return count;
     }
+
+
+
+    
 }
 
 export default CategoryRepository;

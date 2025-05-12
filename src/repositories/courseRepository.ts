@@ -18,13 +18,22 @@ export class CourseRepository extends BaseRepository<ICourse> {
             instructorRef: instructorId,
         });
     }
+     
+
+
+    async findByTitleAndLevel(title: string, level: string): Promise<ICourse | null> {
+        return this._model.findOne({
+            title: title,
+            level: level
+        })
+    }
 
     async getAllCoursesByInstructor(
         query: any,
         page: number,
         limit: number
     ): Promise<ICourse[]> {
-        return this._model
+        const courses = await this._model
             .find(query)
             .populate({
                 path: "instructorRef",
@@ -35,13 +44,14 @@ export class CourseRepository extends BaseRepository<ICourse> {
             .skip((page - 1) * limit)
             .limit(limit)
             .exec();
+        console.log("Courses from repository:", JSON.stringify(courses, null, 2));
+        return courses;
     }
-
     async countDocuments(query: any): Promise<number> {
         return this._model.countDocuments(query).exec();
     }
 
-    async getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]> {
+    async getAllActiveCourses(query: any, page: number, limit: number, sort?: any): Promise<ICourse[]> {
         return this._model
             .find(query)
             .populate({
@@ -49,11 +59,12 @@ export class CourseRepository extends BaseRepository<ICourse> {
                 select: "name profile.profilePic",
             })
             .populate("categoryRef", "categoryName")
-            .sort({ updatedAt: "desc" })
+            .sort(sort || { updatedAt: "desc" })
             .skip((page - 1) * limit)
             .limit(limit)
             .exec();
     }
+
     async getCourseById(courseId: string): Promise<ICourse | null> {
         return this._model
             .findById(courseId)
@@ -68,10 +79,28 @@ export class CourseRepository extends BaseRepository<ICourse> {
             })
             .exec();
     }
-    
+
+    async getCourseByInstructor(courseId: string, instructorId: string): Promise<ICourse | null> {
+        return this._model
+            .findOne({
+                _id: courseId,
+                instructorRef: new Types.ObjectId(instructorId),
+            })
+            .populate({
+                path: "instructorRef",
+                select: "name email profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .populate({
+                path: "modules.lessons",
+                select: "title duration video",
+            })
+            .exec();
+    }
+
     async editCourse(
-        courseId: string, 
-        instructorId: string, 
+        courseId: string,
+        instructorId: string,
         updateData: Partial<ICourse>
     ): Promise<ICourse | null> {
         const course = await this._model.findOne({
@@ -80,7 +109,7 @@ export class CourseRepository extends BaseRepository<ICourse> {
         });
 
         if (!course) {
-            return null; 
+            return null;
         }
 
         return this._model

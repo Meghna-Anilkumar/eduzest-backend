@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-import { IUserService } from "../interfaces/IServices";
+import { IUserService, IPaymentService } from "../interfaces/IServices";
 import { Status } from "../utils/enums";
-import { Cookie } from "../interfaces/IEnums";
+import { Cookie } from "../utils/Enum";
 import { OAuth2Client } from 'google-auth-library';
 import { uploadToS3 } from "../utils/s3";
+import { AuthRequest } from "../interfaces/AuthRequest";
 
 
 
 class UserController {
-    constructor(private _userService: IUserService) { }
+    constructor(private _userService: IUserService,
+        private _paymentService: IPaymentService
+    ) { }
 
     async signupUser(req: Request, res: Response) {
         try {
@@ -480,10 +483,162 @@ class UserController {
     }
 
 
+    async createPaymentIntent(req: AuthRequest, res: Response) {
+        try {
+            const { courseId, amount, paymentType } = req.body;
+            const userId = req.user?.id;
 
+            if (!userId) {
+                return res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "User not authenticated",
+                });
+            }
+
+            const result = await this._paymentService.createPaymentIntent(userId, courseId, amount, paymentType);
+
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+        } catch (error) {
+            console.error("Error creating payment intent:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+
+    async confirmPayment(req: Request, res: Response) {
+        try {
+            const { paymentId } = req.body;
+
+            const result = await this._paymentService.confirmPayment(paymentId);
+
+            res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+        } catch (error) {
+            console.error("Error confirming payment:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
+
+    async getPaymentHistory(req: AuthRequest, res: Response): Promise<void> {
+        try {
+            const userId = req.user?.id;
+
+            // Check if userId is undefined
+            if (!userId) {
+                res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "User not authenticated",
+                });
+                return; // Exit the function if the user is not authenticated
+            }
+
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const search = req.query.search as string | undefined;
+            const sortField = req.query.sortField as string | undefined;
+            const sortOrder = req.query.sortOrder as string | undefined;
+
+            const sort = sortField
+                ? { field: sortField as "amount" | "createdAt" | "status", order: (sortOrder as "asc" | "desc") || "desc" }
+                : undefined;
+
+            // Pass userId to the service function now that it's guaranteed to be a string
+            const result = await this._paymentService.getPaymentsByUser(userId, page, limit, search, sort);
+
+            res.status(Status.OK).json(result);
+        } catch (error) {
+            console.error("Error fetching payment history:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+
+    async getInstructorPayouts(req: AuthRequest, res: Response): Promise<void> {
+        try {
+            const instructorId = req.user?.id;
+
+            // Check if instructorId is undefined
+            if (!instructorId) {
+                res.status(Status.UN_AUTHORISED).json({
+                    success: false,
+                    message: "Instructor not authenticated",
+                });
+                return;
+            }
+
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const search = req.query.search as string | undefined;
+            const sortField = req.query.sortField as string | undefined;
+            const sortOrder = req.query.sortOrder as string | undefined;
+
+            const sort = sortField
+                ? { field: sortField, order: (sortOrder as "asc" | "desc") || "desc" }
+                : undefined;
+
+            const result = await this._paymentService.getInstructorPayouts(
+                instructorId,
+                page,
+                limit,
+                search,
+                sort
+            );
+
+            res.status(Status.OK).json(result);
+        } catch (error) {
+            console.error("Error fetching instructor payouts:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal server error",
+            });
+        }
+    }
+
+    async switchToInstructor(req: AuthRequest, res: Response): Promise<void> {
+        try {
+            const id = req.user?.id;
+
+            if (!id) {
+                res.status(Status.BAD_REQUEST).json({
+                    success: false,
+                    message: "User ID is required.",
+                });
+                return;
+            }
+
+            const result = await this._userService.switchToInstructor(id, res);
+            res.clearCookie(Cookie.userJWT, {
+                httpOnly: true,
+            });
+            res.clearCookie(Cookie.userRefreshJWT, {
+                httpOnly: true,
+            });
+            res.status(Status.OK).json({
+                success: result.success,
+                message: result.message,
+                userData: result.userData,
+                redirectURL: result.redirectURL,
+            });
+        } catch (error) {
+            console.error("Error in switchToInstructor:", error);
+            res.status(Status.INTERNAL_SERVER_ERROR).json({
+                success: false,
+                message: "Internal Server Error",
+            });
+        }
+    }
 
 
 }
+
+
 
 
 

@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { IResponse } from "../interfaces/IResponse";
-import { ICourse, ITrial } from "../interfaces/ICourse";
+import { ICourse } from "../interfaces/ICourse";
 import { ICourseRepository } from "../interfaces/IRepositories";
 import { ICategoryRepository } from "../interfaces/IRepositories";
 import { validateCourseData } from "../utils/courseValidation";
@@ -16,10 +16,24 @@ export class CourseService {
     try {
       await validateCourseData(courseData, this._categoryRepository);
       const trimmedTitle = courseData.title!.trim();
+      const level = courseData.level
       const existingCourse = await this._courseRepository.findByTitleAndInstructor(
         trimmedTitle,
         courseData.instructorRef as Types.ObjectId
       );
+      if (!level) {
+        return {
+          success: false,
+          message: 'course level is required'
+        }
+      }
+      const exists = await this._courseRepository.findByTitleAndLevel(trimmedTitle, level)
+      if (exists) {
+        return {
+          success: false,
+          message: 'course with this title and level exists already'
+        }
+      }
       if (existingCourse) {
         return {
           success: false,
@@ -29,15 +43,10 @@ export class CourseService {
 
       const categoryRef = new Types.ObjectId(courseData.categoryRef as unknown as string);
 
-      // const defaultTrial: ITrial = {
-      //   video: courseData.trial?.video || undefined,
-      // } as ITrial;
-
       const newCourse = await this._courseRepository.createCourse({
         ...courseData,
         title: trimmedTitle,
         categoryRef,
-        // trial: courseData.trial || defaultTrial,
         pricing: courseData.pricing || { type: "free", amount: 0 },
         attachments: courseData.attachments || undefined,
         isRequested: true,
@@ -112,7 +121,13 @@ export class CourseService {
     }
   }
 
-  async getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse> {
+  async getAllActiveCourses(
+    page: number,
+    limit: number,
+    search?: string,
+    filters?: { level?: string; pricingType?: string },
+    sort?: { field: string; order: string }
+  ): Promise<IResponse> {
     try {
       const query: any = {
         isPublished: true,
@@ -123,8 +138,34 @@ export class CourseService {
         query.title = { $regex: new RegExp(search, "i") };
       }
 
-      const courses = await this._courseRepository.getAllActiveCourses(query, page, limit);
+      if (filters?.level) {
+        query.level = filters.level;
+      }
+      if (filters?.pricingType) {
+        query["pricing.type"] = filters.pricingType;
+      }
 
+      const sortQuery: any = {};
+      if (sort) {
+        switch (sort.field) {
+          case "price":
+            sortQuery["pricing.amount"] = sort.order === "asc" ? 1 : -1;
+            break;
+          case "updatedAt":
+            sortQuery.updatedAt = sort.order === "asc" ? 1 : -1;
+            break;
+          case "studentsEnrolled":
+            sortQuery.studentsEnrolled = sort.order === "asc" ? 1 : -1;
+            break;
+          default:
+            sortQuery.updatedAt = -1;
+        }
+      } else {
+        sortQuery.updatedAt = -1;
+      }
+
+      const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
+      console.log("Courses with populated data:", JSON.stringify(courses, null, 2));
       const totalCourses = await this._courseRepository.countDocuments(query);
 
       return {
@@ -173,6 +214,51 @@ export class CourseService {
     }
   }
 
+  async getCourseByInstructor(courseId: string, instructorId: string): Promise<IResponse> {
+    try {
+      if (!courseId || !Types.ObjectId.isValid(courseId)) {
+        return {
+          success: false,
+          message: "Valid Course ID is required.",
+          error: { message: "Invalid course ID." },
+        };
+      }
+
+      if (!instructorId || !Types.ObjectId.isValid(instructorId)) {
+        return {
+          success: false,
+          message: "Valid Instructor ID is required.",
+          error: { message: "Invalid instructor ID." }
+        };
+      }
+
+      const course = await this._courseRepository.getCourseByInstructor(courseId, instructorId);
+
+      if (!course) {
+        return {
+          success: false,
+          message: "Course not found or you are not authorized to access this course.",
+          error: { message: "Course not found." },
+        };
+      }
+
+      return {
+        success: true,
+        message: "Course fetched successfully.",
+        data: course,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: "An error occurred while fetching the course.",
+        error: {
+          message: error instanceof Error ? error.message : "Unknown error",
+
+        },
+      };
+    }
+  }
+
   async editCourse(
     courseId: string,
     instructorId: string,
@@ -186,11 +272,24 @@ export class CourseService {
         };
       }
 
+      const title = updateData.title
+      if (title) {
+        const existingCourse = await this._courseRepository.findByTitleAndInstructor(title, new Types.ObjectId(instructorId))
+        if (existingCourse) {
+          return {
+            success: false,
+            message: "already existing course"
+          }
+        }
+      }
+
       const updatedCourse = await this._courseRepository.editCourse(
         courseId,
         instructorId,
         updateData
       );
+
+
 
       if (!updatedCourse) {
         return {

@@ -4,8 +4,15 @@ import { AdminDoc } from './IAdmin';
 import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
 import { ICourse } from './ICourse';
+import { IChat } from './IChat';
 import { Types } from "mongoose";
-import { IResponse } from './IResponse';
+import { PaymentDoc } from '../models/paymentModel';
+import { EnrollmentDoc } from '../models/enrollmentModel';
+import { IReview } from './IReview';
+import { LessonProgress } from '../models/enrollmentModel';
+import { IAssessment } from './IAssessments';
+import { IAssessmentResult } from './IAssessments';
+import { IChatGroupMetadata } from './IChat';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -36,6 +43,7 @@ export interface IUserRepository extends IBaseRepository<UserDoc> {
     storeRefreshToken(userId: string, refreshToken: string): Promise<void>;
     getRefreshToken(userId: string): Promise<string | null>;
     clearRefreshToken(userId: string): Promise<void>;
+    switchToInstructorRole(id: string): Promise<UserDoc | null>
 }
 
 export interface IAdminRepository extends IBaseRepository<AdminDoc> {
@@ -51,6 +59,8 @@ export interface IAdminRepository extends IBaseRepository<AdminDoc> {
     rejectInstructorRequest(id: string): Promise<UserDoc | null>;
     getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]>;
     countInstructors(search?: string): Promise<number>;
+    getStudentGrowth(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; count: number }[]>;
+
 }
 
 export interface IOtpRepository extends IBaseRepository<OtpDoc> {
@@ -76,7 +86,101 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     findByTitleAndInstructor(title: string, instructorId: Types.ObjectId): Promise<ICourse | null>;
     getAllCoursesByInstructor(query: any, page: number, limit: number): Promise<ICourse[]>;
     countDocuments(query: any): Promise<number>;
-    getAllActiveCourses(query: any, page: number, limit: number): Promise<ICourse[]>
+    getAllActiveCourses(
+        query: any,
+        page: number,
+        limit: number,
+        sort?: any
+    ): Promise<ICourse[]>;
     getCourseById(courseId: string): Promise<ICourse | null>
-    editCourse( courseId: string, instructorId: string,  updateData: Partial<ICourse>): Promise<ICourse | null>;
+    editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
+    getCourseByInstructor(courseId: string, instructorId: string): Promise<ICourse | null>;
+    findByTitleAndLevel(title: string, level: string): Promise<ICourse | null>
+}
+
+
+export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
+    findByUserId(userId: string): Promise<PaymentDoc[]>;
+    findByCourseId(courseId: string): Promise<PaymentDoc[]>;
+    updatePaymentStatus(paymentId: string, status: PaymentDoc["status"]): Promise<PaymentDoc | null>;
+    createPayment(paymentData: Partial<PaymentDoc>): Promise<PaymentDoc>;
+    getPaymentsByUser(
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+    getInstructorPayouts(
+        instructorId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+    getAdminPayouts(
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+    getRevenueOverview(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; amount: number }[]>;
+}
+
+
+export interface IEnrollmentRepository {
+    findByUserId(userId: string): Promise<EnrollmentDoc[]>;
+    findByCourseId(courseId: string): Promise<EnrollmentDoc[]>;
+    findByUserAndCourse(userId: string, courseId: string): Promise<EnrollmentDoc | null>;
+    createEnrollment(enrollmentData: Partial<EnrollmentDoc>): Promise<EnrollmentDoc>;
+    updateCompletionStatus(
+        enrollmentId: string,
+        status: EnrollmentDoc["completionStatus"]
+    ): Promise<EnrollmentDoc | null>;
+    updateLessonProgress(
+        userId: string,
+        courseId: string,
+        lessonId: string,
+        progress: number
+    ): Promise<EnrollmentDoc | null>;
+    updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null>
+    getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]>;
+    
+}
+
+
+export interface IReviewRepository {
+    createReview(reviewData: Partial<IReview>): Promise<IReview>;
+    findByUserAndCourse(userId: string, courseId: string): Promise<IReview | null>;
+    getReviewsByCourse(courseId: string, skip: number, limit: number): Promise<IReview[]>;
+    countReviewsByCourse(courseId: string): Promise<number>;
+}
+
+
+export interface IAssessmentRepository {
+    createAssessment(assessmentData: Partial<IAssessment>): Promise<IAssessment>;
+    findByCourseAndModule(courseId: string, moduleTitle: string, page: number, limit: number): Promise<IAssessment[]>;
+    countByCourseAndModule(courseId: string, moduleTitle: string): Promise<number>;
+    findByIdAndInstructor(assessmentId: string, instructorId: string): Promise<IAssessment | null>;
+    updateAssessment(assessmentId: string, instructorId: string, updateData: Partial<IAssessment>): Promise<IAssessment | null>;
+    deleteAssessment(assessmentId: string, instructorId: string): Promise<boolean>;
+    getCourseIdsByInstructor(instructorId: string): Promise<Types.ObjectId[]>;
+    findById(assessmentId: string): Promise<IAssessment | null>;
+    createOrUpdateResult(resultData: Partial<IAssessmentResult>): Promise<IAssessmentResult>;
+    findResultByAssessmentAndStudent(assessmentId: string, studentId: string): Promise<IAssessmentResult | null>;
+    countAssessmentsByCourse(courseId: string): Promise<number>;
+    countPassedAssessmentsByStudent(courseId: string, studentId: string): Promise<number>;
+    countByCourse(courseId: string): Promise<number>;
+    countAssessmentsByCourse(courseId: string): Promise<number>;
+    findByCourse(courseId: string, page: number, limit: number): Promise<IAssessment[]>;
+
+}
+
+
+export interface IChatRepository extends IBaseRepository<IChat> {
+    findByCourseId(courseId: string, skip: number, limit: number): Promise<IChat[]>;
+    createMessage(chatData: Partial<IChat>): Promise<IChat>;
+    updateChatGroupMetadata(courseId: Types.ObjectId, senderId: Types.ObjectId, messageId: Types.ObjectId): Promise<void>
+    markMessagesAsRead(userId: string, courseId: string): Promise<void>
+    getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IChatGroupMetadata[]>
 }

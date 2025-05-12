@@ -1,6 +1,8 @@
 import { UserDoc } from "../interfaces/IUser";
 import { Users } from "../models/userModel";
 import { BaseRepository } from "./baseRepository";
+import { Role } from '../utils/Enum';
+
 
 export class UserRepository extends BaseRepository<UserDoc> {
     constructor() {
@@ -81,56 +83,21 @@ export class UserRepository extends BaseRepository<UserDoc> {
         return user?.isRequested === true;
     }
 
+
+    async switchToInstructorRole(id: string): Promise<UserDoc | null> {
+        return this.update(
+            { _id: id },
+            { $set: { role: 'Instructor', isRequested: false } },
+            { new: true }
+        );
+    }
+
     async updateStudentProfile(email: string, updatedData: Partial<UserDoc>): Promise<UserDoc | null> {
         return this.update({ email }, { $set: updatedData }, { new: true });
     }
 
     async updateInstructorProfile(email: string, updatedData: Partial<UserDoc>): Promise<UserDoc | null> {
         return this.update({ email }, { $set: updatedData }, { new: true });
-    }
-
-    async getAllStudents(skip: number, limit: number): Promise<UserDoc[]> {
-        return this.findAll({ role: 'Student' }, skip, {}, limit);
-    }
-
-    async countStudents(): Promise<number> {
-        return this.count({ role: 'Student' });
-    }
-
-    async toggleBlockStatus(id: string, isBlocked: boolean): Promise<UserDoc | null> {
-        return this.update({ _id: id }, { isBlocked }, { new: true });
-    }
-
-    async getAllRequestedUsers(skip: number, limit: number): Promise<UserDoc[]> {
-        return this.findAll({ isRequested: true, isRejected: false }, skip, {}, limit);
-    }
-
-    async countRequestedUsers(): Promise<number> {
-        return this.count({ isRequested: true, isRejected: false });
-    }
-
-    async approveInstructorRequest(id: string): Promise<UserDoc | null> {
-        return this.update(
-            { _id: id },
-            { role: 'Instructor', isRequested: false, isRejected: false },
-            { new: true }
-        );
-    }
-
-    async rejectInstructorRequest(id: string): Promise<UserDoc | null> {
-        return this.update(
-            { _id: id },
-            { isRequested: false, isRejected: true },
-            { new: true }
-        );
-    }
-
-    async getAllInstructors(skip: number, limit: number): Promise<UserDoc[]> {
-        return this.findAll({ role: 'Instructor' }, skip, {}, limit);
-    }
-
-    async countInstructors(): Promise<number> {
-        return this.count({ role: 'Instructor' });
     }
 
     async storeRefreshToken(userId: string, refreshToken: string): Promise<void> {

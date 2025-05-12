@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { CategoryService } from "../services/categoryServices";
 import { Status } from "../utils/enums";
 import { ICategoryService } from "../interfaces/IServices";
 

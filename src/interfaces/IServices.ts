@@ -2,7 +2,11 @@ import { UserDoc } from "./IUser";
 import { CategoryDoc } from "./ICategory";
 import { IResponse } from "./IResponse";
 import { Response } from "express";
-import { ICourse } from "./ICourse";
+import { ICourse, FilterOptions, SortOptions } from "./ICourse";
+import { IReview } from "./IReview";
+import { LessonProgress } from "../models/enrollmentModel";
+import { IAssessment } from "./IAssessments";
+import { CourseStats } from "./ICourseStats";
 
 
 export interface IUserService {
@@ -22,18 +26,20 @@ export interface IUserService {
     applyForInstructor(data: Partial<UserDoc>): Promise<IResponse>;
     updateInstructorProfile(email: string, profileData: Partial<UserDoc>): Promise<IResponse>;
     refreshToken(refreshToken: string, res: Response): Promise<IResponse>
+    switchToInstructor(userId: string, res: Response): Promise<IResponse>
 }
 
 
 export interface IAdminService {
     adminLogin(data: { email: string; password: string }, res: Response): Promise<IResponse>;
-    fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse> 
+    fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse>
     blockUnblockUser(_id: string): Promise<IResponse>
     fetchAllRequestedUsers(page: number, limit: number): Promise<IResponse>
-    approveInstructor(_id: string): Promise<IResponse> 
+    approveInstructor(_id: string): Promise<IResponse>
     rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse>
-    fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse> 
+    fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse>
     fetchRequestDetails(_id: string): Promise<IResponse>
+    getDashboardStats(period?: "day" | "month" | "year"): any;
 }
 
 
@@ -47,7 +53,133 @@ export interface ICategoryService {
 export interface ICourseService {
     createCourse(courseData: Partial<ICourse>): Promise<IResponse>;
     getAllCoursesByInstructor(instructorId: string, page: number, limit: number, search?: string): Promise<IResponse>;
-    getAllActiveCourses(page: number, limit: number, search?: string): Promise<IResponse>;
+    getAllActiveCourses(
+        page: number,
+        limit: number,
+        search?: string,
+        filters?: FilterOptions,
+        sort?: SortOptions
+    ): Promise<IResponse>;
     getCourseById(courseId: string): Promise<IResponse>
-    editCourse( courseId: string,  instructorId: string,  updateData: Partial<ICourse> ): Promise<IResponse>;
+    getCourseByInstructor(courseId: string, instructorId: string): Promise<IResponse>;
+    editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<IResponse>;
+}
+
+
+export interface IPaymentService {
+    createPaymentIntent(
+        userId: string,
+        courseId: string,
+        amount: number,
+        paymentType: "debit" | "credit"
+    ): Promise<IResponse>;
+    confirmPayment(paymentId: string): Promise<IResponse>;
+    getPaymentsByUser(
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<IResponse>;
+    getInstructorPayouts(
+        instructorId: string,
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<IResponse>;
+    getAdminPayouts(
+        page: number,
+        limit: number,
+        search?: string,
+        sort?: { field: string; order: "asc" | "desc" }
+    ): Promise<IResponse>;
+}
+
+export interface IEnrollCourseService {
+    enrollFreeCourse(userId: string, courseId: string): Promise<IResponse>;
+    checkEnrollment(userId: string, courseId: string): Promise<IResponse>;
+    getEnrollmentsByUserId(userId: string): Promise<IResponse>;
+    updateLessonProgress(
+        userId: string,
+        courseId: string,
+        lessonId: string,
+        progress: number
+    ): Promise<IResponse>
+    getLessonProgress(userId: string, courseId: string): Promise<IResponse>
+    getInstructorCourseStats(instructorId: string): Promise<CourseStats[]>
+}
+
+
+export interface IReviewService {
+    addReview(userId: string, reviewData: Partial<IReview>): Promise<IResponse>;
+    getReviewsByCourse(courseId: string, page: number, limit: number): Promise<IResponse>;
+    getReviewByUserAndCourse(userId: string, courseId: string): Promise<IResponse>;
+
+}
+
+
+export interface IRedisService {
+    get(key: string): Promise<string | null>;
+    set(key: string, value: string, expirySeconds?: number): Promise<void>;
+    del(key: string): Promise<void>;
+    getProgress(userId: string, courseId: string): Promise<LessonProgress[] | null>;
+    setProgress(userId: string, courseId: string, progress: LessonProgress[], expirySeconds?: number): Promise<void>;
+    clearProgress(userId: string, courseId: string): Promise<void>;
+}
+
+export interface IAssessmentService {
+    createAssessment(
+        courseId: string,
+        moduleTitle: string,
+        instructorId: string,
+        assessmentData: Partial<IAssessment>
+    ): Promise<IResponse>;
+    getAssessmentsByCourseAndModule(
+        courseId: string,
+        moduleTitle: string,
+        instructorId: string,
+        page: number,
+        limit: number
+    ): Promise<IResponse>;
+    getAssessmentById(assessmentId: string, instructorId: string): Promise<IResponse>;
+    updateAssessment(assessmentId: string, instructorId: string, updateData: Partial<IAssessment>): Promise<IResponse>;
+    deleteAssessment(assessmentId: string, instructorId: string): Promise<IResponse>;
+    getAssessmentsForStudent(
+        courseId: string,
+        moduleTitle: string,
+        studentId: string,
+        page: number,
+        limit: number
+    ): Promise<IResponse>;
+    getAssessmentsForStudent(
+        courseId: string,
+        moduleTitle: string,
+        studentId: string,
+        page: number,
+        limit: number
+    ): Promise<IResponse>;
+    submitAssessment(
+        assessmentId: string,
+        studentId: string,
+        answers: { questionId: string; selectedAnswer: string }[]
+    ): Promise<IResponse>;
+    getAssessmentResult(assessmentId: string, studentId: string): Promise<IResponse>;
+    getAssessmentByIdForStudent(assessmentId: string, studentId: string): Promise<IResponse>;
+    getCourseProgress(courseId: string, studentId: string): Promise<IResponse>;
+    getAllAssessmentsForCourse(
+        courseId: string,
+        studentId: string,
+        page: number,
+        limit: number
+    ): Promise<IResponse>;
+
+}
+
+
+
+export interface IChatService {
+    getMessages(courseId: string, page: number, limit: number, userId?: string): Promise<IResponse>;
+    sendMessage(userId: string, courseId: string, message: string): Promise<IResponse>;
+    getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IResponse>
 }
