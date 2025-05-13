@@ -37,7 +37,7 @@ export class S3Service {
       const command = new GetObjectCommand({
         Bucket: this.bucketName,
         Key: key,
-        Range: range, // Only include Range if specified, avoid other implicit operations
+        Range: range, 
       });
       const response = await this.s3.send(command);
 
