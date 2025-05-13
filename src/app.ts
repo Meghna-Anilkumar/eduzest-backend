@@ -33,6 +33,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
   })
 );
+console.log('[CORS] Configured origin:', process.env.ORIGIN);
 
 
 app.use("/", userRouter);
