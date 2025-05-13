@@ -24,7 +24,7 @@ export const initializeSocket = (server: HttpServer): Server => {
   console.log('[Socket] Initializing Socket.IO server');
   const io = new Server(server, {
     cors: {
-      origin: process.env.ORIGIN || 'http://localhost:5173',
+      origin: process.env.ORIGIN,
       methods: ['GET', 'POST'],
       credentials: true,
     },
