@@ -107,12 +107,11 @@ class CourseController {
       const search = req.query.search as string | undefined;
 
       const response = await this._courseService.getAllCoursesByInstructor(instructorId, page, limit, search);
-      console.log(response, 'hiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+
 
       if (response.success && response.data) {
         const { courses, ...pagination } = response.data as { courses: ICourse[]; totalPages: number; currentPage: number; totalCourses: number };
         const coursesWithSignedUrls = await s3Service.addSignedUrlsToCourses(courses);
-        console.log(coursesWithSignedUrls, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyy')
         response.data = {
           ...pagination,
           courses: coursesWithSignedUrls,

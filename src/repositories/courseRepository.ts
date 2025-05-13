@@ -44,7 +44,7 @@ export class CourseRepository extends BaseRepository<ICourse> {
             .skip((page - 1) * limit)
             .limit(limit)
             .exec();
-        console.log("Courses from repository:", JSON.stringify(courses, null, 2));
+        // console.log("Courses from repository:", JSON.stringify(courses, null, 2));
         return courses;
     }
     async countDocuments(query: any): Promise<number> {

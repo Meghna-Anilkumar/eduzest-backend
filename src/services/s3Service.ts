@@ -84,11 +84,18 @@ export class S3Service {
   }
 
   async getSignedUrl(key: string, expiresIn: number = 3600): Promise<string> {
-    const command = new GetObjectCommand({
-      Bucket: this.bucketName,
-      Key: key,
-    });
-    return await getSignedUrl(this.s3, command, { expiresIn });
+    try {
+      const command = new GetObjectCommand({
+        Bucket: this.bucketName,
+        Key: key,
+      });
+      const url = await getSignedUrl(this.s3, command, { expiresIn });
+      // Ensure the URL is a plain string without any additional quotes or encoding
+      return url.toString();
+    } catch (error) {
+      console.error(`Error generating signed URL for key ${key}:`, error);
+      throw error;
+    }
   }
 
   async addSignedUrlsToCourse(course: ICourse): Promise<ICourseDTO> {
