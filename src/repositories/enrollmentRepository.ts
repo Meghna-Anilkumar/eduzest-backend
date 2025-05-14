@@ -105,4 +105,31 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
       .exec();
   }
 
+  async blockFromChat(userId: string, courseId: string): Promise<EnrollmentDoc | null> {
+    return this._model
+      .findOneAndUpdate(
+        {
+          userId: new Types.ObjectId(userId),
+          courseId: new Types.ObjectId(courseId),
+        },
+        { $set: { isChatBlocked: true } },
+        { new: true }
+      )
+      .exec();
+  }
+
+  // New method to unblock a student from chat
+  async unblockFromChat(userId: string, courseId: string): Promise<EnrollmentDoc | null> {
+    return this._model
+      .findOneAndUpdate(
+        {
+          userId: new Types.ObjectId(userId),
+          courseId: new Types.ObjectId(courseId),
+        },
+        { $set: { isChatBlocked: false } },
+        { new: true }
+      )
+      .exec();
+  }
+
 }

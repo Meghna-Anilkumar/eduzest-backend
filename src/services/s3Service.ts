@@ -90,7 +90,6 @@ export class S3Service {
         Key: key,
       });
       const url = await getSignedUrl(this.s3, command, { expiresIn });
-      // Ensure the URL is a plain string without any additional quotes or encoding
       return url.toString();
     } catch (error) {
       console.error(`Error generating signed URL for key ${key}:`, error);

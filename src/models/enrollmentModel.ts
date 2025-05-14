@@ -13,6 +13,7 @@ export interface EnrollmentDoc extends Document {
   enrolledAt: Date;
   completionStatus: "enrolled" | "in-progress" | "completed";
   lessonProgress: LessonProgress[];
+  isChatBlocked: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -65,6 +66,11 @@ const enrollmentSchema = new Schema<EnrollmentDoc>(
         },
       },
     ],
+    isChatBlocked: {
+      type: Boolean,
+      required: true,
+      default: false, 
+    },
     createdAt: {
       type: Date,
       default: Date.now,
