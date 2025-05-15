@@ -272,14 +272,18 @@ export class CourseService {
         };
       }
 
-      const title = updateData.title
+      const title = updateData.title;
       if (title) {
-        const existingCourse = await this._courseRepository.findByTitleAndInstructor(title, new Types.ObjectId(instructorId))
-        if (existingCourse) {
+        const existingCourse = await this._courseRepository.findByTitleAndInstructor(
+          title,
+          new Types.ObjectId(instructorId)
+        );
+
+        if (existingCourse && existingCourse._id && existingCourse._id.toString() !== courseId) {
           return {
             success: false,
-            message: "already existing course"
-          }
+            message: "A course with this title already exists"
+          };
         }
       }
 
@@ -288,8 +292,6 @@ export class CourseService {
         instructorId,
         updateData
       );
-
-
 
       if (!updatedCourse) {
         return {
