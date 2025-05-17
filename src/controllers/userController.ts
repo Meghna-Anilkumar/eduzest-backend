@@ -5,7 +5,7 @@ import { Cookie } from "../utils/Enum";
 import { OAuth2Client } from 'google-auth-library';
 import { uploadToS3 } from "../utils/s3";
 import { AuthRequest } from "../interfaces/AuthRequest";
-
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 
 class UserController {
@@ -22,7 +22,7 @@ class UserController {
                 data: result.data,
             });
         } catch (error) {
-            res.status(Status.INTERNAL_SERVER_ERROR).json({ success: false, message: "Internal Server Error" });
+            res.status(Status.INTERNAL_SERVER_ERROR).json({ success: false, message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR});
         }
     }
 
@@ -52,7 +52,7 @@ class UserController {
             console.error("Error during OTP verification:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -82,7 +82,7 @@ class UserController {
             console.error("Error during login:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -110,7 +110,7 @@ class UserController {
             console.error("Error during token refresh:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -124,7 +124,7 @@ class UserController {
             if (!token) {
                 res.status(Status.UN_AUTHORISED).json({
                     success: false,
-                    message: "Authorization token is required",
+                    message: MESSAGE_CONSTANTS.UNAUTHORIZED
                 });
                 return;
             }
@@ -135,7 +135,7 @@ class UserController {
             console.error("Error fetching user data:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -151,7 +151,7 @@ class UserController {
 
             return res.status(Status.OK).json({
                 status: "Success",
-                message: "User logged out successfully",
+                message:MESSAGE_CONSTANTS.LOGOUT_SUCCESS
             });
         } catch (error) {
             next(error);
@@ -181,7 +181,7 @@ class UserController {
             console.error("Error resending OTP:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -236,7 +236,7 @@ class UserController {
             console.error("Error in resetPassword:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "An unexpected error occurred. Please try again later.",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -278,7 +278,7 @@ class UserController {
             res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
             console.error("Error updating student profile:", error);
-            res.status(500).json({ success: false, message: "Internal Server Error" });
+            res.status(500).json({ success: false, message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR});
         }
     }
 
@@ -309,7 +309,7 @@ class UserController {
             console.error('Error changing password:', error);
             return res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: 'Internal Server Error',
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -365,7 +365,7 @@ class UserController {
             console.error("Google Authentication Error:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error during Google authentication"
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -445,7 +445,7 @@ class UserController {
             console.error("Instructor Application Error:", error);
             res.status(500).json({
                 success: false,
-                message: "Internal Server Error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -478,7 +478,7 @@ class UserController {
             res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
             console.error("Error updating instructor profile:", error);
-            res.status(500).json({ success: false, message: "Internal Server Error" });
+            res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
         }
     }
 
@@ -491,7 +491,7 @@ class UserController {
             if (!userId) {
                 return res.status(Status.UN_AUTHORISED).json({
                     success: false,
-                    message: "User not authenticated",
+                    message: MESSAGE_CONSTANTS.USER_NOT_AUTHENTICATED,
                 });
             }
 
@@ -502,7 +502,7 @@ class UserController {
             console.error("Error creating payment intent:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -518,7 +518,7 @@ class UserController {
             console.error("Error confirming payment:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -527,13 +527,13 @@ class UserController {
         try {
             const userId = req.user?.id;
 
-            // Check if userId is undefined
+
             if (!userId) {
                 res.status(Status.UN_AUTHORISED).json({
                     success: false,
-                    message: "User not authenticated",
+                    message:MESSAGE_CONSTANTS.USER_NOT_AUTHENTICATED,
                 });
-                return; // Exit the function if the user is not authenticated
+                return; 
             }
 
             const page = parseInt(req.query.page as string) || 1;
@@ -546,7 +546,6 @@ class UserController {
                 ? { field: sortField as "amount" | "createdAt" | "status", order: (sortOrder as "asc" | "desc") || "desc" }
                 : undefined;
 
-            // Pass userId to the service function now that it's guaranteed to be a string
             const result = await this._paymentService.getPaymentsByUser(userId, page, limit, search, sort);
 
             res.status(Status.OK).json(result);
@@ -554,7 +553,7 @@ class UserController {
             console.error("Error fetching payment history:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -568,7 +567,7 @@ class UserController {
             if (!instructorId) {
                 res.status(Status.UN_AUTHORISED).json({
                     success: false,
-                    message: "Instructor not authenticated",
+                    message: MESSAGE_CONSTANTS.INSTRUCTOR_NOT_AUTHENTICATED
                 });
                 return;
             }
@@ -596,7 +595,7 @@ class UserController {
             console.error("Error fetching instructor payouts:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -630,7 +629,7 @@ class UserController {
             console.error("Error in switchToInstructor:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal Server Error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }

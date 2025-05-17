@@ -6,7 +6,7 @@ import { Types } from "mongoose";
 import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } from "../interfaces/ICourse";
 import { s3Service } from "../services/s3Service";
 import { ILessonData, IModuleData} from "../interfaces/ILessonData";
-
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 
 class CourseController {
@@ -19,7 +19,7 @@ class CourseController {
       if (!instructorRefString) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: "Instructor ID not found in token.",
+          message:MESSAGE_CONSTANTS.INSTRUCTOR_NOT_AUTHENTICATED
         });
         return;
       }
@@ -85,7 +85,7 @@ class CourseController {
       console.error("Error in createCourse controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : "Internal server error.",
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -97,7 +97,7 @@ class CourseController {
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: "Instructor ID not found in token.",
+          message:MESSAGE_CONSTANTS.INSTRUCTOR_NOT_AUTHENTICATED
         });
         return;
       }
@@ -123,7 +123,7 @@ class CourseController {
       console.error("Error in getAllCoursesByInstructor controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal server error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -174,7 +174,7 @@ class CourseController {
       console.error("Error in getAllActiveCourses controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal server error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -207,7 +207,7 @@ class CourseController {
       console.error("Error in getCourseById controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : "Internal server error.",
+        message: error instanceof Error ? error.message :MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -220,7 +220,7 @@ class CourseController {
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: "Instructor ID not found in token.",
+          message:MESSAGE_CONSTANTS.INSTRUCTOR_NOT_AUTHENTICATED
         });
         return;
       }
@@ -248,7 +248,7 @@ class CourseController {
       console.error("Error in getCourseByInstructor controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : "Internal server error.",
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -260,7 +260,7 @@ class CourseController {
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: "Instructor ID not found in token.",
+          message:MESSAGE_CONSTANTS.INSTRUCTOR_NOT_AUTHENTICATED
         });
         return;
       }
@@ -474,7 +474,7 @@ class CourseController {
       console.error("Error in editCourse controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : "Internal server error.",
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -591,7 +591,7 @@ class CourseController {
       } else {
         res.status(Status.INTERNAL_SERVER_ERROR).json({
           success: false,
-          message: errorMessage,
+          message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
         });
       }
     }

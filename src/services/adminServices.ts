@@ -6,6 +6,7 @@ import { generateToken } from '../utils/jwt';
 import { AdminDoc } from '../interfaces/IAdmin';
 import { Response } from 'express';
 import { sendEmail } from '../utils/nodemailer';
+import { MESSAGE_CONSTANTS } from '../constants/message_constants';
 
 
 export class AdminService implements IAdminService {
@@ -65,7 +66,7 @@ export class AdminService implements IAdminService {
 
             return {
                 success: true,
-                message: "Admin logged in successfully.",
+                message:MESSAGE_CONSTANTS.LOGIN_SUCCESS,
                 token: token,
                 userData: {
                     _id: existingAdmin._id,
@@ -341,7 +342,7 @@ export class AdminService implements IAdminService {
           const studentGrowth = studentGrowthData.map((item) => ({
             date:
               period === "day"
-                ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) // e.g., "Apr 23"
+                ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })
                 : period === "month"
                 ? new Date(item.date).toLocaleString("en-US", { month: "short", year: "numeric" }) // e.g., "Apr 2024"
                 : item.date, // e.g., "2024"
@@ -354,7 +355,7 @@ export class AdminService implements IAdminService {
                 ? new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) // e.g., "Apr 23"
                 : period === "month"
                 ? new Date(item.date).toLocaleString("en-US", { month: "short", year: "numeric" }) // e.g., "Apr 2024"
-                : item.date, // e.g., "2024"
+                : item.date,
             amount: item.amount,
           }));
       

@@ -1,7 +1,8 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { Status } from '../utils/enums';
 import { IChatService } from '../interfaces/IServices';
 import { AuthRequest } from '../interfaces/AuthRequest';
+import { MESSAGE_CONSTANTS } from '../constants/message_constants';
 
 class ChatController {
   constructor(private _chatService: IChatService) {}
@@ -27,7 +28,7 @@ class ChatController {
       console.error('Error in getMessages controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: 'Internal server error'
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -60,7 +61,7 @@ class ChatController {
       console.error('Error in sendMessage controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: 'Internal server error'
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -84,7 +85,7 @@ class ChatController {
       console.error('Error in getChatGroupMetadata controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: 'Internal server error',
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }

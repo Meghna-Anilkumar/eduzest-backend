@@ -3,7 +3,7 @@ import { Status } from "../utils/enums";
 import { Cookie } from "../utils/Enum";
 import { IAdminService } from "../interfaces/IServices";
 import { IPaymentService } from "../interfaces/IServices";
-
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 
 class AdminController {
@@ -37,7 +37,7 @@ class AdminController {
             res.status(Status.OK).json(response);
         } catch (error) {
             console.error("Error in adminLogin controller:", error);
-            res.status(Status.INTERNAL_SERVER_ERROR).json({ success: false, message: "Internal server error." });
+            res.status(Status.INTERNAL_SERVER_ERROR).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
         }
     }
 
@@ -55,7 +55,7 @@ class AdminController {
             console.error("Error in fetchAllStudents Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -67,7 +67,7 @@ class AdminController {
             const { id } = req.params;
 
             if (!id) {
-                res.status(Status.BAD_REQUEST).json({ success: false, message: "User ID is required." });
+                res.status(Status.BAD_REQUEST).json({ success: false, message: MESSAGE_CONSTANTS.USER_ID_REQUIRED });
                 return;
             }
 
@@ -83,7 +83,7 @@ class AdminController {
             console.error("Error in blockUnblockUser Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -97,7 +97,7 @@ class AdminController {
 
             return res.status(Status.OK).json({
                 status: "Success",
-                message: "User logged out successfully",
+                message:MESSAGE_CONSTANTS.LOGOUT_SUCCESS
             });
         } catch (error) {
             next(error);
@@ -117,7 +117,7 @@ class AdminController {
             console.error("Error in fetchAllRequestedUsers Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -144,7 +144,7 @@ class AdminController {
             console.error("Error in approveInstructor Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -178,7 +178,7 @@ class AdminController {
             console.error("Error in rejectInstructor Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -200,7 +200,7 @@ class AdminController {
             console.error("Error in fetchAllInstructors Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -228,7 +228,7 @@ class AdminController {
             console.error("Error in fetchRequestDetails Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -258,7 +258,7 @@ class AdminController {
             console.error("Error fetching admin payouts:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -277,7 +277,7 @@ class AdminController {
             res.status(response.success ? 200 : 400).json(response);
         } catch (error) {
             console.error("Error in getDashboardStats:", error);
-            res.status(500).json({ success: false, message: "Internal server error" });
+            res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
         }
     }
     

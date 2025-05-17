@@ -14,8 +14,8 @@ export class CategoryRepository extends BaseRepository<CategoryDoc> implements I
         });
     }
 
-    async toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null> {
-        return this.update({ _id: id }, { isActive }, { new: true });
+    async toggleCategoryStatus(categoryId: string, isActive: boolean): Promise<CategoryDoc | null> {
+        return this.update({ _id: categoryId }, { isActive }, { new: true });
     }
 
     async getAllCategories(skip: number, limit: number, search?: string): Promise<CategoryDoc[]> {

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Status } from "../utils/enums";
 import { ICategoryService } from "../interfaces/IServices";
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 class CategoryController {
   constructor(private _categoryService: ICategoryService) {}
@@ -15,7 +16,7 @@ class CategoryController {
             console.error("Error in createCategory controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error.",
+                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -33,7 +34,7 @@ class CategoryController {
             console.error("Error in getAllCategories controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: "Internal server error.",
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -49,7 +50,7 @@ class CategoryController {
           console.error("Error in editCategory controller:", error);
           res.status(Status.INTERNAL_SERVER_ERROR).json({
             success: false,
-            message: "Internal server error.",
+            message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
           });
         }
       }
@@ -65,7 +66,7 @@ class CategoryController {
           console.error("Error in deleteCategory controller:", error);
           res.status(Status.INTERNAL_SERVER_ERROR).json({
             success: false,
-            message: "Internal server error.",
+            message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
           });
         }
       }

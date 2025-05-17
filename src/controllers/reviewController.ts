@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Status } from "../utils/enums";
 import { IReviewService } from "../interfaces/IServices";
 import { AuthRequest } from "../interfaces/AuthRequest";
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 class ReviewController {
   constructor(private _reviewService: IReviewService) { }
@@ -23,7 +24,7 @@ class ReviewController {
       console.error("Error in addReview controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal server error.",
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -52,7 +53,7 @@ class ReviewController {
       console.error("Error in getReviewsByCourse controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal server error.",
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -84,7 +85,7 @@ class ReviewController {
       console.error("Error in getReviewByUserAndCourse controller:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal server error.",
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }

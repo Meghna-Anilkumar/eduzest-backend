@@ -5,6 +5,7 @@ import { verifyAccessToken } from "../utils/jwt";
 import { IEnrollCourseService } from "../interfaces/IServices";
 import { s3Service } from "../services/s3Service";
 import { ICourse } from "../interfaces/ICourse";
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 class EnrollCourseController {
   private enrollCourseService: IEnrollCourseService;
@@ -41,7 +42,7 @@ class EnrollCourseController {
       console.error("Error enrolling user in free course:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal Server Error",
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -74,7 +75,7 @@ class EnrollCourseController {
       console.error("Error checking enrollment:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal Server Error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -118,7 +119,7 @@ class EnrollCourseController {
       console.error("Error fetching enrollments by user ID:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal Server Error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -151,7 +152,7 @@ class EnrollCourseController {
       console.error("Error updating lesson progress:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal Server Error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -183,7 +184,7 @@ class EnrollCourseController {
       console.error("Error fetching lesson progress:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal Server Error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -209,7 +210,7 @@ class EnrollCourseController {
       console.error("Error fetching instructor course stats:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: "Internal Server Error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }

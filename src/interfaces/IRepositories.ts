@@ -76,7 +76,7 @@ export interface IOtpRepository extends IBaseRepository<OtpDoc> {
 
 export interface ICategoryRepository extends IBaseRepository<CategoryDoc> {
     findByName(categoryName: string): Promise<CategoryDoc | null>;
-    toggleCategoryStatus(id: string, isActive: boolean): Promise<CategoryDoc | null>;
+    toggleCategoryStatus(categoryId: string, isActive: boolean): Promise<CategoryDoc | null>;
     getAllCategories(skip: number, limit: number, search?: string): Promise<CategoryDoc[]>;
     countCategories(search?: string): Promise<number>;
 }

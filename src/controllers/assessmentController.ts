@@ -4,6 +4,7 @@ import { IAssessmentService } from '../interfaces/IServices';
 import { Status } from '../utils/enums';
 import { IAssessment } from '../interfaces/IAssessments';
 import { Types } from 'mongoose';
+import { MESSAGE_CONSTANTS } from '../constants/message_constants';
 
 class AssessmentController {
   constructor(private _assessmentService: IAssessmentService) { }
@@ -49,7 +50,7 @@ class AssessmentController {
       console.error('Error in createAssessment controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message :MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
       });
     }
   }
@@ -60,7 +61,7 @@ class AssessmentController {
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Instructor ID not found in token.',
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -97,7 +98,7 @@ class AssessmentController {
       console.error('Error in getAssessmentsByCourseAndModule controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: 'Internal server error.',
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -129,7 +130,7 @@ class AssessmentController {
       console.error('Error in getAssessmentById controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -142,7 +143,7 @@ class AssessmentController {
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Instructor ID not found in token.',
+          message:MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -165,7 +166,7 @@ class AssessmentController {
       console.error('Error in updateAssessment controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -176,7 +177,7 @@ class AssessmentController {
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Instructor ID not found in token.',
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -197,7 +198,7 @@ class AssessmentController {
       console.error('Error in deleteAssessment controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message :MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -208,7 +209,7 @@ class AssessmentController {
       if (!studentId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Student ID not found in token.',
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -245,7 +246,7 @@ class AssessmentController {
       console.error('Error in getAssessmentsForStudent controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: 'Internal server error.',
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -256,7 +257,7 @@ class AssessmentController {
       if (!studentId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Student ID not found in token.',
+          message:MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -285,7 +286,7 @@ class AssessmentController {
       console.error('Error in submitAssessment controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message :MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -296,7 +297,7 @@ class AssessmentController {
       if (!studentId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Student ID not found in token.',
+          message:MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -316,7 +317,7 @@ class AssessmentController {
       console.error('Error in getAssessmentResult controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message :MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -327,7 +328,7 @@ class AssessmentController {
       if (!studentId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Student ID not found in token.',
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -349,7 +350,7 @@ class AssessmentController {
       console.error('Error in getAssessmentByIdForStudent controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -361,7 +362,7 @@ class AssessmentController {
       if (!studentId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Student ID not found in token.',
+          message:MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -381,7 +382,7 @@ class AssessmentController {
       console.error('Error in getCourseProgress controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message :MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -392,7 +393,7 @@ class AssessmentController {
       if (!studentId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'Student ID not found in token.',
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED
         });
         return;
       }
@@ -421,7 +422,7 @@ class AssessmentController {
       console.error('Error in getAllAssessmentsForCourse controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message: error instanceof Error ? error.message : 'Internal server error.',
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
