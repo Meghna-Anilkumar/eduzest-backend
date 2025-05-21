@@ -118,7 +118,12 @@ export class EnrollCourseService {
     }
   }
 
-  async getEnrollmentsByUserId(userId: string): Promise<IResponse> {
+ async getEnrollmentsByUserId(
+    userId: string,
+    page: number,
+    limit: number,
+    search?: string
+  ): Promise<IResponse> {
     try {
       if (!Types.ObjectId.isValid(userId)) {
         return { success: false, message: "Invalid userId" };
@@ -129,11 +134,22 @@ export class EnrollCourseService {
         return { success: false, message: "User not found" };
       }
 
-      const enrollments = await this._enrollmentRepository.findByUserId(userId);
+      const { enrollments, total } = await this._enrollmentRepository.findByUserId(
+        userId,
+        page,
+        limit,
+        search
+      );
+
       return {
         success: true,
         message: "Enrollments fetched successfully",
-        data: enrollments,
+        data: {
+          enrollments,
+          totalPages: Math.ceil(total / limit),
+          currentPage: page,
+          totalEnrollments: total,
+        },
       };
     } catch (error) {
       console.error("Error fetching enrollments for user:", error);
@@ -143,7 +159,6 @@ export class EnrollCourseService {
       };
     }
   }
-
 
   async updateLessonProgress(
     userId: string,

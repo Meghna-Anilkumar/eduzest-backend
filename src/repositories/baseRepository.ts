@@ -11,7 +11,6 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
             if (sort) query = query.sort(sort);
             query = query.skip(skip).limit(limit);
             const result = await query;
-            console.log("Query result:", result);
             return result;
         } catch (error) {
             console.error("Error fetching data:", error);

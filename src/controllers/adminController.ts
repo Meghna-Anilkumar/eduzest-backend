@@ -97,7 +97,7 @@ class AdminController {
 
             return res.status(Status.OK).json({
                 status: "Success",
-                message:MESSAGE_CONSTANTS.LOGOUT_SUCCESS
+                message: MESSAGE_CONSTANTS.LOGOUT_SUCCESS
             });
         } catch (error) {
             next(error);
@@ -144,7 +144,7 @@ class AdminController {
             console.error("Error in approveInstructor Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -178,7 +178,7 @@ class AdminController {
             console.error("Error in rejectInstructor Controller:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -241,6 +241,7 @@ class AdminController {
             const search = req.query.search as string | undefined;
             const sortField = req.query.sortField as string | undefined;
             const sortOrder = req.query.sortOrder as string | undefined;
+            const courseFilter = req.query.courseFilter as string | undefined;
 
             const sort = sortField
                 ? { field: sortField, order: (sortOrder as "asc" | "desc") || "desc" }
@@ -250,20 +251,20 @@ class AdminController {
                 page,
                 limit,
                 search,
-                sort
+                sort,
+                courseFilter
             );
 
+            res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
             res.status(Status.OK).json(result);
         } catch (error) {
             console.error("Error fetching admin payouts:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
-
-
 
     async getDashboardStats(req: Request, res: Response): Promise<void> {
         try {
@@ -280,7 +281,7 @@ class AdminController {
             res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
         }
     }
-    
+
 
 
 

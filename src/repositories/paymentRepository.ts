@@ -2,8 +2,11 @@ import { PaymentDoc, Payments } from "../models/paymentModel";
 import { BaseRepository } from "./baseRepository";
 import { IPaymentRepository } from "../interfaces/IRepositories";
 import { Types } from "mongoose";
+import { Course } from "../models/courseModel";
 
 export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPaymentRepository {
+  private _courseModel = Course;
+
   constructor() {
     super(Payments);
   }
@@ -61,7 +64,8 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
     page: number,
     limit: number,
     search?: string,
-    sort?: { field: string; order: "asc" | "desc" }
+    sort?: { field: string; order: "asc" | "desc" },
+    courseFilter?: string
   ): Promise<{ data: any[]; total: number; page: number; limit: number }> {
     const query: any = { "instructorPayout.instructorId": new Types.ObjectId(instructorId) };
 
@@ -72,10 +76,31 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       ];
     }
 
-    const sortOptions: any = sort ? { [sort.field]: sort.order === "asc" ? 1 : -1 } : { createdAt: -1 };
+    if (courseFilter) {
+      const courses = await this._courseModel
+        .find({ title: { $regex: courseFilter, $options: "i" } }, { _id: 1 })
+        .lean();
+      const courseIds = courses.map((course) => course._id);
+      if (courseIds.length > 0) {
+        query.courseId = { $in: courseIds };
+      } else {
+        return { data: [], total: 0, page, limit };
+      }
+    }
+
+    // Map sortField to MongoDB field (only date sorting)
+    const sortFieldMap: { [key: string]: string } = {
+      date: "createdAt",
+    };
+
+    const sortOptions: any = sort && sort.field === "date"
+      ? { createdAt: sort.order === "asc" ? 1 : -1 }
+      : { createdAt: -1 };
+
+    console.log("Sort options:", sortOptions); // Debug sort options
 
     const skip = (page - 1) * limit;
-    
+
     const [payments, total] = await Promise.all([
       this._model
         .find(query)
@@ -88,22 +113,28 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       this._model.countDocuments(query),
     ]);
 
-    const data = payments.map(payment => ({
-      transactionId: payment.instructorPayout.transactionId || 'N/A',
-      date: payment.createdAt,
-      course: payment.courseId ? (payment.courseId as any).title : 'Unknown',
-      studentName: payment.userId ? (payment.userId as any).name : 'Unknown',
-      amount: payment.instructorPayout.amount
+    const data = payments.map((payment) => ({
+      transactionId: payment.instructorPayout.transactionId || "N/A",
+      date: payment.createdAt ? new Date(payment.createdAt).toISOString() : "N/A", // Standardize date format
+      course: payment.courseId ? (payment.courseId as any).title : "Unknown",
+      studentName: payment.userId ? (payment.userId as any).name : "Unknown",
+      amount: payment.instructorPayout.amount != null
+        ? payment.instructorPayout.amount.toFixed(2) // Direct toFixed for number
+        : "0.00",
     }));
+
+    console.log("Sorted payments:", data.map((p) => ({ date: p.date })));
 
     return { data, total, page, limit };
   }
+
 
   async getAdminPayouts(
     page: number,
     limit: number,
     search?: string,
-    sort?: { field: string; order: "asc" | "desc" }
+    sort?: { field: string; order: "asc" | "desc" },
+    courseFilter?: string
   ): Promise<{ data: any[]; total: number; page: number; limit: number }> {
     const query: any = {};
 
@@ -114,7 +145,28 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       ];
     }
 
-    const sortOptions: any = sort ? { [sort.field]: sort.order === "asc" ? 1 : -1 } : { createdAt: -1 };
+    if (courseFilter) {
+      const courses = await this._courseModel
+        .find({ title: { $regex: courseFilter, $options: "i" } }, { _id: 1 })
+        .lean();
+      const courseIds = courses.map((course) => course._id);
+      if (courseIds.length > 0) {
+        query.courseId = { $in: courseIds };
+      } else {
+        return { data: [], total: 0, page, limit };
+      }
+    }
+
+    // Map sortField to MongoDB field (only date sorting)
+    const sortFieldMap: { [key: string]: string } = {
+      date: "createdAt",
+    };
+
+    const sortOptions: any = sort && sort.field === "date"
+      ? { createdAt: sort.order === "asc" ? 1 : -1 }
+      : { createdAt: -1 };
+
+    console.log("Sort options:", sortOptions); // Debug sort options
 
     const skip = (page - 1) * limit;
 
@@ -130,14 +182,17 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       this._model.countDocuments(query),
     ]);
 
-
-    const data = payments.map(payment => ({
-      transactionId: payment.adminPayout.transactionId || 'N/A',
-      date: payment.createdAt,
-      course: payment.courseId ? (payment.courseId as any).title : 'Unknown',
-      studentName: payment.userId ? (payment.userId as any).name : 'Unknown',
-      amount: payment.adminPayout.amount
+    const data = payments.map((payment) => ({
+      transactionId: payment.adminPayout.transactionId || "N/A",
+      date: payment.createdAt ? new Date(payment.createdAt).toISOString() : "N/A", // Standardize date format
+      course: payment.courseId ? (payment.courseId as any).title : "Unknown",
+      studentName: payment.userId ? (payment.userId as any).name : "Unknown",
+      amount: payment.adminPayout.amount != null
+        ? payment.adminPayout.amount.toFixed(2) // Direct toFixed for number
+        : "0.00",
     }));
+
+    console.log("Sorted payments:", data.map((p) => ({ date: p.date }))); // Debug sorted dates
 
     return { data, total, page, limit };
   }
@@ -149,10 +204,10 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
     period: "day" | "month" | "year"
   ): Promise<{ date: string; amount: number }[]> {
     const dateFormat = period === "day" ? "%Y-%m-%d" : period === "month" ? "%Y-%m" : "%Y";
-  
+
     const today = new Date();
     const effectiveEndDate = endDate > today ? today : endDate;
-  
+
     const result = await this._model.aggregate([
       {
         $match: {
@@ -175,24 +230,24 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       },
       { $sort: { date: 1 } },
     ]);
- 
+
     const periods: { date: string; amount: number }[] = [];
     let currentDate = new Date(startDate);
-  
+
     while (currentDate <= effectiveEndDate) {
       const dateStr =
         period === "day"
-          ? currentDate.toISOString().split("T")[0] 
+          ? currentDate.toISOString().split("T")[0]
           : period === "month"
-          ? `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}` 
-          : currentDate.getFullYear().toString(); 
-  
+            ? `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}`
+            : currentDate.getFullYear().toString();
+
       const found = result.find((item: { date: string; amount: number }) => item.date === dateStr);
       periods.push({
         date: dateStr,
         amount: found ? found.amount : 0,
       });
-  
+
       if (period === "day") {
         currentDate.setDate(currentDate.getDate() + 1);
       } else if (period === "month") {
@@ -201,7 +256,7 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
         currentDate.setFullYear(currentDate.getFullYear() + 1);
       }
     }
-  
+
     return periods;
   }
 }

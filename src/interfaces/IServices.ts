@@ -7,7 +7,7 @@ import { IReview } from "./IReview";
 import { LessonProgress } from "../models/enrollmentModel";
 import { IAssessment } from "./IAssessments";
 import { CourseStats } from "./ICourseStats";
-
+import { ICoupon } from "../models/couponModel";
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -86,20 +86,27 @@ export interface IPaymentService {
         page: number,
         limit: number,
         search?: string,
-        sort?: { field: string; order: "asc" | "desc" }
-    ): Promise<IResponse>;
+        sort?: { field: string; order: "asc" | "desc" },
+        courseFilter?: string
+    ): Promise<IResponse>
     getAdminPayouts(
         page: number,
         limit: number,
         search?: string,
-        sort?: { field: string; order: "asc" | "desc" }
-    ): Promise<IResponse>;
+        sort?: { field: string; order: "asc" | "desc" },
+        courseFilter?: string
+    ): Promise<IResponse>
 }
 
 export interface IEnrollCourseService {
     enrollFreeCourse(userId: string, courseId: string): Promise<IResponse>;
     checkEnrollment(userId: string, courseId: string): Promise<IResponse>;
-    getEnrollmentsByUserId(userId: string): Promise<IResponse>;
+    getEnrollmentsByUserId(
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string
+    ): Promise<IResponse>
     updateLessonProgress(
         userId: string,
         courseId: string,
@@ -182,4 +189,13 @@ export interface IChatService {
     getMessages(courseId: string, page: number, limit: number, userId?: string): Promise<IResponse>;
     sendMessage(userId: string, courseId: string, message: string): Promise<IResponse>;
     getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IResponse>
+}
+
+
+
+export interface ICouponService {
+    addCoupon(couponData: Partial<ICoupon>): Promise<IResponse>;
+    editCoupon(couponId: string, couponData: Partial<ICoupon>): Promise<IResponse>;
+    deleteCoupon(couponId: string): Promise<IResponse>;
+    getAllCoupons(): Promise<IResponse>;
 }

@@ -13,6 +13,7 @@ import { LessonProgress } from '../models/enrollmentModel';
 import { IAssessment } from './IAssessments';
 import { IAssessmentResult } from './IAssessments';
 import { IChatGroupMetadata } from './IChat';
+import { ICoupon } from '../models/couponModel';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -60,7 +61,7 @@ export interface IAdminRepository extends IBaseRepository<AdminDoc> {
     getAllInstructors(skip: number, limit: number, search?: string): Promise<UserDoc[]>;
     countInstructors(search?: string): Promise<number>;
     getStudentGrowth(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; count: number }[]>;
-
+    getTopEnrolledCourses(): Promise<{ courseId: string; courseName: string; enrollmentCount: number; instructorName: string; thumbnail: string }[]>;
 }
 
 export interface IOtpRepository extends IBaseRepository<OtpDoc> {
@@ -116,20 +117,27 @@ export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
         page: number,
         limit: number,
         search?: string,
-        sort?: { field: string; order: "asc" | "desc" }
-    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+        sort?: { field: string; order: "asc" | "desc" },
+        courseFilter?: string
+    ): Promise<{ data: any[]; total: number; page: number; limit: number }>
     getAdminPayouts(
         page: number,
         limit: number,
         search?: string,
-        sort?: { field: string; order: "asc" | "desc" }
-    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>;
+        sort?: { field: string; order: "asc" | "desc" },
+        courseFilter?: string
+    ): Promise<{ data: any[]; total: number; page: number; limit: number }>
     getRevenueOverview(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; amount: number }[]>;
 }
 
 
 export interface IEnrollmentRepository {
-    findByUserId(userId: string): Promise<EnrollmentDoc[]>;
+    findByUserId(
+        userId: string,
+        page: number,
+        limit: number,
+        search?: string
+    ): Promise<{ enrollments: EnrollmentDoc[]; total: number }>
     findByCourseId(courseId: string): Promise<EnrollmentDoc[]>;
     findByUserAndCourse(userId: string, courseId: string): Promise<EnrollmentDoc | null>;
     createEnrollment(enrollmentData: Partial<EnrollmentDoc>): Promise<EnrollmentDoc>;
@@ -145,7 +153,7 @@ export interface IEnrollmentRepository {
     ): Promise<EnrollmentDoc | null>;
     updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null>
     getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]>;
-    
+
 }
 
 
@@ -183,4 +191,13 @@ export interface IChatRepository extends IBaseRepository<IChat> {
     updateChatGroupMetadata(courseId: Types.ObjectId, senderId: Types.ObjectId, messageId: Types.ObjectId): Promise<void>
     markMessagesAsRead(userId: string, courseId: string): Promise<void>
     getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IChatGroupMetadata[]>
+}
+
+
+
+export interface ICouponRepository extends IBaseRepository<ICoupon> {
+    findByCode(code: string): Promise<ICoupon | null>;
+    findActiveCoupons(): Promise<ICoupon[]>;
+    incrementUsedCount(couponId: string): Promise<ICoupon | null>;
+    findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
 }

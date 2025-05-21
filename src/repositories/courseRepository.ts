@@ -46,6 +46,7 @@ export class CourseRepository extends BaseRepository<ICourse> {
             .exec();
         return courses;
     }
+    
     async countDocuments(query: any): Promise<number> {
         return this._model.countDocuments(query).exec();
     }

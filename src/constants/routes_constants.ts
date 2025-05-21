@@ -19,9 +19,9 @@ export const USER_ROUTES = {
     GET_COURSE_BY_ID: '/courses/:id',
     STREAM_VIDEO: "/courses/:courseId/stream",
     GET_REVIEWS: "/courses/:courseId/reviews",
-    SWITCH_TO_INSTRUCTOR:'/switch-to-instructor',
-    SEND_MESSAGE:'/:courseId/messages',
-    GET_ALL_MESSAGES:'/:courseId/messages',
+    SWITCH_TO_INSTRUCTOR: '/switch-to-instructor',
+    SEND_MESSAGE: '/:courseId/messages',
+    GET_ALL_MESSAGES: '/:courseId/messages',
     GET_CHAT_GROUP_METADATA: '/metadata'
 }
 
@@ -41,7 +41,11 @@ export const ADMIN_ROUTES = {
     DELETE_CATEGORY: '/delete-category/:categoryId',
     GET_REQUESTDETAILS: '/getRequestDetails',
     GET_TRANSACTIONS: '/getTransactions',
-    GET_DASHBOARD_STATS:'/dashboard-stats'
+    GET_DASHBOARD_STATS: '/dashboard-stats',
+    ADD_COUPON: '/create-coupon',
+    EDIT_COUPON: '/edit-coupon/:id',
+    DELETE_COUPON: '/delete-coupon/:id',
+    FETCHALL_COUPONS: '/fetch-all-coupons',
 }
 
 
@@ -55,7 +59,7 @@ export const INSTRUCTOR_ROUTES = {
     GET_ASSESSMENTS: '/courses/:courseId/modules/:moduleTitle/assessments',
     EDIT_ASSESSMENT: '/assessments/:assessmentId',
     DELETE_ASSESSMENT: '/assessments/:assessmentId',
-    GET_COURSE_STATS:'/course-stats'
+    GET_COURSE_STATS: '/course-stats'
 }
 
 
@@ -74,7 +78,7 @@ export const STUDENT_ROUTES = {
     // GET_ASSESSMENT_BY_ID: '/assessments/:assessmentId',
     SUBMIT_ASSESSMENT: '/assessments/:assessmentId/submit',
     GET_ASSESSMENT_RESULT: '/assessments/:assessmentId/result',
-    GET_ASSESSMENT_BY_ID_FOR_STUDENT:'/assessments/:assessmentId',
-    GET_COURSE_PROGRESS:'/courses/:courseId/progress',
-    GET_ASSESSMENTS_BY_COURSE:'/courses/:courseId/assessments'
+    GET_ASSESSMENT_BY_ID_FOR_STUDENT: '/assessments/:assessmentId',
+    GET_COURSE_PROGRESS: '/courses/:courseId/progress',
+    GET_ASSESSMENTS_BY_COURSE: '/courses/:courseId/assessments'
 };

@@ -12,11 +12,102 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     this.redisService = redisService;
   }
 
-  async findByUserId(userId: string): Promise<EnrollmentDoc[]> {
-    return this._model
-      .find({ userId: new Types.ObjectId(userId) })
-      .sort({ enrolledAt: -1 })
-      .populate("courseId");
+  async findByUserId(
+    userId: string,
+    page: number,
+    limit: number,
+    search?: string
+  ): Promise<{ enrollments: EnrollmentDoc[]; total: number }> {
+    // Create base query
+    const query: any = { userId: new Types.ObjectId(userId) };
+
+    let enrollments;
+    let total;
+
+    if (search && search.trim() !== '') {
+      // We need to use aggregation for text search across populated fields
+      const aggregateQuery = [
+        // First match enrollments for this user
+        { $match: { userId: new Types.ObjectId(userId) } },
+
+        // Then lookup (populate) the course data
+        {
+          $lookup: {
+            from: 'courses', // Your courses collection name
+            localField: 'courseId',
+            foreignField: '_id',
+            as: 'courseData'
+          }
+        },
+
+        // Unwind the courseData array (converts it from array to object)
+        { $unwind: '$courseData' },
+
+        // Now filter by course title containing the search string
+        {
+          $match: {
+            'courseData.title': { $regex: search, $options: 'i' }
+          }
+        },
+
+        // Skip and limit for pagination
+        { $skip: (page - 1) * limit },
+        { $limit: limit },
+
+        // Replace courseId with courseData to match your standard populate behavior
+        {
+          $addFields: {
+            courseId: '$courseData'
+          }
+        },
+
+        // Remove the temporary courseData field
+        {
+          $project: {
+            courseData: 0
+          }
+        }
+      ];
+
+      // Execute the aggregation
+      enrollments = await this._model.aggregate(aggregateQuery);
+
+      // Get count for pagination
+      const countQuery = [
+        { $match: { userId: new Types.ObjectId(userId) } },
+        {
+          $lookup: {
+            from: 'courses',
+            localField: 'courseId',
+            foreignField: '_id',
+            as: 'courseData'
+          }
+        },
+        { $unwind: '$courseData' },
+        {
+          $match: {
+            'courseData.title': { $regex: search, $options: 'i' }
+          }
+        },
+        { $count: 'total' }
+      ];
+
+      const countResult = await this._model.aggregate(countQuery);
+      total = countResult.length > 0 ? countResult[0].total : 0;
+    } else {
+      // Standard query without search
+      enrollments = await this._model
+        .find(query)
+        .sort({ enrolledAt: -1 })
+        .populate('courseId')
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .exec();
+
+      total = await this._model.countDocuments(query).exec();
+    }
+
+    return { enrollments, total };
   }
 
   async findByCourseId(courseId: string): Promise<EnrollmentDoc[]> {

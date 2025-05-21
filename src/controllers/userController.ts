@@ -22,7 +22,7 @@ class UserController {
                 data: result.data,
             });
         } catch (error) {
-            res.status(Status.INTERNAL_SERVER_ERROR).json({ success: false, message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR});
+            res.status(Status.INTERNAL_SERVER_ERROR).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
         }
     }
 
@@ -52,7 +52,7 @@ class UserController {
             console.error("Error during OTP verification:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -82,7 +82,7 @@ class UserController {
             console.error("Error during login:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -135,7 +135,7 @@ class UserController {
             console.error("Error fetching user data:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -151,7 +151,7 @@ class UserController {
 
             return res.status(Status.OK).json({
                 status: "Success",
-                message:MESSAGE_CONSTANTS.LOGOUT_SUCCESS
+                message: MESSAGE_CONSTANTS.LOGOUT_SUCCESS
             });
         } catch (error) {
             next(error);
@@ -236,7 +236,7 @@ class UserController {
             console.error("Error in resetPassword:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }
@@ -278,7 +278,7 @@ class UserController {
             res.status(result.success ? 200 : 400).json(result);
         } catch (error) {
             console.error("Error updating student profile:", error);
-            res.status(500).json({ success: false, message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR});
+            res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
         }
     }
 
@@ -502,7 +502,7 @@ class UserController {
             console.error("Error creating payment intent:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
             });
         }
     }
@@ -531,9 +531,9 @@ class UserController {
             if (!userId) {
                 res.status(Status.UN_AUTHORISED).json({
                     success: false,
-                    message:MESSAGE_CONSTANTS.USER_NOT_AUTHENTICATED,
+                    message: MESSAGE_CONSTANTS.USER_NOT_AUTHENTICATED,
                 });
-                return; 
+                return;
             }
 
             const page = parseInt(req.query.page as string) || 1;
@@ -577,6 +577,7 @@ class UserController {
             const search = req.query.search as string | undefined;
             const sortField = req.query.sortField as string | undefined;
             const sortOrder = req.query.sortOrder as string | undefined;
+            const courseFilter = req.query.courseFilter as string | undefined; // Added course filter
 
             const sort = sortField
                 ? { field: sortField, order: (sortOrder as "asc" | "desc") || "desc" }
@@ -587,7 +588,8 @@ class UserController {
                 page,
                 limit,
                 search,
-                sort
+                sort,
+                courseFilter // Pass the course filter to service
             );
 
             res.status(Status.OK).json(result);
@@ -595,7 +597,7 @@ class UserController {
             console.error("Error fetching instructor payouts:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
-                message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+                message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
         }
     }

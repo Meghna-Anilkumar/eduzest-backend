@@ -4,8 +4,10 @@ import { Status } from "../utils/enums";
 import { verifyAccessToken } from "../utils/jwt";
 import { IEnrollCourseService } from "../interfaces/IServices";
 import { s3Service } from "../services/s3Service";
-import { ICourse } from "../interfaces/ICourse";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
+import { EnrollmentDoc } from "../models/enrollmentModel";
+import { Types } from "mongoose";
+
 
 class EnrollCourseController {
   private enrollCourseService: IEnrollCourseService;
@@ -80,9 +82,14 @@ class EnrollCourseController {
     }
   }
 
-  async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
+async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
     try {
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
+      
+      // Extract pagination parameters from query
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string || undefined;
   
       if (!userId) {
         res.status(Status.UN_AUTHORISED).json({
@@ -92,26 +99,34 @@ class EnrollCourseController {
         return;
       }
   
-      const result = await this.enrollCourseService.getEnrollmentsByUserId(userId);
-      console.log("Raw enrollments data:", JSON.stringify(result.data, null, 2));
+      const result = await this.enrollCourseService.getEnrollmentsByUserId(userId, page, limit, search);
   
       // Add signed URLs to course content in enrollments
-      if (result.success && result.data && Array.isArray(result.data)) {
-        const enrollmentsWithSignedUrls = await Promise.all(
-          result.data.map(async (enrollment) => {
-            if (enrollment.courseId) {
-              console.log("Transforming courseId:", JSON.stringify(enrollment.courseId, null, 2));
-              enrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId as ICourse);
-            } else {
-              console.log("No courseId found in enrollment:", JSON.stringify(enrollment, null, 2));
-            }
-            return enrollment;
-          })
-        );
+      if (result.success && result.data) {
+        // Type assertion for the result data
+        const enrollmentData = result.data as {
+          enrollments: Array<EnrollmentDoc & { courseId: any }>;
+          totalPages: number;
+          currentPage: number;
+          totalEnrollments: number;
+        };
+        
+        if (Array.isArray(enrollmentData.enrollments)) {
+          const enrollmentsWithSignedUrls = await Promise.all(
+            enrollmentData.enrollments.map(async (enrollment) => {
+              // Check if courseId is populated (has properties of a course object)
+              if (enrollment.courseId && typeof enrollment.courseId === 'object' && 
+                  !(enrollment.courseId instanceof Types.ObjectId) && 
+                  'title' in enrollment.courseId) {
+                // The courseId is already populated with course data
+                enrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId);
+              }
+              return enrollment;
+            })
+          );
   
-        result.data = enrollmentsWithSignedUrls;
-      } else {
-        console.log("Result data is not an array or is empty:", result);
+          enrollmentData.enrollments = enrollmentsWithSignedUrls;
+        }
       }
   
       res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
@@ -119,11 +134,10 @@ class EnrollCourseController {
       console.error("Error fetching enrollments by user ID:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
-
 
   async updateLessonProgress(req: Request, res: Response): Promise<void> {
     try {

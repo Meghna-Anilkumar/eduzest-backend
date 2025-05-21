@@ -202,14 +202,22 @@ export class PaymentService implements IPaymentService {
     page: number,
     limit: number,
     search?: string,
-    sort?: { field: string; order: "asc" | "desc" }
+    sort?: { field: string; order: "asc" | "desc" },
+    courseFilter?: string
   ): Promise<IResponse> {
     try {
       if (!Types.ObjectId.isValid(instructorId)) {
         return { success: false, message: "Invalid instructorId" };
       }
 
-      const result = await this.paymentRepository.getInstructorPayouts(instructorId, page, limit, search, sort);
+      const result = await this.paymentRepository.getInstructorPayouts(
+        instructorId,
+        page,
+        limit,
+        search,
+        sort,
+        courseFilter // Pass the course filter to repository
+      );
 
       return {
         success: true,
@@ -222,25 +230,26 @@ export class PaymentService implements IPaymentService {
     }
   }
 
-  async getAdminPayouts(
-    page: number,
-    limit: number,
-    search?: string,
-    sort?: { field: string; order: "asc" | "desc" }
-  ): Promise<IResponse> {
-    try {
-      const result = await this.paymentRepository.getAdminPayouts(page, limit, search, sort);
+async getAdminPayouts(
+  page: number,
+  limit: number,
+  search?: string,
+  sort?: { field: string; order: "asc" | "desc" },
+  courseFilter?: string
+): Promise<IResponse> {
+  try {
+    const result = await this.paymentRepository.getAdminPayouts(page, limit, search, sort, courseFilter);
 
-      return {
-        success: true,
-        message: "Admin payouts retrieved successfully",
-        data: result,
-      };
-    } catch (error) {
-      console.error("Error retrieving admin payouts:", error);
-      return { success: false, message: "Failed to retrieve admin payouts" };
-    }
+    return {
+      success: true,
+      message: "Admin payouts retrieved successfully",
+      data: result,
+    };
+  } catch (error) {
+    console.error("Error retrieving admin payouts:", error);
+    return { success: false, message: "Failed to retrieve admin payouts" };
   }
+}
 }
 
 export default PaymentService;

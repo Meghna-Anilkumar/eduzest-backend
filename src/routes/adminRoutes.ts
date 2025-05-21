@@ -13,6 +13,9 @@ import PaymentRepository from "../repositories/paymentRepository";
 import {CourseRepository} from "../repositories/courseRepository";
 import {EnrollmentRepository} from "../repositories/enrollmentRepository";
 import { redisService } from "../services/redisService";
+import { CouponRepository } from "../repositories/couponRepository";
+import { CouponService } from "../services/couponServices";
+import { CouponController } from "../controllers/couponController";
 
 
 const userRepository = new UserRepository();
@@ -21,13 +24,16 @@ const categoryRepository = new CategoryRepository();
 const paymentRepository = new PaymentRepository()
 const courseRepository = new CourseRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
+const couponRepository = new CouponRepository();
 
 const adminService = new AdminService(adminRepository,courseRepository,paymentRepository);
 const categoryService=new CategoryService(categoryRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
+const couponService = new CouponService(couponRepository);
 
 const adminController = new AdminController(adminService,paymentService);
 const categoryController = new CategoryController(categoryService);
+const couponController = new CouponController(couponService);
 
 
 
@@ -58,5 +64,13 @@ adminRouter.get(ADMIN_ROUTES.GET_TRANSACTIONS,authenticateAdmin(),adminControlle
 
 //dashboard
 adminRouter.get(ADMIN_ROUTES.GET_DASHBOARD_STATS,authenticateAdmin(),adminController.getDashboardStats.bind(adminController))
+
+
+// Coupon management
+adminRouter.post(ADMIN_ROUTES.ADD_COUPON, authenticateAdmin(), couponController.addCoupon.bind(couponController)) 
+adminRouter.put(ADMIN_ROUTES.EDIT_COUPON, authenticateAdmin(), couponController.editCoupon.bind(couponController));
+adminRouter.delete(ADMIN_ROUTES.DELETE_COUPON, authenticateAdmin(), couponController.deleteCoupon.bind(couponController));
+adminRouter.get(ADMIN_ROUTES.FETCHALL_COUPONS, authenticateAdmin(), couponController.getAllCoupons.bind(couponController));
+
 
 export default adminRouter
