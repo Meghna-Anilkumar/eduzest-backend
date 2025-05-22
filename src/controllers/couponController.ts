@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ICouponService } from "../interfaces/IServices";
+import { AuthRequest } from "../interfaces/AuthRequest";
 
 export class CouponController {
 
@@ -61,6 +62,37 @@ export class CouponController {
         success: false,
         message: "Internal server error",
       });
+    }
+  }
+
+
+  async getActiveCoupons(req: Request, res: Response) {
+    try {
+      const result = await this._couponService.getActiveCoupons();
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch coupons",
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
+  }
+
+
+  async checkCouponUsage(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const { couponId } = req.body;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ success: false, message: "Unauthorized" });
+        return;
+      }
+      const result = await this._couponService.checkCouponUsage(userId, couponId);
+      res.status(result.success ? 200 : 400).json(result);
+    } catch (error) {
+      console.error("Error in checkCouponUsage:", error);
+      res.status(500).json({ success: false, message: "Server error" });
     }
   }
 }

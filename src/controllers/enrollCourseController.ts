@@ -77,20 +77,20 @@ class EnrollCourseController {
       console.error("Error checking enrollment:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
 
-async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
+  async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
     try {
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
-      
+
       // Extract pagination parameters from query
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
       const search = req.query.search as string || undefined;
-  
+
       if (!userId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
@@ -98,9 +98,9 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
         });
         return;
       }
-  
+
       const result = await this.enrollCourseService.getEnrollmentsByUserId(userId, page, limit, search);
-  
+
       // Add signed URLs to course content in enrollments
       if (result.success && result.data) {
         // Type assertion for the result data
@@ -110,25 +110,25 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
           currentPage: number;
           totalEnrollments: number;
         };
-        
+
         if (Array.isArray(enrollmentData.enrollments)) {
           const enrollmentsWithSignedUrls = await Promise.all(
             enrollmentData.enrollments.map(async (enrollment) => {
               // Check if courseId is populated (has properties of a course object)
-              if (enrollment.courseId && typeof enrollment.courseId === 'object' && 
-                  !(enrollment.courseId instanceof Types.ObjectId) && 
-                  'title' in enrollment.courseId) {
+              if (enrollment.courseId && typeof enrollment.courseId === 'object' &&
+                !(enrollment.courseId instanceof Types.ObjectId) &&
+                'title' in enrollment.courseId) {
                 // The courseId is already populated with course data
                 enrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId);
               }
               return enrollment;
             })
           );
-  
+
           enrollmentData.enrollments = enrollmentsWithSignedUrls;
         }
       }
-  
+
       res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error fetching enrollments by user ID:", error);
@@ -166,7 +166,7 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
       console.error("Error updating lesson progress:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -198,7 +198,7 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
       console.error("Error fetching lesson progress:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -224,7 +224,7 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
       console.error("Error fetching instructor course stats:", error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }

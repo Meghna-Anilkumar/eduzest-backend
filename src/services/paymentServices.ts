@@ -6,6 +6,8 @@ import { IUserRepository } from "../interfaces/IRepositories";
 import { ICourseRepository } from "../interfaces/IRepositories";
 import { IEnrollmentRepository } from "../interfaces/IRepositories";
 import { Types } from "mongoose";
+import { ICouponRepository } from "../interfaces/IRepositories";
+import { ICouponUsageRepository } from "../interfaces/IRepositories";
 
 export class PaymentService implements IPaymentService {
   private stripe: Stripe;
@@ -14,7 +16,9 @@ export class PaymentService implements IPaymentService {
     private paymentRepository: IPaymentRepository,
     private userRepository: IUserRepository,
     private courseRepository: ICourseRepository,
-    private enrollmentRepository: IEnrollmentRepository
+    private enrollmentRepository: IEnrollmentRepository,
+    private _couponRepository: ICouponRepository,
+    private _couponUsageRepository: ICouponUsageRepository
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: "2025-02-24.acacia",
@@ -25,9 +29,13 @@ export class PaymentService implements IPaymentService {
     userId: string,
     courseId: string,
     amount: number,
-    paymentType: "debit" | "credit"
+    paymentType: "debit" | "credit",
+    couponId?: string
   ): Promise<IResponse> {
     try {
+      console.log("Received in createPaymentIntent:", { userId, courseId, amount, paymentType, couponId });
+
+      // Validate userId and courseId
       if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
         console.log("Invalid IDs:", { userId, courseId });
         return { success: false, message: "Invalid userId or courseId" };
@@ -36,46 +44,104 @@ export class PaymentService implements IPaymentService {
       const userObjectId = new Types.ObjectId(userId);
       const courseObjectId = new Types.ObjectId(courseId);
 
+      // Fetch user
       const user = await this.userRepository.findById(userId);
       if (!user) {
         return { success: false, message: "User not found" };
       }
 
+      // Fetch course
       const course = await this.courseRepository.findById(courseId);
       if (!course) {
         return { success: false, message: "Course not found" };
       }
 
+      // Check if the course is free
       if (course.pricing.type === "free") {
         return { success: false, message: "This course is free" };
       }
 
-      if (course.pricing.amount !== amount) {
-        return { success: false, message: "Invalid amount" };
-      }
-
+      // Check for existing enrollment
       const existingEnrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
       if (existingEnrollment) {
         return { success: false, message: "User is already enrolled in this course" };
       }
 
-      // Calculate payout amounts
-      const instructorPayoutAmount = Math.round(amount * 0.7);
-      const adminPayoutAmount = amount - instructorPayoutAmount;
+      // Calculate the final amount after applying the coupon (if provided)
+      let finalAmount = amount;
 
+      if (couponId) {
+        // Validate couponId
+        if (!Types.ObjectId.isValid(couponId)) {
+          return { success: false, message: "Invalid couponId" };
+        }
+
+        // Fetch the coupon
+        const coupon = await this._couponRepository.findById(couponId);
+        if (!coupon) {
+          return { success: false, message: "Coupon not found" };
+        }
+
+        // Check if the coupon is expired
+        if (new Date(coupon.expirationDate) < new Date()) {
+          return { success: false, message: "Coupon has expired" };
+        }
+
+        // Check if the course price meets the minimum purchase amount (if specified)
+        if (coupon.minPurchaseAmount && amount < coupon.minPurchaseAmount) {
+          return {
+            success: false,
+            message: `This coupon requires a minimum purchase of ₹${coupon.minPurchaseAmount}.`,
+          };
+        }
+
+        // Calculate discount
+        let discountAmount = (amount * coupon.discountPercentage) / 100;
+
+        // Apply max discount amount if specified
+        if (coupon.maxDiscountAmount && discountAmount > coupon.maxDiscountAmount) {
+          discountAmount = coupon.maxDiscountAmount;
+        }
+
+        // Calculate final amount after discount (ensure it's not negative)
+        finalAmount = Math.round(Math.max(0, amount - discountAmount));
+      }
+
+      // Validate the final amount
+      if (finalAmount <= 0) {
+        return { success: false, message: "Final amount must be greater than zero after applying coupon" };
+      }
+
+      // Convert final amount to paise for Stripe
+      const amountInPaise = finalAmount * 100;
+
+      // Ensure the amount meets Stripe's minimum requirement (50 INR = 5000 paise)
+      if (amountInPaise < 5000) {
+        return {
+          success: false,
+          message: "Final amount must be at least ₹50 (5000 paise) after applying coupon",
+        };
+      }
+
+      // Calculate payout amounts based on the final amount
+      const instructorPayoutAmount = Math.round(finalAmount * 0.7);
+      const adminPayoutAmount = finalAmount - instructorPayoutAmount;
+
+      // Create the payment intent with the final amount in paise
       const paymentIntent = await this.stripe.paymentIntents.create({
-        amount: amount * 100,
+        amount: amountInPaise,
         currency: "inr",
         payment_method_types: ["card"],
-        metadata: { userId, courseId },
+        metadata: { userId, courseId, couponId: couponId || "" },
       });
 
+      // Save the payment record with the final amount (in rupees)
       const payment = await this.paymentRepository.createPayment({
         userId: userObjectId,
         courseId: courseObjectId,
         paymentType,
         status: "pending",
-        amount,
+        amount: finalAmount,
         stripePaymentId: paymentIntent.id,
         instructorPayout: {
           instructorId: course.instructorRef,
@@ -111,7 +177,6 @@ export class PaymentService implements IPaymentService {
 
       const paymentIntent = await this.stripe.paymentIntents.retrieve(payment.stripePaymentId!);
       if (paymentIntent.status === "succeeded") {
-
         const updatedPayment = await this.paymentRepository.updatePaymentStatus(paymentId, "completed");
 
         await this.paymentRepository.update(
@@ -140,6 +205,32 @@ export class PaymentService implements IPaymentService {
           { _id: payment.courseId },
           { $inc: { studentsEnrolled: 1 } }
         );
+
+        console.log(paymentIntent.metadata, 'kkkkkkkkkkkkkk')
+        const couponId = paymentIntent.metadata?.couponId;
+        if (couponId && Types.ObjectId.isValid(couponId)) {
+          const hasUsedCoupon = await this._couponUsageRepository.hasUserUsedCoupon(
+            payment.userId.toString(),
+            couponId
+          );
+          if (hasUsedCoupon) {
+            console.log("Coupon already used, skipping recording:", {
+              userId: payment.userId,
+              couponId,
+            });
+          } else {
+            await this._couponUsageRepository.recordCouponUsage(
+              payment.userId.toString(),
+              couponId,
+              payment.courseId.toString()
+            );
+            console.log("Coupon usage recorded after payment confirmation:", {
+              userId: payment.userId,
+              couponId,
+              courseId: payment.courseId,
+            });
+          }
+        }
 
         return {
           success: true,
@@ -230,26 +321,26 @@ export class PaymentService implements IPaymentService {
     }
   }
 
-async getAdminPayouts(
-  page: number,
-  limit: number,
-  search?: string,
-  sort?: { field: string; order: "asc" | "desc" },
-  courseFilter?: string
-): Promise<IResponse> {
-  try {
-    const result = await this.paymentRepository.getAdminPayouts(page, limit, search, sort, courseFilter);
+  async getAdminPayouts(
+    page: number,
+    limit: number,
+    search?: string,
+    sort?: { field: string; order: "asc" | "desc" },
+    courseFilter?: string
+  ): Promise<IResponse> {
+    try {
+      const result = await this.paymentRepository.getAdminPayouts(page, limit, search, sort, courseFilter);
 
-    return {
-      success: true,
-      message: "Admin payouts retrieved successfully",
-      data: result,
-    };
-  } catch (error) {
-    console.error("Error retrieving admin payouts:", error);
-    return { success: false, message: "Failed to retrieve admin payouts" };
+      return {
+        success: true,
+        message: "Admin payouts retrieved successfully",
+        data: result,
+      };
+    } catch (error) {
+      console.error("Error retrieving admin payouts:", error);
+      return { success: false, message: "Failed to retrieve admin payouts" };
+    }
   }
-}
 }
 
 export default PaymentService;

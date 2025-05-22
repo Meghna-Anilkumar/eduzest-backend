@@ -485,7 +485,7 @@ class UserController {
 
     async createPaymentIntent(req: AuthRequest, res: Response) {
         try {
-            const { courseId, amount, paymentType } = req.body;
+             const { courseId, amount, paymentType, couponId } = req.body;
             const userId = req.user?.id;
 
             if (!userId) {
@@ -495,7 +495,7 @@ class UserController {
                 });
             }
 
-            const result = await this._paymentService.createPaymentIntent(userId, courseId, amount, paymentType);
+            const result = await this._paymentService.createPaymentIntent(userId, courseId, amount, paymentType,couponId);
 
             res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
         } catch (error) {

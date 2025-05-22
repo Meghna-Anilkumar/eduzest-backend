@@ -9,10 +9,7 @@ import CourseService from "../services/courseServices";
 import { UserService } from "../services/userServices";
 import OtpRepository from "../repositories/otpRepository";
 import { USER_ROUTES } from "../constants/routes_constants";
-import {
-    uploadToS3Single,
-    uploadToS3Multiple
-} from '../config/multerConfig';
+import {uploadToS3Single,uploadToS3Multiple} from '../config/multerConfig';
 import { authenticateUser } from "../middlewares/authMiddleware";
 import PaymentService from "../services/paymentServices";
 import PaymentRepository from "../repositories/paymentRepository";
@@ -25,6 +22,10 @@ import ReviewRepository from "../repositories/reviewRepository";
 import { redisService } from "../services/redisService";
 import ChatRepository from "../repositories/chatRepository";
 import ChatService from "../services/chatService";
+import { CouponRepository } from "../repositories/couponRepository";
+import { CouponService } from "../services/couponServices";
+import { CouponController } from "../controllers/couponController";
+import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 
 
 const userRepository = new UserRepository();
@@ -35,14 +36,17 @@ const paymentRepository = new PaymentRepository()
 const enrollmentRepository = new EnrollmentRepository(redisService)
 const reviewRepository = new ReviewRepository();
 const chatRepository=new ChatRepository(enrollmentRepository)
+const couponRepository = new CouponRepository();
+const couponUsageRepository=new CouponUsageRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const chatService=new ChatService(chatRepository,userRepository,courseRepository,enrollmentRepository)
+const couponService = new CouponService(couponRepository,couponUsageRepository);
 
 // Instantiate controllers
 const userController = new UserController(userService, paymentService);
@@ -50,6 +54,7 @@ const courseController = new CourseController(courseService, enrollCourseService
 const enrollCourseController = new EnrollCourseController(enrollCourseService)
 const chatController=new ChatController(chatService)
 const reviewController = new ReviewController(reviewService);
+const couponController = new CouponController(couponService);
 
 const userRouter = Router();
 
@@ -93,5 +98,9 @@ userRouter.get(
 userRouter.get(USER_ROUTES.GET_ALL_MESSAGES, authenticateUser(), chatController.getMessages.bind(chatController));
 userRouter.post(USER_ROUTES.SEND_MESSAGE, authenticateUser(), chatController.sendMessage.bind(chatController));
 userRouter.post(USER_ROUTES.GET_CHAT_GROUP_METADATA, authenticateUser(), chatController.getChatGroupMetadata.bind(chatController));
+
+
+userRouter.get(USER_ROUTES.GET_ACTIVE_COUPONS,couponController.getActiveCoupons.bind(couponController));
+userRouter.post(USER_ROUTES.CHECK_COUPON_USAGE,authenticateUser(),couponController.checkCouponUsage.bind(couponController))
 
 export default userRouter   

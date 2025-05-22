@@ -165,7 +165,6 @@ export class CourseService {
       }
 
       const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
-      console.log("Courses with populated data:", JSON.stringify(courses, null, 2));
       const totalCourses = await this._courseRepository.countDocuments(query);
 
       return {

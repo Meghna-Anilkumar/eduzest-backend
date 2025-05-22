@@ -14,6 +14,7 @@ import { IAssessment } from './IAssessments';
 import { IAssessmentResult } from './IAssessments';
 import { IChatGroupMetadata } from './IChat';
 import { ICoupon } from '../models/couponModel';
+import { ICouponUsage } from '../models/couponUsageModel';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -198,6 +199,12 @@ export interface IChatRepository extends IBaseRepository<IChat> {
 export interface ICouponRepository extends IBaseRepository<ICoupon> {
     findByCode(code: string): Promise<ICoupon | null>;
     findActiveCoupons(): Promise<ICoupon[]>;
-    incrementUsedCount(couponId: string): Promise<ICoupon | null>;
     findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
+    countActiveCoupons(): Promise<number>
+}
+
+
+export interface ICouponUsageRepository {
+  hasUserUsedCoupon(userId: string, couponId: string): Promise<boolean>;
+  recordCouponUsage(userId: string, couponId: string, courseId: string): Promise<ICouponUsage>;
 }

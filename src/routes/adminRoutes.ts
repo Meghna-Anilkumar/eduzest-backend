@@ -16,6 +16,7 @@ import { redisService } from "../services/redisService";
 import { CouponRepository } from "../repositories/couponRepository";
 import { CouponService } from "../services/couponServices";
 import { CouponController } from "../controllers/couponController";
+import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 
 
 const userRepository = new UserRepository();
@@ -25,11 +26,12 @@ const paymentRepository = new PaymentRepository()
 const courseRepository = new CourseRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
 const couponRepository = new CouponRepository();
+const couponUsageRepository=new CouponUsageRepository()
 
 const adminService = new AdminService(adminRepository,courseRepository,paymentRepository);
 const categoryService=new CategoryService(categoryRepository)
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
-const couponService = new CouponService(couponRepository);
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
+const couponService = new CouponService(couponRepository,couponUsageRepository);
 
 const adminController = new AdminController(adminService,paymentService);
 const categoryController = new CategoryController(categoryService);

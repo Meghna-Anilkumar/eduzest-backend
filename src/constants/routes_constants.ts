@@ -22,7 +22,9 @@ export const USER_ROUTES = {
     SWITCH_TO_INSTRUCTOR: '/switch-to-instructor',
     SEND_MESSAGE: '/:courseId/messages',
     GET_ALL_MESSAGES: '/:courseId/messages',
-    GET_CHAT_GROUP_METADATA: '/metadata'
+    GET_CHAT_GROUP_METADATA: '/metadata',
+    GET_ACTIVE_COUPONS:'/activeCoupons',
+    CHECK_COUPON_USAGE:'/check-coupon-usage'
 }
 
 

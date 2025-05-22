@@ -13,19 +13,10 @@ export class CouponRepository extends BaseRepository<ICoupon> {
   async findActiveCoupons(): Promise<ICoupon[]> {
     const now = new Date();
     return await this._model.find({
-      isActive: true,
       expirationDate: { $gte: now },
-      $expr: { $lt: ["$usedCount", "$usageLimit"] },
     });
   }
 
-  async incrementUsedCount(couponId: string): Promise<ICoupon | null> {
-    return await this.update(
-      { _id: couponId },
-      { $inc: { usedCount: 1 } },
-      { new: true }
-    );
-  }
 
   async findAllCoupons(page: number = 1, limit: number = 10): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }> {
     const skip = (page - 1) * limit;
@@ -44,5 +35,12 @@ export class CouponRepository extends BaseRepository<ICoupon> {
       page,
       totalPages: Math.ceil(total / limit)
     };
+  }
+
+  async countActiveCoupons(): Promise<number> {
+    const now = new Date();
+    return await this._model.countDocuments({
+      expirationDate: { $gte: now },
+    });
   }
 }

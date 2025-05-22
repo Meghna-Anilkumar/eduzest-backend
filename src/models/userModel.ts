@@ -76,7 +76,7 @@ const userSchema = new Schema<UserDoc>({
       ref: 'Course'
     }],
     profit: {
-      type: Number, // Changed to Number for easier arithmetic operations
+      type: Number, 
       default: 0
     },
     rating: {

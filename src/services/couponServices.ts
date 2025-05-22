@@ -1,11 +1,13 @@
 import { ICoupon } from "../models/couponModel";
 import { IResponse } from "../interfaces/IResponse";
-import { ICouponRepository } from "../interfaces/IRepositories";
+import { ICouponRepository,ICouponUsageRepository } from "../interfaces/IRepositories";
+import { Types } from "mongoose";
 
 export class CouponService {
   constructor(
-    private _couponRepository: ICouponRepository
-  ) { }
+    private _couponRepository: ICouponRepository,
+    private _couponUsageRepository: ICouponUsageRepository 
+  ) {}
 
   async addCoupon(couponData: Partial<ICoupon>): Promise<IResponse> {
     try {
@@ -152,7 +154,7 @@ export class CouponService {
           coupons,
           total,
           page: currentPage,
-          totalPages
+          totalPages,
         },
       };
     } catch (error) {
@@ -161,6 +163,41 @@ export class CouponService {
         success: false,
         message: "Failed to fetch coupons",
       };
+    }
+  }
+
+  async getActiveCoupons(): Promise<IResponse> {
+    try {
+      const coupons = await this._couponRepository.findActiveCoupons();
+      return {
+        success: true,
+        message: "Coupons fetched successfully",
+        data: coupons,
+      };
+    } catch (error) {
+      throw new Error(
+        error instanceof Error ? error.message : "Failed to fetch active coupons"
+      );
+    }
+  }
+
+  async checkCouponUsage(userId: string, couponId: string): Promise<IResponse> {
+    try {
+      console.log("Checking coupon usage:", { userId, couponId });
+
+      if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(couponId)) {
+        return { success: false, message: "Invalid userId or couponId" };
+      }
+
+      const hasUsed = await this._couponUsageRepository.hasUserUsedCoupon(userId, couponId);
+      if (hasUsed) {
+        return { success: false, message: "You have already used this coupon" };
+      }
+
+      return { success: true, message: "Coupon is available for use" };
+    } catch (error) {
+      console.error("Error checking coupon usage:", error);
+      return { success: false, message: "Failed to check coupon usage" };
     }
   }
 }

@@ -71,7 +71,8 @@ export interface IPaymentService {
         userId: string,
         courseId: string,
         amount: number,
-        paymentType: "debit" | "credit"
+        paymentType: "debit" | "credit",
+        couponId?: string
     ): Promise<IResponse>;
     confirmPayment(paymentId: string): Promise<IResponse>;
     getPaymentsByUser(
@@ -198,4 +199,6 @@ export interface ICouponService {
     editCoupon(couponId: string, couponData: Partial<ICoupon>): Promise<IResponse>;
     deleteCoupon(couponId: string): Promise<IResponse>;
     getAllCoupons(): Promise<IResponse>;
+    getActiveCoupons(): Promise<IResponse>
+    checkCouponUsage(userId: string, couponId: string): Promise<IResponse>
 }

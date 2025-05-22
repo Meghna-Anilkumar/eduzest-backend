@@ -19,6 +19,8 @@ import AssessmentController from "../controllers/assessmentController";
 import { AssessmentService } from "../services/assessmentService";
 import { AssessmentRepository } from "../repositories/assessmentRepository";
 import EnrollCourseController from "../controllers/enrollCourseController";
+import { CouponRepository } from "../repositories/couponRepository";
+import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 
 // Instantiate repositories
 const userRepository = new UserRepository();
@@ -28,10 +30,12 @@ const categoryRepository = new CategoryRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
 const paymentRepository = new PaymentRepository();
 const assessmentRepository = new AssessmentRepository();
+const couponRepository=new CouponRepository()
+const couponUsageRepository=new CouponUsageRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);

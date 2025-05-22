@@ -6,7 +6,6 @@ export interface ICoupon extends Document {
   maxDiscountAmount?: number;
   minPurchaseAmount?: number;
   expirationDate: Date;
-  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -37,10 +36,6 @@ const couponSchema = new Schema<ICoupon>(
     expirationDate: {
       type: Date,
       required: true,
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
     },
   },
   { timestamps: true }

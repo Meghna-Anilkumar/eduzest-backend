@@ -21,6 +21,8 @@ import ReviewController from "../controllers/reviewController";
 import { STUDENT_ROUTES } from "../constants/routes_constants";
 import { Role } from "../utils/Enum";
 import { redisService } from "../services/redisService";
+import { CouponRepository } from "../repositories/couponRepository";
+import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 
 
 const userRepository = new UserRepository();
@@ -31,10 +33,12 @@ const enrollmentRepository = new EnrollmentRepository(redisService);
 const categoryRepository = new CategoryRepository();
 const assessmentRepository = new AssessmentRepository();
 const reviewRepository = new ReviewRepository();
+const couponRepository=new CouponRepository()
+const couponUsageRepository=new CouponUsageRepository()
 
 
 const userService = new UserService(userRepository, otpRepository);
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository);
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
 const courseService = new CourseService(courseRepository, categoryRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
