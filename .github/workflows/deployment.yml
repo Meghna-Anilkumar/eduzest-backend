@@ -38,26 +38,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create PEM file
+      - name: Create PEM file from GitHub Secret
         run: |
           echo "${{ secrets.EC2_ACCESS_PEM }}" > eduzest.pem
           chmod 400 eduzest.pem
 
-      - name: Deploy on EC2
+      - name: Deploy Docker container on EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i eduzest.pem ${{ secrets.EC2_ACCESS_SSH_COMMAND }} << 'EOF'
-            # Stop and remove existing container
-            sudo docker ps -q --filter "name=eduzest-container" | grep -q . && sudo docker stop eduzest-container && sudo docker rm eduzest-container
+            echo "Stopping and removing old container..."
+            if [ "$(sudo docker ps -aq -f name=eduzest-container)" ]; then
+              sudo docker stop eduzest-container
+              sudo docker rm eduzest-container
+            fi
 
-            # Remove old image
+            echo "Removing old image (if exists)..."
             sudo docker image rm ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} || true
 
-            # Pull the latest image
+            echo "Pulling latest image..."
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
-            # Create .env file
+            echo "Creating .env file..."
             echo "${{ secrets.APPLICATION_ENV }}" > .env
 
-            # Run the container
-            sudo docker run -d --name eduzest-container --env-file .env -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+            echo "Running new container..."
+            sudo docker run -d \
+              --name eduzest-container \
+              --env-file .env \
+              -p 5000:5000 \
+              ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
           EOF
