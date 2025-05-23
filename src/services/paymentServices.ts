@@ -35,7 +35,7 @@ export class PaymentService implements IPaymentService {
     try {
       console.log("Received in createPaymentIntent:", { userId, courseId, amount, paymentType, couponId });
 
-      // Validate userId and courseId
+
       if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(courseId)) {
         console.log("Invalid IDs:", { userId, courseId });
         return { success: false, message: "Invalid userId or courseId" };
@@ -44,50 +44,44 @@ export class PaymentService implements IPaymentService {
       const userObjectId = new Types.ObjectId(userId);
       const courseObjectId = new Types.ObjectId(courseId);
 
-      // Fetch user
+
       const user = await this.userRepository.findById(userId);
       if (!user) {
         return { success: false, message: "User not found" };
       }
 
-      // Fetch course
+
       const course = await this.courseRepository.findById(courseId);
       if (!course) {
         return { success: false, message: "Course not found" };
       }
 
-      // Check if the course is free
+
       if (course.pricing.type === "free") {
         return { success: false, message: "This course is free" };
       }
 
-      // Check for existing enrollment
       const existingEnrollment = await this.enrollmentRepository.findByUserAndCourse(userId, courseId);
       if (existingEnrollment) {
         return { success: false, message: "User is already enrolled in this course" };
       }
 
-      // Calculate the final amount after applying the coupon (if provided)
       let finalAmount = amount;
 
       if (couponId) {
-        // Validate couponId
         if (!Types.ObjectId.isValid(couponId)) {
           return { success: false, message: "Invalid couponId" };
         }
 
-        // Fetch the coupon
         const coupon = await this._couponRepository.findById(couponId);
         if (!coupon) {
           return { success: false, message: "Coupon not found" };
         }
 
-        // Check if the coupon is expired
         if (new Date(coupon.expirationDate) < new Date()) {
           return { success: false, message: "Coupon has expired" };
         }
 
-        // Check if the course price meets the minimum purchase amount (if specified)
         if (coupon.minPurchaseAmount && amount < coupon.minPurchaseAmount) {
           return {
             success: false,
@@ -95,27 +89,21 @@ export class PaymentService implements IPaymentService {
           };
         }
 
-        // Calculate discount
         let discountAmount = (amount * coupon.discountPercentage) / 100;
 
-        // Apply max discount amount if specified
         if (coupon.maxDiscountAmount && discountAmount > coupon.maxDiscountAmount) {
           discountAmount = coupon.maxDiscountAmount;
         }
 
-        // Calculate final amount after discount (ensure it's not negative)
         finalAmount = Math.round(Math.max(0, amount - discountAmount));
       }
 
-      // Validate the final amount
       if (finalAmount <= 0) {
         return { success: false, message: "Final amount must be greater than zero after applying coupon" };
       }
 
-      // Convert final amount to paise for Stripe
       const amountInPaise = finalAmount * 100;
 
-      // Ensure the amount meets Stripe's minimum requirement (50 INR = 5000 paise)
       if (amountInPaise < 5000) {
         return {
           success: false,
@@ -123,11 +111,9 @@ export class PaymentService implements IPaymentService {
         };
       }
 
-      // Calculate payout amounts based on the final amount
       const instructorPayoutAmount = Math.round(finalAmount * 0.7);
       const adminPayoutAmount = finalAmount - instructorPayoutAmount;
 
-      // Create the payment intent with the final amount in paise
       const paymentIntent = await this.stripe.paymentIntents.create({
         amount: amountInPaise,
         currency: "inr",
@@ -135,7 +121,6 @@ export class PaymentService implements IPaymentService {
         metadata: { userId, courseId, couponId: couponId || "" },
       });
 
-      // Save the payment record with the final amount (in rupees)
       const payment = await this.paymentRepository.createPayment({
         userId: userObjectId,
         courseId: courseObjectId,
@@ -307,7 +292,7 @@ export class PaymentService implements IPaymentService {
         limit,
         search,
         sort,
-        courseFilter // Pass the course filter to repository
+        courseFilter
       );
 
       return {
