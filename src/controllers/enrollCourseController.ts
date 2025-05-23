@@ -86,7 +86,6 @@ class EnrollCourseController {
     try {
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
 
-      // Extract pagination parameters from query
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
       const search = req.query.search as string || undefined;
@@ -101,9 +100,7 @@ class EnrollCourseController {
 
       const result = await this.enrollCourseService.getEnrollmentsByUserId(userId, page, limit, search);
 
-      // Add signed URLs to course content in enrollments
       if (result.success && result.data) {
-        // Type assertion for the result data
         const enrollmentData = result.data as {
           enrollments: Array<EnrollmentDoc & { courseId: any }>;
           totalPages: number;
@@ -114,11 +111,10 @@ class EnrollCourseController {
         if (Array.isArray(enrollmentData.enrollments)) {
           const enrollmentsWithSignedUrls = await Promise.all(
             enrollmentData.enrollments.map(async (enrollment) => {
-              // Check if courseId is populated (has properties of a course object)
+
               if (enrollment.courseId && typeof enrollment.courseId === 'object' &&
                 !(enrollment.courseId instanceof Types.ObjectId) &&
                 'title' in enrollment.courseId) {
-                // The courseId is already populated with course data
                 enrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId);
               }
               return enrollment;

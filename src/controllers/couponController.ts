@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ICouponService } from "../interfaces/IServices";
 import { AuthRequest } from "../interfaces/AuthRequest";
+import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 
 export class CouponController {
 
@@ -18,7 +19,7 @@ export class CouponController {
       console.error("Error in addCoupon controller:", error);
       res.status(500).json({
         success: false,
-        message: "Internal server error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -33,7 +34,7 @@ export class CouponController {
       console.error("Error in editCoupon controller:", error);
       res.status(500).json({
         success: false,
-        message: "Internal server error",
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -47,7 +48,7 @@ export class CouponController {
       console.error("Error in deleteCoupon controller:", error);
       res.status(500).json({
         success: false,
-        message: "Internal server error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -60,7 +61,7 @@ export class CouponController {
       console.error("Error in getAllCoupons controller:", error);
       res.status(500).json({
         success: false,
-        message: "Internal server error",
+        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -74,7 +75,7 @@ export class CouponController {
       res.status(500).json({
         success: false,
         message: "Failed to fetch coupons",
-        error: error instanceof Error ? error.message : "Unknown error",
+        error: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -85,14 +86,14 @@ export class CouponController {
       const { couponId } = req.body;
       const userId = req.user?.id;
       if (!userId) {
-        res.status(401).json({ success: false, message: "Unauthorized" });
+        res.status(401).json({ success: false, message: MESSAGE_CONSTANTS.UNAUTHORIZED });
         return;
       }
       const result = await this._couponService.checkCouponUsage(userId, couponId);
       res.status(result.success ? 200 : 400).json(result);
     } catch (error) {
       console.error("Error in checkCouponUsage:", error);
-      res.status(500).json({ success: false, message: "Server error" });
+      res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR});
     }
   }
 }

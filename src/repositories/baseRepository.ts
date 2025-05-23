@@ -6,7 +6,6 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
 
     async findAll(filter: Record<string, unknown>, skip: number, sort: any, limit: number = 5): Promise<T[]> {
         try {
-            console.log("Find query:", JSON.stringify({ filter, skip, sort, limit }));
             let query = this._model.find(filter);
             if (sort) query = query.sort(sort);
             query = query.skip(skip).limit(limit);

@@ -37,7 +37,7 @@ export class S3Service {
       const command = new GetObjectCommand({
         Bucket: this.bucketName,
         Key: key,
-        Range: range, 
+        Range: range,
       });
       const response = await this.s3.send(command);
 
@@ -56,7 +56,7 @@ export class S3Service {
       return {
         Body: body,
         ContentType: response.ContentType,
-        ContentLength: response.ContentLength || undefined, 
+        ContentLength: response.ContentLength || undefined,
       };
     } catch (error) {
       console.error(`Error fetching S3 object for key ${key}:`, error);
@@ -96,6 +96,7 @@ export class S3Service {
       throw error;
     }
   }
+
 
   async addSignedUrlsToCourse(course: ICourse): Promise<ICourseDTO> {
     const signedCourse: ICourseDTO = {

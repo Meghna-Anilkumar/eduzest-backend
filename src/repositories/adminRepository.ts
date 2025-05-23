@@ -38,7 +38,6 @@ export class AdminRepository extends BaseRepository<AdminDoc> implements IAdminR
     const query: any = { role: Role.student };
     if (search) {
       query.$or = [
-        // { email: { $regex: search, $options: 'i' } },
         { name: { $regex: search, $options: 'i' } },
       ];
     }
