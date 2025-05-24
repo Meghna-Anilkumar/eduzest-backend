@@ -33,7 +33,7 @@ export const initializeSocket = (server: HttpServer): Server => {
   const io = new Server(server, {
     cors: {
       origin: process.env.ORIGIN,
-      methods: ['GET', 'POST'],
+      methods: ['GET', 'POST','OPTIONS'],
       credentials: true,
     },
   });
