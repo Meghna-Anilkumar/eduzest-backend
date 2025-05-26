@@ -119,7 +119,7 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
       course: payment.courseId ? (payment.courseId as any).title : "Unknown",
       studentName: payment.userId ? (payment.userId as any).name : "Unknown",
       amount: payment.instructorPayout.amount != null
-        ? payment.instructorPayout.amount.toFixed(2) // Direct toFixed for number
+        ? payment.instructorPayout.amount.toFixed(2) 
         : "0.00",
     }));
 
@@ -129,73 +129,79 @@ export class PaymentRepository extends BaseRepository<PaymentDoc> implements IPa
   }
 
 
-  async getAdminPayouts(
+async getAdminPayouts(
     page: number,
     limit: number,
     search?: string,
     sort?: { field: string; order: "asc" | "desc" },
     courseFilter?: string
-  ): Promise<{ data: any[]; total: number; page: number; limit: number }> {
+): Promise<{ data: any[]; total: number; page: number; limit: number }> {
     const query: any = {};
 
     if (search) {
-      query.$or = [
-        { "courseId": { $regex: search, $options: "i" } },
-        { "adminPayout.transactionId": { $regex: search, $options: "i" } },
-      ];
+        query.$or = [
+            { "courseId": { $regex: search, $options: "i" } },
+            { "adminPayout.transactionId": { $regex: search, $options: "i" } },
+        ];
     }
 
-    if (courseFilter) {
-      const courses = await this._courseModel
-        .find({ title: { $regex: courseFilter, $options: "i" } }, { _id: 1 })
-        .lean();
-      const courseIds = courses.map((course) => course._id);
-      if (courseIds.length > 0) {
-        query.courseId = { $in: courseIds };
-      } else {
-        return { data: [], total: 0, page, limit };
-      }
+    if (courseFilter && courseFilter.trim()) {
+        // Decode URL-encoded course filter and trim whitespace
+        const decodedCourseFilter = decodeURIComponent(courseFilter).trim();
+        console.log("Original courseFilter:", courseFilter);
+        console.log("Decoded courseFilter:", decodedCourseFilter);
+        
+        const courses = await this._courseModel
+            .find({ 
+                title: { $regex: decodedCourseFilter, $options: "i" } 
+            }, { _id: 1 })
+            .lean();
+        
+        console.log("Found courses for filter:", courses);
+        
+        const courseIds = courses.map((course) => course._id);
+        if (courseIds.length > 0) {
+            query.courseId = { $in: courseIds };
+        } else {
+            // Return empty result if no courses match the filter
+            return { data: [], total: 0, page, limit };
+        }
     }
-
-    // Map sortField to MongoDB field (only date sorting)
-    const sortFieldMap: { [key: string]: string } = {
-      date: "createdAt",
-    };
 
     const sortOptions: any = sort && sort.field === "date"
-      ? { createdAt: sort.order === "asc" ? 1 : -1 }
-      : { createdAt: -1 };
+        ? { createdAt: sort.order === "asc" ? 1 : -1 }
+        : { createdAt: -1 };
 
-    console.log("Sort options:", sortOptions); // Debug sort options
+    console.log("Final query:", JSON.stringify(query));
+    console.log("Sort options:", sortOptions);
 
     const skip = (page - 1) * limit;
 
     const [payments, total] = await Promise.all([
-      this._model
-        .find(query)
-        .sort(sortOptions)
-        .skip(skip)
-        .limit(limit)
-        .populate("userId", "name")
-        .populate("courseId", "title")
-        .lean(),
-      this._model.countDocuments(query),
+        this._model
+            .find(query)
+            .sort(sortOptions)
+            .skip(skip)
+            .limit(limit)
+            .populate("userId", "name")
+            .populate("courseId", "title")
+            .lean(),
+        this._model.countDocuments(query),
     ]);
 
     const data = payments.map((payment) => ({
-      transactionId: payment.adminPayout.transactionId || "N/A",
-      date: payment.createdAt ? new Date(payment.createdAt).toISOString() : "N/A", // Standardize date format
-      course: payment.courseId ? (payment.courseId as any).title : "Unknown",
-      studentName: payment.userId ? (payment.userId as any).name : "Unknown",
-      amount: payment.adminPayout.amount != null
-        ? payment.adminPayout.amount.toFixed(2) // Direct toFixed for number
-        : "0.00",
+        transactionId: payment.adminPayout.transactionId || "N/A",
+        date: payment.createdAt ? new Date(payment.createdAt).toISOString() : "N/A",
+        course: payment.courseId ? (payment.courseId as any).title : "Unknown",
+        studentName: payment.userId ? (payment.userId as any).name : "Unknown",
+        amount: payment.adminPayout.amount != null
+            ? payment.adminPayout.amount.toFixed(2)
+            : "0.00",
     }));
 
-    console.log("Sorted payments:", data.map((p) => ({ date: p.date }))); // Debug sorted dates
-
+    console.log("Found payments:", data.length);
     return { data, total, page, limit };
-  }
+}
 
 
   async getRevenueOverview(
