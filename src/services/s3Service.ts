@@ -143,6 +143,7 @@ export class S3Service {
       isRejected: course.isRejected,
       createdAt: course.createdAt,
       updatedAt: course.updatedAt,
+      offer: course.offer,
     };
 
     return signedCourse;

@@ -17,6 +17,9 @@ import { CouponRepository } from "../repositories/couponRepository";
 import { CouponService } from "../services/couponServices";
 import { CouponController } from "../controllers/couponController";
 import { CouponUsageRepository } from "../repositories/couponUsageRepository";
+import { OfferRepository } from "../repositories/offerRepository";
+import { OfferService } from "../services/offerService";
+import { OfferController } from "../controllers/offerController";
 
 
 const userRepository = new UserRepository();
@@ -27,16 +30,18 @@ const courseRepository = new CourseRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
 const couponRepository = new CouponRepository();
 const couponUsageRepository=new CouponUsageRepository()
+const offerRepository = new OfferRepository();
 
 const adminService = new AdminService(adminRepository,courseRepository,paymentRepository);
 const categoryService=new CategoryService(categoryRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
 const couponService = new CouponService(couponRepository,couponUsageRepository);
+const offerService = new OfferService(offerRepository,categoryRepository);
 
 const adminController = new AdminController(adminService,paymentService);
 const categoryController = new CategoryController(categoryService);
 const couponController = new CouponController(couponService);
-
+const offerController = new OfferController(offerService);
 
 
 const adminRouter = Router();
@@ -73,6 +78,13 @@ adminRouter.post(ADMIN_ROUTES.ADD_COUPON, authenticateAdmin(), couponController.
 adminRouter.put(ADMIN_ROUTES.EDIT_COUPON, authenticateAdmin(), couponController.editCoupon.bind(couponController));
 adminRouter.delete(ADMIN_ROUTES.DELETE_COUPON, authenticateAdmin(), couponController.deleteCoupon.bind(couponController));
 adminRouter.get(ADMIN_ROUTES.FETCHALL_COUPONS, authenticateAdmin(), couponController.getAllCoupons.bind(couponController));
+
+
+//offer management
+adminRouter.post( ADMIN_ROUTES.ADD_OFFER,offerController.addOffer.bind(offerController));
+adminRouter.put(ADMIN_ROUTES.EDIT_OFFER,authenticateAdmin(), offerController.editOffer.bind(offerController));
+adminRouter.delete(ADMIN_ROUTES.DELETE_OFFER,authenticateAdmin(),offerController.deleteOffer.bind(offerController));
+adminRouter.get(ADMIN_ROUTES.FETCHALL_OFFERS,authenticateAdmin(),offerController.getAllOffers.bind(offerController));
 
 
 export default adminRouter

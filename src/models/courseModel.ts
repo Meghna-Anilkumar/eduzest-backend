@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model} from "mongoose";
 import { ICourse, ILesson, IModule, ITrial } from "../interfaces/ICourse";
 
 // Lesson Schema

@@ -8,6 +8,8 @@ import { LessonProgress } from "../models/enrollmentModel";
 import { IAssessment } from "./IAssessments";
 import { CourseStats } from "./ICourseStats";
 import { ICoupon } from "../models/couponModel";
+import { IOffer } from '../models/offerModel';
+
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -201,4 +203,14 @@ export interface ICouponService {
     getAllCoupons(): Promise<IResponse>;
     getActiveCoupons(): Promise<IResponse>
     checkCouponUsage(userId: string, couponId: string): Promise<IResponse>
+}
+
+
+export interface IOfferService {
+    addOffer(offerData: Partial<IOffer>): Promise<IResponse>;
+    editOffer(offerId: string, offerData: Partial<IOffer>): Promise<IResponse>;
+    deleteOffer(offerId: string): Promise<IResponse>;
+    getAllOffers(page?: number, limit?: number): Promise<IResponse>;
+    getActiveOffers(categoryId?: string): Promise<IResponse>;
+    checkOfferUsage(userId: string, offerId: string): Promise<IResponse>;
 }

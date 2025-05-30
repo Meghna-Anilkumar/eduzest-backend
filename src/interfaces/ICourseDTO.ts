@@ -53,4 +53,8 @@ export interface ICourseDTO {
   isRejected: boolean;
   createdAt: Date;
   updatedAt: Date;
+  offer?: {
+        discountPercentage: number;
+        offerPrice: number;
+    };
 }

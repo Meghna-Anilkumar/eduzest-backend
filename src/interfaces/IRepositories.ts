@@ -1,4 +1,4 @@
-import { Document, UpdateQuery, FilterQuery } from 'mongoose';
+import { Document, UpdateQuery, FilterQuery, QueryOptions} from 'mongoose';
 import { UserDoc } from './IUser';
 import { AdminDoc } from './IAdmin';
 import { OtpDoc } from './IOtp';
@@ -15,6 +15,7 @@ import { IAssessmentResult } from './IAssessments';
 import { IChatGroupMetadata } from './IChat';
 import { ICoupon } from '../models/couponModel';
 import { ICouponUsage } from '../models/couponUsageModel';
+import { IOffer } from '../models/offerModel';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -197,14 +198,29 @@ export interface IChatRepository extends IBaseRepository<IChat> {
 
 
 export interface ICouponRepository extends IBaseRepository<ICoupon> {
-    findByCode(code: string): Promise<ICoupon | null>;
-    findActiveCoupons(): Promise<ICoupon[]>;
-    findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
-    countActiveCoupons(): Promise<number>
+  findByCode(code: string): Promise<ICoupon | null>;
+  findActiveCoupons(): Promise<ICoupon[]>;
+  findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
+  countActiveCoupons(): Promise<number>;
+  createCoupon(couponData: Partial<ICoupon>): Promise<ICoupon>;
+  updateCoupon(couponId: string, couponData: Partial<ICoupon>, options?: any): Promise<ICoupon | null>;
+  deleteCoupon(couponId: string): Promise<boolean>;
+  findCouponById(couponId: string): Promise<ICoupon | null>;
 }
 
 
 export interface ICouponUsageRepository {
   hasUserUsedCoupon(userId: string, couponId: string): Promise<boolean>;
   recordCouponUsage(userId: string, couponId: string, courseId: string): Promise<ICouponUsage>;
+}
+
+
+export interface IOfferRepository extends IBaseRepository<IOffer> {
+  createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
+  updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
+  deleteOffer(offerId: string): Promise<boolean>;
+  findActiveOffers(categoryId?: string): Promise<IOffer[]>;
+  findAllOffers(page?: number, limit?: number): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }>;
+  countActiveOffers(categoryId?: string): Promise<number>;
+  findByCategoryId(categoryId: string): Promise<IOffer | null>;
 }

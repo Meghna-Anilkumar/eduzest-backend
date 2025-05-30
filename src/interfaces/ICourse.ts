@@ -36,6 +36,11 @@ export interface IAttachment {
     url?: string;
 }
 
+export interface IOfferDetails {
+  discountPercentage: number;
+  offerPrice?: number; 
+}
+
 // Main Course Interface
 export interface ICourse extends Document {
     title: string;
@@ -56,6 +61,10 @@ export interface ICourse extends Document {
     isRejected: boolean;
     createdAt: Date;
     updatedAt: Date;
+    offer?: {
+        discountPercentage: number;
+        offerPrice: number;
+    };
 }
 
 export interface FilterOptions {
@@ -70,7 +79,6 @@ export interface SortOptions {
 
 
 export interface ICourseUpdate extends Partial<ICourse> {
-    // Allow only Types.ObjectId or undefined, matching ICourse
     instructorRef?: Types.ObjectId;
     categoryRef?: Types.ObjectId;
   }

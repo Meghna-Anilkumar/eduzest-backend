@@ -26,6 +26,8 @@ import { CouponRepository } from "../repositories/couponRepository";
 import { CouponService } from "../services/couponServices";
 import { CouponController } from "../controllers/couponController";
 import { CouponUsageRepository } from "../repositories/couponUsageRepository";
+import { OfferService } from "../services/offerService";
+import { OfferRepository } from "../repositories/offerRepository";
 
 
 const userRepository = new UserRepository();
@@ -38,11 +40,13 @@ const reviewRepository = new ReviewRepository();
 const chatRepository=new ChatRepository(enrollmentRepository)
 const couponRepository = new CouponRepository();
 const couponUsageRepository=new CouponUsageRepository()
+const offerRepository=new OfferRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
+const offerService=new OfferService(offerRepository,categoryRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
-const courseService = new CourseService(courseRepository, categoryRepository);
+const courseService = new CourseService(courseRepository, categoryRepository,offerService);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const chatService=new ChatService(chatRepository,userRepository,courseRepository,enrollmentRepository)

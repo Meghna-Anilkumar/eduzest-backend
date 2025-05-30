@@ -23,6 +23,8 @@ import { Role } from "../utils/Enum";
 import { redisService } from "../services/redisService";
 import { CouponRepository } from "../repositories/couponRepository";
 import { CouponUsageRepository } from "../repositories/couponUsageRepository";
+import { OfferService } from "../services/offerService";
+import { OfferRepository } from "../repositories/offerRepository";
 
 
 const userRepository = new UserRepository();
@@ -35,11 +37,13 @@ const assessmentRepository = new AssessmentRepository();
 const reviewRepository = new ReviewRepository();
 const couponRepository=new CouponRepository()
 const couponUsageRepository=new CouponUsageRepository()
+const offerRepository=new OfferRepository()
 
 
 const userService = new UserService(userRepository, otpRepository);
+const offerService=new OfferService(offerRepository,categoryRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
-const courseService = new CourseService(courseRepository, categoryRepository);
+const courseService = new CourseService(courseRepository, categoryRepository,offerService);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);

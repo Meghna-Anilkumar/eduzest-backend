@@ -5,11 +5,13 @@ import { ICourseRepository } from "../interfaces/IRepositories";
 import { ICategoryRepository } from "../interfaces/IRepositories";
 import { validateCourseData } from "../utils/courseValidation";
 import { CustomError } from "../utils/CustomError";
+import { IOfferService } from "../interfaces/IServices";
 
 export class CourseService {
   constructor(
     private _courseRepository: ICourseRepository,
-    private _categoryRepository: ICategoryRepository
+    private _categoryRepository: ICategoryRepository,
+    private _offerService: IOfferService
   ) { }
 
   async createCourse(courseData: Partial<ICourse>): Promise<IResponse> {
@@ -167,17 +169,63 @@ export class CourseService {
       const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
       const totalCourses = await this._courseRepository.countDocuments(query);
 
-      return {
+      console.log("Courses fetched from repository:", courses);
+
+      // Convert courses to plain objects to ensure dynamically added fields are preserved
+      const coursesWithOffers = courses.map(course => ({ ...course.toObject() }));
+
+      // Fetch offers for each course's category and calculate offer price
+      for (const course of coursesWithOffers) {
+        if (course.pricing.type === "paid" && course.categoryRef) {
+          console.log(`Fetching offer for course (${course.title}) with categoryRef:`, course.categoryRef);
+          const offerResponse = await this._offerService.getActiveOffers(course.categoryRef._id.toString());
+          console.log(`Offer response for course (${course.title}):`, offerResponse);
+
+          if (
+            offerResponse.success &&
+            offerResponse.data &&
+            Array.isArray(offerResponse.data) &&
+            offerResponse.data.length > 0
+          ) {
+            const offer = offerResponse.data[0] as any;
+            console.log(`Applying offer to course (${course.title}):`, offer);
+
+            const discountPercentage = offer.discountPercentage;
+            const originalPrice = course.pricing.amount;
+            const discountAmount = (originalPrice * discountPercentage) / 100;
+            const offerPrice = originalPrice - discountAmount;
+
+            course.offer = {
+              discountPercentage,
+              offerPrice: Math.round(offerPrice),
+            };
+            console.log(`Updated course (${course.title}) with offer:`, course.offer);
+          } else {
+            console.log(`No offer found for course (${course.title})`);
+          }
+        } else {
+          console.log(`Skipping offer for course (${course.title}): Not paid or no categoryRef`);
+        }
+      }
+
+      console.log("Final courses with offers:", coursesWithOffers);
+
+      const responseData = {
         success: true,
         message: "Active courses fetched successfully.",
         data: {
-          courses,
+          courses: coursesWithOffers,
           totalPages: Math.ceil(totalCourses / limit),
           currentPage: page,
           totalCourses,
         },
       };
+
+      console.log("Response data being sent to frontend:", JSON.stringify(responseData, null, 2));
+
+      return responseData;
     } catch (error) {
+      console.log("Error in getAllActiveCourses:", error);
       return {
         success: false,
         message: "An error occurred while fetching active courses.",

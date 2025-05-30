@@ -1,7 +1,7 @@
 import { ICoupon } from "../models/couponModel";
 import { IResponse } from "../interfaces/IResponse";
-import { ICouponRepository,ICouponUsageRepository } from "../interfaces/IRepositories";
-import { Types } from "mongoose";
+import { ICouponRepository, ICouponUsageRepository } from "../interfaces/IRepositories";
+import {Types} from 'mongoose'
 
 export class CouponService {
   constructor(
@@ -41,7 +41,7 @@ export class CouponService {
         };
       }
 
-      const coupon = await this._couponRepository.create({
+      const coupon = await this._couponRepository.createCoupon({
         ...couponData,
         code: couponData.code.toUpperCase(),
       });
@@ -76,7 +76,7 @@ export class CouponService {
         };
       }
 
-      const coupon = await this._couponRepository.findById(couponId);
+      const coupon = await this._couponRepository.findCouponById(couponId);
       if (!coupon) {
         return {
           success: false,
@@ -94,7 +94,7 @@ export class CouponService {
         }
       }
 
-      const updatedCoupon = await this._couponRepository.update(
+      const updatedCoupon = await this._couponRepository.updateCoupon(
         couponId,
         { ...couponData, code: couponData.code?.toUpperCase() },
         { new: true }
@@ -123,7 +123,7 @@ export class CouponService {
 
   async deleteCoupon(couponId: string): Promise<IResponse> {
     try {
-      const deleted = await this._couponRepository.delete(couponId);
+      const deleted = await this._couponRepository.deleteCoupon(couponId);
       if (!deleted) {
         return {
           success: false,

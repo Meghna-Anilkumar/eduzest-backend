@@ -48,6 +48,10 @@ export const ADMIN_ROUTES = {
     EDIT_COUPON: '/edit-coupon/:id',
     DELETE_COUPON: '/delete-coupon/:id',
     FETCHALL_COUPONS: '/fetch-all-coupons',
+    ADD_OFFER: '/create-offer',
+    EDIT_OFFER: '/edit-offer/:id',
+    DELETE_OFFER: '/delete-offer/:id',
+    FETCHALL_OFFERS: '/offers',
 }
 
 
