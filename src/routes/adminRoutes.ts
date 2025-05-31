@@ -36,7 +36,7 @@ const adminService = new AdminService(adminRepository,courseRepository,paymentRe
 const categoryService=new CategoryService(categoryRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
 const couponService = new CouponService(couponRepository,couponUsageRepository);
-const offerService = new OfferService(offerRepository,categoryRepository);
+const offerService = new OfferService(offerRepository,categoryRepository,courseRepository);
 
 const adminController = new AdminController(adminService,paymentService);
 const categoryController = new CategoryController(categoryService);

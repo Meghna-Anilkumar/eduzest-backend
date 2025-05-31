@@ -1,4 +1,4 @@
-import { Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 import { ICourse, ILesson, IModule, ITrial } from "../interfaces/ICourse";
 
 // Lesson Schema
@@ -113,6 +113,18 @@ const courseSchema = new Schema<ICourse>({
         type: Boolean,
         default: false
     },
+  offer: {
+            discountPercentage: {
+                type: Number,
+            },
+            offerPrice: {
+                type: Number,
+            },
+            expirationDate: {
+                type: String,
+            },
+        },
+
 }, {
     timestamps: true
 });

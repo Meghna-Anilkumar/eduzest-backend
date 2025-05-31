@@ -99,6 +99,7 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
     getCourseByInstructor(courseId: string, instructorId: string): Promise<ICourse | null>;
     findByTitleAndLevel(title: string, level: string): Promise<ICourse | null>
+    findByCategoryId(categoryId: string): Promise<ICourse[]>
 }
 
 

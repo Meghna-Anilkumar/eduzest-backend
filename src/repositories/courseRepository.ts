@@ -130,4 +130,18 @@ export class CourseRepository extends BaseRepository<ICourse> {
             .exec();
     }
 
+
+    async findByCategoryId(categoryId: string): Promise<ICourse[]> {
+        return this._model
+            .find({
+                categoryRef: new Types.ObjectId(categoryId),
+            })
+            .populate({
+                path: "instructorRef",
+                select: "name profile.profilePic",
+            })
+            .populate("categoryRef", "categoryName")
+            .exec();
+    }
+
 }

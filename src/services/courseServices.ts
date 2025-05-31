@@ -234,32 +234,73 @@ export class CourseService {
     }
   }
 
-  async getCourseById(courseId: string): Promise<IResponse> {
+async getCourseById(courseId: string): Promise<IResponse> {
     try {
-      const course = await this._courseRepository.getCourseById(courseId);
+        const course = await this._courseRepository.getCourseById(courseId);
 
-      if (!course) {
+        if (!course) {
+            return {
+                success: false,
+                message: "Course not found.",
+            };
+        }
+
+        // Convert course to plain object to ensure dynamically added fields are preserved
+        const courseWithOffer = { ...course.toObject() };
+
+        // Apply offer logic for paid courses with a category
+        if (courseWithOffer.pricing.type === "paid" && courseWithOffer.categoryRef) {
+            console.log(`Fetching offer for course (${courseWithOffer.title}) with categoryRef:`, courseWithOffer.categoryRef);
+            const offerResponse = await this._offerService.getActiveOffers(courseWithOffer.categoryRef._id.toString());
+            console.log(`Offer response for course (${courseWithOffer.title}):`, offerResponse);
+
+            if (
+                offerResponse.success &&
+                offerResponse.data &&
+                Array.isArray(offerResponse.data) &&
+                offerResponse.data.length > 0
+            ) {
+                const offer = offerResponse.data[0] as any;
+                console.log(`Applying offer to course (${courseWithOffer.title}):`, offer);
+
+                // Check offer expiration
+                if (offer.expirationDate && new Date(offer.expirationDate) < new Date()) {
+                    console.log(`Offer for course (${courseWithOffer.title}) is expired`);
+                } else {
+                    const discountPercentage = offer.discountPercentage;
+                    const originalPrice = courseWithOffer.pricing.amount;
+                    const discountAmount = (originalPrice * discountPercentage) / 100;
+                    const offerPrice = Math.round(originalPrice - discountAmount);
+
+                    courseWithOffer.offer = {
+                        discountPercentage,
+                        offerPrice,
+                    };
+                    console.log(`Updated course (${courseWithOffer.title}) with offer:`, courseWithOffer.offer);
+                }
+            } else {
+                console.log(`No offer found for course (${courseWithOffer.title})`);
+            }
+        } else {
+            console.log(`Skipping offer for course (${courseWithOffer.title}): Not paid or no categoryRef`);
+        }
+
         return {
-          success: false,
-          message: "Course not found.",
+            success: true,
+            message: "Course fetched successfully.",
+            data: courseWithOffer,
         };
-      }
-
-      return {
-        success: true,
-        message: "Course fetched successfully.",
-        data: course,
-      };
     } catch (error) {
-      return {
-        success: false,
-        message: "An error occurred while fetching the course.",
-        error: {
-          message: error instanceof Error ? error.message : "Unknown error"
-        },
-      };
+        console.log("Error in getCourseById:", error);
+        return {
+            success: false,
+            message: "An error occurred while fetching the course.",
+            error: {
+                message: error instanceof Error ? error.message : "Unknown error",
+            },
+        };
     }
-  }
+}
 
   async getCourseByInstructor(courseId: string, instructorId: string): Promise<IResponse> {
     try {

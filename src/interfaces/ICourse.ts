@@ -64,6 +64,7 @@ export interface ICourse extends Document {
     offer?: {
         discountPercentage: number;
         offerPrice: number;
+        expirationDate?: string;
     };
 }
 

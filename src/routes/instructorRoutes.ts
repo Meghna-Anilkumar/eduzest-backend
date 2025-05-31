@@ -38,7 +38,7 @@ const offerRepository=new OfferRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
-const offerService=new OfferService(offerRepository,categoryRepository)
+const offerService=new OfferService(offerRepository,categoryRepository,courseRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
 const courseService = new CourseService(courseRepository, categoryRepository,offerService);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);

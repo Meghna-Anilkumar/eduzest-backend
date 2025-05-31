@@ -1,13 +1,13 @@
 import { IOffer } from "../models/offerModel";
 import { IResponse } from "../interfaces/IResponse";
-import { IOfferRepository } from "../interfaces/IRepositories";
-import { ICategoryRepository } from "../interfaces/IRepositories";
+import { IOfferRepository, ICategoryRepository, ICourseRepository } from "../interfaces/IRepositories";
 import { Types } from "mongoose";
 
 export class OfferService {
   constructor(
     private _offerRepository: IOfferRepository,
     private _categoryRepository: ICategoryRepository,
+    private _courseRepository: ICourseRepository 
   ) {}
 
   async addOffer(offerData: Partial<IOffer>): Promise<IResponse> {
@@ -56,24 +56,44 @@ export class OfferService {
       }
 
       const categoryIdString = offerData.categoryId.toString();
-      const existingOffer = await this._offerRepository.findByCategoryId(categoryIdString); 
+      const existingOffer = await this._offerRepository.findByCategoryId(categoryIdString);
+      let offer;
+
       if (existingOffer) {
         const updateResult = await this.editOffer((existingOffer._id as Types.ObjectId).toString(), offerData);
         if (!updateResult.success) {
           return updateResult;
         }
-        return {
-          success: true,
-          message: "Existing offer updated successfully",
-          data: updateResult.data,
-        };
+        offer = updateResult.data;
+      } else {
+        offer = await this._offerRepository.createOffer(offerData);
       }
 
-      const offer = await this._offerRepository.createOffer(offerData);
+      // Update all courses in the category with the offer details
+      const courses = await this._courseRepository.findByCategoryId(categoryIdString);
+      for (const course of courses) {
+        const originalPrice = course.pricing.amount;
+        const offerPrice = Math.round(originalPrice * (1 - offerData.discountPercentage / 100));
+        await this._courseRepository.update(
+          { _id: course._id },
+          {
+            offer: {
+              discountPercentage: offerData.discountPercentage,
+              offerPrice,
+              expirationDate: offerData.expirationDate,
+            },
+          }
+        );
+        console.log(`Updated course ${course._id} with offer:`, {
+          discountPercentage: offerData.discountPercentage,
+          offerPrice,
+          expirationDate: offerData.expirationDate,
+        });
+      }
 
       return {
         success: true,
-        message: "Offer created successfully",
+        message: existingOffer ? "Existing offer updated successfully" : "Offer created successfully",
         data: offer,
       };
     } catch (error) {
@@ -108,14 +128,15 @@ export class OfferService {
         };
       }
 
-      if (offerData.categoryId) {
-        if (!Types.ObjectId.isValid(offerData.categoryId)) {
+      let categoryId = offerData.categoryId;
+      if (categoryId) {
+        if (!Types.ObjectId.isValid(categoryId)) {
           return {
             success: false,
             message: "Invalid category ID",
           };
         }
-        const category = await this._categoryRepository.findById(offerData.categoryId.toString());
+        const category = await this._categoryRepository.findById(categoryId.toString());
         if (!category) {
           return {
             success: false,
@@ -128,27 +149,46 @@ export class OfferService {
             message: "Category is not active",
           };
         }
+      } else {
+        // If categoryId is not provided, use the existing offer's categoryId
+        const existingOffer = await this._offerRepository.findById(offerId);
+        if (!existingOffer) {
+          return {
+            success: false,
+            message: "Offer not found",
+          };
+        }
+        categoryId = existingOffer.categoryId;
       }
 
-      const offer = await this._offerRepository.findById(offerId);
-      if (!offer) {
-        return {
-          success: false,
-          message: "Offer not found",
-        };
-      }
-
-      const updatedOffer = await this._offerRepository.updateOffer(
-        offerId,
-        offerData,
-        { new: true }
-      );
-
+      const updatedOffer = await this._offerRepository.updateOffer(offerId, offerData, { new: true });
       if (!updatedOffer) {
         return {
           success: false,
           message: "Failed to update offer",
         };
+      }
+
+      // Update all courses in the category with the updated offer details
+      const courses = await this._courseRepository.findByCategoryId(categoryId.toString());
+      for (const course of courses) {
+        const originalPrice = course.pricing.amount;
+        const offerPrice = Math.round(originalPrice * (1 - (offerData.discountPercentage || updatedOffer.discountPercentage) / 100));
+        await this._courseRepository.update(
+          { _id: course._id },
+          {
+            offer: {
+              discountPercentage: offerData.discountPercentage || updatedOffer.discountPercentage,
+              offerPrice,
+              expirationDate: offerData.expirationDate || updatedOffer.expirationDate,
+            },
+          }
+        );
+        console.log(`Updated course ${course._id} with offer:`, {
+          discountPercentage: offerData.discountPercentage || updatedOffer.discountPercentage,
+          offerPrice,
+          expirationDate: offerData.expirationDate || updatedOffer.expirationDate,
+        });
       }
 
       return {
@@ -172,6 +212,24 @@ export class OfferService {
           success: false,
           message: "Invalid offer ID",
         };
+      }
+
+      const offer = await this._offerRepository.findById(offerId);
+      if (!offer) {
+        return {
+          success: false,
+          message: "Offer not found or already deleted",
+        };
+      }
+
+      // Remove offer from all courses in the category
+      const courses = await this._courseRepository.findByCategoryId(offer.categoryId.toString());
+      for (const course of courses) {
+        await this._courseRepository.update(
+          { _id: course._id },
+          { $unset: { offer: "" } }
+        );
+        console.log(`Removed offer from course ${course._id}`);
       }
 
       const deleted = await this._offerRepository.deleteOffer(offerId);
