@@ -99,6 +99,12 @@ export interface IPaymentService {
         sort?: { field: string; order: "asc" | "desc" },
         courseFilter?: string
     ): Promise<IResponse>
+    createSubscription(
+        userId: string,
+        plan: "monthly" | "yearly",
+        paymentType: "debit" | "credit"
+    ): Promise<IResponse>;
+    confirmSubscription(subscriptionId: string): Promise<IResponse>;
 }
 
 export interface IEnrollCourseService {

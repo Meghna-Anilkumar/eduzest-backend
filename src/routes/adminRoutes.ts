@@ -20,6 +20,7 @@ import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 import { OfferRepository } from "../repositories/offerRepository";
 import { OfferService } from "../services/offerService";
 import { OfferController } from "../controllers/offerController";
+import { SubscriptionRepository } from "../repositories/subscriptionRepository";
 
 
 const userRepository = new UserRepository();
@@ -31,10 +32,11 @@ const enrollmentRepository = new EnrollmentRepository(redisService);
 const couponRepository = new CouponRepository();
 const couponUsageRepository=new CouponUsageRepository()
 const offerRepository = new OfferRepository();
+const subscriptionRepository=new SubscriptionRepository()
 
 const adminService = new AdminService(adminRepository,courseRepository,paymentRepository);
 const categoryService=new CategoryService(categoryRepository)
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository);
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository,subscriptionRepository);
 const couponService = new CouponService(couponRepository,couponUsageRepository);
 const offerService = new OfferService(offerRepository,categoryRepository,courseRepository);
 

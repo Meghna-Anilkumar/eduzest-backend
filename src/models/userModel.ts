@@ -76,7 +76,7 @@ const userSchema = new Schema<UserDoc>({
       ref: 'Course'
     }],
     profit: {
-      type: Number, 
+      type: Number,
       default: 0
     },
     rating: {
@@ -106,9 +106,9 @@ const userSchema = new Schema<UserDoc>({
     type: Boolean,
     default: false
   },
-  isApproved:{
-    type:Boolean,
-    default:false
+  isApproved: {
+    type: Boolean,
+    default: false
   },
   experience: {
     type: String
@@ -118,7 +118,11 @@ const userSchema = new Schema<UserDoc>({
   },
   refreshTokenExpires: {
     type: String
-  }
-});
+  },
+  stripeCustomerId: { type: String, default: null },
+  subscriptionStatus: { type: String, enum: ["active", "inactive"], default: "inactive" },
+},
+  { timestamps: true }
+);
 
 export const Users = model<UserDoc>('Users', userSchema);

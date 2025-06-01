@@ -16,6 +16,7 @@ import { IChatGroupMetadata } from './IChat';
 import { ICoupon } from '../models/couponModel';
 import { ICouponUsage } from '../models/couponUsageModel';
 import { IOffer } from '../models/offerModel';
+import { ISubscription } from '../models/subscriptionModel';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -224,4 +225,12 @@ export interface IOfferRepository extends IBaseRepository<IOffer> {
   findAllOffers(page?: number, limit?: number): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }>;
   countActiveOffers(categoryId?: string): Promise<number>;
   findByCategoryId(categoryId: string): Promise<IOffer | null>;
+}
+
+
+export interface ISubscriptionRepository {
+  createSubscription(data: Partial<ISubscription>): Promise<ISubscription>;
+  findByUserId(userId: string): Promise<ISubscription | null>;
+  findById(id: string): Promise<ISubscription | null>;
+  updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
 }

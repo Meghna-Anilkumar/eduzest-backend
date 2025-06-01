@@ -86,5 +86,7 @@ export const STUDENT_ROUTES = {
     GET_ASSESSMENT_RESULT: '/assessments/:assessmentId/result',
     GET_ASSESSMENT_BY_ID_FOR_STUDENT: '/assessments/:assessmentId',
     GET_COURSE_PROGRESS: '/courses/:courseId/progress',
-    GET_ASSESSMENTS_BY_COURSE: '/courses/:courseId/assessments'
+    GET_ASSESSMENTS_BY_COURSE: '/courses/:courseId/assessments',
+    CREATE_SUBSCRIPTION:'/subscriptions/create',
+    CONFIRM_SUBSCRIPTION:'/subscriptions/confirm'
 };

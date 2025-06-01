@@ -8,6 +8,7 @@ import { IEnrollmentRepository } from "../interfaces/IRepositories";
 import { Types } from "mongoose";
 import { ICouponRepository } from "../interfaces/IRepositories";
 import { ICouponUsageRepository } from "../interfaces/IRepositories";
+import { ISubscriptionRepository } from "../interfaces/IRepositories";
 
 export class PaymentService implements IPaymentService {
   private stripe: Stripe;
@@ -18,7 +19,8 @@ export class PaymentService implements IPaymentService {
     private courseRepository: ICourseRepository,
     private enrollmentRepository: IEnrollmentRepository,
     private _couponRepository: ICouponRepository,
-    private _couponUsageRepository: ICouponUsageRepository
+    private _couponUsageRepository: ICouponUsageRepository,
+    private _subscriptionRepository:ISubscriptionRepository
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: "2025-02-24.acacia",
@@ -406,6 +408,135 @@ export class PaymentService implements IPaymentService {
     } catch (error) {
       console.error("Error retrieving admin payouts:", error);
       return { success: false, message: "Failed to retrieve admin payouts" };
+    }
+  }
+
+
+  async createSubscription(
+    userId: string,
+    plan: "monthly" | "yearly",
+    paymentType: "debit" | "credit"
+  ): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId)) {
+        return { success: false, message: "Invalid userId" };
+      }
+
+      const user = await this.userRepository.findById(userId);
+      if (!user) {
+        return { success: false, message: "User not found" };
+      }
+
+      const existingSubscription = await this._subscriptionRepository.findByUserId(userId);
+      if (existingSubscription && existingSubscription.status === "active") {
+        return { success: false, message: "User already has an active subscription" };
+      }
+
+      const priceId =
+        plan === "monthly"
+          ? process.env.STRIPE_MONTHLY_PRICE_ID
+          : process.env.STRIPE_YEARLY_PRICE_ID;
+
+      if (!priceId) {
+        return { success: false, message: "Invalid plan configuration" };
+      }
+
+      let customerId = user.stripeCustomerId;
+      if (!customerId) {
+        const customer = await this.stripe.customers.create({
+          email: user.email,
+          name: user.name,
+          metadata: { userId },
+        });
+        customerId = customer.id;
+        await this.userRepository.update(
+          { _id: new Types.ObjectId(userId) },
+          { stripeCustomerId: customerId }
+        );
+      }
+
+      const subscription = await this.stripe.subscriptions.create({
+        customer: customerId,
+        items: [{ price: priceId }],
+        payment_behavior: "default_incomplete",
+        payment_settings: { payment_method_types: ["card"] },
+        expand: ["latest_invoice.payment_intent"],
+      });
+
+      const startDate = new Date();
+      const endDate = new Date(
+        startDate.getTime() + (plan === "monthly" ? 30 : 365) * 24 * 60 * 60 * 1000
+      );
+
+      const newSubscription = await this._subscriptionRepository.createSubscription({
+        userId: new Types.ObjectId(userId),
+        plan,
+        stripeSubscriptionId: subscription.id,
+        status: "pending",
+        startDate,
+        endDate,
+      });
+
+      const paymentIntent = (subscription.latest_invoice as any).payment_intent;
+      if (!paymentIntent || !paymentIntent.client_secret) {
+        return { success: false, message: "Failed to create payment intent for subscription" };
+      }
+
+      return {
+        success: true,
+        message: "Subscription created successfully",
+        data: {
+          clientSecret: paymentIntent.client_secret,
+          subscriptionId: newSubscription._id,
+          stripeSubscriptionId: subscription.id,
+        },
+      };
+    } catch (error: any) {
+      console.error("Error creating subscription:", error.message || error);
+      return { success: false, message: error.message || "Failed to create subscription" };
+    }
+  }
+
+  async confirmSubscription(subscriptionId: string): Promise<IResponse> {
+    try {
+      const subscription = await this._subscriptionRepository.findById(subscriptionId);
+      if (!subscription) {
+        return { success: false, message: "Subscription not found" };
+      }
+
+      const stripeSubscription = await this.stripe.subscriptions.retrieve(
+        subscription.stripeSubscriptionId
+      );
+
+      if (stripeSubscription.status === "active") {
+        await this._subscriptionRepository.updateSubscription(subscriptionId, {
+          status: "active",
+        });
+
+        await this.userRepository.update(
+          { _id: subscription.userId },
+          { subscriptionStatus: "active" }
+        );
+
+        return {
+          success: true,
+          message: "Subscription confirmed successfully",
+          data: { subscription },
+        };
+      } else if (stripeSubscription.status === "incomplete" || stripeSubscription.status === "past_due") {
+        return { success: false, message: "Subscription requires additional action" };
+      } else {
+        await this._subscriptionRepository.updateSubscription(subscriptionId, {
+          status: "canceled",
+        });
+        return { success: false, message: "Subscription payment failed" };
+      }
+    } catch (error: any) {
+      console.error("Error confirming subscription:", error.message || error);
+      await this._subscriptionRepository.updateSubscription(subscriptionId, {
+        status: "canceled",
+      });
+      return { success: false, message: error.message || "Failed to confirm subscription" };
     }
   }
 }

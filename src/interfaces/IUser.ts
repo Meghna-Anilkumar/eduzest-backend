@@ -44,4 +44,6 @@ export interface UserDoc extends Document {
   experience:string;
   refreshToken?: string;
   refreshTokenExpires?: Date;
+  stripeCustomerId?: string;
+  subscriptionStatus?: "active" | "inactive";
 }
