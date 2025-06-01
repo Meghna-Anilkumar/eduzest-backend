@@ -37,16 +37,16 @@ const enrollmentRepository = new EnrollmentRepository(redisService);
 const categoryRepository = new CategoryRepository();
 const assessmentRepository = new AssessmentRepository();
 const reviewRepository = new ReviewRepository();
-const couponRepository=new CouponRepository()
-const couponUsageRepository=new CouponUsageRepository()
-const offerRepository=new OfferRepository()
-const subscriptionRepository=new SubscriptionRepository()
+const couponRepository = new CouponRepository()
+const couponUsageRepository = new CouponUsageRepository()
+const offerRepository = new OfferRepository()
+const subscriptionRepository = new SubscriptionRepository()
 
 
 const userService = new UserService(userRepository, otpRepository);
-const offerService=new OfferService(offerRepository,categoryRepository,courseRepository)
-const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository,subscriptionRepository);
-const courseService = new CourseService(courseRepository, categoryRepository,offerService);
+const offerService = new OfferService(offerRepository, categoryRepository, courseRepository)
+const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository, couponRepository, couponUsageRepository, subscriptionRepository);
+const courseService = new CourseService(courseRepository, categoryRepository, offerService);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
@@ -56,7 +56,7 @@ const userController = new UserController(userService, paymentService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService);
 const reviewController = new ReviewController(reviewService);
 const assessmentController = new AssessmentController(assessmentService);
-const subscriptionController=new SubscriptionController(paymentService)
+const subscriptionController = new SubscriptionController(paymentService)
 
 const studentRouter = Router();
 
@@ -146,9 +146,10 @@ studentRouter.get(
 )
 
 studentRouter.get(STUDENT_ROUTES.GET_COURSE_PROGRESS, authenticateUser("Student"), assessmentController.getCourseProgress.bind(assessmentController));
-studentRouter.get(STUDENT_ROUTES.GET_ASSESSMENTS_BY_COURSE,authenticateUser("Student"),assessmentController.getAllAssessmentsForCourse.bind(assessmentController))
+studentRouter.get(STUDENT_ROUTES.GET_ASSESSMENTS_BY_COURSE, authenticateUser("Student"), assessmentController.getAllAssessmentsForCourse.bind(assessmentController))
 export default studentRouter;
 
 
-studentRouter.post(STUDENT_ROUTES.CREATE_SUBSCRIPTION,authenticateUser("Student"),subscriptionController.createSubscription.bind(subscriptionController))
-studentRouter.post(STUDENT_ROUTES.CONFIRM_SUBSCRIPTION,authenticateUser('Student'),subscriptionController.confirmSubscription.bind(subscriptionController))
+studentRouter.post(STUDENT_ROUTES.CREATE_SUBSCRIPTION, authenticateUser("Student"), subscriptionController.createSubscription.bind(subscriptionController))
+studentRouter.post(STUDENT_ROUTES.CONFIRM_SUBSCRIPTION, authenticateUser('Student'), subscriptionController.confirmSubscription.bind(subscriptionController))
+studentRouter.get(STUDENT_ROUTES.GET_SUBSCRIPTION_STATUS, authenticateUser('Student'), subscriptionController.getSubscriptionStatus.bind(subscriptionController))

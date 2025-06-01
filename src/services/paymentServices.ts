@@ -20,7 +20,7 @@ export class PaymentService implements IPaymentService {
     private enrollmentRepository: IEnrollmentRepository,
     private _couponRepository: ICouponRepository,
     private _couponUsageRepository: ICouponUsageRepository,
-    private _subscriptionRepository:ISubscriptionRepository
+    private _subscriptionRepository: ISubscriptionRepository
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: "2025-02-24.acacia",
@@ -463,10 +463,9 @@ export class PaymentService implements IPaymentService {
         expand: ["latest_invoice.payment_intent"],
       });
 
-      const startDate = new Date();
-      const endDate = new Date(
-        startDate.getTime() + (plan === "monthly" ? 30 : 365) * 24 * 60 * 60 * 1000
-      );
+      // Use Stripe's current_period_start and current_period_end for accurate dates
+      const startDate = new Date(subscription.current_period_start * 1000);
+      const endDate = new Date(subscription.current_period_end * 1000);
 
       const newSubscription = await this._subscriptionRepository.createSubscription({
         userId: new Types.ObjectId(userId),
@@ -482,6 +481,13 @@ export class PaymentService implements IPaymentService {
         return { success: false, message: "Failed to create payment intent for subscription" };
       }
 
+      console.log("Created subscription:", {
+        subscriptionId: newSubscription._id,
+        startDate: newSubscription.startDate,
+        endDate: newSubscription.endDate,
+        plan: newSubscription.plan,
+      });
+
       return {
         success: true,
         message: "Subscription created successfully",
@@ -493,7 +499,7 @@ export class PaymentService implements IPaymentService {
       };
     } catch (error: any) {
       console.error("Error creating subscription:", error.message || error);
-      return { success: false, message: error.message || "Failed to create subscription" };
+      return { success: false, message: "Failed to create subscription" };
     }
   }
 
@@ -509,14 +515,24 @@ export class PaymentService implements IPaymentService {
       );
 
       if (stripeSubscription.status === "active") {
+        // Update endDate with Stripe's current_period_end
+        const endDate = new Date(stripeSubscription.current_period_end * 1000);
         await this._subscriptionRepository.updateSubscription(subscriptionId, {
           status: "active",
+          endDate,
         });
 
         await this.userRepository.update(
           { _id: subscription.userId },
           { subscriptionStatus: "active" }
         );
+
+        // Log the updated subscription
+        console.log("Confirmed subscription:", {
+          subscriptionId,
+          status: "active",
+          endDate,
+        });
 
         return {
           success: true,
@@ -536,7 +552,88 @@ export class PaymentService implements IPaymentService {
       await this._subscriptionRepository.updateSubscription(subscriptionId, {
         status: "canceled",
       });
-      return { success: false, message: error.message || "Failed to confirm subscription" };
+      return { success: false, message: "Failed to confirm subscription" };
+    }
+  }
+
+
+  async getSubscriptionStatus(userId: string): Promise<IResponse> {
+    try {
+      if (!Types.ObjectId.isValid(userId)) {
+        return { success: false, message: "Invalid userId" };
+      }
+
+      const subscription = await this._subscriptionRepository.findByUserId(userId);
+      if (!subscription) {
+        return {
+          success: true,
+          message: "No subscription found",
+          data: { hasActiveSubscription: false },
+        };
+      }
+
+      // Log the subscription details for debugging
+      console.log("Subscription details from DB:", {
+        subscriptionId: subscription._id,
+        status: subscription.status,
+        startDate: subscription.startDate,
+        endDate: subscription.endDate,
+        plan: subscription.plan,
+        stripeSubscriptionId: subscription.stripeSubscriptionId,
+      });
+
+      // Check Stripe subscription status
+      const stripeSubscription = await this.stripe.subscriptions.retrieve(
+        subscription.stripeSubscriptionId
+      );
+
+      console.log("Stripe subscription status:", {
+        stripeSubscriptionId: stripeSubscription.id,
+        status: stripeSubscription.status,
+        currentPeriodEnd: new Date(stripeSubscription.current_period_end * 1000),
+      });
+
+      if (stripeSubscription.status === "active") {
+        // Update the database with the latest period end from Stripe
+        const periodEnd = new Date(stripeSubscription.current_period_end * 1000);
+        await this._subscriptionRepository.updateSubscription(subscription._id.toString(), {
+          status: "active",
+          endDate: periodEnd,
+        });
+        await this.userRepository.update(
+          { _id: userId },
+          { subscriptionStatus: "active" }
+        );
+        return {
+          success: true,
+          message: "Active subscription found",
+          data: { hasActiveSubscription: true, plan: subscription.plan },
+        };
+      } else {
+        let newStatus: "canceled" | "expired" | "past_due" = "canceled";
+        if (stripeSubscription.status === "past_due") {
+          newStatus = "past_due";
+        } else if (new Date(subscription.endDate) <= new Date()) {
+          newStatus = "expired";
+        }
+
+        await this._subscriptionRepository.updateSubscription(subscription._id.toString(), {
+          status: newStatus,
+          endDate: newStatus === "past_due" ? subscription.endDate : new Date(),
+        });
+        await this.userRepository.update(
+          { _id: userId },
+          { subscriptionStatus: "inactive" }
+        );
+        return {
+          success: true,
+          message: "No active subscription",
+          data: { hasActiveSubscription: false },
+        };
+      }
+    } catch (error: any) {
+      console.error("Error checking subscription status:", error.message || error);
+      return { success: false, message: "Failed to check subscription status" };
     }
   }
 }

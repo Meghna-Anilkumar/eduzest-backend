@@ -88,5 +88,6 @@ export const STUDENT_ROUTES = {
     GET_COURSE_PROGRESS: '/courses/:courseId/progress',
     GET_ASSESSMENTS_BY_COURSE: '/courses/:courseId/assessments',
     CREATE_SUBSCRIPTION:'/subscriptions/create',
-    CONFIRM_SUBSCRIPTION:'/subscriptions/confirm'
+    CONFIRM_SUBSCRIPTION:'/subscriptions/confirm',
+    GET_SUBSCRIPTION_STATUS:'/subscriptions/status'
 };

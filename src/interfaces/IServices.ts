@@ -105,6 +105,7 @@ export interface IPaymentService {
         paymentType: "debit" | "credit"
     ): Promise<IResponse>;
     confirmSubscription(subscriptionId: string): Promise<IResponse>;
+    getSubscriptionStatus(userId: string): Promise<IResponse>;
 }
 
 export interface IEnrollCourseService {
