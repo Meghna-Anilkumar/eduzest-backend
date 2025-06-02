@@ -9,7 +9,7 @@ import { IAssessment } from "./IAssessments";
 import { CourseStats } from "./ICourseStats";
 import { ICoupon } from "../models/couponModel";
 import { IOffer } from '../models/offerModel';
-
+import { IExam } from "./IExam";
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -220,4 +220,23 @@ export interface IOfferService {
     getAllOffers(page?: number, limit?: number): Promise<IResponse>;
     getActiveOffers(categoryId?: string): Promise<IResponse>;
     checkOfferUsage(userId: string, offerId: string): Promise<IResponse>;
+}
+
+
+export interface IExamService {
+    createExam(courseId: string, instructorId: string, examData: Partial<IExam>): Promise<IResponse>;
+    getExamsByCourse(courseId: string, instructorId: string, page: number, limit: number): Promise<IResponse>;
+    getExamById(examId: string, instructorId: string): Promise<IResponse>;
+    updateExam(examId: string, instructorId: string, updateData: Partial<IExam>): Promise<IResponse>;
+    deleteExam(examId: string, instructorId: string): Promise<IResponse>;
+    getExamsForStudent(courseId: string, studentId: string, page: number, limit: number): Promise<IResponse>;
+    startExam(examId: string, studentId: string): Promise<IResponse>;
+    submitExam(
+        examId: string,
+        studentId: string,
+        answers: { questionId: string; selectedAnswerIndex: number }[],
+        isAutoSubmit?: boolean
+    ): Promise<IResponse>;
+    getExamResult(examId: string, studentId: string): Promise<IResponse>;
+    getExamByIdForStudent(examId: string, studentId: string): Promise<IResponse>;
 }

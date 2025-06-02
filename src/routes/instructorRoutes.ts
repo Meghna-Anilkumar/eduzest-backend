@@ -10,7 +10,7 @@ import EnrollCourseService from "../services/enrollmentServices";
 import { EnrollmentRepository } from "../repositories/enrollmentRepository";
 import { UserService } from "../services/userServices";
 import UserRepository from "../repositories/userRepository";
-import { redisService } from "../services/redisService";
+import { RedisService, redisService } from "../services/redisService";
 import UserController from "../controllers/userController";
 import OtpRepository from "../repositories/otpRepository";
 import PaymentRepository from "../repositories/paymentRepository";
@@ -24,6 +24,10 @@ import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 import { OfferService } from "../services/offerService";
 import { OfferRepository } from "../repositories/offerRepository";
 import { SubscriptionRepository } from "../repositories/subscriptionRepository";
+import {ExamController} from "../controllers/examController"; 
+import { ExamService } from "../services/examService"; 
+import { ExamRepository } from "../repositories/examRepository"; 
+
 
 // Instantiate repositories
 const userRepository = new UserRepository();
@@ -37,6 +41,7 @@ const couponRepository=new CouponRepository()
 const couponUsageRepository=new CouponUsageRepository()
 const offerRepository=new OfferRepository()
 const subscriptionRepository=new SubscriptionRepository()
+const examRepository=new ExamRepository(redisService)
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
@@ -45,12 +50,14 @@ const paymentService = new PaymentService(paymentRepository, userRepository, cou
 const courseService = new CourseService(courseRepository, categoryRepository,offerService);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
+const examService = new ExamService(examRepository,enrollmentRepository,redisService);
 
 // Instantiate controllers
 const courseController = new CourseController(courseService, enrollCourseService);
 const userController = new UserController(userService, paymentService);
 const assessmentController = new AssessmentController(assessmentService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService)
+const examController = new ExamController(examService);
 
 // Create instructor router
 const instructorRouter = Router();
@@ -116,5 +123,30 @@ instructorRouter.get(
     authenticateUser("Instructor"),
     enrollCourseController.getInstructorCourseStats.bind(enrollCourseController)
 );
+
+instructorRouter.post(
+  INSTRUCTOR_ROUTES.CREATE_EXAM,
+  authenticateUser("Instructor"),
+  examController.createExam.bind(examController)
+);
+
+instructorRouter.get(
+  INSTRUCTOR_ROUTES.GET_EXAMS_BY_COURSE,
+  authenticateUser("Instructor"),
+  examController.getExamsByCourse.bind(examController)
+);
+
+instructorRouter.put(
+  INSTRUCTOR_ROUTES.EDIT_EXAM,
+  authenticateUser("Instructor"),
+  examController.updateExam.bind(examController)
+);
+
+instructorRouter.delete(
+  INSTRUCTOR_ROUTES.DELETE_EXAM,
+  authenticateUser("Instructor"),
+  examController.deleteExam.bind(examController)
+);
+
 
 export default instructorRouter;

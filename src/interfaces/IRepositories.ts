@@ -17,6 +17,7 @@ import { ICoupon } from '../models/couponModel';
 import { ICouponUsage } from '../models/couponUsageModel';
 import { IOffer } from '../models/offerModel';
 import { ISubscription } from '../models/subscriptionModel';
+import { IExam,IExamResult } from './IExam';
 
 
 export interface IBaseRepository<T extends Document> {
@@ -233,4 +234,23 @@ export interface ISubscriptionRepository {
   findByUserId(userId: string): Promise<ISubscription | null>;
   findById(id: string): Promise<ISubscription | null>;
   updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
+}
+
+
+export interface IExamRepository {
+  createExam(examData: Partial<IExam>): Promise<IExam>;
+  findByCourse(courseId: string, page: number, limit: number): Promise<IExam[]>;
+  countByCourse(courseId: string): Promise<number>;
+  findByIdAndInstructor(examId: string, instructorId: string): Promise<IExam | null>;
+  updateExam(examId: string, instructorId: string, updateData: Partial<IExam>): Promise<IExam | null>;
+  deleteExam(examId: string, instructorId: string): Promise<boolean>;
+  getCourseIdsByInstructor(instructorId: string): Promise<Types.ObjectId[]>;
+  findById(examId: string): Promise<IExam | null>;
+  createOrUpdateResult(resultData: Partial<IExamResult>): Promise<IExamResult>;
+  findResultByExamAndStudent(examId: string, studentId: string): Promise<IExamResult | null>;
+  startExam(examId: string, studentId: string): Promise<string>;
+  getExamStartTime(examId: string, studentId: string): Promise<string | null>;
+  findCourseById(courseId: string): Promise<ICourse | null>;
+  countTotalAssessments(courseId: string): Promise<number>;
+  countPassedAssessments(courseId: string, studentId: string): Promise<number>;
 }

@@ -152,4 +152,4 @@ export default studentRouter;
 
 studentRouter.post(STUDENT_ROUTES.CREATE_SUBSCRIPTION, authenticateUser("Student"), subscriptionController.createSubscription.bind(subscriptionController))
 studentRouter.post(STUDENT_ROUTES.CONFIRM_SUBSCRIPTION, authenticateUser('Student'), subscriptionController.confirmSubscription.bind(subscriptionController))
-studentRouter.get(STUDENT_ROUTES.GET_SUBSCRIPTION_STATUS, authenticateUser('Student'), subscriptionController.getSubscriptionStatus.bind(subscriptionController))
+studentRouter.get(STUDENT_ROUTES.GET_SUBSCRIPTION_STATUS, authenticateUser(), subscriptionController.getSubscriptionStatus.bind(subscriptionController))

@@ -9,8 +9,6 @@ export class SubscriptionController {
     try {
       const { userId, plan, paymentType } = req.body;
 
-      console.log("Received subscription request:", { userId, plan, paymentType });
-
       if (!userId || !Types.ObjectId.isValid(userId)) {
         res.status(400).json({ success: false, message: "Invalid or missing userId" });
         return;

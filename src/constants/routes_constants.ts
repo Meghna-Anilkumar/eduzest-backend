@@ -23,8 +23,8 @@ export const USER_ROUTES = {
     SEND_MESSAGE: '/:courseId/messages',
     GET_ALL_MESSAGES: '/:courseId/messages',
     GET_CHAT_GROUP_METADATA: '/metadata',
-    GET_ACTIVE_COUPONS:'/activeCoupons',
-    CHECK_COUPON_USAGE:'/check-coupon-usage'
+    GET_ACTIVE_COUPONS: '/activeCoupons',
+    CHECK_COUPON_USAGE: '/check-coupon-usage'
 }
 
 
@@ -65,7 +65,11 @@ export const INSTRUCTOR_ROUTES = {
     GET_ASSESSMENTS: '/courses/:courseId/modules/:moduleTitle/assessments',
     EDIT_ASSESSMENT: '/assessments/:assessmentId',
     DELETE_ASSESSMENT: '/assessments/:assessmentId',
-    GET_COURSE_STATS: '/course-stats'
+    GET_COURSE_STATS: '/course-stats',
+    CREATE_EXAM: "/courses/:courseId/exams",
+    GET_EXAMS_BY_COURSE: "/courses/:courseId/exams",
+    EDIT_EXAM: "/exams/:examId",
+    DELETE_EXAM: "/exams/:examId",
 }
 
 
@@ -87,7 +91,7 @@ export const STUDENT_ROUTES = {
     GET_ASSESSMENT_BY_ID_FOR_STUDENT: '/assessments/:assessmentId',
     GET_COURSE_PROGRESS: '/courses/:courseId/progress',
     GET_ASSESSMENTS_BY_COURSE: '/courses/:courseId/assessments',
-    CREATE_SUBSCRIPTION:'/subscriptions/create',
-    CONFIRM_SUBSCRIPTION:'/subscriptions/confirm',
-    GET_SUBSCRIPTION_STATUS:'/subscriptions/status'
+    CREATE_SUBSCRIPTION: '/subscriptions/create',
+    CONFIRM_SUBSCRIPTION: '/subscriptions/confirm',
+    GET_SUBSCRIPTION_STATUS: '/subscriptions/status'
 };
