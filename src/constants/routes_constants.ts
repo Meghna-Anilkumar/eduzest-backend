@@ -93,5 +93,11 @@ export const STUDENT_ROUTES = {
     GET_ASSESSMENTS_BY_COURSE: '/courses/:courseId/assessments',
     CREATE_SUBSCRIPTION: '/subscriptions/create',
     CONFIRM_SUBSCRIPTION: '/subscriptions/confirm',
-    GET_SUBSCRIPTION_STATUS: '/subscriptions/status'
+    GET_SUBSCRIPTION_STATUS: '/subscriptions/status',
+    GET_EXAMS_FOR_STUDENT: "/courses/:courseId/exams",
+    GET_EXAM_BY_ID_FOR_STUDENT: "/exams/:examId",
+    START_EXAM: "/exams/:examId/start",
+    SUBMIT_EXAM: "/exams/:examId/submit",
+    GET_EXAM_RESULT: "/exams/:examId/result",
+    GET_EXAM_PROGRESS:'/exams/:examId/progress'
 };

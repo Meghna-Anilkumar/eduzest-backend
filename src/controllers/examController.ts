@@ -6,7 +6,7 @@ import { Types } from 'mongoose';
 import { MESSAGE_CONSTANTS } from '../constants/message_constants';
 
 export class ExamController {
-  constructor(private _examService: IExamService) {}
+  constructor(private _examService: IExamService) { }
 
   async createExam(req: AuthRequest, res: Response): Promise<void> {
     try {
@@ -203,36 +203,37 @@ export class ExamController {
     }
   }
 
-  async startExam(req: AuthRequest, res: Response): Promise<void> {
-    try {
-      const studentId = req.user?.id;
-      if (!studentId) {
-        res.status(Status.UN_AUTHORISED).json({
-          success: false,
-          message: MESSAGE_CONSTANTS.UNAUTHORIZED,
-        });
-        return;
-      }
-
-      const { examId } = req.params;
-      if (!examId || !Types.ObjectId.isValid(examId)) {
-        res.status(Status.BAD_REQUEST).json({
-          success: false,
-          message: 'Valid Exam ID is required.',
-        });
-        return;
-      }
-
-      const response = await this._examService.startExam(examId, studentId);
-      res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
-    } catch (error) {
-      console.error('Error in startExam controller:', error);
-      res.status(Status.INTERNAL_SERVER_ERROR).json({
+async startExam(req: AuthRequest, res: Response): Promise<void> {
+  try {
+    const studentId = req.user?.id;
+    if (!studentId) {
+      res.status(Status.UN_AUTHORISED).json({
         success: false,
-        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+        message: MESSAGE_CONSTANTS.UNAUTHORIZED,
       });
+      return;
     }
+
+    const { examId } = req.params;
+    if (!examId || !Types.ObjectId.isValid(examId)) {
+      res.status(Status.BAD_REQUEST).json({
+        success: false,
+        message: 'Valid Exam ID is required.',
+      });
+      return;
+    }
+
+    console.log('[ExamController] Starting exam:', { examId, studentId }); // Debug log
+    const response = await this._examService.startExam(examId, studentId);
+    res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
+  } catch (error) {
+    console.error('Error in startExam controller:', error);
+    res.status(Status.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+    });
   }
+}
 
   async submitExam(req: AuthRequest, res: Response): Promise<void> {
     try {
@@ -329,6 +330,38 @@ export class ExamController {
       res.status(response.success ? Status.OK : Status.NOT_FOUND).json(response);
     } catch (error) {
       console.error('Error in getExamByIdForStudent controller:', error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+
+  async getExamProgress(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const studentId = req.user?.id;
+      if (!studentId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED,
+        });
+        return;
+      }
+
+      const { examId } = req.params;
+      if (!examId || !Types.ObjectId.isValid(examId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: 'Valid Exam ID is required.',
+        });
+        return;
+      }
+
+      const response = await this._examService.getExamProgress(examId, studentId);
+      res.status(response.success ? Status.OK : Status.NOT_FOUND).json(response);
+    } catch (error) {
+      console.error('Error in getExamProgress controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,

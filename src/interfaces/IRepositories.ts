@@ -253,4 +253,5 @@ export interface IExamRepository {
   findCourseById(courseId: string): Promise<ICourse | null>;
   countTotalAssessments(courseId: string): Promise<number>;
   countPassedAssessments(courseId: string, studentId: string): Promise<number>;
+
 }

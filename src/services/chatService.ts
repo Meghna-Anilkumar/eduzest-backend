@@ -101,7 +101,6 @@ export class ChatService implements IChatService {
   async getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IResponse> {
     try {
       const metadata = await this._chatRepository.getChatGroupMetadata(userId, courseIds);
-      console.log('ChatService.getChatGroupMetadata retrieved metadata:', JSON.stringify(metadata, null, 2));
       return {
         success: true,
         message: 'Chat group metadata retrieved successfully',

@@ -27,6 +27,9 @@ import { OfferService } from "../services/offerService";
 import { OfferRepository } from "../repositories/offerRepository";
 import { SubscriptionRepository } from "../repositories/subscriptionRepository";
 import { SubscriptionController } from "../controllers/subscriptionController";
+import {ExamController} from "../controllers/examController"; // Add ExamController
+import { ExamRepository } from "../repositories/examRepository"; // Add ExamRepository
+import { ExamService } from "../services/examService"; // Add ExamService
 
 
 const userRepository = new UserRepository();
@@ -41,6 +44,7 @@ const couponRepository = new CouponRepository()
 const couponUsageRepository = new CouponUsageRepository()
 const offerRepository = new OfferRepository()
 const subscriptionRepository = new SubscriptionRepository()
+const examRepository = new ExamRepository(redisService);
 
 
 const userService = new UserService(userRepository, otpRepository);
@@ -50,6 +54,7 @@ const courseService = new CourseService(courseRepository, categoryRepository, of
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
+const examService = new ExamService(examRepository, enrollmentRepository, redisService); // Add ExamService
 
 
 const userController = new UserController(userService, paymentService);
@@ -57,6 +62,7 @@ const enrollCourseController = new EnrollCourseController(enrollCourseService);
 const reviewController = new ReviewController(reviewService);
 const assessmentController = new AssessmentController(assessmentService);
 const subscriptionController = new SubscriptionController(paymentService)
+const examController = new ExamController(examService);
 
 const studentRouter = Router();
 
@@ -153,3 +159,32 @@ export default studentRouter;
 studentRouter.post(STUDENT_ROUTES.CREATE_SUBSCRIPTION, authenticateUser("Student"), subscriptionController.createSubscription.bind(subscriptionController))
 studentRouter.post(STUDENT_ROUTES.CONFIRM_SUBSCRIPTION, authenticateUser('Student'), subscriptionController.confirmSubscription.bind(subscriptionController))
 studentRouter.get(STUDENT_ROUTES.GET_SUBSCRIPTION_STATUS, authenticateUser(), subscriptionController.getSubscriptionStatus.bind(subscriptionController))
+
+
+studentRouter.get(
+  STUDENT_ROUTES.GET_EXAMS_FOR_STUDENT,
+  authenticateUser("Student"),
+  examController.getExamsForStudent.bind(examController)
+);
+studentRouter.get(
+  STUDENT_ROUTES.GET_EXAM_BY_ID_FOR_STUDENT,
+  authenticateUser("Student"),
+  examController.getExamByIdForStudent.bind(examController)
+);
+studentRouter.post(
+  STUDENT_ROUTES.START_EXAM,
+  authenticateUser("Student"),
+  examController.startExam.bind(examController)
+);
+studentRouter.post(
+  STUDENT_ROUTES.SUBMIT_EXAM,
+  authenticateUser("Student"),
+  examController.submitExam.bind(examController)
+);
+studentRouter.get(
+  STUDENT_ROUTES.GET_EXAM_RESULT,
+  authenticateUser("Student"),
+  examController.getExamResult.bind(examController)
+);
+
+studentRouter.get(STUDENT_ROUTES.GET_EXAM_PROGRESS,authenticateUser("Student"),examController.getExamProgress.bind(examController))

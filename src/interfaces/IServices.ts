@@ -239,4 +239,5 @@ export interface IExamService {
     ): Promise<IResponse>;
     getExamResult(examId: string, studentId: string): Promise<IResponse>;
     getExamByIdForStudent(examId: string, studentId: string): Promise<IResponse>;
+    getExamProgress(examId: string, studentId: string): Promise<IResponse> 
 }

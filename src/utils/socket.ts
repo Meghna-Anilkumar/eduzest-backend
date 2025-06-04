@@ -25,7 +25,7 @@ interface Participant {
   name: string;
   role: 'instructor' | 'student';
   profilePic?: string | null;
-  isChatBlocked: boolean; 
+  isChatBlocked: boolean;
 }
 
 export const initializeSocket = (server: HttpServer): Server => {
@@ -58,10 +58,10 @@ export const initializeSocket = (server: HttpServer): Server => {
         const user = await userRepository.findById(userId);
         return user
           ? {
-            userId,
-            name: user.name,
-            role: user.role as 'Student' | 'Instructor' | 'Admin',
-          }
+              userId,
+              name: user.name,
+              role: user.role as 'Student' | 'Instructor' | 'Admin',
+            }
           : null;
       })
     );
@@ -222,7 +222,7 @@ export const initializeSocket = (server: HttpServer): Server => {
           const userIds = [
             course.instructorRef.toString(),
             ...enrollments
-              .filter((e) => !e.isChatBlocked) 
+              .filter((e) => !e.isChatBlocked)
               .map((e) => e.userId.toString())
           ];
           await emitChatGroupMetadataUpdate(data.courseId, userIds);
@@ -295,7 +295,6 @@ export const initializeSocket = (server: HttpServer): Server => {
       socket.emit('participants', { success: true, data: participants });
     });
 
-
     socket.on('blockFromChat', async (data: { courseId: string; userId: string }) => {
       console.log('[Socket] BlockFromChat event received:', data);
       if (!socket.userId || !Types.ObjectId.isValid(data.courseId) || !Types.ObjectId.isValid(data.userId)) {
@@ -338,7 +337,6 @@ export const initializeSocket = (server: HttpServer): Server => {
       await enrollmentRepository.blockFromChat(data.userId, data.courseId);
       console.log('[Socket] User blocked from chat:', data.userId);
 
-
       const sockets = await io.in(data.courseId).fetchSockets() as RemoteSocket<any, any>[];
       const targetSocket = sockets.find(
         (s) => (s as unknown as AuthenticatedSocket).userId === data.userId
@@ -352,7 +350,6 @@ export const initializeSocket = (server: HttpServer): Server => {
       await updateOnlineUsers(data.courseId);
       socket.emit('blockFromChatResult', { success: true, message: 'User blocked from chat' });
     });
-
 
     socket.on('unblockFromChat', async (data: { courseId: string; userId: string }) => {
       console.log('[Socket] UnblockFromChat event received:', data);

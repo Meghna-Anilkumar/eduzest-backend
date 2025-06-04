@@ -8,7 +8,7 @@ import adminRouter from "./routes/adminRoutes";
 import instructorRouter from "./routes/instructorRoutes";
 import cookieParser from "cookie-parser";
 import studentRouter from "./routes/studentRoutes";
-import { initializeSocket } from "./utils/socket";
+import { initializeSocketServer } from "./utils/socketInitializer"; 
 import { createServer } from "http";
 
 dotenv.config();
@@ -17,8 +17,7 @@ const app = express();
 const httpServer = createServer(app);
 
 console.log('[App] Initializing Socket.IO');
-initializeSocket(httpServer);
-
+initializeSocketServer(httpServer); 
 
 app.use(morgan('tiny'));
 app.use(express.json());
@@ -34,13 +33,10 @@ app.use(
   })
 );
 
-
-
 app.use("/", userRouter);
 app.use("/admin", adminRouter);
 app.use("/instructor", instructorRouter);
 app.use("/student", studentRouter);
-
 
 app.all("*", (req: Request, res: Response) => {
   console.log('[App] Catch-all route hit:', req.originalUrl);

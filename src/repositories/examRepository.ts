@@ -4,6 +4,8 @@ import { ICourse } from '../interfaces/ICourse';
 import { BaseRepository } from './baseRepository';
 import { Exam, ExamResult } from '../models/examModel';
 import { RedisService } from '../services/redisService';
+import { Assessment } from "../models/assessmentModel";
+import { AssessmentResult } from "../models/assessmentResultModel";
 
 export class ExamRepository extends BaseRepository<IExam> {
   private _resultModel: typeof ExamResult;
@@ -80,15 +82,18 @@ export class ExamRepository extends BaseRepository<IExam> {
   }
 
   async createOrUpdateResult(resultData: Partial<IExamResult>): Promise<IExamResult> {
+    console.log('[ExamRepository] Creating or updating result:', resultData);
     const existingResult = await this._resultModel.findOne({
       examId: resultData.examId,
       studentId: resultData.studentId,
     });
+    console.log('[ExamRepository] Existing result:', existingResult);
 
     if (existingResult) {
       const updatedAttempts = [...existingResult.attempts, resultData.attempts![0]];
       const hasPassed = updatedAttempts.some(attempt => attempt.passed);
       const bestScore = Math.max(...updatedAttempts.map(attempt => attempt.score));
+      console.log('[ExamRepository] Updating result with new attempt:', { updatedAttempts, hasPassed, bestScore });
 
       const updatedResult = await this._resultModel
         .findByIdAndUpdate(
@@ -107,8 +112,10 @@ export class ExamRepository extends BaseRepository<IExam> {
         .exec();
 
       if (!updatedResult) {
+        console.error('[ExamRepository] Failed to update result:', existingResult._id);
         throw new Error("Failed to update exam result");
       }
+      console.log('[ExamRepository] Updated result:', updatedResult);
       return updatedResult;
     }
 
@@ -118,7 +125,10 @@ export class ExamRepository extends BaseRepository<IExam> {
       earnedPoints: resultData.attempts![0].score,
       status: resultData.attempts![0].passed ? 'passed' : 'failed',
     };
-    return this._resultModel.create(newResultData);
+    console.log('[ExamRepository] Creating new result:', newResultData);
+    const newResult = await this._resultModel.create(newResultData);
+    console.log('[ExamRepository] Created new result:', newResult);
+    return newResult;
   }
 
   async findResultByExamAndStudent(examId: string, studentId: string): Promise<IExamResult | null> {
@@ -141,24 +151,45 @@ export class ExamRepository extends BaseRepository<IExam> {
     return this._redisService.get(`exam:${examId}:${studentId}:startTime`);
   }
 
-  // NEW METHODS TO IMPLEMENT IExamRepository INTERFACE
   async findCourseById(courseId: string): Promise<ICourse | null> {
     return this._model.db.model('Courses').findById(courseId).exec();
   }
 
   async countTotalAssessments(courseId: string): Promise<number> {
-    // Count all assessments for a specific course
-    return this._model.db.model('Assessments').countDocuments({ 
-      courseId: new Types.ObjectId(courseId) 
-    }).exec();
+    return Assessment.countDocuments({ courseId: new Types.ObjectId(courseId) }).exec();
   }
 
   async countPassedAssessments(courseId: string, studentId: string): Promise<number> {
-    // Count assessments that a student has passed for a specific course
-    return this._model.db.model('AssessmentResults').countDocuments({
+    return AssessmentResult.countDocuments({
       courseId: new Types.ObjectId(courseId),
       studentId: new Types.ObjectId(studentId),
-      status: 'passed'
+      status: "passed",
     }).exec();
+  }
+
+  async findByCourseAndModule(
+    courseId: string,
+    moduleTitle: string,
+    page: number,
+    limit: number
+  ): Promise<IExam[]> {
+    return this._model
+      .find({
+        courseId: new Types.ObjectId(courseId),
+        moduleTitle, // Filter by moduleTitle
+      })
+      .sort({ updatedAt: "desc" })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+  }
+
+  async countByCourseAndModule(courseId: string, moduleTitle: string): Promise<number> {
+    return this._model
+      .countDocuments({
+        courseId: new Types.ObjectId(courseId),
+        moduleTitle,
+      })
+      .exec();
   }
 }
