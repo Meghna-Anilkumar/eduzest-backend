@@ -10,6 +10,7 @@ import { CourseStats } from "./ICourseStats";
 import { ICoupon } from "../models/couponModel";
 import { IOffer } from '../models/offerModel';
 import { IExam } from "./IExam";
+import { Server } from 'socket.io';
 
 export interface IUserService {
     signupUser(data: Partial<UserDoc> & { confirmPassword?: string }): Promise<IResponse>;
@@ -240,4 +241,26 @@ export interface IExamService {
     getExamResult(examId: string, studentId: string): Promise<IResponse>;
     getExamByIdForStudent(examId: string, studentId: string): Promise<IResponse>;
     getExamProgress(examId: string, studentId: string): Promise<IResponse> 
+}
+
+
+
+export interface INotificationService {
+  createNotification(
+    userId: string,
+    courseId: string,
+    type: 'new_assessment' | 'assessment_updated' | 'course_update',
+    message: string,
+    metadata?: Record<string, any>
+  ): Promise<IResponse>;
+  notifyEnrolledStudents(
+    courseId: string,
+    type: 'new_assessment' | 'assessment_updated' | 'course_update',
+    message: string,
+    metadata?: Record<string, any>
+  ): Promise<IResponse>;
+  getNotifications(userId: string, page: number, limit: number): Promise<IResponse>;
+  getUnreadCount(userId: string): Promise<number>;
+  markAsRead(notificationId: string, userId: string): Promise<IResponse>;
+  markAllAsRead(userId: string): Promise<IResponse>;
 }

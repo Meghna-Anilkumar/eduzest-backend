@@ -1,4 +1,4 @@
-import { Document, UpdateQuery, FilterQuery, QueryOptions} from 'mongoose';
+import { Document, UpdateQuery, FilterQuery, QueryOptions } from 'mongoose';
 import { UserDoc } from './IUser';
 import { AdminDoc } from './IAdmin';
 import { OtpDoc } from './IOtp';
@@ -17,8 +17,8 @@ import { ICoupon } from '../models/couponModel';
 import { ICouponUsage } from '../models/couponUsageModel';
 import { IOffer } from '../models/offerModel';
 import { ISubscription } from '../models/subscriptionModel';
-import { IExam,IExamResult } from './IExam';
-
+import { IExam, IExamResult } from './IExam';
+import { INotification } from "../models/notificationModel"
 
 export interface IBaseRepository<T extends Document> {
     findAll(filter: Record<string, unknown>, skip: number, sort: any, limit?: number): Promise<T[]>;
@@ -201,57 +201,75 @@ export interface IChatRepository extends IBaseRepository<IChat> {
 
 
 export interface ICouponRepository extends IBaseRepository<ICoupon> {
-  findByCode(code: string): Promise<ICoupon | null>;
-  findActiveCoupons(): Promise<ICoupon[]>;
-  findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
-  countActiveCoupons(): Promise<number>;
-  createCoupon(couponData: Partial<ICoupon>): Promise<ICoupon>;
-  updateCoupon(couponId: string, couponData: Partial<ICoupon>, options?: any): Promise<ICoupon | null>;
-  deleteCoupon(couponId: string): Promise<boolean>;
-  findCouponById(couponId: string): Promise<ICoupon | null>;
+    findByCode(code: string): Promise<ICoupon | null>;
+    findActiveCoupons(): Promise<ICoupon[]>;
+    findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
+    countActiveCoupons(): Promise<number>;
+    createCoupon(couponData: Partial<ICoupon>): Promise<ICoupon>;
+    updateCoupon(couponId: string, couponData: Partial<ICoupon>, options?: any): Promise<ICoupon | null>;
+    deleteCoupon(couponId: string): Promise<boolean>;
+    findCouponById(couponId: string): Promise<ICoupon | null>;
 }
 
 
 export interface ICouponUsageRepository {
-  hasUserUsedCoupon(userId: string, couponId: string): Promise<boolean>;
-  recordCouponUsage(userId: string, couponId: string, courseId: string): Promise<ICouponUsage>;
+    hasUserUsedCoupon(userId: string, couponId: string): Promise<boolean>;
+    recordCouponUsage(userId: string, couponId: string, courseId: string): Promise<ICouponUsage>;
 }
 
 
 export interface IOfferRepository extends IBaseRepository<IOffer> {
-  createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
-  updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
-  deleteOffer(offerId: string): Promise<boolean>;
-  findActiveOffers(categoryId?: string): Promise<IOffer[]>;
-  findAllOffers(page?: number, limit?: number): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }>;
-  countActiveOffers(categoryId?: string): Promise<number>;
-  findByCategoryId(categoryId: string): Promise<IOffer | null>;
+    createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
+    updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
+    deleteOffer(offerId: string): Promise<boolean>;
+    findActiveOffers(categoryId?: string): Promise<IOffer[]>;
+    findAllOffers(page?: number, limit?: number): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }>;
+    countActiveOffers(categoryId?: string): Promise<number>;
+    findByCategoryId(categoryId: string): Promise<IOffer | null>;
 }
 
 
 export interface ISubscriptionRepository {
-  createSubscription(data: Partial<ISubscription>): Promise<ISubscription>;
-  findByUserId(userId: string): Promise<ISubscription | null>;
-  findById(id: string): Promise<ISubscription | null>;
-  updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
+    createSubscription(data: Partial<ISubscription>): Promise<ISubscription>;
+    findByUserId(userId: string): Promise<ISubscription | null>;
+    findById(id: string): Promise<ISubscription | null>;
+    updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
 }
 
 
 export interface IExamRepository {
-  createExam(examData: Partial<IExam>): Promise<IExam>;
-  findByCourse(courseId: string, page: number, limit: number): Promise<IExam[]>;
-  countByCourse(courseId: string): Promise<number>;
-  findByIdAndInstructor(examId: string, instructorId: string): Promise<IExam | null>;
-  updateExam(examId: string, instructorId: string, updateData: Partial<IExam>): Promise<IExam | null>;
-  deleteExam(examId: string, instructorId: string): Promise<boolean>;
-  getCourseIdsByInstructor(instructorId: string): Promise<Types.ObjectId[]>;
-  findById(examId: string): Promise<IExam | null>;
-  createOrUpdateResult(resultData: Partial<IExamResult>): Promise<IExamResult>;
-  findResultByExamAndStudent(examId: string, studentId: string): Promise<IExamResult | null>;
-  startExam(examId: string, studentId: string): Promise<string>;
-  getExamStartTime(examId: string, studentId: string): Promise<string | null>;
-  findCourseById(courseId: string): Promise<ICourse | null>;
-  countTotalAssessments(courseId: string): Promise<number>;
-  countPassedAssessments(courseId: string, studentId: string): Promise<number>;
-
+    createExam(examData: Partial<IExam>): Promise<IExam>;
+    findByCourse(courseId: string, page: number, limit: number): Promise<IExam[]>;
+    countByCourse(courseId: string): Promise<number>;
+    findByIdAndInstructor(examId: string, instructorId: string): Promise<IExam | null>;
+    updateExam(examId: string, instructorId: string, updateData: Partial<IExam>): Promise<IExam | null>;
+    deleteExam(examId: string, instructorId: string): Promise<boolean>;
+    getCourseIdsByInstructor(instructorId: string): Promise<Types.ObjectId[]>;
+    findById(examId: string): Promise<IExam | null>;
+    createOrUpdateResult(resultData: Partial<IExamResult>): Promise<IExamResult>;
+    findResultByExamAndStudent(examId: string, studentId: string): Promise<IExamResult | null>;
+    startExam(examId: string, studentId: string): Promise<string>;
+    getExamStartTime(examId: string, studentId: string): Promise<string | null>;
+    findCourseById(courseId: string): Promise<ICourse | null>;
+    countTotalAssessments(courseId: string): Promise<number>;
+    countPassedAssessments(courseId: string, studentId: string): Promise<number>;
 }
+
+
+export interface INotificationRepository {
+    createNotification(userId: string, courseId: string | null, type: INotification['type'], message: string): Promise<INotification>;
+    createNotificationsForUsers(userIds: string[], courseId: string, type: INotification['type'], message: string): Promise<INotification[]>;
+    getNotifications(userId: string, page: number, limit: number): Promise<INotification[]>;
+    getUnreadCount(userId: string): Promise<number>;
+    markAsRead(notificationId: string, userId: string): Promise<boolean>;
+    markAllAsRead(userId: string): Promise<boolean>;
+    getRecentNotifications(
+        userIds: string[],
+        courseId: string,
+        type: INotification['type'],
+        message: string,
+        timeWindowMs: number
+    ): Promise<INotification[]>
+}
+
+

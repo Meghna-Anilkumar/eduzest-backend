@@ -28,6 +28,8 @@ import { CouponUsageRepository } from "../repositories/couponUsageRepository";
 import { OfferService } from "../services/offerService";
 import { OfferRepository } from "../repositories/offerRepository";
 import { SubscriptionRepository } from "../repositories/subscriptionRepository";
+import { NotificationService } from "../services/notificationService";
+import { NotificationRepository } from "../repositories/notificationRepository";
 
 
 const userRepository = new UserRepository();
@@ -42,12 +44,14 @@ const couponRepository = new CouponRepository();
 const couponUsageRepository=new CouponUsageRepository()
 const offerRepository=new OfferRepository()
 const subscriptionRepository=new SubscriptionRepository()
+const notificationRepository=new NotificationRepository()
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
 const offerService=new OfferService(offerRepository,categoryRepository,courseRepository)
+const notificationService=new NotificationService(notificationRepository,enrollmentRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository,subscriptionRepository);
-const courseService = new CourseService(courseRepository, categoryRepository,offerService);
+const courseService = new CourseService(courseRepository, categoryRepository,offerService,notificationService,enrollmentRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const chatService=new ChatService(chatRepository,userRepository,courseRepository,enrollmentRepository)

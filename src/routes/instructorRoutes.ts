@@ -10,7 +10,7 @@ import EnrollCourseService from "../services/enrollmentServices";
 import { EnrollmentRepository } from "../repositories/enrollmentRepository";
 import { UserService } from "../services/userServices";
 import UserRepository from "../repositories/userRepository";
-import { RedisService, redisService } from "../services/redisService";
+import { redisService } from "../services/redisService";
 import UserController from "../controllers/userController";
 import OtpRepository from "../repositories/otpRepository";
 import PaymentRepository from "../repositories/paymentRepository";
@@ -27,6 +27,8 @@ import { SubscriptionRepository } from "../repositories/subscriptionRepository";
 import {ExamController} from "../controllers/examController"; 
 import { ExamService } from "../services/examService"; 
 import { ExamRepository } from "../repositories/examRepository"; 
+import { NotificationService } from "../services/notificationService";
+import { NotificationRepository } from "../repositories/notificationRepository";
 
 
 // Instantiate repositories
@@ -42,12 +44,15 @@ const couponUsageRepository=new CouponUsageRepository()
 const offerRepository=new OfferRepository()
 const subscriptionRepository=new SubscriptionRepository()
 const examRepository=new ExamRepository(redisService)
+const notificationRepository=new NotificationRepository()
+
 
 // Instantiate services
 const userService = new UserService(userRepository, otpRepository);
-const offerService=new OfferService(offerRepository,categoryRepository,courseRepository)
+const offerService = new OfferService(offerRepository, categoryRepository, courseRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository,subscriptionRepository);
-const courseService = new CourseService(courseRepository, categoryRepository,offerService);
+const notificationService=new NotificationService(notificationRepository,enrollmentRepository)
+const courseService = new CourseService(courseRepository, categoryRepository,offerService,notificationService,enrollmentRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
 const examService = new ExamService(examRepository,enrollmentRepository,redisService);

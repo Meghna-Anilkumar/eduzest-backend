@@ -2,7 +2,6 @@ import { RequestHandler, Router } from "express";
 import UserController from "../controllers/userController";
 import UserRepository from "../repositories/userRepository";
 import { CourseRepository } from "../repositories/courseRepository";
-import CourseService from "../services/courseServices";
 import { UserService } from "../services/userServices";
 import OtpRepository from "../repositories/otpRepository";
 import { authenticateUser } from "../middlewares/authMiddleware";
@@ -23,13 +22,12 @@ import { Role } from "../utils/Enum";
 import { redisService } from "../services/redisService";
 import { CouponRepository } from "../repositories/couponRepository";
 import { CouponUsageRepository } from "../repositories/couponUsageRepository";
-import { OfferService } from "../services/offerService";
 import { OfferRepository } from "../repositories/offerRepository";
 import { SubscriptionRepository } from "../repositories/subscriptionRepository";
 import { SubscriptionController } from "../controllers/subscriptionController";
-import {ExamController} from "../controllers/examController"; // Add ExamController
-import { ExamRepository } from "../repositories/examRepository"; // Add ExamRepository
-import { ExamService } from "../services/examService"; // Add ExamService
+import {ExamController} from "../controllers/examController"; 
+import { ExamRepository } from "../repositories/examRepository";
+import { ExamService } from "../services/examService";
 
 
 const userRepository = new UserRepository();
@@ -48,13 +46,11 @@ const examRepository = new ExamRepository(redisService);
 
 
 const userService = new UserService(userRepository, otpRepository);
-const offerService = new OfferService(offerRepository, categoryRepository, courseRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository, couponRepository, couponUsageRepository, subscriptionRepository);
-const courseService = new CourseService(courseRepository, categoryRepository, offerService);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
-const examService = new ExamService(examRepository, enrollmentRepository, redisService); // Add ExamService
+const examService = new ExamService(examRepository, enrollmentRepository, redisService); 
 
 
 const userController = new UserController(userService, paymentService);

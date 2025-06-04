@@ -1,5 +1,4 @@
 import { Server, Socket, RemoteSocket } from 'socket.io';
-import { Server as HttpServer } from 'http';
 import { Types } from 'mongoose';
 import ChatService from '../services/chatService';
 import ChatRepository from '../repositories/chatRepository';
@@ -9,6 +8,7 @@ import { EnrollmentRepository } from '../repositories/enrollmentRepository';
 import { RedisService } from '../services/redisService';
 import { IChat } from '../interfaces/IChat';
 import { IResponse } from '../interfaces/IResponse';
+import { NotificationService } from '../services/notificationService';
 
 interface AuthenticatedSocket extends Socket {
   userId?: string;
@@ -28,15 +28,8 @@ interface Participant {
   isChatBlocked: boolean;
 }
 
-export const initializeSocket = (server: HttpServer): Server => {
+export const initializeSocket = (io: Server, notificationService: NotificationService): Server => {
   console.log('[Socket] Initializing Socket.IO server');
-  const io = new Server(server, {
-    cors: {
-      origin: process.env.ORIGIN,
-      methods: ['GET', 'POST'],
-      credentials: true,
-    },
-  });
 
   console.log('[Socket] Setting up dependencies');
   const redisService = new RedisService();
@@ -104,6 +97,53 @@ export const initializeSocket = (server: HttpServer): Server => {
       socket.join(data.userId);
       console.log('[Socket] Authentication successful for user:', data.userId);
       socket.emit('authenticated', { message: 'Authentication successful' });
+
+      // Send initial notifications
+      const notifications = await notificationService.getNotifications(data.userId, 1, 10);
+      const unreadCount = await notificationService.getUnreadCount(data.userId);
+      socket.emit('notifications', {
+        success: true,
+        data: notifications.data,
+        unreadCount,
+      });
+    });
+
+    socket.on('getNotifications', async (data: { page: number; limit: number }) => {
+      if (!socket.userId) {
+        socket.emit('error', { message: 'Authentication required' });
+        return;
+      }
+      const response = await notificationService.getNotifications(socket.userId, data.page, data.limit);
+      const unreadCount = await notificationService.getUnreadCount(socket.userId);
+      socket.emit('notifications', { ...response, unreadCount });
+    });
+
+    socket.on('markNotificationRead', async (notificationId: string) => {
+      if (!socket.userId || !Types.ObjectId.isValid(notificationId)) {
+        socket.emit('error', { message: 'Invalid user or notification ID' });
+        return;
+      }
+      const response = await notificationService.markAsRead(notificationId, socket.userId);
+      if (response.success) {
+        const unreadCount = await notificationService.getUnreadCount(socket.userId);
+        socket.emit('notificationRead', { notificationId, unreadCount });
+      } else {
+        socket.emit('error', { message: response.message });
+      }
+    });
+
+    socket.on('markAllNotificationsRead', async () => {
+      if (!socket.userId) {
+        socket.emit('error', { message: 'Authentication required' });
+        return;
+      }
+      const response = await notificationService.markAllAsRead(socket.userId);
+      if (response.success) {
+        const unreadCount = await notificationService.getUnreadCount(socket.userId);
+        socket.emit('allNotificationsRead', { unreadCount });
+      } else {
+        socket.emit('error', { message: response.message });
+      }
     });
 
     socket.on('joinCourse', async (courseId: string) => {
