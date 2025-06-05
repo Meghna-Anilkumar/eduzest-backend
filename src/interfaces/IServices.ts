@@ -246,19 +246,12 @@ export interface IExamService {
 
 
 export interface INotificationService {
-  createNotification(
-    userId: string,
-    courseId: string,
-    type: 'new_assessment' | 'assessment_updated' | 'course_update',
-    message: string,
-    metadata?: Record<string, any>
-  ): Promise<IResponse>;
-  notifyEnrolledStudents(
-    courseId: string,
-    type: 'new_assessment' | 'assessment_updated' | 'course_update',
-    message: string,
-    metadata?: Record<string, any>
-  ): Promise<IResponse>;
+  notifyCourseUpdate(courseId: string, message: string): Promise<IResponse>;
+  notifyAssessmentAdded(courseId: string, message: string): Promise<IResponse>;
+  notifyAssessmentUpdated(courseId: string, message: string): Promise<IResponse>;
+  notifyExamAdded(courseId: string, message: string): Promise<IResponse>;
+  notifyExamUpdated(courseId: string, message: string): Promise<IResponse>;
+  notifyExamDeleted(courseId: string, message: string): Promise<IResponse>;
   getNotifications(userId: string, page: number, limit: number): Promise<IResponse>;
   getUnreadCount(userId: string): Promise<number>;
   markAsRead(notificationId: string, userId: string): Promise<IResponse>;

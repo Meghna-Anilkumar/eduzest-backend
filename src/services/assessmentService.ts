@@ -5,16 +5,24 @@ import { IEnrollmentRepository } from '../interfaces/IRepositories';
 import { IResponse } from '../interfaces/IResponse';
 import { IAssessmentResult } from '../interfaces/IAssessments';
 import { Types } from 'mongoose'
+import { INotificationService } from '../interfaces/IServices';
+import { ICourseRepository } from '../interfaces/IRepositories';
 
 export class AssessmentService implements IAssessmentService {
     private _assessmentRepository: IAssessmentRepository;
     private _enrollmentRepository: IEnrollmentRepository;
-
-    constructor(assessmentRepository: IAssessmentRepository,
-        enrollmentRepository: IEnrollmentRepository
+    private _notificationService: INotificationService;
+    private _courseRepository: ICourseRepository;
+    constructor(
+        assessmentRepository: IAssessmentRepository,
+        enrollmentRepository: IEnrollmentRepository,
+        notificationService: INotificationService,
+        courseRepository: ICourseRepository
     ) {
         this._assessmentRepository = assessmentRepository;
         this._enrollmentRepository = enrollmentRepository;
+        this._notificationService = notificationService;
+        this._courseRepository = courseRepository;
     }
 
     async createAssessment(
@@ -32,6 +40,14 @@ export class AssessmentService implements IAssessmentService {
                 };
             }
 
+            const course = await this._courseRepository.getCourseById(courseId);
+            if (!course) {
+                return {
+                    success: false,
+                    message: 'Course not found.',
+                };
+            }
+
             const fullAssessmentData: Partial<IAssessment> = {
                 ...assessmentData,
                 courseId: new Types.ObjectId(courseId),
@@ -39,6 +55,9 @@ export class AssessmentService implements IAssessmentService {
             };
 
             const assessment = await this._assessmentRepository.createAssessment(fullAssessmentData);
+
+            const message = `New assessment "${assessment.title}" added to module "${moduleTitle}" in course "${course.title}".`;
+            await this._notificationService.notifyAssessmentAdded(courseId, message);
 
             return {
                 success: true,
@@ -125,33 +144,45 @@ export class AssessmentService implements IAssessmentService {
     }
 
     async updateAssessment(
-        assessmentId: string,
-        instructorId: string,
-        updateData: Partial<IAssessment>
-    ): Promise<IResponse> {
-        try {
-            const assessment = await this._assessmentRepository.updateAssessment(assessmentId, instructorId, updateData);
+    assessmentId: string,
+    instructorId: string,
+    updateData: Partial<IAssessment>
+  ): Promise<IResponse> {
+    try {
+      const assessment = await this._assessmentRepository.updateAssessment(assessmentId, instructorId, updateData);
 
-            if (!assessment) {
-                return {
-                    success: false,
-                    message: 'Assessment not found or instructor does not have access.',
-                };
-            }
+      if (!assessment) {
+        return {
+          success: false,
+          message: 'Assessment not found or instructor does not have access.',
+        };
+      }
 
-            return {
-                success: true,
-                message: 'Assessment updated successfully.',
-                data: assessment,
-            };
-        } catch (error) {
-            console.error('Error in updateAssessment service:', error);
-            return {
-                success: false,
-                message: error instanceof Error ? error.message : 'Failed to update assessment.',
-            };
-        }
+      const course = await this._courseRepository.findById(assessment.courseId.toString());
+      if (!course) {
+        return {
+          success: false,
+          message: 'Course not found.',
+        };
+      }
+
+      // Trigger notification
+      const message = `Assessment "${assessment.title}" updated in module "${assessment.moduleTitle}" in course "${course.title}".`;
+      await this._notificationService.notifyAssessmentUpdated(assessment.courseId.toString(), message);
+
+      return {
+        success: true,
+        message: 'Assessment updated successfully.',
+        data: assessment,
+      };
+    } catch (error) {
+      console.error('Error in updateAssessment service:', error);
+      return {
+        success: false,
+        message: error instanceof Error ? error.message : 'Failed to update assessment.',
+      };
     }
+  }
 
     async deleteAssessment(assessmentId: string, instructorId: string): Promise<IResponse> {
         try {

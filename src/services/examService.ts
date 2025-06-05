@@ -3,21 +3,30 @@ import { IExam, IExamResult } from '../interfaces/IExam';
 import { IExamRepository, IEnrollmentRepository } from '../interfaces/IRepositories';
 import { IResponse } from '../interfaces/IResponse';
 import { RedisService } from '../services/redisService';
+import { NotificationService } from '../services/notificationService';
+import { CourseRepository } from '../repositories/courseRepository';
 
 export class ExamService {
     private _examRepository: IExamRepository;
     private _enrollmentRepository: IEnrollmentRepository;
     private _redisService: RedisService;
+    private _notificationService: NotificationService;
+    private _courseRepository: CourseRepository;
 
     constructor(
         examRepository: IExamRepository,
         enrollmentRepository: IEnrollmentRepository,
-        redisService: RedisService
+        redisService: RedisService,
+        notificationService: NotificationService,
+        courseRepository: CourseRepository
     ) {
         this._examRepository = examRepository;
         this._enrollmentRepository = enrollmentRepository;
         this._redisService = redisService;
+        this._notificationService = notificationService;
+        this._courseRepository = courseRepository;
     }
+
 
     async createExam(
         courseId: string,
@@ -33,12 +42,23 @@ export class ExamService {
                 };
             }
 
+            const course = await this._courseRepository.findById(courseId);
+            if (!course) {
+                return {
+                    success: false,
+                    message: 'Course not found.',
+                };
+            }
+
             const fullExamData: Partial<IExam> = {
                 ...examData,
                 courseId: new Types.ObjectId(courseId),
             };
 
             const exam = await this._examRepository.createExam(fullExamData);
+
+            const message = `New exam "${exam.title}" added to course "${course.title}".`;
+            await this._notificationService.notifyExamAdded(courseId, message);
 
             return {
                 success: true,
@@ -53,6 +73,7 @@ export class ExamService {
             };
         }
     }
+
 
     async getExamsByCourse(
         courseId: string,
@@ -130,6 +151,17 @@ export class ExamService {
                 };
             }
 
+            const course = await this._courseRepository.findById(exam.courseId.toString());
+            if (!course) {
+                return {
+                    success: false,
+                    message: 'Course not found.',
+                };
+            }
+
+            const message = `Exam "${exam.title}" updated in course "${course.title}".`;
+            await this._notificationService.notifyExamUpdated(exam.courseId.toString(), message);
+
             return {
                 success: true,
                 message: 'Exam updated successfully.',
@@ -146,6 +178,22 @@ export class ExamService {
 
     async deleteExam(examId: string, instructorId: string): Promise<IResponse> {
         try {
+            const exam = await this._examRepository.findByIdAndInstructor(examId, instructorId);
+            if (!exam) {
+                return {
+                    success: false,
+                    message: 'Exam not found or instructor does not have access.',
+                };
+            }
+
+            const course = await this._courseRepository.findById(exam.courseId.toString());
+            if (!course) {
+                return {
+                    success: false,
+                    message: 'Course not found.',
+                };
+            }
+
             const deleted = await this._examRepository.deleteExam(examId, instructorId);
             if (!deleted) {
                 return {
@@ -153,6 +201,9 @@ export class ExamService {
                     message: 'Exam not found or instructor does not have access.',
                 };
             }
+
+            const message = `Exam "${exam.title}" deleted from course "${course.title}".`;
+            await this._notificationService.notifyExamDeleted(exam.courseId.toString(), message);
 
             return {
                 success: true,
@@ -260,8 +311,8 @@ export class ExamService {
                 isSubmitted: false,
             };
             console.log('[ExamService] Setting initial progress:', { progressKey, initialProgress });
-            await this._redisService.set(progressKey, JSON.stringify(initialProgress), exam.duration * 60 + 60); // Add 60 seconds buffer
-            await this._redisService.set(startTimeKey, initialProgress.startTime, exam.duration * 60 + 60); // Add 60 seconds buffer
+            await this._redisService.set(progressKey, JSON.stringify(initialProgress), exam.duration * 60 + 60);
+            await this._redisService.set(startTimeKey, initialProgress.startTime, exam.duration * 60 + 60);
 
             return {
                 success: true,
@@ -356,7 +407,6 @@ export class ExamService {
 
             const result = await this._examRepository.createOrUpdateResult(resultData);
 
-            // Clear Redis keys after submission
             await this._redisService.del(`exam:${examId}:${studentId}:startTime`);
             await this._redisService.del(`exam:${examId}:${studentId}:progress`);
 
@@ -383,7 +433,7 @@ export class ExamService {
             };
         }
     }
-    
+
     async getExamResult(examId: string, studentId: string): Promise<IResponse> {
         try {
             const result = await this._examRepository.findResultByExamAndStudent(examId, studentId);

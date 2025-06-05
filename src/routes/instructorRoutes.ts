@@ -31,7 +31,7 @@ import { NotificationService } from "../services/notificationService";
 import { NotificationRepository } from "../repositories/notificationRepository";
 
 
-// Instantiate repositories
+
 const userRepository = new UserRepository();
 const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
@@ -47,24 +47,24 @@ const examRepository=new ExamRepository(redisService)
 const notificationRepository=new NotificationRepository()
 
 
-// Instantiate services
+
 const userService = new UserService(userRepository, otpRepository);
 const offerService = new OfferService(offerRepository, categoryRepository, courseRepository)
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository,couponRepository,couponUsageRepository,subscriptionRepository);
 const notificationService=new NotificationService(notificationRepository,enrollmentRepository)
 const courseService = new CourseService(courseRepository, categoryRepository,offerService,notificationService,enrollmentRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
-const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
-const examService = new ExamService(examRepository,enrollmentRepository,redisService);
+const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository,notificationService,courseRepository);
+const examService = new ExamService(examRepository,enrollmentRepository,redisService,notificationService,courseRepository);
 
-// Instantiate controllers
+
 const courseController = new CourseController(courseService, enrollCourseService);
 const userController = new UserController(userService, paymentService);
 const assessmentController = new AssessmentController(assessmentService);
 const enrollCourseController = new EnrollCourseController(enrollCourseService)
 const examController = new ExamController(examService);
 
-// Create instructor router
+
 const instructorRouter = Router();
 
 instructorRouter.post(

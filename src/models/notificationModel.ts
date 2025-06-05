@@ -1,9 +1,10 @@
 import { Schema, model, Types } from 'mongoose';
 
 export interface INotification {
+  _id?: Types.ObjectId;
   userId: Types.ObjectId;
   courseId?: Types.ObjectId;
-  type: 'course_update' | 'assessment_added' | 'exam_added' | 'chat_message' | 'general';
+  type: 'course_update' | 'assessment_added' | 'assessment_updated' | 'exam_added' | 'exam_updated' | 'exam_deleted' | 'chat_message' | 'general';
   message: string;
   isRead: boolean;
   createdAt: Date;
@@ -17,12 +18,12 @@ const notificationSchema = new Schema<INotification>({
   },
   courseId: {
     type: Schema.Types.ObjectId,
-    ref: "Courses", // Fix: Changed from "Course" to "Courses" to match the registered model name
+    ref: "Courses",
     required: false,
   },
   type: {
     type: String,
-    enum: ["course_update", "assessment_added", "exam_added", "chat_message", "general"], // Fix: Updated enum to include all possible types
+    enum: ["course_update", "assessment_added", "assessment_updated", "exam_added", "exam_updated", "exam_deleted", "chat_message", "general"],
     required: true,
   },
   message: {

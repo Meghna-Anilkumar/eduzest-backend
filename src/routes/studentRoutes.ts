@@ -11,7 +11,6 @@ import AssessmentController from "../controllers/assessmentController";
 import { EnrollmentRepository } from "../repositories/enrollmentRepository";
 import { AssessmentRepository } from "../repositories/assessmentRepository";
 import { AssessmentService } from "../services/assessmentService";
-import CategoryRepository from "../repositories/categoryRepository";
 import EnrollCourseService from "../services/enrollmentServices";
 import EnrollCourseController from "../controllers/enrollCourseController";
 import ReviewRepository from "../repositories/reviewRepository";
@@ -22,35 +21,35 @@ import { Role } from "../utils/Enum";
 import { redisService } from "../services/redisService";
 import { CouponRepository } from "../repositories/couponRepository";
 import { CouponUsageRepository } from "../repositories/couponUsageRepository";
-import { OfferRepository } from "../repositories/offerRepository";
 import { SubscriptionRepository } from "../repositories/subscriptionRepository";
 import { SubscriptionController } from "../controllers/subscriptionController";
 import {ExamController} from "../controllers/examController"; 
 import { ExamRepository } from "../repositories/examRepository";
 import { ExamService } from "../services/examService";
-
+import { NotificationService } from "../services/notificationService";
+import { NotificationRepository } from "../repositories/notificationRepository";
 
 const userRepository = new UserRepository();
 const otpRepository = new OtpRepository();
 const courseRepository = new CourseRepository();
 const paymentRepository = new PaymentRepository();
 const enrollmentRepository = new EnrollmentRepository(redisService);
-const categoryRepository = new CategoryRepository();
 const assessmentRepository = new AssessmentRepository();
 const reviewRepository = new ReviewRepository();
 const couponRepository = new CouponRepository()
 const couponUsageRepository = new CouponUsageRepository()
-const offerRepository = new OfferRepository()
 const subscriptionRepository = new SubscriptionRepository()
 const examRepository = new ExamRepository(redisService);
+const notificationRepository=new NotificationRepository()
 
 
 const userService = new UserService(userRepository, otpRepository);
 const paymentService = new PaymentService(paymentRepository, userRepository, courseRepository, enrollmentRepository, couponRepository, couponUsageRepository, subscriptionRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
-const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository);
-const examService = new ExamService(examRepository, enrollmentRepository, redisService); 
+const notificationService=new NotificationService(notificationRepository,enrollmentRepository)
+const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository,notificationService,courseRepository);
+const examService = new ExamService(examRepository, enrollmentRepository, redisService,notificationService,courseRepository); 
 
 
 const userController = new UserController(userService, paymentService);
