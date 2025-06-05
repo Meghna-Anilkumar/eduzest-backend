@@ -203,37 +203,37 @@ export class ExamController {
     }
   }
 
-async startExam(req: AuthRequest, res: Response): Promise<void> {
-  try {
-    const studentId = req.user?.id;
-    if (!studentId) {
-      res.status(Status.UN_AUTHORISED).json({
-        success: false,
-        message: MESSAGE_CONSTANTS.UNAUTHORIZED,
-      });
-      return;
-    }
+  async startExam(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const studentId = req.user?.id;
+      if (!studentId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED,
+        });
+        return;
+      }
 
-    const { examId } = req.params;
-    if (!examId || !Types.ObjectId.isValid(examId)) {
-      res.status(Status.BAD_REQUEST).json({
-        success: false,
-        message: 'Valid Exam ID is required.',
-      });
-      return;
-    }
+      const { examId } = req.params;
+      if (!examId || !Types.ObjectId.isValid(examId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: 'Valid Exam ID is required.',
+        });
+        return;
+      }
 
-    console.log('[ExamController] Starting exam:', { examId, studentId }); // Debug log
-    const response = await this._examService.startExam(examId, studentId);
-    res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
-  } catch (error) {
-    console.error('Error in startExam controller:', error);
-    res.status(Status.INTERNAL_SERVER_ERROR).json({
-      success: false,
-      message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
-    });
+      console.log('[ExamController] Starting exam:', { examId, studentId }); // Debug log
+      const response = await this._examService.startExam(examId, studentId);
+      res.status(response.success ? Status.OK : Status.BAD_REQUEST).json(response);
+    } catch (error) {
+      console.error('Error in startExam controller:', error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+      });
+    }
   }
-}
 
   async submitExam(req: AuthRequest, res: Response): Promise<void> {
     try {
@@ -362,6 +362,89 @@ async startExam(req: AuthRequest, res: Response): Promise<void> {
       res.status(response.success ? Status.OK : Status.NOT_FOUND).json(response);
     } catch (error) {
       console.error('Error in getExamProgress controller:', error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+
+  async getLeaderboard(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const studentId = req.user?.id;
+      if (!studentId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED,
+        });
+        return;
+      }
+
+      const { courseId } = req.query;
+      const limit = parseInt(req.query.limit as string) || 10;
+
+      if (courseId && typeof courseId === 'string' && !Types.ObjectId.isValid(courseId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: 'Valid Course ID is required.',
+        });
+        return;
+      }
+
+      const leaderboard = await this._examService.getLeaderboard(
+        typeof courseId === 'string' ? courseId : undefined,
+        limit
+      );
+
+      res.status(Status.OK).json({
+        success: true,
+        message: 'Leaderboard retrieved successfully.',
+        data: leaderboard,
+      });
+    } catch (error) {
+      console.error('Error in getLeaderboard controller:', error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+
+  async getStudentRank(req: AuthRequest, res: Response): Promise<void> {
+    try {
+      const studentId = req.user?.id;
+      if (!studentId) {
+        res.status(Status.UN_AUTHORISED).json({
+          success: false,
+          message: MESSAGE_CONSTANTS.UNAUTHORIZED,
+        });
+        return;
+      }
+
+      const { courseId } = req.query;
+      console.log('courseid for rank......................',courseId)
+      if (courseId && typeof courseId === 'string' && !Types.ObjectId.isValid(courseId)) {
+        res.status(Status.BAD_REQUEST).json({
+          success: false,
+          message: 'Valid Course ID is required.',
+        });
+        return;
+      }
+
+      const rankData = await this._examService.getStudentRank(
+        studentId,
+        typeof courseId === 'string' ? courseId : undefined
+      );
+
+      res.status(Status.OK).json({
+        success: true,
+        message: 'Student rank retrieved successfully.',
+        data: rankData || null,
+      });
+    } catch (error) {
+      console.error('Error in getStudentRank controller:', error);
       res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR,

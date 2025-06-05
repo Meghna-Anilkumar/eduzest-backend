@@ -253,6 +253,16 @@ export interface IExamRepository {
     findCourseById(courseId: string): Promise<ICourse | null>;
     countTotalAssessments(courseId: string): Promise<number>;
     countPassedAssessments(courseId: string, studentId: string): Promise<number>;
+    getLeaderboard(courseId?: string, limit?: number): Promise<{
+        rank: number;
+        studentId: string;
+        studentName: string;
+        totalScore: number;
+    }[]>
+    getStudentRank(studentId: string, courseId?: string): Promise<{
+        rank: number;
+        totalScore: number;
+    } | null>
 }
 
 

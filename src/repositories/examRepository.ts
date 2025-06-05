@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { IExam, IExamResult } from '../interfaces/IExam'
+import { IExam, IExamResult } from '../interfaces/IExam';
 import { ICourse } from '../interfaces/ICourse';
 import { BaseRepository } from './baseRepository';
 import { Exam, ExamResult } from '../models/examModel';
@@ -16,6 +16,7 @@ export class ExamRepository extends BaseRepository<IExam> {
     this._resultModel = ExamResult;
     this._redisService = redisService;
   }
+
 
   async createExam(examData: Partial<IExam>): Promise<IExam> {
     return this.create(examData);
@@ -116,6 +117,10 @@ export class ExamRepository extends BaseRepository<IExam> {
         throw new Error("Failed to update exam result");
       }
       console.log('[ExamRepository] Updated result:', updatedResult);
+
+      await this._redisService.del(`leaderboard:global`);
+      await this._redisService.del(`leaderboard:course:${updatedResult.courseId}`);
+
       return updatedResult;
     }
 
@@ -128,6 +133,11 @@ export class ExamRepository extends BaseRepository<IExam> {
     console.log('[ExamRepository] Creating new result:', newResultData);
     const newResult = await this._resultModel.create(newResultData);
     console.log('[ExamRepository] Created new result:', newResult);
+
+
+    await this._redisService.del(`leaderboard:global`);
+    await this._redisService.del(`leaderboard:course:${newResult.courseId}`);
+
     return newResult;
   }
 
@@ -176,7 +186,7 @@ export class ExamRepository extends BaseRepository<IExam> {
     return this._model
       .find({
         courseId: new Types.ObjectId(courseId),
-        moduleTitle, // Filter by moduleTitle
+        moduleTitle,
       })
       .sort({ updatedAt: "desc" })
       .skip((page - 1) * limit)
@@ -191,5 +201,119 @@ export class ExamRepository extends BaseRepository<IExam> {
         moduleTitle,
       })
       .exec();
+  }
+
+
+  async getLeaderboard(courseId?: string, limit: number = 10): Promise<{
+    rank: number;
+    studentId: string;
+    studentName: string;
+    totalScore: number;
+  }[]> {
+    const cacheKey = courseId ? `leaderboard:course:${courseId}` : `leaderboard:global`;
+    const cached = await this._redisService.get(cacheKey);
+    if (cached) {
+      return JSON.parse(cached);
+    }
+
+    const pipeline: any[] = [];
+    if (courseId) {
+      pipeline.push({ $match: { courseId: new Types.ObjectId(courseId) } });
+    }
+
+    pipeline.push(
+      {
+        $group: {
+          _id: '$studentId',
+          totalScore: { $sum: '$bestScore' },
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'student',
+        },
+      },
+      { $unwind: '$student' },
+      {
+        $project: {
+          studentId: '$_id',
+          studentName: '$student.name',
+          totalScore: 1,
+          _id: 0,
+        },
+      },
+      { $sort: { totalScore: -1 } },
+      { $limit: limit },
+      {
+        $setWindowFields: {
+          sortBy: { totalScore: -1 },
+          output: {
+            rank: { $rank: {} },
+          },
+        },
+      }
+    );
+
+    const leaderboard = await this._resultModel.aggregate(pipeline).exec();
+    await this._redisService.set(cacheKey, JSON.stringify(leaderboard), 3600); 
+    return leaderboard;
+  }
+
+
+ async getStudentRank(studentId: string, courseId?: string): Promise<{
+    rank: number;
+    totalScore: number;
+  } | null> {
+    const pipeline: any[] = [];
+
+    console.log(`[ExamRepository] getStudentRank: studentId=${studentId}, courseId=${courseId}`);
+
+    if (courseId && Types.ObjectId.isValid(courseId)) {
+      pipeline.push({
+        $match: { courseId: new Types.ObjectId(courseId) },
+      });
+    }
+
+    pipeline.push(
+      {
+        $group: {
+          _id: "$studentId",
+          totalScore: { $sum: "$bestScore" },
+        },
+      },
+      {
+        $sort: { totalScore: -1 },
+      },
+      {
+        $setWindowFields: {
+          sortBy: { totalScore: -1 },
+          output: {
+            rank: { $rank: {} },
+          },
+        },
+      },
+      {
+        $match: { _id: new Types.ObjectId(studentId) },
+      },
+      {
+        $project: {
+          rank: 1,
+          totalScore: 1,
+          _id: 0,
+        },
+      }
+    );
+
+    try {
+      const result = await this._resultModel.aggregate(pipeline).exec();
+      console.log(`[ExamRepository] getStudentRank result:`, result);
+      return result.length > 0 ? result[0] : null;
+    } catch (error) {
+      console.error(`[ExamRepository] getStudentRank error:`, error);
+      throw error;
+    }
   }
 }

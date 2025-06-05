@@ -60,7 +60,7 @@ const userSchema = new Schema<UserDoc>({
     enrolledCourses: [{
       courseId: {
         type: Types.ObjectId,
-        ref: 'Course'
+        ref: 'Courses'
       },
       progress: {
         type: Number
@@ -73,7 +73,7 @@ const userSchema = new Schema<UserDoc>({
   instructorDetails: {
     createdCourses: [{
       type: Types.ObjectId,
-      ref: 'Course'
+      ref: 'Courses'
     }],
     profit: {
       type: Number,

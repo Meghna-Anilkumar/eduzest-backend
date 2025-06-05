@@ -10,7 +10,7 @@ const ReviewSchema = new Schema<IReview>(
     },
     courseId: {
       type: Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "Courses",
       required: true,
     },
     rating: {

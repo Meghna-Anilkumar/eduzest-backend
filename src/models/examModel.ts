@@ -24,7 +24,7 @@ const questionSchema = new Schema<IQuestion>({
 
 const examSchema = new Schema<IExam>(
     {
-        courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+        courseId: { type: Schema.Types.ObjectId, ref: 'Courses', required: true },
         title: { type: String, required: true, trim: true },
         description: { type: String, trim: true },
         duration: {
@@ -62,7 +62,7 @@ examSchema.pre('save', function (next) {
 const examResultSchema = new Schema<IExamResult>(
     {
         examId: { type: Schema.Types.ObjectId, ref: 'Exam', required: true },
-        courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+        courseId: { type: Schema.Types.ObjectId, ref: 'Courses', required: true },
         studentId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         attempts: [
             {

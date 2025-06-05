@@ -23,7 +23,7 @@ const questionSchema = new Schema<IQuestion>({
 
 const assessmentSchema = new Schema<IAssessment>(
   {
-    courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+    courseId: { type: Schema.Types.ObjectId, ref: 'Courses', required: true },
     moduleTitle: { type: String, required: true, trim: true },
     title: { type: String, required: true, trim: true },
     description: { type: String, trim: true },

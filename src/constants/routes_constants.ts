@@ -99,5 +99,7 @@ export const STUDENT_ROUTES = {
     START_EXAM: "/exams/:examId/start",
     SUBMIT_EXAM: "/exams/:examId/submit",
     GET_EXAM_RESULT: "/exams/:examId/result",
-    GET_EXAM_PROGRESS:'/exams/:examId/progress'
+    GET_EXAM_PROGRESS:'/exams/:examId/progress',
+    GET_LEADERBOARD: "/leaderboard",
+    GET_RANK:"/rank"
 };

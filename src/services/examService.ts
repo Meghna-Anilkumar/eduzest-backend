@@ -641,4 +641,34 @@ export class ExamService {
             };
         }
     }
+
+    async getLeaderboard(courseId?: string, limit: number = 10): Promise<{
+        rank: number;
+        studentId: string;
+        studentName: string;
+        totalScore: number;
+    }[]> {
+        try {
+            const leaderboard = await this._examRepository.getLeaderboard(courseId, limit);
+            return leaderboard;
+        } catch (error) {
+            console.error('Error in getLeaderboard service:', error);
+            throw new Error(error instanceof Error ? error.message : 'Failed to retrieve leaderboard.');
+        }
+    }
+
+
+    async getStudentRank(studentId: string, courseId?: string): Promise<{
+        rank: number;
+        totalScore: number;
+    } | null> {
+        try {
+            const rankData = await this._examRepository.getStudentRank(studentId, courseId);
+            console.log(rankData, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+            return rankData;
+        } catch (error) {
+            console.error('Error in getStudentRank service:', error);
+            throw new Error(error instanceof Error ? error.message : 'Failed to retrieve student rank.');
+        }
+    }
 }

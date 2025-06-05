@@ -240,20 +240,30 @@ export interface IExamService {
     ): Promise<IResponse>;
     getExamResult(examId: string, studentId: string): Promise<IResponse>;
     getExamByIdForStudent(examId: string, studentId: string): Promise<IResponse>;
-    getExamProgress(examId: string, studentId: string): Promise<IResponse> 
+    getExamProgress(examId: string, studentId: string): Promise<IResponse>
+    getLeaderboard(courseId?: string, limit?: number): Promise<{
+        rank: number;
+        studentId: string;
+        studentName: string;
+        totalScore: number;
+    }[]>
+    getStudentRank(studentId: string, courseId?: string): Promise<{
+        rank: number;
+        totalScore: number;
+    } | null>
 }
 
 
 
 export interface INotificationService {
-  notifyCourseUpdate(courseId: string, message: string): Promise<IResponse>;
-  notifyAssessmentAdded(courseId: string, message: string): Promise<IResponse>;
-  notifyAssessmentUpdated(courseId: string, message: string): Promise<IResponse>;
-  notifyExamAdded(courseId: string, message: string): Promise<IResponse>;
-  notifyExamUpdated(courseId: string, message: string): Promise<IResponse>;
-  notifyExamDeleted(courseId: string, message: string): Promise<IResponse>;
-  getNotifications(userId: string, page: number, limit: number): Promise<IResponse>;
-  getUnreadCount(userId: string): Promise<number>;
-  markAsRead(notificationId: string, userId: string): Promise<IResponse>;
-  markAllAsRead(userId: string): Promise<IResponse>;
+    notifyCourseUpdate(courseId: string, message: string): Promise<IResponse>;
+    notifyAssessmentAdded(courseId: string, message: string): Promise<IResponse>;
+    notifyAssessmentUpdated(courseId: string, message: string): Promise<IResponse>;
+    notifyExamAdded(courseId: string, message: string): Promise<IResponse>;
+    notifyExamUpdated(courseId: string, message: string): Promise<IResponse>;
+    notifyExamDeleted(courseId: string, message: string): Promise<IResponse>;
+    getNotifications(userId: string, page: number, limit: number): Promise<IResponse>;
+    getUnreadCount(userId: string): Promise<number>;
+    markAsRead(notificationId: string, userId: string): Promise<IResponse>;
+    markAllAsRead(userId: string): Promise<IResponse>;
 }

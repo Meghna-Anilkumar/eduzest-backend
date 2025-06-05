@@ -3,7 +3,6 @@ import { IUserRepository } from "../interfaces/IRepositories";
 import { ICourseRepository } from "../interfaces/IRepositories";
 import { IResponse } from "../interfaces/IResponse";
 import { Types } from "mongoose";
-import { IRedisService } from "../interfaces/IServices";
 import { CourseStats } from "../interfaces/ICourseStats";
 import { PaymentDoc } from "../models/paymentModel";
 import { ICourse } from "../interfaces/ICourse";

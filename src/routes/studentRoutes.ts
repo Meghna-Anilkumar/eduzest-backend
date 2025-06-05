@@ -183,3 +183,5 @@ studentRouter.get(
 );
 
 studentRouter.get(STUDENT_ROUTES.GET_EXAM_PROGRESS,authenticateUser("Student"),examController.getExamProgress.bind(examController))
+studentRouter.get(STUDENT_ROUTES.GET_LEADERBOARD,authenticateUser('Student'),examController.getLeaderboard.bind(examController))
+studentRouter.get(STUDENT_ROUTES.GET_RANK,authenticateUser('Student'),examController.getStudentRank.bind(examController))

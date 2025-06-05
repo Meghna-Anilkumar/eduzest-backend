@@ -68,18 +68,16 @@ export class PaymentService implements IPaymentService {
         return { success: false, message: "User is already enrolled in this course" };
       }
 
-      // Price calculation matching frontend's calculateFinalPrice
       let expectedPrice = course.pricing.amount;
       console.log("Original course price:", expectedPrice);
 
-      // Log the entire course object to debug the offer field
       console.log("Course data retrieved:", {
         courseId: course._id,
         pricing: course.pricing,
         offer: course.offer,
       });
 
-      // Apply offer if valid
+
       if (
         course.offer &&
         typeof course.offer === "object" &&
@@ -99,13 +97,11 @@ export class PaymentService implements IPaymentService {
         });
       }
 
-      // Validate that expectedPrice is still a valid number
       if (expectedPrice === undefined || expectedPrice === null || isNaN(expectedPrice)) {
         console.error("Invalid expectedPrice after offer calculation:", expectedPrice);
         return { success: false, message: "Invalid course pricing" };
       }
 
-      // Apply coupon if provided
       let coupon;
       if (couponId) {
         if (!Types.ObjectId.isValid(couponId)) {
@@ -127,14 +123,13 @@ export class PaymentService implements IPaymentService {
           };
         }
 
-        // Check if coupon has been used
+
         const hasUsedCoupon = await this._couponUsageRepository.hasUserUsedCoupon(userId, couponId);
         if (hasUsedCoupon) {
           console.log("Coupon already used:", { userId, couponId });
           return { success: false, message: "This coupon has already been used by the user" };
         }
 
-        // Check minimum purchase amount against original course price
         if (coupon.minPurchaseAmount && course.pricing.amount < coupon.minPurchaseAmount) {
           console.log("Minimum purchase amount not met:", {
             originalPrice: course.pricing.amount,
@@ -159,7 +154,6 @@ export class PaymentService implements IPaymentService {
         });
       }
 
-      // Validate the amount passed from the frontend
       if (amount !== expectedPrice) {
         console.log("Amount mismatch:", { passedAmount: amount, expectedPrice });
         return {
@@ -357,6 +351,7 @@ export class PaymentService implements IPaymentService {
     }
   }
 
+
   async getInstructorPayouts(
     instructorId: string,
     page: number,
@@ -462,8 +457,6 @@ export class PaymentService implements IPaymentService {
         payment_settings: { payment_method_types: ["card"] },
         expand: ["latest_invoice.payment_intent"],
       });
-
-      // Use Stripe's current_period_start and current_period_end for accurate dates
       const startDate = new Date(subscription.current_period_start * 1000);
       const endDate = new Date(subscription.current_period_end * 1000);
 
@@ -515,7 +508,6 @@ export class PaymentService implements IPaymentService {
       );
 
       if (stripeSubscription.status === "active") {
-        // Update endDate with Stripe's current_period_end
         const endDate = new Date(stripeSubscription.current_period_end * 1000);
         await this._subscriptionRepository.updateSubscription(subscriptionId, {
           status: "active",
@@ -527,7 +519,6 @@ export class PaymentService implements IPaymentService {
           { subscriptionStatus: "active" }
         );
 
-        // Log the updated subscription
         console.log("Confirmed subscription:", {
           subscriptionId,
           status: "active",
@@ -572,7 +563,6 @@ export class PaymentService implements IPaymentService {
         };
       }
 
-      // Log the subscription details for debugging
       console.log("Subscription details from DB:", {
         subscriptionId: subscription._id,
         status: subscription.status,
@@ -582,7 +572,6 @@ export class PaymentService implements IPaymentService {
         stripeSubscriptionId: subscription.stripeSubscriptionId,
       });
 
-      // Check Stripe subscription status
       const stripeSubscription = await this.stripe.subscriptions.retrieve(
         subscription.stripeSubscriptionId
       );
@@ -594,7 +583,6 @@ export class PaymentService implements IPaymentService {
       });
 
       if (stripeSubscription.status === "active") {
-        // Update the database with the latest period end from Stripe
         const periodEnd = new Date(stripeSubscription.current_period_end * 1000);
         await this._subscriptionRepository.updateSubscription(subscription._id.toString(), {
           status: "active",
