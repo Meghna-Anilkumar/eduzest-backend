@@ -9,6 +9,7 @@ import { redisService } from '../services/redisService';
 import { NotificationService } from '../services/notificationService';
 import { NotificationRepository } from '../repositories/notificationRepository';
 import { CourseRepository } from '../repositories/courseRepository';
+import { SubscriptionRepository } from '../repositories/subscriptionRepository';
 
 export const initializeSocketServer = (server: HttpServer): IOServer => {
   console.log('[SocketInitializer] Setting up Socket.IO server and dependencies');
@@ -17,7 +18,7 @@ export const initializeSocketServer = (server: HttpServer): IOServer => {
   const examRepository = new ExamRepository(redisService);
   const notificationRepository = new NotificationRepository();
   const courseRepository = new CourseRepository()
-
+  const subscriptionRepository = new SubscriptionRepository()
 
 
   const io = new IOServer(server, {
@@ -29,7 +30,7 @@ export const initializeSocketServer = (server: HttpServer): IOServer => {
   });
 
   const notificationService = new NotificationService(notificationRepository, enrollmentRepository, io);
-  const examService = new ExamService(examRepository, enrollmentRepository, redisService, notificationService, courseRepository);
+  const examService = new ExamService(examRepository, enrollmentRepository, redisService, notificationService, courseRepository, subscriptionRepository);
 
 
   initializeSocket(io, notificationService);

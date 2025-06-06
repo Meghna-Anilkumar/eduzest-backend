@@ -55,7 +55,7 @@ const notificationService=new NotificationService(notificationRepository,enrollm
 const courseService = new CourseService(courseRepository, categoryRepository,offerService,notificationService,enrollmentRepository);
 const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRepository, courseRepository, paymentRepository);
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository,notificationService,courseRepository);
-const examService = new ExamService(examRepository,enrollmentRepository,redisService,notificationService,courseRepository);
+const examService = new ExamService(examRepository,enrollmentRepository,redisService,notificationService,courseRepository,subscriptionRepository);
 
 
 const courseController = new CourseController(courseService, enrollCourseService);

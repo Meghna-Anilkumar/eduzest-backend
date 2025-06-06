@@ -3,28 +3,33 @@ import { IExam, IExamResult } from '../interfaces/IExam';
 import { IExamRepository, IEnrollmentRepository } from '../interfaces/IRepositories';
 import { IResponse } from '../interfaces/IResponse';
 import { RedisService } from '../services/redisService';
-import { NotificationService } from '../services/notificationService';
-import { CourseRepository } from '../repositories/courseRepository';
+import { INotificationService } from '../interfaces/IServices';
+import { ICourseRepository } from '../interfaces/IRepositories';
+import { ISubscriptionRepository } from '../interfaces/IRepositories';
 
 export class ExamService {
     private _examRepository: IExamRepository;
     private _enrollmentRepository: IEnrollmentRepository;
     private _redisService: RedisService;
-    private _notificationService: NotificationService;
-    private _courseRepository: CourseRepository;
+    private _notificationService: INotificationService;
+    private _courseRepository: ICourseRepository;
+    private _subscriptionRepository: ISubscriptionRepository;
 
     constructor(
         examRepository: IExamRepository,
         enrollmentRepository: IEnrollmentRepository,
         redisService: RedisService,
-        notificationService: NotificationService,
-        courseRepository: CourseRepository
+        notificationService: INotificationService,
+        courseRepository: ICourseRepository,
+        subscriptionRepository: ISubscriptionRepository,
+
     ) {
         this._examRepository = examRepository;
         this._enrollmentRepository = enrollmentRepository;
         this._redisService = redisService;
         this._notificationService = notificationService;
         this._courseRepository = courseRepository;
+        this._subscriptionRepository = subscriptionRepository;
     }
 
 
@@ -225,6 +230,13 @@ export class ExamService {
         limit: number
     ): Promise<IResponse> {
         try {
+            const subscription = await this._subscriptionRepository.findByUserId(studentId);
+            if (!subscription || subscription.status !== "active") {
+                return {
+                    success: false,
+                    message: "An active subscription is required to access exams.",
+                };
+            }
             const enrollment = await this._enrollmentRepository.findByUserAndCourse(studentId, courseId);
             if (!enrollment) {
                 return {

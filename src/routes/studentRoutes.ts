@@ -49,7 +49,7 @@ const enrollCourseService = new EnrollCourseService(enrollmentRepository, userRe
 const reviewService = new ReviewService(reviewRepository, enrollmentRepository);
 const notificationService=new NotificationService(notificationRepository,enrollmentRepository)
 const assessmentService = new AssessmentService(assessmentRepository, enrollmentRepository,notificationService,courseRepository);
-const examService = new ExamService(examRepository, enrollmentRepository, redisService,notificationService,courseRepository); 
+const examService = new ExamService(examRepository, enrollmentRepository, redisService,notificationService,courseRepository,subscriptionRepository); 
 
 
 const userController = new UserController(userService, paymentService);
