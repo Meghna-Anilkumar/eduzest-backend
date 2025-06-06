@@ -192,7 +192,7 @@ export class CourseService {
             offerResponse.data.length > 0
           ) {
             const offer = offerResponse.data[0] as any;
-            console.log(`Applying offer to course (${course.title}):`, offer);
+         
 
             const discountPercentage = offer.discountPercentage;
             const originalPrice = course.pricing.amount;
@@ -224,8 +224,6 @@ export class CourseService {
           totalCourses,
         },
       };
-
-      console.log("Response data being sent to frontend:", JSON.stringify(responseData, null, 2));
 
       return responseData;
     } catch (error) {
