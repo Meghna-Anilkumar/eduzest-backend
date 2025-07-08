@@ -18,7 +18,7 @@ class AdminController {
             const { email, password } = req.body;
 
             if (!email || !password) {
-                res.status(Status.BAD_REQUEST).json({ success: false, message: "Email and password are required." });
+                res.status(Status.BAD_REQUEST).json({ success: false, message: "Email and password are required" });
                 return;
             }
 
