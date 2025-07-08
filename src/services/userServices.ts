@@ -175,7 +175,7 @@ export class UserService implements IUserService {
             if (isBlocked) {
                 return {
                     success: false,
-                    message: "Your account has been blocked. Please contact support.",
+                    message: "Your account has been blocked. Please contact support",
                 };
             }
 
@@ -205,12 +205,14 @@ export class UserService implements IUserService {
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
+                sameSite:'none',
                 maxAge: 24 * 60 * 60 * 1000,
             });
 
             res.cookie(Cookie.userRefreshJWT, refreshToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
+                sameSite:'none',
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             });
 

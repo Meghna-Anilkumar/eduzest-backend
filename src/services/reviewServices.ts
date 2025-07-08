@@ -20,7 +20,6 @@ export class ReviewService implements IReviewService {
 
   async addReview(userId: string, reviewData: Partial<IReview>): Promise<IResponse> {
     try {
-      // Validate courseId presence
       if (!reviewData.courseId) {
         return {
           success: false,
