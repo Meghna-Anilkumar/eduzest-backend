@@ -17,7 +17,7 @@ class ChatController {
       if (!userId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
-          message: 'User not authenticated'
+          message: 'User not authenticated.'
         });
         return;
       }
