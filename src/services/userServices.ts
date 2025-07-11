@@ -47,7 +47,7 @@ export class UserService implements IUserService {
                 return {
                     success: false,
                     message: 'Email already exists',
-                    data: { email: 'Email already exists' }
+                    data: { email: 'Email already exists.' }
                 };
             }
 
