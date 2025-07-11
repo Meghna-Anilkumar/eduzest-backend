@@ -208,7 +208,7 @@ export interface ICouponService {
     addCoupon(couponData: Partial<ICoupon>): Promise<IResponse>;
     editCoupon(couponId: string, couponData: Partial<ICoupon>): Promise<IResponse>;
     deleteCoupon(couponId: string): Promise<IResponse>;
-    getAllCoupons(): Promise<IResponse>;
+    getAllCoupons(page?: number, limit?: number, search?: string): Promise<IResponse>;
     getActiveCoupons(): Promise<IResponse>
     checkCouponUsage(userId: string, couponId: string): Promise<IResponse>
 }

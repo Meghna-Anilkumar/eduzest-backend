@@ -203,7 +203,7 @@ export interface IChatRepository extends IBaseRepository<IChat> {
 export interface ICouponRepository extends IBaseRepository<ICoupon> {
     findByCode(code: string): Promise<ICoupon | null>;
     findActiveCoupons(): Promise<ICoupon[]>;
-    findAllCoupons(page?: number, limit?: number): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
+    findAllCoupons(page?: number, limit?: number, search?: string): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
     countActiveCoupons(): Promise<number>;
     createCoupon(couponData: Partial<ICoupon>): Promise<ICoupon>;
     updateCoupon(couponId: string, couponData: Partial<ICoupon>, options?: any): Promise<ICoupon | null>;

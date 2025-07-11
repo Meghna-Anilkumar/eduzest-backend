@@ -19,7 +19,7 @@ export class CouponController {
       console.error("Error in addCoupon controller:", error);
       res.status(500).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -48,20 +48,23 @@ export class CouponController {
       console.error("Error in deleteCoupon controller:", error);
       res.status(500).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
 
   async getAllCoupons(req: Request, res: Response) {
     try {
-      const result = await this._couponService.getAllCoupons();
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string | undefined;
+      const result = await this._couponService.getAllCoupons(page, limit, search);
       res.status(result.success ? 200 : 400).json(result);
     } catch (error) {
       console.error("Error in getAllCoupons controller:", error);
       res.status(500).json({
         success: false,
-        message:MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
     }
   }
@@ -93,7 +96,7 @@ export class CouponController {
       res.status(result.success ? 200 : 400).json(result);
     } catch (error) {
       console.error("Error in checkCouponUsage:", error);
-      res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR});
+      res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
     }
   }
 }

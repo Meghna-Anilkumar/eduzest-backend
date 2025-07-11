@@ -1,13 +1,13 @@
 import { ICoupon } from "../models/couponModel";
 import { IResponse } from "../interfaces/IResponse";
 import { ICouponRepository, ICouponUsageRepository } from "../interfaces/IRepositories";
-import {Types} from 'mongoose'
+import { Types } from 'mongoose'
 
 export class CouponService {
   constructor(
     private _couponRepository: ICouponRepository,
-    private _couponUsageRepository: ICouponUsageRepository 
-  ) {}
+    private _couponUsageRepository: ICouponUsageRepository
+  ) { }
 
   async addCoupon(couponData: Partial<ICoupon>): Promise<IResponse> {
     try {
@@ -144,9 +144,9 @@ export class CouponService {
     }
   }
 
-  async getAllCoupons(page: number = 1, limit: number = 10): Promise<IResponse> {
+  async getAllCoupons(page: number = 1, limit: number = 10, search?: string): Promise<IResponse> {
     try {
-      const { coupons, total, page: currentPage, totalPages } = await this._couponRepository.findAllCoupons(page, limit);
+      const { coupons, total, page: currentPage, totalPages } = await this._couponRepository.findAllCoupons(page, limit, search);
       return {
         success: true,
         message: "Coupons fetched successfully",
