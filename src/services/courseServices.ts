@@ -43,7 +43,7 @@ export class CourseService {
       if (existingCourse) {
         return {
           success: false,
-          message: "Course with this title already exists.",
+          message: "Course with this title already exists",
         };
       }
 
