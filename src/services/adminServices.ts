@@ -8,6 +8,7 @@ import { s3Service } from './s3Service';
 import { Response } from 'express';
 import { sendEmail } from '../utils/nodemailer';
 import { MESSAGE_CONSTANTS } from '../constants/message_constants';
+import { DTOMapper } from '../utils/dtoMapper';
 
 
 export class AdminService implements IAdminService {
@@ -85,31 +86,35 @@ export class AdminService implements IAdminService {
     }
 
     // List users on admin side
-    async fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse> {
-        try {
-            const skip = (page - 1) * limit;
+async fetchAllStudents(page: number, limit: number, search?: string): Promise<IResponse> {
+    try {
+      const skip = (page - 1) * limit;
 
-            const students = await this._adminRepository.getAllStudents(skip, limit, search);
-            const totalStudents = await this._adminRepository.countStudents(search);
+      const students = await this._adminRepository.getAllStudents(skip, limit, search);
+      const totalStudents = await this._adminRepository.countStudents(search);
 
-            return {
-                success: true,
-                message: "Students fetched successfully",
-                data: {
-                    students,
-                    totalStudents,
-                    totalPages: Math.ceil(totalStudents / limit),
-                    currentPage: page,
-                },
-            };
-        } catch (error) {
-            console.error("Error fetching students:", error);
-            return {
-                success: false,
-                message: "Failed to fetch students. Please try again.",
-            };
-        }
+      // Map students to DTO
+      const studentDTOs = students.map((student) => DTOMapper.mapToStudentDTO(student));
+
+      return {
+        success: true,
+        message: "Students fetched successfully",
+        data: {
+          students: studentDTOs,
+          totalStudents,
+          totalPages: Math.ceil(totalStudents / limit),
+          currentPage: page,
+        },
+      };
+    } catch (error) {
+      console.error("Error fetching students:", error);
+      return {
+        success: false,
+        message: "Failed to fetch students. Please try again.",
+      };
     }
+  }
+
 
     // Block or unblock user
     async blockUnblockUser(_id: string): Promise<IResponse> {
