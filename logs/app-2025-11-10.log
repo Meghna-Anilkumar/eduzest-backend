@@ -1,0 +1,483 @@
+[2025-11-10 00:34:57] [INFO] [REQUEST] GET /active-courses?page=1&limit=8&sortField=updatedAt&sortOrder=desc
+[2025-11-10 00:34:58] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-11-10 00:36:02] [INFO] [REQUEST] GET /active-courses?page=1&limit=8&sortField=updatedAt&sortOrder=desc
+[2025-11-10 00:36:02] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-11-10 00:36:07] [INFO] [REQUEST] GET /active-courses?page=2&limit=8&sortField=updatedAt&sortOrder=desc
+[2025-11-10 00:36:07] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-11-10 00:36:10] [INFO] [REQUEST] GET /active-courses?page=3&limit=8&sortField=updatedAt&sortOrder=desc
+[2025-11-10 00:36:10] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-11-10 00:36:33] [INFO] [REQUEST] GET /active-courses?page=1&limit=8&sortField=updatedAt&sortOrder=desc
+[2025-11-10 00:36:34] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-11-10 00:37:47] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-11-10 00:37:47] [INFO] [REQUEST] POST /admin/login
+[2025-11-10 00:37:47] [INFO] [RESPONSE] Status: 401 Message: Invalid email or password.
+[2025-11-10 00:37:47] [INFO] [REQUEST] POST /refresh-token
+[2025-11-10 00:37:47] [INFO] [RESPONSE] Status: 401 Message: No refresh token provided.
+[2025-11-10 00:39:01] [INFO] [REQUEST] OPTIONS /admin/login
+[2025-11-10 00:39:02] [INFO] [REQUEST] POST /admin/login
+[2025-11-10 00:39:02] [INFO] [RESPONSE] Status: 200 Message: Admin logged in successfully.
+[2025-11-10 00:39:02] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:02] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:02] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:03] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:03] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:03] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:22] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-11-10 00:39:23] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-11-10 00:39:24] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-11-10 00:39:24] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-11-10 00:39:36] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:36] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:36] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:36] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:36] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:36] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:39] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-11-10 00:39:40] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-11-10 00:39:43] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-11-10 00:39:43] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-11-10 00:39:46] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=5
+[2025-11-10 00:39:46] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:39:50] [INFO] [REQUEST] GET /admin/fetchAllRequestedUsers?page=1&limit=9
+[2025-11-10 00:39:50] [INFO] [RESPONSE] Status: 200 Message: Requested users fetched successfully
+[2025-11-10 00:39:52] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:52] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:52] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:52] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:52] [INFO] [REQUEST] GET /admin/dashboard-stats?period=day
+[2025-11-10 00:39:52] [INFO] [RESPONSE] Status: 200 Message: Dashboard statistics fetched successfully
+[2025-11-10 00:39:57] [INFO] [REQUEST] GET /admin/fetchAllStudents?page=1&limit=10
+[2025-11-10 00:39:57] [INFO] [RESPONSE] Status: 200 Message: Students fetched successfully
+[2025-11-10 00:40:01] [INFO] [REQUEST] GET /admin/fetchAllInstructors?page=1&limit=10
+[2025-11-10 00:40:01] [INFO] [RESPONSE] Status: 200 Message: Instructors fetched successfully
+[2025-11-10 00:40:33] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-11-10 00:40:33] [INFO] [REQUEST] POST /google-auth
+[2025-11-10 00:40:33] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-11-10 00:40:36] [INFO] [REQUEST] GET /active-courses?page=1&limit=8&sortField=updatedAt&sortOrder=desc
+[2025-11-10 00:40:37] [INFO] [RESPONSE] Status: 200 Message: Active courses fetched successfully.
+[2025-11-10 00:40:51] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:40:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:40:51] [INFO] [REQUEST] GET /instructor/course-stats
+[2025-11-10 00:40:53] [INFO] [RESPONSE] Status: 200 Message: undefined
+[2025-11-10 00:40:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:40:54] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 00:40:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:40:54] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 00:41:31] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 00:41:31] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 00:41:32] [INFO] [RESPONSE] Status: 500 Message: The AWS Access Key Id you provided does not exist in our records.
+[2025-11-10 00:42:18] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:18] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 00:42:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:18] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 00:42:20] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:20] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:20] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:20] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:23] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:23] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:23] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:24] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:24] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:26] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:26] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:27] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:27] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:28] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:28] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:28] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:28] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:28] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:28] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:28] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:31] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:31] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:31] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:31] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:34] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:34] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:34] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:34] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:34] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:34] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:38] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:38] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:38] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:38] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:42:41] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:42:41] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:42:41] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:42:41] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:43:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:43:01] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:43:01] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:43:01] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:43:01] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:43:01] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:43:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:43:02] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:43:03] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 00:43:03] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:43:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:43:03] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 00:43:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 00:43:03] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 00:43:56] [INFO] [REQUEST] POST /instructor/create-course
+[2025-11-10 00:43:56] [INFO] [RESPONSE] Status: 500 Message: The AWS Access Key Id you provided does not exist in our records.
+[2025-11-10 01:17:50] [INFO] [REQUEST] POST /instructor/create-course
+[2025-11-10 01:17:50] [INFO] [RESPONSE] Status: 500 Message: The AWS Access Key Id you provided does not exist in our records.
+[2025-11-10 10:26:55] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-11-10 10:26:55] [INFO] [REQUEST] POST /google-auth
+[2025-11-10 10:26:56] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-11-10 10:43:41] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 10:43:41] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 10:43:41] [INFO] [REQUEST] GET /instructor/course-stats
+[2025-11-10 10:43:42] [INFO] [RESPONSE] Status: 200 Message: undefined
+[2025-11-10 10:43:42] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 10:43:43] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 10:43:43] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 10:43:43] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 10:44:05] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 10:44:06] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 10:44:06] [INFO] [RESPONSE] Status: 500 Message: The AWS Access Key Id you provided does not exist in our records.
+[2025-11-10 10:48:19] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 10:48:19] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 10:48:19] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 10:48:19] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 10:48:25] [INFO] [REQUEST] GET /courses/6850e296bef2cd2f8e2bd96e/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fcourse635565657%2Fmodule-1%2Flesson-1-1758860985175.mp4
+[2025-11-10 10:48:26] [INFO] [RESPONSE] Status: 500 Message: The AWS Access Key Id you provided does not exist in our records.
+[2025-11-10 11:40:22] [INFO] [REQUEST] GET /courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 11:40:23] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-11-10 11:40:43] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 11:40:43] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 11:40:44] [INFO] [RESPONSE] Status: 500 Message: The AWS Access Key Id you provided does not exist in our records.
+[2025-11-10 11:55:19] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 11:55:19] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 11:55:19] [INFO] [RESPONSE] Status: 500 Message: Access Denied
+[2025-11-10 12:05:51] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:05:51] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:05:52] [INFO] [RESPONSE] Status: 500 Message: The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.
+[2025-11-10 12:08:05] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 12:08:05] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 12:08:05] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 12:08:06] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 12:08:13] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:08:13] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:08:13] [INFO] [RESPONSE] Status: 400 Message: already existing course
+[2025-11-10 12:08:18] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 12:08:18] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 12:08:18] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 12:08:18] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 12:08:42] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:08:42] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:08:43] [INFO] [RESPONSE] Status: 500 Message: The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.
+[2025-11-10 12:09:59] [INFO] [REQUEST] GET /courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:10:00] [INFO] [RESPONSE] Status: 200 Message: Course fetched successfully.
+[2025-11-10 12:10:21] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:10:21] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:10:22] [INFO] [RESPONSE] Status: 400 Message: already existing course
+[2025-11-10 12:59:54] [INFO] [REQUEST] GET /courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 12:59:58] [INFO] [REQUEST] GET /courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 13:00:01] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:00:01] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 13:01:39] [INFO] [REQUEST] OPTIONS /google-auth
+[2025-11-10 13:01:40] [INFO] [REQUEST] POST /google-auth
+[2025-11-10 13:01:40] [INFO] [RESPONSE] Status: 200 Message: Google authentication successful
+[2025-11-10 13:06:47] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:06:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:06:48] [INFO] [REQUEST] GET /instructor/course-stats
+[2025-11-10 13:06:50] [INFO] [RESPONSE] Status: 200 Message: undefined
+[2025-11-10 13:06:51] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:06:51] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 13:06:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:06:52] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 13:07:11] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 13:07:11] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 13:07:11] [INFO] [RESPONSE] Status: 400 Message: already existing course
+[2025-11-10 13:08:36] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:08:37] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 13:08:37] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:08:37] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 13:08:38] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 13:08:39] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:08:39] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:08:39] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 13:08:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 13:08:52] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:08:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:08:52] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:08:52] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 13:08:52] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 13:08:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:08:52] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 13:08:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 13:08:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:08:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:08:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 13:08:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:08:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:09:20] [INFO] [REQUEST] POST /instructor/create-course
+[2025-11-10 13:09:21] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-11-10 13:09:21] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:09:21] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 13:09:21] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:09:22] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 13:09:34] [INFO] [REQUEST] GET /courses/691196a9f6cfb711c1b1be2b/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fggggg%2Fmodule-1%2Flesson-1.mp4
+[2025-11-10 13:09:36] [INFO] [REQUEST] GET /courses/691196a9f6cfb711c1b1be2b/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fggggg%2Fmodule-1%2Flesson-1.mp4
+[2025-11-10 13:09:37] [INFO] [REQUEST] GET /courses/691196a9f6cfb711c1b1be2b/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fggggg%2Fmodule-1%2Flesson-1.mp4
+[2025-11-10 13:09:38] [INFO] [REQUEST] GET /courses/691196a9f6cfb711c1b1be2b/stream?videoKey=courses%2F67b6d4b441900af7ed9b5af6%2Fggggg%2Fmodule-1%2Flesson-1.mp4
+[2025-11-10 13:17:08] [INFO] [REQUEST] OPTIONS /instructor/courses/691196a9f6cfb711c1b1be2b
+[2025-11-10 13:17:08] [INFO] [REQUEST] PUT /instructor/courses/691196a9f6cfb711c1b1be2b
+[2025-11-10 13:17:28] [INFO] [RESPONSE] Status: 400 Message: already existing course
+[2025-11-10 13:17:33] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 13:17:33] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 13:17:45] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 13:17:49] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 14:58:27] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 14:58:28] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 14:58:28] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 14:58:28] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 15:43:20] [INFO] [REQUEST] OPTIONS /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 15:43:20] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 15:43:21] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-11-10 15:43:22] [INFO] [REQUEST] PUT /instructor/courses/6850e296bef2cd2f8e2bd96e
+[2025-11-10 15:43:22] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-11-10 15:45:47] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:48] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 15:45:48] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:48] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 15:45:49] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:49] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:49] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:49] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:50] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:50] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:50] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:50] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:50] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:51] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:51] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:51] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:51] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:51] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:52] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:52] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:52] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:53] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:53] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:54] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:54] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:55] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:55] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:55] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:55] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:55] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:55] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:56] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:56] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:57] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:57] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:57] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:45:59] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:45:59] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:45:59] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:45:59] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:46:02] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:46:02] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:46:02] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:46:03] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:46:23] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:46:23] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:46:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:46:23] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:46:23] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:46:23] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:46:23] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:46:23] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:46:25] [INFO] [REQUEST] GET /admin/fetch-all-categories?page=1&limit=100
+[2025-11-10 15:46:25] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:46:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:46:25] [INFO] [RESPONSE] Status: 200 Message: Categories fetched successfully
+[2025-11-10 15:46:25] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:46:25] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:46:58] [INFO] [REQUEST] POST /instructor/create-course
+[2025-11-10 15:46:59] [INFO] [RESPONSE] Status: 201 Message: Course created successfully.
+[2025-11-10 15:47:00] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:47:00] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 15:47:00] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:47:00] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.
+[2025-11-10 15:47:25] [INFO] [REQUEST] OPTIONS /instructor/courses/6911bb9b3d4f20cb99d600aa
+[2025-11-10 15:47:25] [INFO] [REQUEST] PUT /instructor/courses/6911bb9b3d4f20cb99d600aa
+[2025-11-10 15:47:26] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-11-10 15:47:26] [INFO] [REQUEST] PUT /instructor/courses/6911bb9b3d4f20cb99d600aa
+[2025-11-10 15:47:26] [INFO] [RESPONSE] Status: 200 Message: Course updated successfully.
+[2025-11-10 15:47:29] [INFO] [REQUEST] GET /getUserdata
+[2025-11-10 15:47:29] [INFO] [REQUEST] GET /instructor/courses?page=1&limit=6&search=
+[2025-11-10 15:47:29] [INFO] [RESPONSE] Status: 200 Message: User details fetched successfully
+[2025-11-10 15:47:29] [INFO] [RESPONSE] Status: 200 Message: Courses fetched successfully.

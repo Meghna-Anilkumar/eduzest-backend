@@ -5,17 +5,11 @@ import { ICourseRepository } from "../interfaces/IRepositories";
 import { ICategoryRepository } from "../interfaces/IRepositories";
 import { validateCourseData } from "../utils/courseValidation";
 import { CustomError } from "../utils/CustomError";
-import { IOfferService } from "../interfaces/IServices";
-import { NotificationService } from "../services/notificationService";
-import { IEnrollmentRepository } from "../interfaces/IRepositories";
 
 export class CourseService {
   constructor(
     private _courseRepository: ICourseRepository,
-    private _categoryRepository: ICategoryRepository,
-    private _offerService: IOfferService,
-    private _notificationService: NotificationService,
-    private _enrollmentRepository: IEnrollmentRepository
+    private _categoryRepository: ICategoryRepository
   ) { }
 
   async createCourse(courseData: Partial<ICourse>): Promise<IResponse> {
@@ -171,63 +165,20 @@ export class CourseService {
       }
 
       const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
+      console.log("Courses with populated data:", JSON.stringify(courses, null, 2));
       const totalCourses = await this._courseRepository.countDocuments(query);
 
-      console.log("Courses fetched from repository:", courses);
-
-      // Convert courses to plain objects to ensure dynamically added fields are preserved
-      const coursesWithOffers = courses.map(course => ({ ...course.toObject() }));
-
-      // Fetch offers for each course's category and calculate offer price
-      for (const course of coursesWithOffers) {
-        if (course.pricing.type === "paid" && course.categoryRef) {
-          console.log(`Fetching offer for course (${course.title}) with categoryRef:`, course.categoryRef);
-          const offerResponse = await this._offerService.getActiveOffers(course.categoryRef._id.toString());
-          console.log(`Offer response for course (${course.title}):`, offerResponse);
-
-          if (
-            offerResponse.success &&
-            offerResponse.data &&
-            Array.isArray(offerResponse.data) &&
-            offerResponse.data.length > 0
-          ) {
-            const offer = offerResponse.data[0] as any;
-         
-
-            const discountPercentage = offer.discountPercentage;
-            const originalPrice = course.pricing.amount;
-            const discountAmount = (originalPrice * discountPercentage) / 100;
-            const offerPrice = originalPrice - discountAmount;
-
-            course.offer = {
-              discountPercentage,
-              offerPrice: Math.round(offerPrice),
-            };
-            console.log(`Updated course (${course.title}) with offer:`, course.offer);
-          } else {
-            console.log(`No offer found for course (${course.title})`);
-          }
-        } else {
-          console.log(`Skipping offer for course (${course.title}): Not paid or no categoryRef`);
-        }
-      }
-
-      console.log("Final courses with offers:", coursesWithOffers);
-
-      const responseData = {
+      return {
         success: true,
         message: "Active courses fetched successfully.",
         data: {
-          courses: coursesWithOffers,
+          courses,
           totalPages: Math.ceil(totalCourses / limit),
           currentPage: page,
           totalCourses,
         },
       };
-
-      return responseData;
     } catch (error) {
-      console.log("Error in getAllActiveCourses:", error);
       return {
         success: false,
         message: "An error occurred while fetching active courses.",
@@ -247,58 +198,17 @@ export class CourseService {
         };
       }
 
-      // Convert course to plain object to ensure dynamically added fields are preserved
-      const courseWithOffer = { ...course.toObject() };
-
-      // Apply offer logic for paid courses with a category
-      if (courseWithOffer.pricing.type === "paid" && courseWithOffer.categoryRef) {
-        console.log(`Fetching offer for course (${courseWithOffer.title}) with categoryRef:`, courseWithOffer.categoryRef);
-        const offerResponse = await this._offerService.getActiveOffers(courseWithOffer.categoryRef._id.toString());
-        console.log(`Offer response for course (${courseWithOffer.title}):`, offerResponse);
-
-        if (
-          offerResponse.success &&
-          offerResponse.data &&
-          Array.isArray(offerResponse.data) &&
-          offerResponse.data.length > 0
-        ) {
-          const offer = offerResponse.data[0] as any;
-          console.log(`Applying offer to course (${courseWithOffer.title}):`, offer);
-
-          // Check offer expiration
-          if (offer.expirationDate && new Date(offer.expirationDate) < new Date()) {
-            console.log(`Offer for course (${courseWithOffer.title}) is expired`);
-          } else {
-            const discountPercentage = offer.discountPercentage;
-            const originalPrice = courseWithOffer.pricing.amount;
-            const discountAmount = (originalPrice * discountPercentage) / 100;
-            const offerPrice = Math.round(originalPrice - discountAmount);
-
-            courseWithOffer.offer = {
-              discountPercentage,
-              offerPrice,
-            };
-            console.log(`Updated course (${courseWithOffer.title}) with offer:`, courseWithOffer.offer);
-          }
-        } else {
-          console.log(`No offer found for course (${courseWithOffer.title})`);
-        }
-      } else {
-        console.log(`Skipping offer for course (${courseWithOffer.title}): Not paid or no categoryRef`);
-      }
-
       return {
         success: true,
         message: "Course fetched successfully.",
-        data: courseWithOffer,
+        data: course,
       };
     } catch (error) {
-      console.log("Error in getCourseById:", error);
       return {
         success: false,
         message: "An error occurred while fetching the course.",
         error: {
-          message: error instanceof Error ? error.message : "Unknown error",
+          message: error instanceof Error ? error.message : "Unknown error"
         },
       };
     }
@@ -362,18 +272,14 @@ export class CourseService {
         };
       }
 
-      const title = updateData.title;
+      const title = updateData.title
       if (title) {
-        const existingCourse = await this._courseRepository.findByTitleAndInstructor(
-          title,
-          new Types.ObjectId(instructorId)
-        );
-
-        if (existingCourse && existingCourse._id && existingCourse._id.toString() !== courseId) {
+        const existingCourse = await this._courseRepository.findByTitleAndInstructor(title, new Types.ObjectId(instructorId))
+        if (existingCourse) {
           return {
             success: false,
-            message: "A course with this title already exists"
-          };
+            message: "already existing course"
+          }
         }
       }
 
@@ -383,17 +289,14 @@ export class CourseService {
         updateData
       );
 
+
+
       if (!updatedCourse) {
         return {
           success: false,
           message: "Course not found or you are not authorized to edit this course.",
         };
       }
-
-
-      const message = `Course "${updatedCourse.title}" has been updated.`;
-      await this._notificationService.notifyCourseUpdate(courseId, message);
-
 
       return {
         success: true,
