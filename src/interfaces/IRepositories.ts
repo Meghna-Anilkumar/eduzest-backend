@@ -234,6 +234,7 @@ export interface ISubscriptionRepository {
     findByUserId(userId: string): Promise<ISubscription | null>;
     findById(id: string): Promise<ISubscription | null>;
     updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
+    deleteSubscription(id: string): Promise<boolean>;
 }
 
 

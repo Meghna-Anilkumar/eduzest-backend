@@ -272,16 +272,21 @@ export class CourseService {
         };
       }
 
-      const title = updateData.title
+      const title = updateData.title;
       if (title) {
-        const existingCourse = await this._courseRepository.findByTitleAndInstructor(title, new Types.ObjectId(instructorId))
-        if (existingCourse) {
+        const existingCourse = await this._courseRepository.findByTitleAndInstructor(
+          title,
+          new Types.ObjectId(instructorId)
+        );
+
+        if (existingCourse && existingCourse._id.toString() !== courseId) {
           return {
             success: false,
-            message: "already existing course"
-          }
+            message: "already existing course",
+          };
         }
       }
+
 
       const updatedCourse = await this._courseRepository.editCourse(
         courseId,

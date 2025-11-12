@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.ts",
-  "scripts": {
+    "scripts": {
     "dev": "nodemon --ext ts --exec ts-node src/server.ts",
-<<<<<<< HEAD
-    "build": "tsc"
-=======
+    "build": "tsc",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-"lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
-
->>>>>>> 420388f (eslint added and edit course service any removed)
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "author": "",
   "license": "ISC",
