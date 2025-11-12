@@ -215,12 +215,12 @@ export interface ICouponService {
 
 
 export interface IOfferService {
-    addOffer(offerData: Partial<IOffer>): Promise<IResponse>;
-    editOffer(offerId: string, offerData: Partial<IOffer>): Promise<IResponse>;
-    deleteOffer(offerId: string): Promise<IResponse>;
-    getAllOffers(page?: number, limit?: number): Promise<IResponse>;
-    getActiveOffers(categoryId?: string): Promise<IResponse>;
-    checkOfferUsage(userId: string, offerId: string): Promise<IResponse>;
+  addOffer(offerData: Partial<IOffer>): Promise<IResponse>;
+  editOffer(offerId: string, offerData: Partial<IOffer>): Promise<IResponse>;
+  deleteOffer(offerId: string): Promise<IResponse>;
+  getAllOffers(page: number, limit: number, search?: string): Promise<IResponse>;
+  getActiveOffers(categoryId?: string): Promise<IResponse>;
+  checkOfferUsage(userId: string, offerId: string): Promise<IResponse>;
 }
 
 

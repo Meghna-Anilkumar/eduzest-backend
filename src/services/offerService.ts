@@ -253,9 +253,9 @@ export class OfferService {
     }
   }
 
-  async getAllOffers(page: number = 1, limit: number = 10): Promise<IResponse> {
+  async getAllOffers(page: number = 1, limit: number = 10, search?: string): Promise<IResponse> {
     try {
-      const result = await this._offerRepository.findAllOffers(page, limit);
+      const result = await this._offerRepository.findAllOffers(page, limit, search);
       return {
         success: true,
         message: "Offers fetched successfully",

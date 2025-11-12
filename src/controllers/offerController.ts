@@ -53,8 +53,12 @@ export class OfferController {
 
   async getAllOffers(req: Request, res: Response) {
     try {
-      const { page = "1", limit = "10" } = req.query;
-      const result = await this._offerService.getAllOffers(Number(page), Number(limit));
+      const { page = "1", limit = "10", search = "" } = req.query;
+      const result = await this._offerService.getAllOffers(
+        Number(page), 
+        Number(limit),
+        search as string
+      );
       res.status(result.success ? 200 : 400).json(result);
     } catch (error) {
       console.error("Error in getAllOffers controller:", error);
