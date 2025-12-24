@@ -1,4 +1,6 @@
 import { Schema, model, Document, Types } from "mongoose";
+import { ICourse } from "../interfaces/ICourse"
+import { ICourseDTO } from "../interfaces/ICourseDTO";
 
 export interface LessonProgress {
   lessonId: Types.ObjectId;
@@ -17,6 +19,15 @@ export interface EnrollmentDoc extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface PopulatedEnrollmentDoc extends Omit<EnrollmentDoc, 'courseId'> {
+  courseId: ICourse | null;
+}
+
+export interface EnrollmentWithSignedUrls extends Omit<EnrollmentDoc, 'courseId'> {
+  courseId: ICourseDTO | null;
+}
+
 
 const enrollmentSchema = new Schema<EnrollmentDoc>(
   {

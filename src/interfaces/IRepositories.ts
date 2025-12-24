@@ -21,12 +21,21 @@ import { IExam, IExamResult } from './IExam';
 import { INotification } from "../models/notificationModel"
 
 export interface IBaseRepository<T extends Document> {
-    findAll(filter: Record<string, unknown>, skip: number, sort: any, limit?: number): Promise<T[]>;
+    findAll(
+        filter: Record<string, unknown>,
+        skip: number,
+        sort: Record<string, 1 | -1 | 'asc' | 'desc' | 'ascending' | 'descending'>,
+        limit?: number
+    ): Promise<T[]>;
     findById(id: string): Promise<T | null>;
     findByQuery(query: FilterQuery<T>): Promise<T | null>;
     create(item: Partial<T>): Promise<T>;
-    update(query: any, item: UpdateQuery<T>, options?: any): Promise<T | null>;
-    delete(id: any): Promise<boolean>;
+    update(
+        query: FilterQuery<T>,
+        item: UpdateQuery<T>,
+        options?: QueryOptions
+    ): Promise<T | null>;
+    delete(id: string | Types.ObjectId): Promise<boolean>;
     count(filter: Record<string, unknown>): Promise<number>;
 }
 
@@ -78,7 +87,6 @@ export interface IOtpRepository extends IBaseRepository<OtpDoc> {
     isOtpExpired(email: string): Promise<boolean>;
 }
 
-
 export interface ICategoryRepository extends IBaseRepository<CategoryDoc> {
     findByName(categoryName: string): Promise<CategoryDoc | null>;
     toggleCategoryStatus(categoryId: string, isActive: boolean): Promise<CategoryDoc | null>;
@@ -89,13 +97,13 @@ export interface ICategoryRepository extends IBaseRepository<CategoryDoc> {
 export interface ICourseRepository extends IBaseRepository<ICourse> {
     createCourse(courseData: Partial<ICourse>): Promise<ICourse>;
     findByTitleAndInstructor(title: string, instructorId: Types.ObjectId): Promise<ICourse | null>;
-    getAllCoursesByInstructor(query: any, page: number, limit: number): Promise<ICourse[]>;
-    countDocuments(query: any): Promise<number>;
+    getAllCoursesByInstructor(query: FilterQuery<ICourse>, page: number, limit: number): Promise<ICourse[]>;
+    countDocuments(query: FilterQuery<ICourse>): Promise<number>;
     getAllActiveCourses(
-        query: any,
+        query: FilterQuery<ICourse>,
         page: number,
         limit: number,
-        sort?: any
+        sort?: Record<string, 1 | -1 | 'asc' | 'desc' | 'ascending' | 'descending'>
     ): Promise<ICourse[]>;
     getCourseById(courseId: string): Promise<ICourse | null>
     editCourse(courseId: string, instructorId: string, updateData: Partial<ICourse>): Promise<ICourse | null>;
@@ -103,7 +111,6 @@ export interface ICourseRepository extends IBaseRepository<ICourse> {
     findByTitleAndLevel(title: string, level: string): Promise<ICourse | null>
     findByCategoryId(categoryId: string): Promise<ICourse[]>
 }
-
 
 export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
     findByUserId(userId: string): Promise<PaymentDoc[]>;
@@ -124,17 +131,16 @@ export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
         search?: string,
         sort?: { field: string; order: "asc" | "desc" },
         courseFilter?: string
-    ): Promise<{ data: any[]; total: number; page: number; limit: number }>
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>
     getAdminPayouts(
         page: number,
         limit: number,
         search?: string,
         sort?: { field: string; order: "asc" | "desc" },
         courseFilter?: string
-    ): Promise<{ data: any[]; total: number; page: number; limit: number }>
+    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>
     getRevenueOverview(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; amount: number }[]>;
 }
-
 
 export interface IEnrollmentRepository {
     findByUserId(
@@ -158,9 +164,7 @@ export interface IEnrollmentRepository {
     ): Promise<EnrollmentDoc | null>;
     updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null>
     getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]>;
-
 }
-
 
 export interface IReviewRepository {
     createReview(reviewData: Partial<IReview>): Promise<IReview>;
@@ -168,7 +172,6 @@ export interface IReviewRepository {
     getReviewsByCourse(courseId: string, skip: number, limit: number): Promise<IReview[]>;
     countReviewsByCourse(courseId: string): Promise<number>;
 }
-
 
 export interface IAssessmentRepository {
     createAssessment(assessmentData: Partial<IAssessment>): Promise<IAssessment>;
@@ -186,9 +189,7 @@ export interface IAssessmentRepository {
     countByCourse(courseId: string): Promise<number>;
     countAssessmentsByCourse(courseId: string): Promise<number>;
     findByCourse(courseId: string, page: number, limit: number): Promise<IAssessment[]>;
-
 }
-
 
 export interface IChatRepository extends IBaseRepository<IChat> {
     findByCourseId(courseId: string, skip: number, limit: number): Promise<IChat[]>;
@@ -198,25 +199,21 @@ export interface IChatRepository extends IBaseRepository<IChat> {
     getChatGroupMetadata(userId: string, courseIds: string[]): Promise<IChatGroupMetadata[]>
 }
 
-
-
 export interface ICouponRepository extends IBaseRepository<ICoupon> {
     findByCode(code: string): Promise<ICoupon | null>;
     findActiveCoupons(): Promise<ICoupon[]>;
     findAllCoupons(page?: number, limit?: number, search?: string): Promise<{ coupons: ICoupon[], total: number, page: number, totalPages: number }>;
     countActiveCoupons(): Promise<number>;
     createCoupon(couponData: Partial<ICoupon>): Promise<ICoupon>;
-    updateCoupon(couponId: string, couponData: Partial<ICoupon>, options?: any): Promise<ICoupon | null>;
+    updateCoupon(couponId: string, couponData: Partial<ICoupon>, options?: QueryOptions): Promise<ICoupon | null>;
     deleteCoupon(couponId: string): Promise<boolean>;
     findCouponById(couponId: string): Promise<ICoupon | null>;
 }
-
 
 export interface ICouponUsageRepository {
     hasUserUsedCoupon(userId: string, couponId: string): Promise<boolean>;
     recordCouponUsage(userId: string, couponId: string, courseId: string): Promise<ICouponUsage>;
 }
-
 
 export interface IOfferRepository extends IBaseRepository<IOffer> {
     createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
@@ -228,14 +225,12 @@ export interface IOfferRepository extends IBaseRepository<IOffer> {
     findByCategoryId(categoryId: string): Promise<IOffer | null>;
 }
 
-
 export interface ISubscriptionRepository {
     createSubscription(data: Partial<ISubscription>): Promise<ISubscription>;
     findByUserId(userId: string): Promise<ISubscription | null>;
     findById(id: string): Promise<ISubscription | null>;
     updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
 }
-
 
 export interface IExamRepository {
     createExam(examData: Partial<IExam>): Promise<IExam>;
@@ -265,7 +260,6 @@ export interface IExamRepository {
     } | null>
 }
 
-
 export interface INotificationRepository {
     createNotification(userId: string, courseId: string | null, type: INotification['type'], message: string): Promise<INotification>;
     createNotificationsForUsers(userIds: string[], courseId: string, type: INotification['type'], message: string): Promise<INotification[]>;
@@ -281,5 +275,3 @@ export interface INotificationRepository {
         timeWindowMs: number
     ): Promise<INotification[]>
 }
-
-

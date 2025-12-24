@@ -13,7 +13,7 @@ export class SubscriptionRepository implements ISubscriptionRepository {
     if (!Types.ObjectId.isValid(userId)) {
       throw new Error("Invalid userId");
     }
-    return await Subscription.findOne({ userId: new Types.ObjectId(userId) });
+    return await Subscription.findOne({ userId: new Types.ObjectId(userId) }).sort({ createdAt: -1 }).exec();
   }
 
   async findById(id: string): Promise<ISubscription | null> {

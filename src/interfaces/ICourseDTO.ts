@@ -36,8 +36,8 @@ export interface ICourseDTO {
   _id: string;
   title: string;
   description: string;
-  thumbnail: string; // Signed URL
-  thumbnailKey?: string; // Optional raw S3 key
+  thumbnail: string; 
+  thumbnailKey?: string; 
   instructorRef: { _id: string; name?: string; profile?: { profilePic: string } } | string;
   categoryRef: { _id: string; categoryName?: string } | string;
   language: string;

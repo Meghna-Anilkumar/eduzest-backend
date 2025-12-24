@@ -5,8 +5,7 @@ import { verifyAccessToken } from "../utils/jwt";
 import { IEnrollCourseService } from "../interfaces/IServices";
 import { s3Service } from "../services/s3Service";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
-import { EnrollmentDoc } from "../models/enrollmentModel";
-import { Types } from "mongoose";
+import { PopulatedEnrollmentDoc,EnrollmentWithSignedUrls } from "../models/enrollmentModel";
 
 
 class EnrollCourseController {
@@ -85,7 +84,6 @@ class EnrollCourseController {
   async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
     try {
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
-
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
       const search = req.query.search as string || undefined;
@@ -102,26 +100,37 @@ class EnrollCourseController {
 
       if (result.success && result.data) {
         const enrollmentData = result.data as {
-          enrollments: Array<EnrollmentDoc & { courseId: any }>;
+          enrollments: PopulatedEnrollmentDoc[];
           totalPages: number;
           currentPage: number;
           totalEnrollments: number;
         };
 
         if (Array.isArray(enrollmentData.enrollments)) {
-          const enrollmentsWithSignedUrls = await Promise.all(
+          const enrollmentsWithSignedUrls: EnrollmentWithSignedUrls[] = await Promise.all(
             enrollmentData.enrollments.map(async (enrollment) => {
+              // Create a new object with the transformed courseId
+              const transformedEnrollment: EnrollmentWithSignedUrls = {
+                ...enrollment.toObject(), // Convert Mongoose doc to plain object
+                courseId: null
+              };
 
-              if (enrollment.courseId && typeof enrollment.courseId === 'object' &&
-                !(enrollment.courseId instanceof Types.ObjectId) &&
+              // Check if courseId exists and is a populated course object
+              if (enrollment.courseId &&
+                typeof enrollment.courseId === 'object' &&
                 'title' in enrollment.courseId) {
-                enrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId);
+                transformedEnrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId);
               }
-              return enrollment;
+
+              return transformedEnrollment;
             })
           );
 
-          enrollmentData.enrollments = enrollmentsWithSignedUrls;
+          // Update the result data with transformed enrollments
+          result.data = {
+            ...enrollmentData,
+            enrollments: enrollmentsWithSignedUrls
+          };
         }
       }
 

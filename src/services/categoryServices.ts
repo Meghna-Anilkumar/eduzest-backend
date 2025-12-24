@@ -16,14 +16,14 @@ export class CategoryService implements ICategoryService {
     async createCategory(categoryData: Partial<CategoryDoc>): Promise<IResponse> {
         try {
             const trimmedName = categoryData.categoryName?.trim();
-            
+
             if (!trimmedName) {
                 return {
                     success: false,
                     message: "Category name is required."
                 };
             }
-    
+
             const existingCategory = await this._categoryRepository.findByName(trimmedName);
             if (existingCategory) {
                 return {
@@ -31,13 +31,13 @@ export class CategoryService implements ICategoryService {
                     message: "Category already exists."
                 };
             }
-    
+
             const newCategory = await this._categoryRepository.create({
                 ...categoryData,
                 categoryName: trimmedName,
                 isActive: true
             });
-    
+
             return {
                 success: true,
                 message: "Category created successfully.",
@@ -123,7 +123,12 @@ export class CategoryService implements ICategoryService {
                 };
             }
 
-            const updatedCategory = await this._categoryRepository.update(categoryId, categoryData);
+            // Fixed: Use proper FilterQuery with { _id: categoryId }
+            const updatedCategory = await this._categoryRepository.update(
+                { _id: categoryId },
+                categoryData,
+                { new: true } // Recommended: returns the updated document instead of the old one
+            );
 
             if (!updatedCategory) {
                 return {

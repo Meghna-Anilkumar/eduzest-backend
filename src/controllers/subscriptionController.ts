@@ -26,9 +26,10 @@ export class SubscriptionController {
 
       const result = await this._paymentService.createSubscription(userId, plan, paymentType);
       res.status(result.success ? 200 : 400).json(result);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error in createSubscription:", error);
-      res.status(500).json({ success: false, message: error.message || "Internal server error" });
+      const errorMessage = error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ success: false, message: errorMessage });
     }
   }
 
@@ -43,26 +44,28 @@ export class SubscriptionController {
 
       const result = await this._paymentService.confirmSubscription(subscriptionId);
       res.status(result.success ? 200 : 400).json(result);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error in confirmSubscription:", error);
-      res.status(500).json({ success: false, message: error.message || "Internal server error" });
+      const errorMessage = error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ success: false, message: errorMessage });
     }
   }
 
   async getSubscriptionStatus(req: Request, res: Response): Promise<void> {
-  try {
-    const { userId } = req.query;
+    try {
+      const { userId } = req.query;
 
-    if (!userId || typeof userId !== "string" || !Types.ObjectId.isValid(userId)) {
-      res.status(400).json({ success: false, message: "Invalid or missing userId" });
-      return;
+      if (!userId || typeof userId !== "string" || !Types.ObjectId.isValid(userId)) {
+        res.status(400).json({ success: false, message: "Invalid or missing userId" });
+        return;
+      }
+
+      const result = await this._paymentService.getSubscriptionStatus(userId);
+      res.status(result.success ? 200 : 400).json(result);
+    } catch (error) {
+      console.error("Error in getSubscriptionStatus:", error);
+      const errorMessage = error instanceof Error ? error.message : "Internal server error";
+      res.status(500).json({ success: false, message: errorMessage });
     }
-
-    const result = await this._paymentService.getSubscriptionStatus(userId);
-    res.status(result.success ? 200 : 400).json(result);
-  } catch (error: any) {
-    console.error("Error in getSubscriptionStatus:", error);
-    res.status(500).json({ success: false, message: error.message || "Internal server error" });
   }
-}
 }
