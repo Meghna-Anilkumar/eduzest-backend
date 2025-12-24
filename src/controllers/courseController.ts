@@ -345,11 +345,13 @@ class CourseController {
         console.log('videoMap:', Array.from(videoMap.entries()));
 
         updateData.modules = await Promise.all(
-          rawUpdateData.modules.map(async (module: any, moduleIndex: number) => {
+
+          rawUpdateData.modules.map(async (module: IModule, moduleIndex: number) => {
+
             console.log(`Processing module ${moduleIndex + 1}:`, {
               moduleTitle: module.moduleTitle,
               lessonCount: module.lessons.length,
-              lessons: module.lessons.map((l: any) => ({
+              lessons: module.lessons.map((l: ILesson) => ({
                 id: l._id,
                 title: l.title,
                 lessonNumber: l.lessonNumber,
@@ -358,7 +360,9 @@ class CourseController {
             });
 
             const lessons = await Promise.all(
-              module.lessons.map(async (lesson: any, lessonIndex: number) => {
+
+              module.lessons.map(async (lesson: ILesson, lessonIndex: number) => {
+
                 const lessonKey = lesson._id && Types.ObjectId.isValid(lesson._id)
                   ? lesson._id.toString()
                   : `new-lesson-${moduleIndex}-${lessonIndex}`;

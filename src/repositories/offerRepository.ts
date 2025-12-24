@@ -59,18 +59,51 @@ export class OfferRepository extends BaseRepository<IOffer> {
     }
   }
 
-  async findAllOffers(page: number = 1, limit: number = 10): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }> {
+  async findAllOffers(
+    page: number = 1, 
+    limit: number = 10, 
+    search?: string
+  ): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }> {
     try {
       const skip = (page - 1) * limit;
-      const [offers, total] = await Promise.all([
-        this._model.find({})
-          .populate('categoryId')
-          .sort({ createdAt: -1 })
-          .skip(skip)
-          .limit(limit)
-          .lean(),
-        this._model.countDocuments({})
-      ]);
+      
+      // Build aggregation pipeline
+      const pipeline: any[] = [
+        {
+          $lookup: {
+            from: 'categories',
+            localField: 'categoryId',
+            foreignField: '_id',
+            as: 'categoryId'
+          }
+        },
+        {
+          $unwind: '$categoryId'
+        }
+      ];
+
+      // Add search filter if search term exists
+      if (search && search.trim() !== '') {
+        pipeline.push({
+          $match: {
+            'categoryId.categoryName': { $regex: search.trim(), $options: 'i' }
+          }
+        });
+      }
+
+      // Get total count
+      const countPipeline = [...pipeline, { $count: 'total' }];
+      const countResult = await this._model.aggregate(countPipeline);
+      const total = countResult.length > 0 ? countResult[0].total : 0;
+
+      // Get paginated results
+      pipeline.push(
+        { $sort: { createdAt: -1 } },
+        { $skip: skip },
+        { $limit: limit }
+      );
+
+      const offers = await this._model.aggregate(pipeline);
 
       return {
         offers,

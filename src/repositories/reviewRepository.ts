@@ -3,8 +3,6 @@ import { Review } from "../models/reviewModel";
 import { BaseRepository } from "./baseRepository";
 import { IReviewRepository } from "../interfaces/IRepositories";
 import { IReview } from "../interfaces/IReview";
-// Import Users model correctly
-import { Users } from "../models/userModel";
 
 export class ReviewRepository extends BaseRepository<IReview> implements IReviewRepository {
   constructor() {

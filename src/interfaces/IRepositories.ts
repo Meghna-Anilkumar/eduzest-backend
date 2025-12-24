@@ -215,14 +215,23 @@ export interface ICouponUsageRepository {
     recordCouponUsage(userId: string, couponId: string, courseId: string): Promise<ICouponUsage>;
 }
 
-export interface IOfferRepository extends IBaseRepository<IOffer> {
-    createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
-    updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
-    deleteOffer(offerId: string): Promise<boolean>;
-    findActiveOffers(categoryId?: string): Promise<IOffer[]>;
-    findAllOffers(page?: number, limit?: number): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }>;
-    countActiveOffers(categoryId?: string): Promise<number>;
-    findByCategoryId(categoryId: string): Promise<IOffer | null>;
+
+
+export interface IOfferRepository {
+  createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
+  findById(id: string): Promise<IOffer | null>;
+  findByCategoryId(categoryId: string): Promise<IOffer | null>;
+  findByQuery(query: any): Promise<IOffer | null>;
+  updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
+  deleteOffer(offerId: string): Promise<boolean>;
+  findActiveOffers(categoryId?: string): Promise<IOffer[]>;
+  findAllOffers(page: number, limit: number, search?: string): Promise<{ 
+    offers: IOffer[], 
+    total: number, 
+    page: number, 
+    totalPages: number 
+  }>;
+  countActiveOffers(categoryId?: string): Promise<number>;
 }
 
 export interface ISubscriptionRepository {
@@ -230,6 +239,7 @@ export interface ISubscriptionRepository {
     findByUserId(userId: string): Promise<ISubscription | null>;
     findById(id: string): Promise<ISubscription | null>;
     updateSubscription(id: string, data: Partial<ISubscription>): Promise<ISubscription | null>;
+    deleteSubscription(id: string): Promise<boolean>;
 }
 
 export interface IExamRepository {

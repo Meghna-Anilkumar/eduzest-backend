@@ -7,7 +7,7 @@ export interface ILesson extends Document {
     title: string;
     description: string;
     video: string;
-    videoKey?: string; 
+    videoKey?: string;
     duration?: string;
     objectives?: string[];
 }
@@ -43,6 +43,7 @@ export interface IOfferDetails {
 
 // Main Course Interface
 export interface ICourse extends Document {
+    _id: Types.ObjectId | string;
     title: string;
     description: string;
     thumbnail: string;
@@ -82,5 +83,5 @@ export interface SortOptions {
 export interface ICourseUpdate extends Partial<ICourse> {
     instructorRef?: Types.ObjectId;
     categoryRef?: Types.ObjectId;
-  }
+}
 

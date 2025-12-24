@@ -140,6 +140,7 @@ export class EnrollCourseService {
         search
       );
 
+      console.log('enrollments:',enrollments)
       return {
         success: true,
         message: "Enrollments fetched successfully",
