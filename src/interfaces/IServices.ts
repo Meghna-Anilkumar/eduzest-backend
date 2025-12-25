@@ -42,7 +42,7 @@ export interface IAdminService {
     rejectInstructor(_id: string, rejectionMessage: string): Promise<IResponse>
     fetchAllInstructors(page: number, limit: number, search?: string): Promise<IResponse>
     fetchRequestDetails(_id: string): Promise<IResponse>
-    getDashboardStats(period?: "day" | "month" | "year"): any;
+    getDashboardStats(period?: "day" | "month" | "year"): Promise<IResponse>;
 }
 
 

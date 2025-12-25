@@ -1,12 +1,15 @@
-import { OTP } from "../models/otpModel";
-import { OtpDoc } from "../interfaces/IOtp";
 import { BaseRepository } from "./baseRepository";
+import { IOtpRepository } from "../interfaces/IRepositories";
+import { OtpDoc } from "../interfaces/IOtp";
+import { OTP} from "../models/otpModel";
 
-class OtpRepository extends BaseRepository<OtpDoc> {
+export class OtpRepository
+    extends BaseRepository<OtpDoc>
+    implements IOtpRepository {
+
     constructor() {
-        super(OTP);
+        super(OTP); 
     }
-
     async findByEmail(email: string): Promise<OtpDoc | null> {
         return this.findByQuery({ email });
     }
@@ -25,11 +28,14 @@ class OtpRepository extends BaseRepository<OtpDoc> {
 
     async deleteOtpByEmail(email: string): Promise<boolean> {
         const otpRecord = await this.findByQuery({ email });
+
         if (otpRecord) {
-            return this.delete(otpRecord._id);
+            return this.delete(otpRecord._id.toString());
         }
+
         return false;
     }
+
 
     async clearExpiredOtp(email: string): Promise<OtpDoc | null> {
         return this.update({ email }, { otp: null });

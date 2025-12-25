@@ -1,7 +1,6 @@
 import { Document, UpdateQuery, FilterQuery, QueryOptions } from 'mongoose';
 import { UserDoc } from './IUser';
 import { AdminDoc } from './IAdmin';
-import { OtpDoc } from './IOtp';
 import { CategoryDoc } from './ICategory';
 import { ICourse } from './ICourse';
 import { IChat } from './IChat';
@@ -19,25 +18,34 @@ import { IOffer } from '../models/offerModel';
 import { ISubscription } from '../models/subscriptionModel';
 import { IExam, IExamResult } from './IExam';
 import { INotification } from "../models/notificationModel"
+import { OtpDoc } from "../interfaces/IOtp";
+
 
 export interface IBaseRepository<T extends Document> {
     findAll(
-        filter: Record<string, unknown>,
+        filter: FilterQuery<T>,
         skip: number,
-        sort: Record<string, 1 | -1 | 'asc' | 'desc' | 'ascending' | 'descending'>,
+        sort?: QueryOptions["sort"],
         limit?: number
     ): Promise<T[]>;
+
     findById(id: string): Promise<T | null>;
+
     findByQuery(query: FilterQuery<T>): Promise<T | null>;
+
     create(item: Partial<T>): Promise<T>;
+
     update(
-        query: FilterQuery<T>,
+        query: string | FilterQuery<T>,
         item: UpdateQuery<T>,
         options?: QueryOptions
     ): Promise<T | null>;
-    delete(id: string | Types.ObjectId): Promise<boolean>;
-    count(filter: Record<string, unknown>): Promise<number>;
+
+    delete(id: string): Promise<boolean>;
+
+    count(filter: FilterQuery<T>): Promise<number>;
 }
+
 
 export interface IUserRepository extends IBaseRepository<UserDoc> {
     findByEmail(email: string): Promise<UserDoc | null>;
@@ -221,7 +229,7 @@ export interface IOfferRepository {
   createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
   findById(id: string): Promise<IOffer | null>;
   findByCategoryId(categoryId: string): Promise<IOffer | null>;
-  findByQuery(query: any): Promise<IOffer | null>;
+  findByQuery(query: FilterQuery<IOffer>): Promise<IOffer | null>;
   updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
   deleteOffer(offerId: string): Promise<boolean>;
   findActiveOffers(categoryId?: string): Promise<IOffer[]>;

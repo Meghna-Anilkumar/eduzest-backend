@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { OtpDoc } from '../interfaces/IOtp';
+import { OtpDoc} from '../interfaces/IOtp';
 
 
 const OTPSchema = new Schema<OtpDoc>({

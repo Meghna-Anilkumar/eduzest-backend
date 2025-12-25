@@ -1,16 +1,32 @@
-import { Model, Document, UpdateQuery, FilterQuery, QueryOptions } from 'mongoose';
-import { IBaseRepository } from '../interfaces/IRepositories';
+import {
+    Model,
+    Document,
+    UpdateQuery,
+    FilterQuery,
+    QueryOptions
+} from "mongoose";
+import { IBaseRepository } from "../interfaces/IRepositories";
 
-export class BaseRepository<T extends Document> implements IBaseRepository<T> {
+export class BaseRepository<T extends Document>
+    implements IBaseRepository<T>
+{
     constructor(protected _model: Model<T>) {}
 
-    async findAll(filter: Record<string, unknown>, skip: number, sort: any, limit: number = 5): Promise<T[]> {
+    async findAll(
+        filter: FilterQuery<T>,
+        skip: number,
+        sort?: QueryOptions["sort"],
+        limit: number = 5
+    ): Promise<T[]> {
         try {
             let query = this._model.find(filter);
-            if (sort) query = query.sort(sort);
+
+            if (sort) {
+                query = query.sort(sort);
+            }
+
             query = query.skip(skip).limit(limit);
-            const result = await query;
-            return result;
+            return await query;
         } catch (error) {
             console.error("Error fetching data:", error);
             throw new Error("Could not fetch records");
@@ -44,23 +60,33 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
         }
     }
 
-    async update(query: any, item: UpdateQuery<T>, options?: QueryOptions): Promise<T | null> {
+    async update(
+        query: string | FilterQuery<T>,
+        item: UpdateQuery<T>,
+        options?: QueryOptions
+    ): Promise<T | null> {
         try {
-            if (typeof query === 'object') {
-                const updatedDoc = await this._model.findOneAndUpdate(query, item, { new: true, ...options });
-                console.log("Updated Document:", updatedDoc);
-                return updatedDoc as T | null;
-            }
-            const updatedDoc = await this._model.findByIdAndUpdate(query, item, { new: true, ...options });
-            console.log("Updated Document:", updatedDoc);
-            return updatedDoc as T | null;
+            const updatedDoc =
+                typeof query === "string"
+                    ? await this._model.findByIdAndUpdate(
+                          query,
+                          item,
+                          { new: true, ...options }
+                      )
+                    : await this._model.findOneAndUpdate(
+                          query,
+                          item,
+                          { new: true, ...options }
+                      );
+
+            return updatedDoc;
         } catch (error) {
             console.error("Error updating record:", error);
             throw new Error("Could not update record");
         }
     }
 
-    async delete(id: any): Promise<boolean> {
+    async delete(id: string): Promise<boolean> {
         try {
             const result = await this._model.findByIdAndDelete(id);
             return result !== null;
@@ -70,7 +96,7 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
         }
     }
 
-    async count(filter: Record<string, unknown>): Promise<number> {
+    async count(filter: FilterQuery<T>): Promise<number> {
         try {
             return await this._model.countDocuments(filter);
         } catch (error) {

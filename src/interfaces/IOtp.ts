@@ -1,13 +1,11 @@
-import { Document } from "mongoose"
+import { HydratedDocument } from "mongoose";
 
-
-export interface OtpDoc extends Document {
-    email: string;
-    otp: number;
-    userData: {
-        name: string;
-        password: string;
-    };
-    createdAt?: Date;
-    expiresAt:Date
+export interface IOtp {
+  email: string;
+  otp: number;
+  userData: { name: string; password: string };
+  createdAt?: Date;
+  expiresAt: Date;
 }
+
+export type OtpDoc = HydratedDocument<IOtp>;
