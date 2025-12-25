@@ -19,6 +19,16 @@ import { ISubscription } from '../models/subscriptionModel';
 import { IExam, IExamResult } from './IExam';
 import { INotification } from "../models/notificationModel"
 import { OtpDoc } from "../interfaces/IOtp";
+import { LeaderboardEntry } from './IExam';
+
+
+interface PayoutData {
+    transactionId: string;
+    date: string;
+    course: string;
+    studentName: string;
+    amount: string;
+}
 
 
 export interface IBaseRepository<T extends Document> {
@@ -139,14 +149,14 @@ export interface IPaymentRepository extends IBaseRepository<PaymentDoc> {
         search?: string,
         sort?: { field: string; order: "asc" | "desc" },
         courseFilter?: string
-    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>
+    ): Promise<{ data: PayoutData[]; total: number; page: number; limit: number }>
     getAdminPayouts(
         page: number,
         limit: number,
         search?: string,
         sort?: { field: string; order: "asc" | "desc" },
         courseFilter?: string
-    ): Promise<{ data: PaymentDoc[]; total: number; page: number; limit: number }>
+    ): Promise<{ data: PayoutData[]; total: number; page: number; limit: number }>
     getRevenueOverview(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; amount: number }[]>;
 }
 
@@ -226,20 +236,20 @@ export interface ICouponUsageRepository {
 
 
 export interface IOfferRepository {
-  createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
-  findById(id: string): Promise<IOffer | null>;
-  findByCategoryId(categoryId: string): Promise<IOffer | null>;
-  findByQuery(query: FilterQuery<IOffer>): Promise<IOffer | null>;
-  updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
-  deleteOffer(offerId: string): Promise<boolean>;
-  findActiveOffers(categoryId?: string): Promise<IOffer[]>;
-  findAllOffers(page: number, limit: number, search?: string): Promise<{ 
-    offers: IOffer[], 
-    total: number, 
-    page: number, 
-    totalPages: number 
-  }>;
-  countActiveOffers(categoryId?: string): Promise<number>;
+    createOffer(offerData: Partial<IOffer>): Promise<IOffer>;
+    findById(id: string): Promise<IOffer | null>;
+    findByCategoryId(categoryId: string): Promise<IOffer | null>;
+    findByQuery(query: FilterQuery<IOffer>): Promise<IOffer | null>;
+    updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options?: QueryOptions): Promise<IOffer | null>;
+    deleteOffer(offerId: string): Promise<boolean>;
+    findActiveOffers(categoryId?: string): Promise<IOffer[]>;
+    findAllOffers(page: number, limit: number, search?: string): Promise<{
+        offers: IOffer[],
+        total: number,
+        page: number,
+        totalPages: number
+    }>;
+    countActiveOffers(categoryId?: string): Promise<number>;
 }
 
 export interface ISubscriptionRepository {
@@ -266,12 +276,10 @@ export interface IExamRepository {
     findCourseById(courseId: string): Promise<ICourse | null>;
     countTotalAssessments(courseId: string): Promise<number>;
     countPassedAssessments(courseId: string, studentId: string): Promise<number>;
-    getLeaderboard(courseId?: string, limit?: number): Promise<{
-        rank: number;
-        studentId: string;
-        studentName: string;
-        totalScore: number;
-    }[]>
+    getLeaderboard(
+        courseId?: string,
+        limit?: number
+    ): Promise<LeaderboardEntry[]>;
     getStudentRank(studentId: string, courseId?: string): Promise<{
         rank: number;
         totalScore: number;

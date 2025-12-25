@@ -60,3 +60,11 @@ export interface IExamResult extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+
+export interface LeaderboardEntry {
+  rank: number;
+  studentId: Types.ObjectId;
+  studentName: string;
+  totalScore: number;
+}

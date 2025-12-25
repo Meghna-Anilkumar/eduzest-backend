@@ -1,8 +1,59 @@
 import { StudentDTO, InstructorDTO } from '../interfaces/IDTO';
 
+interface Profile {
+  dob?: string;
+  gender?: string;
+  profilePic?: string|null;
+  address?: string;
+}
+
+interface EnrolledCourse {
+  courseId: { toString(): string } | string;
+  progress?: number;
+  rating?: string;
+}
+
+interface StudentDetails {
+  enrolledCourses?: EnrolledCourse[];
+}
+
+interface SocialMedia {
+  linkedin?: string;
+  github?: string;
+}
+
+interface InstructorDetails {
+  createdCourses?: Array<{ toString(): string } | string>;
+  profit?: number;
+  rating?: number;
+}
+
+interface UserDocBase {
+  _id: { toString(): string };
+  name: string;
+  email: string;
+  isBlocked?: boolean;
+  profile?: Profile;
+}
+
+interface StudentUserDoc extends UserDocBase {
+  studentDetails?: StudentDetails;
+}
+
+interface InstructorUserDoc extends UserDocBase {
+  isApproved?: boolean;
+  isRequested?: boolean;
+  isRejected?: boolean;
+  qualification?: string;
+  experience?: string;
+  aboutMe?: string;
+  socialMedia?: SocialMedia;
+  instructorDetails?: InstructorDetails;
+}
+
 export class DTOMapper {
-  // Map UserDoc to StudentDTO
-  static mapToStudentDTO(user: any): StudentDTO {
+
+  static mapToStudentDTO(user: StudentUserDoc): StudentDTO {
     return {
       _id: user._id.toString(),
       name: user.name,
@@ -16,8 +67,10 @@ export class DTOMapper {
             address: user.profile.address,
           }
         : undefined,
-      enrolledCourses: user.studentDetails?.enrolledCourses?.map((course: any) => ({
-        courseId: course.courseId.toString(),
+      enrolledCourses: user.studentDetails?.enrolledCourses?.map((course) => ({
+        courseId: typeof course.courseId === 'string' 
+          ? course.courseId 
+          : course.courseId.toString(),
         progress: course.progress,
         rating: course.rating,
       })),
@@ -25,7 +78,7 @@ export class DTOMapper {
   }
 
   // Map UserDoc to InstructorDTO
-  static mapToInstructorDTO(user: any): InstructorDTO {
+  static mapToInstructorDTO(user: InstructorUserDoc): InstructorDTO {
     return {
       _id: user._id.toString(),
       name: user.name,
@@ -43,8 +96,8 @@ export class DTOMapper {
             github: user.socialMedia.github,
           }
         : undefined,
-      createdCourses: user.instructorDetails?.createdCourses?.map((courseId: any) =>
-        courseId.toString()
+      createdCourses: user.instructorDetails?.createdCourses?.map((courseId) =>
+        typeof courseId === 'string' ? courseId : courseId.toString()
       ),
       profit: user.instructorDetails?.profit,
       rating: user.instructorDetails?.rating,

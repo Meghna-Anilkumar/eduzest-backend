@@ -1,10 +1,13 @@
+import { Types, FilterQuery, PipelineStage } from "mongoose";
 import { EnrollmentDoc, Enrollments, LessonProgress } from "../models/enrollmentModel";
 import { BaseRepository } from "./baseRepository";
 import { IEnrollmentRepository } from "../interfaces/IRepositories";
-import { Types } from "mongoose";
 import { IRedisService } from "../interfaces/IServices";
 
-export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implements IEnrollmentRepository {
+export class EnrollmentRepository
+  extends BaseRepository<EnrollmentDoc>
+  implements IEnrollmentRepository {
+
   private redisService: IRedisService;
 
   constructor(redisService: IRedisService) {
@@ -18,29 +21,32 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     limit: number,
     search?: string
   ): Promise<{ enrollments: EnrollmentDoc[]; total: number }> {
-    const query: any = { userId: new Types.ObjectId(userId) };
 
-    let enrollments;
-    let total;
+    const query: FilterQuery<EnrollmentDoc> = {
+      userId: new Types.ObjectId(userId),
+    };
 
-    if (search && search.trim() !== '') {
-      const aggregateQuery = [
+    let enrollments: EnrollmentDoc[];
+    let total: number;
+
+    if (search?.trim()) {
+      const aggregateQuery: PipelineStage[] = [
         { $match: { userId: new Types.ObjectId(userId) } },
 
         {
           $lookup: {
-            from: 'courses', 
-            localField: 'courseId',
-            foreignField: '_id',
-            as: 'courseData'
-          }
+            from: "courses",
+            localField: "courseId",
+            foreignField: "_id",
+            as: "courseData",
+          },
         },
-        { $unwind: '$courseData' },
+        { $unwind: "$courseData" },
 
         {
           $match: {
-            'courseData.title': { $regex: search, $options: 'i' }
-          }
+            "courseData.title": { $regex: search, $options: "i" },
+          },
         },
 
         { $skip: (page - 1) * limit },
@@ -48,48 +54,46 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
 
         {
           $addFields: {
-            courseId: '$courseData'
-          }
+            courseId: "$courseData",
+          },
         },
 
         {
           $project: {
-            courseData: 0
-          }
-        }
+            courseData: 0,
+          },
+        },
       ];
 
-      // Execute the aggregation
-      enrollments = await this._model.aggregate(aggregateQuery);
+      enrollments = await this._model.aggregate<EnrollmentDoc>(aggregateQuery);
 
-      // Get count for pagination
-      const countQuery = [
+      const countQuery: PipelineStage[] = [
         { $match: { userId: new Types.ObjectId(userId) } },
         {
           $lookup: {
-            from: 'courses',
-            localField: 'courseId',
-            foreignField: '_id',
-            as: 'courseData'
-          }
+            from: "courses",
+            localField: "courseId",
+            foreignField: "_id",
+            as: "courseData",
+          },
         },
-        { $unwind: '$courseData' },
+        { $unwind: "$courseData" },
         {
           $match: {
-            'courseData.title': { $regex: search, $options: 'i' }
-          }
+            "courseData.title": { $regex: search, $options: "i" },
+          },
         },
-        { $count: 'total' }
+        { $count: "total" },
       ];
 
-      const countResult = await this._model.aggregate(countQuery);
-      total = countResult.length > 0 ? countResult[0].total : 0;
+      const countResult = await this._model.aggregate<{ total: number }>(countQuery);
+      total = countResult.length ? countResult[0].total : 0;
+
     } else {
-      // Standard query without search
       enrollments = await this._model
         .find(query)
         .sort({ enrolledAt: -1 })
-        .populate('courseId')
+        .populate("courseId")
         .skip((page - 1) * limit)
         .limit(limit)
         .exec();
@@ -101,17 +105,26 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
   }
 
   async findByCourseId(courseId: string): Promise<EnrollmentDoc[]> {
-    return this.findAll({ courseId: new Types.ObjectId(courseId) }, 0, { enrolledAt: -1 });
+    return this.findAll(
+      { courseId: new Types.ObjectId(courseId) },
+      0,
+      { enrolledAt: -1 }
+    );
   }
 
-  async findByUserAndCourse(userId: string, courseId: string): Promise<EnrollmentDoc | null> {
+  async findByUserAndCourse(
+    userId: string,
+    courseId: string
+  ): Promise<EnrollmentDoc | null> {
     return this.findByQuery({
       userId: new Types.ObjectId(userId),
       courseId: new Types.ObjectId(courseId),
     });
   }
 
-  async createEnrollment(enrollmentData: Partial<EnrollmentDoc>): Promise<EnrollmentDoc> {
+  async createEnrollment(
+    enrollmentData: Partial<EnrollmentDoc>
+  ): Promise<EnrollmentDoc> {
     return this.create(enrollmentData);
   }
 
@@ -119,7 +132,11 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     enrollmentId: string,
     status: EnrollmentDoc["completionStatus"]
   ): Promise<EnrollmentDoc | null> {
-    return this.update({ _id: enrollmentId }, { completionStatus: status }, { new: true });
+    return this.update(
+      { _id: new Types.ObjectId(enrollmentId) },
+      { completionStatus: status },
+      { new: true }
+    );
   }
 
   async updateLessonProgress(
@@ -128,52 +145,62 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
     lessonId: string,
     progress: number
   ): Promise<EnrollmentDoc | null> {
+
     const enrollment = await this.findByUserAndCourse(userId, courseId);
     if (!enrollment) return null;
 
     const lessonProgress = enrollment.lessonProgress.find(
-      (lp) => lp.lessonId.toString() === lessonId
+      lp => lp.lessonId.toString() === lessonId
     );
 
     const newProgress = Math.min(progress, 100);
-    const updatedProgress = {
-      lessonId: new Types.ObjectId(lessonId),
-      progress: newProgress,
-      isCompleted: newProgress >= 100,
-      lastWatched: new Date(),
-    };
 
     if (lessonProgress) {
       if (newProgress > lessonProgress.progress) {
         lessonProgress.progress = newProgress;
         lessonProgress.isCompleted = newProgress >= 100 || lessonProgress.isCompleted;
       }
-      lessonProgress.lastWatched = updatedProgress.lastWatched;
+      lessonProgress.lastWatched = new Date();
     } else {
-      enrollment.lessonProgress.push(updatedProgress);
+      enrollment.lessonProgress.push({
+        lessonId: new Types.ObjectId(lessonId),
+        progress: newProgress,
+        isCompleted: newProgress >= 100,
+        lastWatched: new Date(),
+      });
     }
 
     const updatedEnrollment = await enrollment.save();
 
-    await this.redisService.setProgress(userId, courseId, enrollment.lessonProgress);
+    await this.redisService.setProgress(
+      userId,
+      courseId,
+      enrollment.lessonProgress
+    );
 
     return updatedEnrollment;
   }
 
+  async getLessonProgress(
+    userId: string,
+    courseId: string
+  ): Promise<LessonProgress[]> {
 
-  async getLessonProgress(userId: string, courseId: string): Promise<LessonProgress[]> {
-    const cachedProgress = await this.redisService.getProgress(userId, courseId);
-    if (cachedProgress) {
-      return cachedProgress;
-    }
+    const cached = await this.redisService.getProgress(userId, courseId);
+    if (cached) return cached;
 
     const enrollment = await this.findByUserAndCourse(userId, courseId);
-    const progress = enrollment?.lessonProgress || [];
+    const progress = enrollment?.lessonProgress ?? [];
+
     await this.redisService.setProgress(userId, courseId, progress);
     return progress;
   }
 
-  async updateEnrollmentStatus(userId: string, courseId: string, status: "enrolled" | "in-progress" | "completed"): Promise<EnrollmentDoc | null> {
+  async updateEnrollmentStatus(
+    userId: string,
+    courseId: string,
+    status: "enrolled" | "in-progress" | "completed"
+  ): Promise<EnrollmentDoc | null> {
     return this._model
       .findOneAndUpdate(
         {
@@ -186,7 +213,10 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
       .exec();
   }
 
-  async blockFromChat(userId: string, courseId: string): Promise<EnrollmentDoc | null> {
+  async blockFromChat(
+    userId: string,
+    courseId: string
+  ): Promise<EnrollmentDoc | null> {
     return this._model
       .findOneAndUpdate(
         {
@@ -199,8 +229,10 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
       .exec();
   }
 
-  // New method to unblock a student from chat
-  async unblockFromChat(userId: string, courseId: string): Promise<EnrollmentDoc | null> {
+  async unblockFromChat(
+    userId: string,
+    courseId: string
+  ): Promise<EnrollmentDoc | null> {
     return this._model
       .findOneAndUpdate(
         {
@@ -212,5 +244,4 @@ export class EnrollmentRepository extends BaseRepository<EnrollmentDoc> implemen
       )
       .exec();
   }
-
 }

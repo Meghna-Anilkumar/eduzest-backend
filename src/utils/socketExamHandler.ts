@@ -18,6 +18,26 @@ interface ExamProgressResponse {
   message?: string;
 }
 
+interface ExamAnswer {
+  questionId: string;
+  selectedAnswerIndex: number;
+}
+
+interface StartExamData {
+  examId: string;
+}
+
+interface SubmitExamData {
+  examId: string;
+  answers: ExamAnswer[];
+}
+
+interface SaveExamProgressData {
+  examId: string;
+  answers: ExamAnswer[];
+  startTime: string;
+}
+
 export const initializeExamSocket = (io: Server, examService: ExamService) => {
   // Store timeout references to allow cancellation
   const timeouts = new Map<string, NodeJS.Timeout>();
@@ -25,12 +45,12 @@ export const initializeExamSocket = (io: Server, examService: ExamService) => {
   io.on('connection', (socket: AuthenticatedSocket) => {
     console.log('[Socket] New connection', socket.id);
 
-    socket.on('testConnection', (data) => {
+    socket.on('testConnection', (data: unknown) => {
       console.log('[Socket] Test connection received', data);
       socket.emit('testResponse', { message: 'Socket is connected' });
     });
 
-    socket.on('startExam', async (data: { examId: string }) => {
+    socket.on('startExam', async (data: StartExamData) => {
       console.log('[Socket] startExam received:', data);
       if (!socket.userId || !Types.ObjectId.isValid(data.examId)) {
         console.log('[Socket] Invalid user or examId:', { userId: socket.userId, examId: data.examId });
@@ -53,7 +73,10 @@ export const initializeExamSocket = (io: Server, examService: ExamService) => {
 
             // Clear any existing timeout for this exam and user
             if (timeouts.has(examKey)) {
-              clearTimeout(timeouts.get(examKey)!);
+              const existingTimeout = timeouts.get(examKey);
+              if (existingTimeout) {
+                clearTimeout(existingTimeout);
+              }
               timeouts.delete(examKey);
             }
 
@@ -71,8 +94,9 @@ export const initializeExamSocket = (io: Server, examService: ExamService) => {
                 console.log('[Socket] Auto-submit response:', submitResponse);
                 io.to(examKey).emit('examAutoSubmitted', submitResponse);
                 timeouts.delete(examKey); // Clean up timeout
-              } catch (error: any) {
-                console.error('[Socket] Auto-submission error:', error.message);
+              } catch (error) {
+                const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+                console.error('[Socket] Auto-submission error:', errorMessage);
                 socket.emit('error', { message: 'Failed to auto-submit exam' });
               }
             }, exam.duration * 60 * 1000);
@@ -87,13 +111,14 @@ export const initializeExamSocket = (io: Server, examService: ExamService) => {
           console.log('[Socket] startExam failed:', response);
           socket.emit('error', response);
         }
-      } catch (error: any) {
-        console.error('[Socket] startExam error:', error.message);
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+        console.error('[Socket] startExam error:', errorMessage);
         socket.emit('error', { message: 'Server error while starting exam' });
       }
     });
 
-    socket.on('submitExam', async (data: { examId: string; answers: { questionId: string; selectedAnswerIndex: number }[] }) => {
+    socket.on('submitExam', async (data: SubmitExamData) => {
       console.log('[Socket] submitExam received:', data);
       if (!socket.userId || !Types.ObjectId.isValid(data.examId)) {
         socket.emit('error', { message: 'Invalid user or examId' });
@@ -105,7 +130,10 @@ export const initializeExamSocket = (io: Server, examService: ExamService) => {
 
       // Clear auto-submission timeout on manual submission
       if (timeouts.has(examKey)) {
-        clearTimeout(timeouts.get(examKey)!);
+        const existingTimeout = timeouts.get(examKey);
+        if (existingTimeout) {
+          clearTimeout(existingTimeout);
+        }
         timeouts.delete(examKey);
         console.log('[Socket] Cleared auto-submission timeout for:', examKey);
       }
@@ -115,7 +143,7 @@ export const initializeExamSocket = (io: Server, examService: ExamService) => {
       socket.leave(examKey);
     });
 
-    socket.on('saveExamProgress', async (data: { examId: string; answers: { questionId: string; selectedAnswerIndex: number }[]; startTime: string }) => {
+    socket.on('saveExamProgress', async (data: SaveExamProgressData) => {
       console.log('[Socket] saveExamProgress received:', data);
       if (!socket.userId || !Types.ObjectId.isValid(data.examId)) {
         socket.emit('error', { message: 'Invalid user or examId' });

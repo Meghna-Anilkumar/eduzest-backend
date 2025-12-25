@@ -219,10 +219,16 @@ export class PaymentService implements IPaymentService {
           paymentId: payment._id,
         },
       };
-    } catch (error: any) {
-      console.error("Error creating payment intent:", error.message || error);
-      return { success: false, message: error.message || "Failed to create payment intent" };
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error creating payment intent:", error.message);
+        return { success: false, message: error.message };
+      }
+
+      console.error("Error creating payment intent:", error);
+      return { success: false, message: "Failed to create payment intent" };
     }
+
   }
 
   async confirmPayment(paymentId: string): Promise<IResponse> {
@@ -235,9 +241,13 @@ export class PaymentService implements IPaymentService {
         return { success: false, message: "Payment not found" };
       }
 
-      const paymentIntent = await this.stripe.paymentIntents.retrieve(payment.stripePaymentId!);
+      const paymentIntent = await this.stripe.paymentIntents.retrieve(
+        payment.stripePaymentId!
+      );
+
       if (paymentIntent.status === "succeeded") {
-        const updatedPayment = await this.paymentRepository.updatePaymentStatus(paymentId, "completed");
+        const updatedPayment =
+          await this.paymentRepository.updatePaymentStatus(paymentId, "completed");
 
         await this.paymentRepository.update(
           { _id: paymentId },
@@ -266,54 +276,47 @@ export class PaymentService implements IPaymentService {
           { $inc: { studentsEnrolled: 1 } }
         );
 
-        const couponId = paymentIntent.metadata?.couponId;
+        const couponId: string | undefined = paymentIntent.metadata?.couponId;
+
         if (couponId && Types.ObjectId.isValid(couponId)) {
-          const hasUsedCoupon = await this._couponUsageRepository.hasUserUsedCoupon(
-            payment.userId.toString(),
-            couponId
-          );
-          if (hasUsedCoupon) {
-            console.log("Coupon already used, skipping recording:", {
-              userId: payment.userId,
-              couponId,
-            });
-          } else {
+          const hasUsedCoupon =
+            await this._couponUsageRepository.hasUserUsedCoupon(
+              payment.userId.toString(),
+              couponId
+            );
+
+          if (!hasUsedCoupon) {
             await this._couponUsageRepository.recordCouponUsage(
               payment.userId.toString(),
               couponId,
               payment.courseId.toString()
             );
-            console.log("Coupon usage recorded after payment confirmation:", {
-              userId: payment.userId,
-              couponId,
-              courseId: payment.courseId,
-            });
           }
         }
 
-        console.log("Payment confirmed successfully:", { paymentId, enrollmentId: enrollment._id });
+        console.log("Payment confirmed successfully:", {
+          paymentId,
+          enrollmentId: enrollment._id,
+        });
+
         return {
           success: true,
           message: "Payment confirmed successfully",
           data: { payment: updatedPayment, enrollment },
         };
-      } else if (paymentIntent.status === "requires_payment_method" || paymentIntent.status === "requires_action") {
-        console.log("Payment requires additional action:", { paymentId, paymentIntentStatus: paymentIntent.status });
-        return { success: false, message: "Payment requires additional action" };
-      } else {
-        await this.paymentRepository.updatePaymentStatus(paymentId, "failed");
-        await this.paymentRepository.update(
-          { _id: paymentId },
-          {
-            "instructorPayout.status": "failed",
-            "adminPayout.status": "failed",
-          }
-        );
-        console.log("Payment failed:", { paymentId, paymentIntentStatus: paymentIntent.status });
-        return { success: false, message: "Payment failed" };
       }
-    } catch (error: any) {
-      console.error("Error confirming payment:", error.message || error);
+
+      if (
+        paymentIntent.status === "requires_payment_method" ||
+        paymentIntent.status === "requires_action"
+      ) {
+        return {
+          success: false,
+          message: "Payment requires additional action",
+        };
+      }
+
+      // All other failure states
       await this.paymentRepository.updatePaymentStatus(paymentId, "failed");
       await this.paymentRepository.update(
         { _id: paymentId },
@@ -322,10 +325,33 @@ export class PaymentService implements IPaymentService {
           "adminPayout.status": "failed",
         }
       );
-      return { success: false, message: error.message || "Failed to confirm payment" };
+
+      return { success: false, message: "Payment failed" };
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error confirming payment:", error.message);
+      } else {
+        console.error("Error confirming payment:", error);
+      }
+
+      await this.paymentRepository.updatePaymentStatus(paymentId, "failed");
+      await this.paymentRepository.update(
+        { _id: paymentId },
+        {
+          "instructorPayout.status": "failed",
+          "adminPayout.status": "failed",
+        }
+      );
+
+      return {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to confirm payment",
+      };
     }
   }
-
 
 
   async getPaymentsByUser(
@@ -423,9 +449,14 @@ export class PaymentService implements IPaymentService {
         return { success: false, message: "User not found" };
       }
 
-      const existingSubscription = await this._subscriptionRepository.findByUserId(userId);
+      const existingSubscription =
+        await this._subscriptionRepository.findByUserId(userId);
+
       if (existingSubscription && existingSubscription.status === "active") {
-        return { success: false, message: "User already has an active subscription" };
+        return {
+          success: false,
+          message: "User already has an active subscription",
+        };
       }
 
       const priceId =
@@ -438,13 +469,16 @@ export class PaymentService implements IPaymentService {
       }
 
       let customerId = user.stripeCustomerId;
+
       if (!customerId) {
         const customer = await this.stripe.customers.create({
           email: user.email,
           name: user.name,
           metadata: { userId },
         });
+
         customerId = customer.id;
+
         await this.userRepository.update(
           { _id: new Types.ObjectId(userId) },
           { stripeCustomerId: customerId }
@@ -458,22 +492,44 @@ export class PaymentService implements IPaymentService {
         payment_settings: { payment_method_types: ["card"] },
         expand: ["latest_invoice.payment_intent"],
       });
+
       const startDate = new Date(subscription.current_period_start * 1000);
       const endDate = new Date(subscription.current_period_end * 1000);
 
-      const newSubscription = await this._subscriptionRepository.createSubscription({
-        userId: new Types.ObjectId(userId),
-        plan,
-        stripeSubscriptionId: subscription.id,
-        status: "pending",
-        startDate,
-        endDate,
-      });
+      const newSubscription =
+        await this._subscriptionRepository.createSubscription({
+          userId: new Types.ObjectId(userId),
+          plan,
+          stripeSubscriptionId: subscription.id,
+          status: "pending",
+          startDate,
+          endDate,
+        });
 
-      const paymentIntent = (subscription.latest_invoice as any).payment_intent;
-      if (!paymentIntent || !paymentIntent.client_secret) {
-        return { success: false, message: "Failed to create payment intent for subscription" };
+      const latestInvoice = subscription.latest_invoice;
+
+      if (
+        !latestInvoice ||
+        typeof latestInvoice === "string" ||
+        !latestInvoice.payment_intent ||
+        typeof latestInvoice.payment_intent === "string"
+      ) {
+        return {
+          success: false,
+          message: "Failed to create payment intent for subscription",
+        };
       }
+
+      const paymentIntent = latestInvoice.payment_intent;
+
+      if (!paymentIntent.client_secret) {
+        return {
+          success: false,
+          message: "Failed to create payment intent for subscription",
+        };
+      }
+
+      /* ---------------------------------------------------------- */
 
       console.log("Created subscription:", {
         subscriptionId: newSubscription._id,
@@ -491,277 +547,292 @@ export class PaymentService implements IPaymentService {
           stripeSubscriptionId: subscription.id,
         },
       };
-    } catch (error: any) {
-      console.error("Error creating subscription:", error.message || error);
-      return { success: false, message: "Failed to create subscription" };
-    }
-  }
-
-async confirmSubscription(subscriptionId: string): Promise<IResponse> {
-  try {
-    const subscription = await this._subscriptionRepository.findById(subscriptionId);
-    if (!subscription) {
-      return { success: false, message: "Subscription not found" };
-    }
-
-    const stripeSubscription = await this.stripe.subscriptions.retrieve(
-      subscription.stripeSubscriptionId
-    );
-
-    console.log("Confirming subscription - Stripe status:", {
-      subscriptionId,
-      stripeStatus: stripeSubscription.status,
-      currentPeriodEnd: new Date(stripeSubscription.current_period_end * 1000),
-    });
-
-    if (stripeSubscription.status === "active") {
-      const endDate = new Date(stripeSubscription.current_period_end * 1000);
-      await this._subscriptionRepository.updateSubscription(subscriptionId, {
-        status: "active",
-        endDate,
-      });
-
-      await this.userRepository.update(
-        { _id: subscription.userId },
-        { subscriptionStatus: "active" }
-      );
-
-      console.log("Subscription activated successfully:", {
-        subscriptionId,
-        status: "active",
-        endDate,
-      });
-
-      return {
-        success: true,
-        message: "Subscription confirmed successfully",
-        data: { subscription },
-      };
-    } 
-    
-    // Handle incomplete payment states
-    else if (
-      stripeSubscription.status === "incomplete" || 
-      stripeSubscription.status === "incomplete_expired"
-    ) {
-      // Mark as failed/expired in DB
-      await this._subscriptionRepository.updateSubscription(subscriptionId, {
-        status: "expired",
-        endDate: new Date(),
-      });
-      
-      await this.userRepository.update(
-        { _id: subscription.userId },
-        { subscriptionStatus: "inactive" }
-      );
-
-      console.log("Subscription payment incomplete:", {
-        subscriptionId,
-        stripeStatus: stripeSubscription.status,
-      });
-
-      return { 
-        success: false, 
-        message: "Subscription payment incomplete or expired. Please try again." 
-      };
-    }
-    
-    // Handle requires_action separately
-    else if (stripeSubscription.status === "past_due") {
-      return { 
-        success: false, 
-        message: "Subscription requires payment. Please update your payment method." 
-      };
-    } 
-    
-    // All other failure states
-    else {
-      await this._subscriptionRepository.updateSubscription(subscriptionId, {
-        status: "canceled",
-        endDate: new Date(),
-      });
-      
-      await this.userRepository.update(
-        { _id: subscription.userId },
-        { subscriptionStatus: "inactive" }
-      );
-
-      console.log("Subscription payment failed:", {
-        subscriptionId,
-        stripeStatus: stripeSubscription.status,
-      });
-
-      return { 
-        success: false, 
-        message: "Subscription payment failed. Please try again." 
-      };
-    }
-  } catch (error: any) {
-    console.error("Error confirming subscription:", error.message || error);
-    
-    // Only update on actual errors, not on expected failures
-    if (!error.message?.includes("No such subscription")) {
-      await this._subscriptionRepository.updateSubscription(subscriptionId, {
-        status: "canceled",
-      });
-    }
-    
-    return { success: false, message: "Failed to confirm subscription" };
-  }
-}
-
-async getSubscriptionStatus(userId: string): Promise<IResponse> {
-  if (!Types.ObjectId.isValid(userId)) {
-    return { success: false, message: "Invalid userId" };
-  }
-
-  let subscription: ISubscription | null = null;
-
-  try {
-    subscription = await this._subscriptionRepository.findByUserId(userId);
-
-    if (!subscription) {
-      // Ensure user has inactive status if no subscription exists
-      await this.userRepository.update(
-        { _id: userId },
-        { subscriptionStatus: "inactive" }
-      );
-      
-      return {
-        success: true,
-        message: "No subscription found",
-        data: { hasActiveSubscription: false },
-      };
-    }
-
-    console.log("Subscription details from DB:", {
-      subscriptionId: subscription._id,
-      status: subscription.status,
-      startDate: subscription.startDate,
-      endDate: subscription.endDate,
-      plan: subscription.plan,
-      stripeSubscriptionId: subscription.stripeSubscriptionId,
-    });
-
-    // Verify with Stripe
-    const stripeSubscription = await this.stripe.subscriptions.retrieve(
-      subscription.stripeSubscriptionId
-    );
-
-    console.log("Stripe subscription status:", {
-      stripeSubscriptionId: stripeSubscription.id,
-      status: stripeSubscription.status,
-      currentPeriodEnd: new Date(stripeSubscription.current_period_end * 1000),
-    });
-
-    // Handle active subscription
-    if (stripeSubscription.status === "active") {
-      const periodEnd = new Date(stripeSubscription.current_period_end * 1000);
-      
-      // Only update if status changed or endDate is different
-      if (subscription.status !== "active" || subscription.endDate.getTime() !== periodEnd.getTime()) {
-        await this._subscriptionRepository.updateSubscription(subscription._id.toString(), {
-          status: "active",
-          endDate: periodEnd,
-        });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error creating subscription:", error.message);
+      } else {
+        console.error("Error creating subscription:", error);
       }
-      
-      await this.userRepository.update(
-        { _id: userId },
-        { subscriptionStatus: "active" }
-      );
-      
+
       return {
-        success: true,
-        message: "Active subscription found",
-        data: { hasActiveSubscription: true, plan: subscription.plan },
+        success: false,
+        message: "Failed to create subscription",
       };
     }
-    
-    // Handle incomplete payment states
-    else if (
-      stripeSubscription.status === "incomplete" || 
-      stripeSubscription.status === "incomplete_expired"
-    ) {
-      await this._subscriptionRepository.updateSubscription(subscription._id.toString(), {
-        status: "expired",
+  }
+
+
+  async confirmSubscription(subscriptionId: string): Promise<IResponse> {
+    try {
+      const subscription =
+        await this._subscriptionRepository.findById(subscriptionId);
+
+      if (!subscription) {
+        return { success: false, message: "Subscription not found" };
+      }
+
+      const stripeSubscription = await this.stripe.subscriptions.retrieve(
+        subscription.stripeSubscriptionId
+      );
+
+      console.log("Confirming subscription - Stripe status:", {
+        subscriptionId,
+        stripeStatus: stripeSubscription.status,
+        currentPeriodEnd: new Date(stripeSubscription.current_period_end * 1000),
+      });
+
+      if (stripeSubscription.status === "active") {
+        const endDate = new Date(
+          stripeSubscription.current_period_end * 1000
+        );
+
+        await this._subscriptionRepository.updateSubscription(subscriptionId, {
+          status: "active",
+          endDate,
+        });
+
+        await this.userRepository.update(
+          { _id: subscription.userId },
+          { subscriptionStatus: "active" }
+        );
+
+        console.log("Subscription activated successfully:", {
+          subscriptionId,
+          status: "active",
+          endDate,
+        });
+
+        return {
+          success: true,
+          message: "Subscription confirmed successfully",
+          data: { subscription },
+        };
+      }
+
+      if (
+        stripeSubscription.status === "incomplete" ||
+        stripeSubscription.status === "incomplete_expired"
+      ) {
+        await this._subscriptionRepository.updateSubscription(subscriptionId, {
+          status: "expired",
+          endDate: new Date(),
+        });
+
+        await this.userRepository.update(
+          { _id: subscription.userId },
+          { subscriptionStatus: "inactive" }
+        );
+
+        return {
+          success: false,
+          message:
+            "Subscription payment incomplete or expired. Please try again.",
+        };
+      }
+
+      if (stripeSubscription.status === "past_due") {
+        return {
+          success: false,
+          message:
+            "Subscription requires payment. Please update your payment method.",
+        };
+      }
+
+      await this._subscriptionRepository.updateSubscription(subscriptionId, {
+        status: "canceled",
         endDate: new Date(),
       });
-      
+
       await this.userRepository.update(
-        { _id: userId },
+        { _id: subscription.userId },
         { subscriptionStatus: "inactive" }
       );
-      
-      console.log("Subscription incomplete/expired:", {
-        subscriptionId: subscription._id,
-        stripeStatus: stripeSubscription.status,
-      });
-      
+
       return {
-        success: true,
-        message: "No active subscription",
-        data: { hasActiveSubscription: false },
+        success: false,
+        message: "Subscription payment failed. Please try again.",
       };
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error confirming subscription:", error.message);
+
+        // Only update on unexpected errors
+        if (!error.message.includes("No such subscription")) {
+          await this._subscriptionRepository.updateSubscription(subscriptionId, {
+            status: "canceled",
+          });
+        }
+      } else {
+        console.error("Error confirming subscription:", error);
+      }
+
+      return { success: false, message: "Failed to confirm subscription" };
     }
-    
-    // Handle all other non-active states
-    else {
+  }
+
+  async getSubscriptionStatus(userId: string): Promise<IResponse> {
+    if (!Types.ObjectId.isValid(userId)) {
+      return { success: false, message: "Invalid userId" };
+    }
+
+    let subscription: ISubscription | null = null;
+
+    try {
+      subscription = await this._subscriptionRepository.findByUserId(userId);
+
+      if (!subscription) {
+        await this.userRepository.update(
+          { _id: userId },
+          { subscriptionStatus: "inactive" }
+        );
+
+        return {
+          success: true,
+          message: "No subscription found",
+          data: { hasActiveSubscription: false },
+        };
+      }
+
+      console.log("Subscription details from DB:", {
+        subscriptionId: subscription._id,
+        status: subscription.status,
+        startDate: subscription.startDate,
+        endDate: subscription.endDate,
+        plan: subscription.plan,
+        stripeSubscriptionId: subscription.stripeSubscriptionId,
+      });
+
+      const stripeSubscription = await this.stripe.subscriptions.retrieve(
+        subscription.stripeSubscriptionId
+      );
+
+      console.log("Stripe subscription status:", {
+        stripeSubscriptionId: stripeSubscription.id,
+        status: stripeSubscription.status,
+        currentPeriodEnd: new Date(
+          stripeSubscription.current_period_end * 1000
+        ),
+      });
+
+      if (stripeSubscription.status === "active") {
+        const periodEnd = new Date(
+          stripeSubscription.current_period_end * 1000
+        );
+
+        if (
+          subscription.status !== "active" ||
+          subscription.endDate.getTime() !== periodEnd.getTime()
+        ) {
+          await this._subscriptionRepository.updateSubscription(
+            subscription._id.toString(),
+            {
+              status: "active",
+              endDate: periodEnd,
+            }
+          );
+        }
+
+        await this.userRepository.update(
+          { _id: userId },
+          { subscriptionStatus: "active" }
+        );
+
+        return {
+          success: true,
+          message: "Active subscription found",
+          data: {
+            hasActiveSubscription: true,
+            plan: subscription.plan,
+          },
+        };
+      }
+
+      if (
+        stripeSubscription.status === "incomplete" ||
+        stripeSubscription.status === "incomplete_expired"
+      ) {
+        await this._subscriptionRepository.updateSubscription(
+          subscription._id.toString(),
+          {
+            status: "expired",
+            endDate: new Date(),
+          }
+        );
+
+        await this.userRepository.update(
+          { _id: userId },
+          { subscriptionStatus: "inactive" }
+        );
+
+        return {
+          success: true,
+          message: "No active subscription",
+          data: { hasActiveSubscription: false },
+        };
+      }
+
       let newStatus: "canceled" | "expired" | "past_due" = "canceled";
-      
+
       if (stripeSubscription.status === "past_due") {
         newStatus = "past_due";
       } else if (new Date(subscription.endDate) <= new Date()) {
         newStatus = "expired";
       }
 
-      await this._subscriptionRepository.updateSubscription(subscription._id.toString(), {
-        status: newStatus,
-        endDate: newStatus === "past_due" ? subscription.endDate : new Date(),
-      });
-      
-      await this.userRepository.update(
-        { _id: userId },
-        { subscriptionStatus: "inactive" }
+      await this._subscriptionRepository.updateSubscription(
+        subscription._id.toString(),
+        {
+          status: newStatus,
+          endDate: newStatus === "past_due"
+            ? subscription.endDate
+            : new Date(),
+        }
       );
-      
-      console.log("Subscription not active:", {
-        subscriptionId: subscription._id,
-        newStatus,
-        stripeStatus: stripeSubscription.status,
-      });
-      
-      return {
-        success: true,
-        message: "No active subscription",
-        data: { hasActiveSubscription: false },
-      };
-    }
-  } catch (error: any) {
-    console.error("Error checking subscription status:", error.message || error);
 
-    // Auto-cleanup: if Stripe says "No such subscription", delete from DB
-    if (error.message?.includes("No such subscription") && subscription) {
-      await this._subscriptionRepository.deleteSubscription(subscription._id.toString());
-      
       await this.userRepository.update(
         { _id: userId },
         { subscriptionStatus: "inactive" }
       );
-      
-      console.log("Auto-cleaned orphaned subscription:", subscription._id);
 
       return {
         success: true,
         message: "No active subscription",
         data: { hasActiveSubscription: false },
       };
-    }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error checking subscription status:", error.message);
 
-    // Any other error - don't update status
-    return { success: false, message: "Failed to check subscription status" };
+        if (
+          error.message.includes("No such subscription") &&
+          subscription
+        ) {
+          await this._subscriptionRepository.deleteSubscription(
+            subscription._id.toString()
+          );
+
+          await this.userRepository.update(
+            { _id: userId },
+            { subscriptionStatus: "inactive" }
+          );
+
+          return {
+            success: true,
+            message: "No active subscription",
+            data: { hasActiveSubscription: false },
+          };
+        }
+      } else {
+        console.error("Error checking subscription status:", error);
+      }
+
+      return {
+        success: false,
+        message: "Failed to check subscription status",
+      };
+    }
   }
-}
+
 }
 
 export default PaymentService;

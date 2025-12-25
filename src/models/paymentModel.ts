@@ -96,4 +96,7 @@ const paymentSchema = new Schema<PaymentDoc>(
   { timestamps: true }
 );
 
+
+
+
 export const Payments = model<PaymentDoc>("Payment", paymentSchema);

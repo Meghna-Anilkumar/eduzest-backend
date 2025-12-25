@@ -662,7 +662,11 @@ export class ExamService {
     }[]> {
         try {
             const leaderboard = await this._examRepository.getLeaderboard(courseId, limit);
-            return leaderboard;
+            return leaderboard.map(entry => ({
+                ...entry,
+                studentId: entry.studentId.toString(),
+            }));
+
         } catch (error) {
             console.error('Error in getLeaderboard service:', error);
             throw new Error(error instanceof Error ? error.message : 'Failed to retrieve leaderboard.');

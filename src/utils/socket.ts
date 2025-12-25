@@ -1,4 +1,4 @@
-import { Server, Socket, RemoteSocket } from 'socket.io';
+import { Server, Socket, RemoteSocket, DefaultEventsMap } from 'socket.io';
 import { Types } from 'mongoose';
 import ChatService from '../services/chatService';
 import ChatRepository from '../repositories/chatRepository';
@@ -28,6 +28,8 @@ interface Participant {
   isChatBlocked: boolean;
 }
 
+type RemoteAuthenticatedSocket = RemoteSocket<DefaultEventsMap, DefaultEventsMap>;
+
 export const initializeSocket = (io: Server, notificationService: NotificationService): Server => {
   console.log('[Socket] Initializing Socket.IO server');
 
@@ -40,7 +42,7 @@ export const initializeSocket = (io: Server, notificationService: NotificationSe
   const chatService = new ChatService(chatRepository, userRepository, courseRepository, enrollmentRepository);
 
   const updateOnlineUsers = async (courseId: string) => {
-    const sockets = await io.in(courseId).fetchSockets() as RemoteSocket<any, any>[];
+    const sockets = await io.in(courseId).fetchSockets() as RemoteAuthenticatedSocket[];
     const userIds = [...new Set(
       sockets
         .map((socket) => (socket as unknown as AuthenticatedSocket).userId)
@@ -377,7 +379,7 @@ export const initializeSocket = (io: Server, notificationService: NotificationSe
       await enrollmentRepository.blockFromChat(data.userId, data.courseId);
       console.log('[Socket] User blocked from chat:', data.userId);
 
-      const sockets = await io.in(data.courseId).fetchSockets() as RemoteSocket<any, any>[];
+      const sockets = await io.in(data.courseId).fetchSockets() as RemoteAuthenticatedSocket[];
       const targetSocket = sockets.find(
         (s) => (s as unknown as AuthenticatedSocket).userId === data.userId
       );

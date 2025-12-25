@@ -6,6 +6,10 @@ import { Exam, ExamResult } from '../models/examModel';
 import { RedisService } from '../services/redisService';
 import { Assessment } from "../models/assessmentModel";
 import { AssessmentResult } from "../models/assessmentResultModel";
+import { PipelineStage } from "mongoose";
+import { LeaderboardEntry } from "../interfaces/IExam";
+
+
 
 export class ExamRepository extends BaseRepository<IExam> {
   private _resultModel: typeof ExamResult;
@@ -204,19 +208,17 @@ export class ExamRepository extends BaseRepository<IExam> {
   }
 
 
-  async getLeaderboard(courseId?: string, limit: number = 10): Promise<{
-    rank: number;
-    studentId: string;
-    studentName: string;
-    totalScore: number;
-  }[]> {
+  async getLeaderboard(
+    courseId?: string,
+    limit: number = 10
+  ): Promise<LeaderboardEntry[]> {
     const cacheKey = courseId ? `leaderboard:course:${courseId}` : `leaderboard:global`;
     const cached = await this._redisService.get(cacheKey);
     if (cached) {
       return JSON.parse(cached);
     }
 
-    const pipeline: any[] = [];
+    const pipeline: PipelineStage[] = [];
     if (courseId) {
       pipeline.push({ $match: { courseId: new Types.ObjectId(courseId) } });
     }
@@ -257,17 +259,19 @@ export class ExamRepository extends BaseRepository<IExam> {
       }
     );
 
-    const leaderboard = await this._resultModel.aggregate(pipeline).exec();
-    await this._redisService.set(cacheKey, JSON.stringify(leaderboard), 3600); 
+    const leaderboard = await this._resultModel
+      .aggregate<LeaderboardEntry>(pipeline)
+      .exec();
+    await this._redisService.set(cacheKey, JSON.stringify(leaderboard), 3600);
     return leaderboard;
   }
 
 
- async getStudentRank(studentId: string, courseId?: string): Promise<{
+  async getStudentRank(studentId: string, courseId?: string): Promise<{
     rank: number;
     totalScore: number;
   } | null> {
-    const pipeline: any[] = [];
+    const pipeline: PipelineStage[] = [];
 
     console.log(`[ExamRepository] getStudentRank: studentId=${studentId}, courseId=${courseId}`);
 

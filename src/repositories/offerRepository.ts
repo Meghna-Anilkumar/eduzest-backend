@@ -1,6 +1,13 @@
 import { BaseRepository } from "./baseRepository";
 import { Offer, IOffer } from "../models/offerModel";
-import { Types, UpdateQuery, QueryOptions } from "mongoose";
+import {
+  Types,
+  UpdateQuery,
+  QueryOptions,
+  FilterQuery,
+  PipelineStage,
+} from "mongoose";
+
 
 export class OfferRepository extends BaseRepository<IOffer> {
   constructor() {
@@ -18,7 +25,7 @@ export class OfferRepository extends BaseRepository<IOffer> {
   }
 
   async findByCategoryId(categoryId: string): Promise<IOffer | null> {
-    return this.findByQuery({ categoryId }); 
+    return this.findByQuery({ categoryId });
   }
 
   async updateOffer(offerId: string, offerData: UpdateQuery<IOffer>, options: QueryOptions = { new: true }): Promise<IOffer | null> {
@@ -48,7 +55,10 @@ export class OfferRepository extends BaseRepository<IOffer> {
   async findActiveOffers(categoryId?: string): Promise<IOffer[]> {
     try {
       const now = new Date();
-      const query: any = { expirationDate: { $gte: now } };
+      const query: FilterQuery<IOffer> = {
+        expirationDate: { $gte: now },
+      };
+
       if (categoryId && Types.ObjectId.isValid(categoryId)) {
         query.categoryId = new Types.ObjectId(categoryId);
       }
@@ -60,27 +70,27 @@ export class OfferRepository extends BaseRepository<IOffer> {
   }
 
   async findAllOffers(
-    page: number = 1, 
-    limit: number = 10, 
+    page: number = 1,
+    limit: number = 10,
     search?: string
   ): Promise<{ offers: IOffer[], total: number, page: number, totalPages: number }> {
     try {
       const skip = (page - 1) * limit;
-      
-      // Build aggregation pipeline
-      const pipeline: any[] = [
+
+      const pipeline: PipelineStage[] = [
         {
           $lookup: {
-            from: 'categories',
-            localField: 'categoryId',
-            foreignField: '_id',
-            as: 'categoryId'
-          }
+            from: "categories",
+            localField: "categoryId",
+            foreignField: "_id",
+            as: "categoryId",
+          },
         },
         {
-          $unwind: '$categoryId'
-        }
+          $unwind: "$categoryId",
+        },
       ];
+
 
       // Add search filter if search term exists
       if (search && search.trim() !== '') {
@@ -120,7 +130,9 @@ export class OfferRepository extends BaseRepository<IOffer> {
   async countActiveOffers(categoryId?: string): Promise<number> {
     try {
       const now = new Date();
-      const query: any = { expirationDate: { $gte: now } };
+      const query: FilterQuery<IOffer> = {
+        expirationDate: { $gte: now },
+      };
       if (categoryId && Types.ObjectId.isValid(categoryId)) {
         query.categoryId = new Types.ObjectId(categoryId);
       }

@@ -6,7 +6,7 @@ export interface StudentDTO {
   profile?: {
     dob?: string;
     gender?: string;
-    profilePic?: string;
+    profilePic?: string|null;
     address?: string;
   };
   enrolledCourses?: Array<{

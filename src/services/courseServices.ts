@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Types, FilterQuery } from "mongoose";
 import { IResponse } from "../interfaces/IResponse";
 import { ICourse } from "../interfaces/ICourse";
 import { ICourseRepository } from "../interfaces/IRepositories";
@@ -41,7 +41,15 @@ export class CourseService {
         };
       }
 
-      const categoryRef = new Types.ObjectId(courseData.categoryRef as unknown as string);
+      if (!courseData.categoryRef || !Types.ObjectId.isValid(String(courseData.categoryRef))) {
+        return {
+          success: false,
+          message: "Invalid category reference",
+        };
+      }
+
+      const categoryRef = new Types.ObjectId(courseData.categoryRef);
+
 
       const newCourse = await this._courseRepository.createCourse({
         ...courseData,
@@ -91,12 +99,14 @@ export class CourseService {
     search?: string
   ): Promise<IResponse> {
     try {
-      const query: any = {
+      const query: FilterQuery<ICourse> = {
         instructorRef: new Types.ObjectId(instructorId),
       };
+
       if (search) {
-        query.title = { $regex: new RegExp(search, "i") };
+        query.title = { $regex: search, $options: "i" };
       }
+
 
       const courses = await this._courseRepository.getAllCoursesByInstructor(query, page, limit);
 
@@ -129,23 +139,25 @@ export class CourseService {
     sort?: { field: string; order: string }
   ): Promise<IResponse> {
     try {
-      const query: any = {
+      const query: FilterQuery<ICourse> = {
         isPublished: true,
         isBlocked: false,
       };
 
       if (search) {
-        query.title = { $regex: new RegExp(search, "i") };
+        query.title = { $regex: search, $options: "i" };
       }
 
       if (filters?.level) {
         query.level = filters.level;
       }
+
       if (filters?.pricingType) {
         query["pricing.type"] = filters.pricingType;
       }
 
-      const sortQuery: any = {};
+      const sortQuery: Record<string, 1 | -1> = {};
+
       if (sort) {
         switch (sort.field) {
           case "price":
@@ -164,7 +176,12 @@ export class CourseService {
         sortQuery.updatedAt = -1;
       }
 
-      const courses = await this._courseRepository.getAllActiveCourses(query, page, limit, sortQuery);
+      const courses = await this._courseRepository.getAllActiveCourses(
+        query,
+        page,
+        limit,
+        sortQuery
+      );
       console.log("Courses with populated data:", JSON.stringify(courses, null, 2));
       const totalCourses = await this._courseRepository.countDocuments(query);
 

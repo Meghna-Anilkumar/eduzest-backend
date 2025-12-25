@@ -81,68 +81,71 @@ class EnrollCourseController {
     }
   }
 
-  async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
-    try {
-      const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
-      const page = parseInt(req.query.page as string) || 1;
-      const limit = parseInt(req.query.limit as string) || 10;
-      const search = req.query.search as string || undefined;
+async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
+  try {
+    const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = req.query.search as string || undefined;
 
-      if (!userId) {
-        res.status(Status.UN_AUTHORISED).json({
-          success: false,
-          message: "User not authenticated",
-        });
-        return;
-      }
-
-      const result = await this.enrollCourseService.getEnrollmentsByUserId(userId, page, limit, search);
-
-      if (result.success && result.data) {
-        const enrollmentData = result.data as {
-          enrollments: PopulatedEnrollmentDoc[];
-          totalPages: number;
-          currentPage: number;
-          totalEnrollments: number;
-        };
-
-        if (Array.isArray(enrollmentData.enrollments)) {
-          const enrollmentsWithSignedUrls: EnrollmentWithSignedUrls[] = await Promise.all(
-            enrollmentData.enrollments.map(async (enrollment) => {
-              // Create a new object with the transformed courseId
-              const transformedEnrollment: EnrollmentWithSignedUrls = {
-                ...enrollment.toObject(), // Convert Mongoose doc to plain object
-                courseId: null
-              };
-
-              // Check if courseId exists and is a populated course object
-              if (enrollment.courseId &&
-                typeof enrollment.courseId === 'object' &&
-                'title' in enrollment.courseId) {
-                transformedEnrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollment.courseId);
-              }
-
-              return transformedEnrollment;
-            })
-          );
-
-          // Update the result data with transformed enrollments
-          result.data = {
-            ...enrollmentData,
-            enrollments: enrollmentsWithSignedUrls
-          };
-        }
-      }
-
-      res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
-    } catch (error) {
-      console.error("Error fetching enrollments by user ID:", error);
-      res.status(Status.INTERNAL_SERVER_ERROR).json({
+    if (!userId) {
+      res.status(Status.UN_AUTHORISED).json({
         success: false,
-        message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+        message: "User not authenticated",
       });
+      return;
     }
+
+    const result = await this.enrollCourseService.getEnrollmentsByUserId(userId, page, limit, search);
+
+    if (result.success && result.data) {
+      const enrollmentData = result.data as {
+        enrollments: PopulatedEnrollmentDoc[];
+        totalPages: number;
+        currentPage: number;
+        totalEnrollments: number;
+      };
+
+      if (Array.isArray(enrollmentData.enrollments)) {
+        const enrollmentsWithSignedUrls: EnrollmentWithSignedUrls[] = await Promise.all(
+          enrollmentData.enrollments.map(async (enrollment) => {
+            // Check if enrollment has toObject method (is a Mongoose document)
+            const enrollmentObj = typeof enrollment.toObject === 'function' 
+              ? enrollment.toObject() 
+              : enrollment;
+
+            // Create a new object with the transformed courseId
+            const transformedEnrollment: EnrollmentWithSignedUrls = {
+              ...enrollmentObj,
+              courseId: null
+            };
+
+            // Check if courseId exists and is a populated course object
+            if (enrollmentObj.courseId && typeof enrollmentObj.courseId === 'object' && 'title' in enrollmentObj.courseId) {
+              transformedEnrollment.courseId = await s3Service.addSignedUrlsToCourse(enrollmentObj.courseId);
+            }
+
+            return transformedEnrollment;
+          })
+        );
+
+        // Update the result data with transformed enrollments
+        result.data = {
+          ...enrollmentData,
+          enrollments: enrollmentsWithSignedUrls
+        };
+      }
+    }
+
+    res.status(result.success ? Status.OK : Status.BAD_REQUEST).json(result);
+  } catch (error) {
+    console.error("Error fetching enrollments by user ID:", error);
+    res.status(Status.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
+    });
   }
+}
 
   async updateLessonProgress(req: Request, res: Response): Promise<void> {
     try {
