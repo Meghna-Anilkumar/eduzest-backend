@@ -1,7 +1,7 @@
-import { Document, ObjectId, Decimal128 } from "mongoose";
+import { Document, ObjectId, Decimal128, Types } from "mongoose";
 
 export interface UserDoc extends Document {
-  _id: string;
+  _id: Types.ObjectId;
   email: string;
   name: string;
   isVerified: boolean;
@@ -9,7 +9,7 @@ export interface UserDoc extends Document {
     dob?: string;
     gender?: "Male" | "Female" | "Other";
     profilePic?: string | null;
-    address?:string;
+    address?: string;
   };
   updatedAt?: Date;
   role: "Student" | "Instructor" | "Admin";
@@ -27,7 +27,7 @@ export interface UserDoc extends Document {
     }[];
   };
   instructorDetails?: {
-    createdCourses?: ObjectId[];
+    createdCourses?: Types.ObjectId[];
     profit?: Decimal128;
     rating?: Decimal128;
   };
@@ -40,8 +40,8 @@ export interface UserDoc extends Document {
   cv?: string;
   isRequested?: boolean;
   isRejected?: boolean;
-  isApproved?:boolean;
-  experience:string;
+  isApproved?: boolean;
+  experience: string;
   refreshToken?: string;
   refreshTokenExpires?: Date;
   stripeCustomerId?: string;
