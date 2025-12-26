@@ -2,7 +2,7 @@
   "name": "eduzest-backend2",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "src/server.js",
     "scripts": {
     "dev": "nodemon --ext ts --exec ts-node src/server.ts",
     "build": "tsc",
