@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { UserDoc } from "../interfaces/IUser";
-import { AdminDoc } from "../interfaces/IAdmin"; 
+import { AdminDoc } from "../interfaces/IAdmin";
 
 dotenv.config();
 
@@ -19,8 +19,8 @@ interface TokenPayload {
 export const generateToken = (user: UserDoc | AdminDoc): string => {
   console.log('reached jwt');
   const payload: TokenPayload = {
-    id: user._id.toString(), 
-    role: user.role || "Student", 
+    id: user._id.toString(),
+    role: user.role || "Student",
     email: user.email,
   };
   return jwt.sign(payload, accessTokenSecret, { expiresIn: "1d" });
@@ -29,7 +29,7 @@ export const generateToken = (user: UserDoc | AdminDoc): string => {
 
 export const generateRefreshToken = (user: UserDoc | AdminDoc): string => {
   const payload: TokenPayload = {
-    id: user._id.toString(), 
+    id: user._id.toString(),
     role: user.role || "Student",
     email: user.email,
   };
