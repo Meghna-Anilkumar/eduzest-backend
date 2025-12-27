@@ -93,10 +93,11 @@ class UserController {
         try {
             const refreshToken = req.cookies[Cookie.userRefreshJWT];
             if (!refreshToken) {
-                return res.status(Status.UN_AUTHORISED).json({
+                res.status(Status.UN_AUTHORISED).json({
                     success: false,
                     message: "No refresh token provided.",
                 });
+                return; 
             }
 
             const result = await this._userService.refreshToken(refreshToken, res);
@@ -106,12 +107,14 @@ class UserController {
                 message: result.message,
                 token: result.token,
             });
+            return; 
         } catch (error) {
             console.error("Error during token refresh:", error);
             res.status(Status.INTERNAL_SERVER_ERROR).json({
                 success: false,
                 message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
             });
+            return; 
         }
     }
 
