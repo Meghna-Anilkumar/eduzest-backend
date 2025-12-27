@@ -204,18 +204,16 @@ export class UserService implements IUserService {
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
-                secure: true, // Always true in production
-                sameSite: "none", // Required for cross-origin
-                maxAge: 24 * 60 * 60 * 1000, // 24 hours
-                domain: process.env.NODE_ENV === "production" ? ".onrender.com" : undefined,
+                secure: true,
+                sameSite: "none",
+                maxAge: 24 * 60 * 60 * 1000,
             });
 
             res.cookie(Cookie.userRefreshJWT, refreshToken, {
                 httpOnly: true,
-                secure: true, // Always true in production
-                sameSite: "none", // Required for cross-origin
-                maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-                domain: process.env.NODE_ENV === "production" ? ".onrender.com" : undefined,
+                secure: true,
+                sameSite: "none",
+                maxAge: 7 * 24 * 60 * 60 * 1000,
             });
 
             console.log("Cookies set - userJWT:", token, "userRefreshJWT:", refreshToken);
@@ -240,9 +238,9 @@ export class UserService implements IUserService {
     async refreshToken(refreshToken: string, res: Response): Promise<IResponse> {
         try {
             const decoded = verifyRefreshToken(refreshToken);
-            console.log('decoded:',decoded)
+            console.log('decoded:', decoded)
             const userId = decoded.id;
-            console.log('user id:',userId)
+            console.log('user id:', userId)
 
             const storedRefreshToken = await this._userRepository.getRefreshToken(userId);
             if (!storedRefreshToken || storedRefreshToken !== refreshToken) {
@@ -264,10 +262,9 @@ export class UserService implements IUserService {
 
             res.cookie(Cookie.userJWT, newAccessToken, {
                 httpOnly: true,
-                secure: true, // Always true in production
-                sameSite: "none", // Required for cross-origin
-                maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-                domain: process.env.NODE_ENV === "production" ? ".onrender.com" : undefined,
+                secure: true,
+                sameSite: "none",
+                maxAge: 24 * 60 * 60 * 1000,
             });
 
             return {

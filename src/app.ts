@@ -32,6 +32,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
   })
 );
+app.options('*', cors());
 
 app.use("/", userRouter);
 app.use("/admin", adminRouter);
