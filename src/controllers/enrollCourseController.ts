@@ -6,7 +6,7 @@ import { IEnrollCourseService } from "../interfaces/IServices";
 import { s3Service } from "../services/s3Service";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 import { PopulatedEnrollmentDoc,EnrollmentWithSignedUrls } from "../models/enrollmentModel";
-
+import { AuthRequest } from "../interfaces/AuthRequest";
 
 class EnrollCourseController {
   private enrollCourseService: IEnrollCourseService;
@@ -213,7 +213,7 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
 
   async getInstructorCourseStats(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
+      const userId = (req as AuthRequest).user?.id;
 
       if (!userId) {
         res.status(Status.UN_AUTHORISED).json({

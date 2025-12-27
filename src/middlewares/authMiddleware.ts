@@ -51,41 +51,45 @@ export const authenticateAdmin = (requiredRole?: string) => {
     };
 };
 
-
 export const authenticateUser = (requiredRole?: string) => {
-    return (req: AuthRequest, res: Response, next: NextFunction): void => {
-        try {
-            const token = req.cookies[Cookie.userJWT];
+  return (req: AuthRequest, res: Response, next: NextFunction): void => {
+    try {
+      const token = req.cookies[Cookie.userJWT];
+      
+      if (!token) {
+        console.log("No user token found");
+        res.status(401).json({ message: "Unauthorized: No token provided" });
+        return; // ← MUST HAVE THIS
+      }
 
-            if (!token) {
-                console.log("No user token found");
-                res.status(401).json({ message: "Unauthorized: No token provided" });
-            }
+      const decoded = jwt.verify(token, secret) as TokenPayload;
+      console.log("Decoded User Token:", decoded);
+      
+      req.user = {
+        id: decoded.id,
+        role: decoded.role,
+        email: decoded.email,
+      };
 
-            const decoded = jwt.verify(token, secret) as TokenPayload;
-            console.log("Decoded User Token:", decoded);
+      if (requiredRole && req.user.role !== requiredRole) {
+        res.status(403).json({ message: "Forbidden: Insufficient permissions" });
+        return; // ← MUST HAVE THIS
+      }
 
-            req.user = {
-                id: decoded.id,
-                role: decoded.role,
-                email: decoded.email,
-            };
-
-            if (requiredRole && req.user.role !== requiredRole) {
-                res.status(403).json({ message: "Forbidden: Insufficient permissions" });
-            }
-
-            next();
-        } catch (error) {
-            if (error instanceof jwt.TokenExpiredError) {
-                res.status(401).json({
-                    message: "Token expired. Please use the refresh token to obtain a new access token.",
-                });
-            }
-            console.error("JWT Verification Error:", error);
-            res.status(401).json({ message: "Unauthorized: Invalid token" });
-        }
-    };
+      next(); // Only call next if authentication succeeds
+      
+    } catch (error) {
+      if (error instanceof jwt.TokenExpiredError) {
+        res.status(401).json({
+          message: "Token expired. Please use the refresh token to obtain a new access token.",
+        });
+        return; // ← MUST HAVE THIS
+      }
+      
+      console.error("JWT Verification Error:", error);
+      res.status(401).json({ message: "Unauthorized: Invalid token" });
+      return; // ← MUST HAVE THIS (remove the next() call that was here)
+    }
+  };
 };
-
 

@@ -38,12 +38,12 @@ export const responseLogger = (req: Request, res: Response, next: NextFunction) 
   logger.info(`[REQUEST] ${req.method} ${req.originalUrl}`);
 
   const oldJson = res.json;
-
+  
   res.json = function (data) {
-    const statusColor = res.statusCode >= 400 ? colors.red : colors.yellow;
-
+    // Log BEFORE calling the original json method
     logger.info(`[RESPONSE] Status: ${res.statusCode} Message: ${data.message}`);
-
+    
+    // Call the original method and return its result
     return oldJson.call(this, data);
   };
 
