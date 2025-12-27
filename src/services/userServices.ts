@@ -584,6 +584,7 @@ export class UserService implements IUserService {
             const existingUser = await this._userRepository.findByEmail(googleUser.email);
 
             let user;
+
             if (!existingUser) {
                 const randomPassword = crypto.randomBytes(16).toString('hex');
                 const hashedPassword = await hashPassword(randomPassword);
@@ -608,10 +609,20 @@ export class UserService implements IUserService {
 
             const token = generateToken(user);
             const refreshToken = generateRefreshToken(user);
+            await this._userRepository.storeRefreshToken(user._id.toString(), refreshToken);
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
+                secure: true,              // Required for SameSite=None in production
+                sameSite: "none",          // Required for cross-origin (Vercel → Render)
                 maxAge: 24 * 60 * 60 * 1000,
+            });
+
+            res.cookie(Cookie.userRefreshJWT, refreshToken, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+                maxAge: 7 * 24 * 60 * 60 * 1000,
             });
 
             return {
