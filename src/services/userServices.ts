@@ -6,7 +6,7 @@ import { UserDoc } from '../interfaces/IUser';
 import { hashPassword, comparePassword } from '../utils/bcrypt';
 import { CustomError } from '../utils/CustomError';
 import { generateOTP } from '../utils/OTPGenerator';
-import { sendEmail } from '../utils/nodemailer';
+import { sendEmail } from '../utils/brevo';
 import { generateToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from '../utils/jwt';
 import { validateName, validateEmail, validatePassword, validateDOB, validateMobileNumber } from '../utils/validator';
 import { Response } from 'express';
@@ -80,7 +80,19 @@ export class UserService implements IUserService {
                 await this._otpRepository.createOtp({ email, otp: OTP, expiresAt: otpExpiration });
             }
 
-            await sendEmail(email, 'Your OTP for Sign Up', `Your OTP for verification is: ${OTP}`);
+            await sendEmail({
+                to: email,
+                subject: 'Your OTP for Sign Up',
+                text: `Your OTP for verification is: ${OTP}. It expires in 2 minutes.`,
+                html: `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+      <h2 style="color: #49bbbd;">EduZest Verification Code</h2>
+      <p>Your verification code is:</p>
+      <h1 style="font-size: 36px; letter-spacing: 8px; text-align: center; color: #49bbbd;">${OTP}</h1>
+      <p>This code expires in <strong>2 minutes</strong>.</p>
+    </div>
+  `
+            });
 
             return {
                 success: true,
@@ -346,7 +358,12 @@ export class UserService implements IUserService {
                 await this._otpRepository.createOtp({ email, otp: OTP, expiresAt: otpExpiration });
             }
 
-            await sendEmail(email, "Your OTP for Verification", `Your new OTP is: ${OTP}`);
+            await sendEmail({
+                to: email,
+                subject: 'Your New OTP for Verification',
+                text: `Your new OTP is: ${OTP}. It expires in 2 minutes.`,
+                html: `<h2>Your new verification code is: <strong>${OTP}</strong></h2><p>Expires in 2 minutes.</p>`
+            });
 
             return {
                 success: true,
@@ -393,7 +410,12 @@ export class UserService implements IUserService {
                 await this._otpRepository.createOtp({ email, otp: OTP, expiresAt: otpExpiration });
             }
 
-            await sendEmail(email, "Your OTP for Password Reset", `Your OTP for verification is: ${OTP}`);
+            await sendEmail({
+                to: email,
+                subject: 'Your New OTP for Verification',
+                text: `Your new OTP is: ${OTP}. It expires in 2 minutes.`,
+                html: `<h2>Your new verification code is: <strong>${OTP}</strong></h2><p>Expires in 2 minutes.</p>`
+            });
 
             return {
                 success: true,
