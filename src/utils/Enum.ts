@@ -1,5 +1,5 @@
 export enum Cookie {
-  adminJWT = 'adminJWT',
+  // adminJWT = 'adminJWT',
   userJWT = 'userJWT',
   userRefreshJWT = "userRefreshJWT"
 }

@@ -40,10 +40,9 @@ export const responseLogger = (req: Request, res: Response, next: NextFunction) 
   const oldJson = res.json;
   
   res.json = function (data) {
-    // Log BEFORE calling the original json method
+
     logger.info(`[RESPONSE] Status: ${res.statusCode} Message: ${data.message}`);
     
-    // Call the original method and return its result
     return oldJson.call(this, data);
   };
 

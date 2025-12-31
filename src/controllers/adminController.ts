@@ -29,7 +29,7 @@ class AdminController {
                 return;
             }
 
-            res.cookie(Cookie.adminJWT, response.token, {
+            res.cookie(Cookie.userJWT, response.token, {
                 httpOnly: true,
                 maxAge: 24 * 60 * 60 * 1000,
             });
@@ -91,7 +91,7 @@ class AdminController {
 
     async logout(req: Request, res: Response, next: NextFunction) {
         try {
-            res.clearCookie(Cookie.adminJWT, {
+            res.clearCookie(Cookie.userJWT, {
                 httpOnly: true,
             });
 

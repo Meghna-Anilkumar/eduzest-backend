@@ -60,7 +60,7 @@ export class AdminService implements IAdminService {
 
             const token = generateToken(existingAdmin);
 
-            res.cookie("adminJWT", token, {
+            res.cookie("userJWT", token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
                 maxAge: 24 * 60 * 60 * 1000,

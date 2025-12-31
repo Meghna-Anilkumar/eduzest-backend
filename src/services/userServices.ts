@@ -635,8 +635,8 @@ export class UserService implements IUserService {
 
             res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
-                secure: true,              // Required for SameSite=None in production
-                sameSite: "none",          // Required for cross-origin (Vercel → Render)
+                secure: true,              
+                sameSite: "none",         
                 maxAge: 24 * 60 * 60 * 1000,
             });
 
