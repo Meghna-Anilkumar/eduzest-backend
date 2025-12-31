@@ -93,7 +93,6 @@ export class AdminService implements IAdminService {
             const students = await this._adminRepository.getAllStudents(skip, limit, search);
             const totalStudents = await this._adminRepository.countStudents(search);
 
-            // Map students to DTO
             const studentDTOs = students.map((student) => DTOMapper.mapToStudentDTO(student));
 
             return {
@@ -272,11 +271,15 @@ export class AdminService implements IAdminService {
             const instructors = await this._adminRepository.getAllInstructors(skip, limit, search);
             const totalInstructors = await this._adminRepository.countInstructors(search);
 
+            const instructorDTOs = instructors.map((instructor) =>
+                DTOMapper.mapToInstructorDTO(instructor)
+            );
+
             return {
                 success: true,
                 message: "Instructors fetched successfully",
                 data: {
-                    instructors,
+                    instructors: instructorDTOs,
                     totalInstructors,
                     totalPages: Math.ceil(totalInstructors / limit),
                     currentPage: page,
@@ -290,6 +293,7 @@ export class AdminService implements IAdminService {
             };
         }
     }
+
 
     // Fetch request details by ID
     async fetchRequestDetails(_id: string): Promise<IResponse> {
@@ -319,23 +323,21 @@ export class AdminService implements IAdminService {
 
     async getDashboardStats(period: "day" | "month" | "year" = "day"): Promise<IResponse> {
         try {
-            // Calculate the date range based on the period
             const endDate = new Date();
             const startDate = new Date();
             let rangeLength: number;
 
             if (period === "day") {
-                rangeLength = 30; // Last 30 days
+                rangeLength = 30; 
                 startDate.setDate(endDate.getDate() - rangeLength);
             } else if (period === "month") {
-                rangeLength = 12; // Last 12 months
+                rangeLength = 12; 
                 startDate.setMonth(endDate.getMonth() - rangeLength);
             } else {
-                rangeLength = 5; // Last 5 years
+                rangeLength = 5; 
                 startDate.setFullYear(endDate.getFullYear() - rangeLength);
             }
 
-            // Fetch total counts, payments, and top enrolled courses
             const [totalStudents, totalInstructors, activeCourses, payments, studentGrowthData, revenueData, topEnrolledCourses] =
                 await Promise.all([
                     this._adminRepository.countStudents(),
@@ -349,15 +351,12 @@ export class AdminService implements IAdminService {
 
             const totalRevenue = payments.reduce((sum, payment) => sum + payment.adminPayout.amount, 0);
 
-            // Generate signed URLs for course thumbnails
             const topEnrolledCoursesWithSignedUrls = await Promise.all(
                 topEnrolledCourses.map(async (course) => ({
                     ...course,
                     thumbnail: course.thumbnail ? await s3Service.getSignedUrl(course.thumbnail) : "",
                 }))
             );
-
-            // Format student growth and revenue data with user-friendly labels
             const studentGrowth = studentGrowthData.map((item) => ({
                 date:
                     period === "day"

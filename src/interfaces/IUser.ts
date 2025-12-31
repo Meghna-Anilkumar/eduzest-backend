@@ -28,8 +28,8 @@ export interface UserDoc extends Document {
   };
   instructorDetails?: {
     createdCourses?: Types.ObjectId[];
-    profit?: Decimal128;
-    rating?: Decimal128;
+    profit?: number;
+    rating?: number;
   };
   socialMedia?: {
     linkedin?: string;

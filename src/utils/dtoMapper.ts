@@ -77,7 +77,7 @@ export class DTOMapper {
     };
   }
 
-  // Map UserDoc to InstructorDTO
+
   static mapToInstructorDTO(user: InstructorUserDoc): InstructorDTO {
     return {
       _id: user._id.toString(),
