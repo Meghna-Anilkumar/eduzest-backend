@@ -125,6 +125,7 @@ export class AdminRepository
     return this.userModel.countDocuments(query);
   }
 
+
   async getTopEnrolledCourses(): Promise<
     {
       courseId: string;
@@ -134,44 +135,59 @@ export class AdminRepository
       thumbnail: string;
     }[]
   > {
-    return this.enrollmentModel.aggregate([
-      {
-        $group: {
-          _id: "$courseId",
-          enrollmentCount: { $sum: 1 },
-        },
-      },
-      { $sort: { enrollmentCount: -1 } },
-      { $limit: 5 },
-      {
-        $lookup: {
-          from: "courses",
-          localField: "_id",
-          foreignField: "_id",
-          as: "course",
-        },
-      },
-      { $unwind: "$course" },
-      {
-        $lookup: {
-          from: "users",
-          localField: "course.instructorRef",
-          foreignField: "_id",
-          as: "instructor",
-        },
-      },
-      { $unwind: "$instructor" },
-      {
-        $project: {
-          courseId: "$_id",
-          courseName: "$course.title",
-          enrollmentCount: 1,
-          instructorName: "$instructor.name",
-          thumbnail: "$course.thumbnail",
-          _id: 0,
-        },
-      },
-    ]);
+    try {
+      const enrollments = await this.enrollmentModel
+        .find()
+        .populate({
+          path: 'courseId',
+          select: 'title thumbnail instructorRef',
+          populate: {
+            path: 'instructorRef',
+            select: 'name'
+          }
+        })
+        .lean();
+      const validEnrollments = enrollments.filter(e => e.courseId && typeof e.courseId === 'object');
+      if (validEnrollments.length === 0) {
+        return [];
+      }
+
+      const courseMap = new Map<string, {
+        course: any;
+        count: number;
+      }>();
+
+      validEnrollments.forEach(enrollment => {
+        const course = enrollment.courseId as any;
+        const courseId = course._id.toString();
+
+        if (courseMap.has(courseId)) {
+          courseMap.get(courseId)!.count++;
+        } else {
+          courseMap.set(courseId, {
+            course: course,
+            count: 1
+          });
+        }
+      });
+
+      const topCourses = Array.from(courseMap.values())
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5)
+        .map(item => ({
+          courseId: item.course._id.toString(),
+          courseName: item.course.title || 'Untitled Course',
+          enrollmentCount: item.count,
+          instructorName: item.course.instructorRef?.name || 'Unknown Instructor',
+          thumbnail: item.course.thumbnail || '',
+        }));
+
+      console.log('Top 5 courses:', JSON.stringify(topCourses, null, 2));
+      return topCourses;
+    } catch (error) {
+      console.error('Error in getTopEnrolledCoursesSimple:', error);
+      return [];
+    }
   }
 
   async getStudentGrowth(

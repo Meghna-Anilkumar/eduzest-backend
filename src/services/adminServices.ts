@@ -370,6 +370,8 @@ export class AdminService implements IAdminService {
                     thumbnail: course.thumbnail ? await s3Service.getSignedUrl(course.thumbnail) : "",
                 }))
             );
+
+            console.log('top courses:', topEnrolledCoursesWithSignedUrls)
             const studentGrowth = studentGrowthData.map((item) => ({
                 date:
                     period === "day"
