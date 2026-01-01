@@ -169,12 +169,15 @@ export class AdminService implements IAdminService {
 
             const requestedUsers = await this._adminRepository.getAllRequestedUsers(skip, limit);
             const totalRequestedUsers = await this._adminRepository.countRequestedUsers();
+            const requestedUserDTOs = requestedUsers.map((user) =>
+                DTOMapper.mapToInstructorDTO(user)
+            );
 
             return {
                 success: true,
                 message: "Requested users fetched successfully",
                 data: {
-                    requestedUsers,
+                    requestedUsers: requestedUserDTOs,
                     totalRequestedUsers,
                     totalPages: Math.ceil(totalRequestedUsers / limit),
                     currentPage: page,

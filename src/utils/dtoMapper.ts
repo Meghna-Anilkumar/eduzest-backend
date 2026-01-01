@@ -3,7 +3,7 @@ import { StudentDTO, InstructorDTO } from '../interfaces/IDTO';
 interface Profile {
   dob?: string;
   gender?: string;
-  profilePic?: string|null;
+  profilePic?: string | null;
   address?: string;
 }
 
@@ -61,15 +61,15 @@ export class DTOMapper {
       isBlocked: user.isBlocked ?? false,
       profile: user.profile
         ? {
-            dob: user.profile.dob,
-            gender: user.profile.gender,
-            profilePic: user.profile.profilePic,
-            address: user.profile.address,
-          }
+          dob: user.profile.dob,
+          gender: user.profile.gender,
+          profilePic: user.profile.profilePic,
+          address: user.profile.address,
+        }
         : undefined,
       enrolledCourses: user.studentDetails?.enrolledCourses?.map((course) => ({
-        courseId: typeof course.courseId === 'string' 
-          ? course.courseId 
+        courseId: typeof course.courseId === 'string'
+          ? course.courseId
           : course.courseId.toString(),
         progress: course.progress,
         rating: course.rating,
@@ -90,11 +90,17 @@ export class DTOMapper {
       qualification: user.qualification,
       experience: user.experience,
       aboutMe: user.aboutMe,
+      profile: user.profile ? {
+        dob: user.profile.dob,
+        gender: user.profile.gender,
+        profilePic: user.profile.profilePic,
+        address: user.profile.address,
+      } : undefined,
       socialMedia: user.socialMedia
         ? {
-            linkedin: user.socialMedia.linkedin,
-            github: user.socialMedia.github,
-          }
+          linkedin: user.socialMedia.linkedin,
+          github: user.socialMedia.github,
+        }
         : undefined,
       createdCourses: user.instructorDetails?.createdCourses?.map((courseId) =>
         typeof courseId === 'string' ? courseId : courseId.toString()

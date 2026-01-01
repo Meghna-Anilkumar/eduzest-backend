@@ -27,6 +27,12 @@ export interface InstructorDTO {
   qualification?: string;
   experience?: string;
   aboutMe?: string;
+  profile?: {
+    dob?: string;
+    gender?: string;
+    profilePic?: string|null;
+    address?: string;
+  };
   socialMedia?: {
     linkedin?: string;
     github?: string;
