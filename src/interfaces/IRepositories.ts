@@ -93,6 +93,9 @@ export interface IAdminRepository extends IBaseRepository<AdminDoc> {
     countInstructors(search?: string): Promise<number>;
     getStudentGrowth(startDate: Date, endDate: Date, period: "day" | "month" | "year"): Promise<{ date: string; count: number }[]>;
     getTopEnrolledCourses(): Promise<{ courseId: string; courseName: string; enrollmentCount: number; instructorName: string; thumbnail: string }[]>;
+    storeRefreshToken(adminId: string, refreshToken: string): Promise<void>;
+    getRefreshToken(adminId: string): Promise<string | null>;
+    clearRefreshToken(adminId: string): Promise<void>;
 }
 
 export interface IOtpRepository extends IBaseRepository<OtpDoc> {

@@ -1,4 +1,4 @@
-import { model, Schema, Types } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { AdminDoc } from '../interfaces/IAdmin'
 const adminSchema = new Schema<AdminDoc>({
     email: {
@@ -9,9 +9,17 @@ const adminSchema = new Schema<AdminDoc>({
         type: String,
         required: true
     },
-    role:{
-        type:String,
-        default:"Admin"
+    role: {
+        type: String,
+        default: "Admin"
+    },
+    refreshToken: {
+        type: String,
+        default: null
+    },
+    refreshTokenExpires: {
+        type: Date,
+        default: null
     }
 
 })

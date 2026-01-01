@@ -10,8 +10,7 @@ import { Role } from "../utils/Enum";
 
 export class AdminRepository
   extends BaseRepository<AdminDoc>
-  implements IAdminRepository
-{
+  implements IAdminRepository {
   private userModel = Users;
   private enrollmentModel = Enrollments;
 
@@ -184,8 +183,8 @@ export class AdminRepository
       period === "day"
         ? "%Y-%m-%d"
         : period === "month"
-        ? "%Y-%m"
-        : "%Y";
+          ? "%Y-%m"
+          : "%Y";
 
     const today = new Date();
     const effectiveEndDate = endDate > today ? today : endDate;
@@ -236,10 +235,10 @@ export class AdminRepository
         period === "day"
           ? currentDate.toISOString().split("T")[0]
           : period === "month"
-          ? `${currentDate.getFullYear()}-${String(
+            ? `${currentDate.getFullYear()}-${String(
               currentDate.getMonth() + 1
             ).padStart(2, "0")}`
-          : currentDate.getFullYear().toString();
+            : currentDate.getFullYear().toString();
 
       const found = result.find((item) => item.date === dateStr);
 
@@ -255,6 +254,24 @@ export class AdminRepository
     }
 
     return periods;
+  }
+
+  async storeRefreshToken(adminId: string, refreshToken: string): Promise<void> {
+    await this._model.findByIdAndUpdate(adminId, {
+      refreshToken,
+      refreshTokenExpires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
+  }
+
+  async getRefreshToken(adminId: string): Promise<string | null> {
+    const admin = await this._model.findById(adminId).select("refreshToken");
+    return admin?.refreshToken || null;
+  }
+
+  async clearRefreshToken(adminId: string): Promise<void> {
+    await this._model.findByIdAndUpdate(adminId, {
+      $unset: { refreshToken: "", refreshTokenExpires: "" },
+    });
   }
 }
 

@@ -5,4 +5,6 @@ export interface AdminDoc extends Document{
     email:string;
     password:string;
     role:string;
+    refreshToken:string;
+    refreshTokenExpires:Date;
 }

@@ -2,13 +2,14 @@ import { IAdminRepository, ICourseRepository, IPaymentRepository } from '../inte
 import { IResponse } from '../interfaces/IResponse';
 import { IAdminService } from '../interfaces/IServices';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
-import { generateToken } from '../utils/jwt';
 import { AdminDoc } from '../interfaces/IAdmin';
 import { s3Service } from './s3Service';
 import { Response } from 'express';
 import { sendEmail } from '../utils/brevo';
 import { MESSAGE_CONSTANTS } from '../constants/message_constants';
 import { DTOMapper } from '../utils/dtoMapper';
+import { generateToken, generateRefreshToken } from "../utils/jwt";
+import { Cookie } from "../utils/Enum";
 
 
 export class AdminService implements IAdminService {
@@ -59,11 +60,20 @@ export class AdminService implements IAdminService {
             }
 
             const token = generateToken(existingAdmin);
-
-            res.cookie("userJWT", token, {
+            const refreshToken = generateRefreshToken(existingAdmin);
+            await this._adminRepository.storeRefreshToken(existingAdmin._id.toString(), refreshToken);
+            res.cookie(Cookie.userJWT, token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
+                sameSite: "none",
                 maxAge: 24 * 60 * 60 * 1000,
+            });
+
+            res.cookie(Cookie.userRefreshJWT, refreshToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "none",
+                maxAge: 7 * 24 * 60 * 60 * 1000,
             });
 
             return {
@@ -328,13 +338,13 @@ export class AdminService implements IAdminService {
             let rangeLength: number;
 
             if (period === "day") {
-                rangeLength = 30; 
+                rangeLength = 30;
                 startDate.setDate(endDate.getDate() - rangeLength);
             } else if (period === "month") {
-                rangeLength = 12; 
+                rangeLength = 12;
                 startDate.setMonth(endDate.getMonth() - rangeLength);
             } else {
-                rangeLength = 5; 
+                rangeLength = 5;
                 startDate.setFullYear(endDate.getFullYear() - rangeLength);
             }
 
