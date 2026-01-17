@@ -135,7 +135,12 @@ export class CourseService {
     page: number,
     limit: number,
     search?: string,
-    filters?: { level?: string; pricingType?: string },
+    filters?: {
+      level?: string;
+      pricingType?: string;
+      hasOffer?: boolean;
+      priceRange?: { min?: number; max?: number };
+    },
     sort?: { field: string; order: string }
   ): Promise<IResponse> {
     try {
@@ -156,12 +161,46 @@ export class CourseService {
         query["pricing.type"] = filters.pricingType;
       }
 
+      if (filters?.hasOffer) {
+        query.$or = [
+          {
+            "offer.offerPrice": { $exists: true, $ne: null },
+            "offer.expirationDate": { 
+              $gte: new Date().toISOString() 
+            }
+          }
+        ];
+      }
+
+      if (filters?.priceRange) {
+        const priceConditions: any[] = [];
+        
+        if (filters.priceRange.min !== undefined || filters.priceRange.max !== undefined) {
+          const priceFilter: any = {};
+          
+          if (filters.priceRange.min !== undefined) {
+            priceFilter.$gte = filters.priceRange.min;
+          }
+          if (filters.priceRange.max !== undefined) {
+            priceFilter.$lte = filters.priceRange.max;
+          }
+
+          priceConditions.push(
+            { "pricing.amount": priceFilter },
+            { "offer.offerPrice": priceFilter }
+          );
+          
+          query.$or = priceConditions;
+        }
+      }
+      const shouldSortByPrice = sort?.field === "price" || sort?.field === "offerPrice";
+      
       const sortQuery: Record<string, 1 | -1> = {};
 
-      if (sort) {
+      if (sort && !shouldSortByPrice) {
         switch (sort.field) {
-          case "price":
-            sortQuery["pricing.amount"] = sort.order === "asc" ? 1 : -1;
+          case "discountPercentage":
+            sortQuery["offer.discountPercentage"] = sort.order === "asc" ? 1 : -1;
             break;
           case "updatedAt":
             sortQuery.updatedAt = sort.order === "asc" ? 1 : -1;
@@ -172,24 +211,78 @@ export class CourseService {
           default:
             sortQuery.updatedAt = -1;
         }
-      } else {
+      } else if (!shouldSortByPrice) {
         sortQuery.updatedAt = -1;
       }
 
-      const courses = await this._courseRepository.getAllActiveCourses(
-        query,
-        page,
-        limit,
-        sortQuery
-      );
-      console.log("Courses with populated data:", JSON.stringify(courses, null, 2));
-      const totalCourses = await this._courseRepository.countDocuments(query);
+      let courses: any[];
+      let totalCourses: number;
+
+      if (shouldSortByPrice) {
+        courses = await this._courseRepository.getAllActiveCourses(
+          query,
+          1,
+          Number.MAX_SAFE_INTEGER,
+          sortQuery
+        );
+        totalCourses = courses.length;
+      } else {
+        courses = await this._courseRepository.getAllActiveCourses(
+          query,
+          page,
+          limit,
+          sortQuery
+        );
+        totalCourses = await this._courseRepository.countDocuments(query);
+      }
+
+      const processedCourses = courses.map(course => {
+        const courseObj = course.toObject ? course.toObject() : course;
+        let effectivePrice = courseObj.pricing?.amount || 0;
+        let hasActiveOffer = false;
+        let discountAmount = 0;
+
+        if (courseObj.offer?.offerPrice && courseObj.offer?.expirationDate) {
+          const expirationDate = new Date(courseObj.offer.expirationDate);
+          if (expirationDate >= new Date()) {
+            effectivePrice = courseObj.offer.offerPrice;
+            hasActiveOffer = true;
+            discountAmount = (courseObj.pricing?.amount || 0) - courseObj.offer.offerPrice;
+          }
+        }
+
+        return {
+          ...courseObj,
+          effectivePrice,
+          hasActiveOffer,
+          discountAmount,
+          discountPercentage: courseObj.offer?.discountPercentage || 0
+        };
+      });
+
+      let finalCourses = processedCourses;
+      if (shouldSortByPrice) {
+        finalCourses = processedCourses.sort((a, b) => {
+          const priceA = a.effectivePrice;
+          const priceB = b.effectivePrice;
+          
+          if (sort.order === "asc") {
+            return priceA - priceB;
+          } else {
+            return priceB - priceA;
+          }
+        });
+
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+        finalCourses = finalCourses.slice(startIndex, endIndex);
+      }
 
       return {
         success: true,
         message: "Active courses fetched successfully.",
         data: {
-          courses,
+          courses: finalCourses,
           totalPages: Math.ceil(totalCourses / limit),
           currentPage: page,
           totalCourses,
