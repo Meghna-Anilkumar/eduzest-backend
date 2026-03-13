@@ -117,7 +117,7 @@ const userSchema = new Schema<UserDoc>({
     type: String
   },
   refreshTokenExpires: {
-    type: String
+    type: Date
   },
   stripeCustomerId: { type: String, default: null },
   subscriptionStatus: { type: String, enum: ["active", "inactive"], default: "inactive" },

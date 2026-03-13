@@ -4,6 +4,8 @@ import { IExamService } from '../interfaces/IServices';
 import { Status } from '../utils/enums';
 import { Types } from 'mongoose';
 import { MESSAGE_CONSTANTS } from '../constants/message_constants';
+import { asString } from '../utils/paramUtils';
+
 
 export class ExamController {
   constructor(private _examService: IExamService) { }
@@ -19,7 +21,7 @@ export class ExamController {
         return;
       }
 
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -52,7 +54,7 @@ export class ExamController {
         return;
       }
 
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,

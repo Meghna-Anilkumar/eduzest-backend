@@ -5,6 +5,8 @@ import { Status } from '../utils/enums';
 import { IAssessment } from '../interfaces/IAssessments';
 import { Types } from 'mongoose';
 import { MESSAGE_CONSTANTS } from '../constants/message_constants';
+import { asString } from '../utils/paramUtils';
+
 
 class AssessmentController {
   constructor(private _assessmentService: IAssessmentService) { }
@@ -20,7 +22,8 @@ class AssessmentController {
         return;
       }
 
-      const { courseId, moduleTitle } = req.params;
+      const { moduleTitle } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -66,7 +69,8 @@ class AssessmentController {
         return;
       }
 
-      const { courseId, moduleTitle } = req.params;
+      const { moduleTitle } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -214,7 +218,8 @@ class AssessmentController {
         return;
       }
 
-      const { courseId, moduleTitle } = req.params;
+       const { moduleTitle } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -367,7 +372,7 @@ class AssessmentController {
         return;
       }
 
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -398,7 +403,7 @@ class AssessmentController {
         return;
       }
 
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,

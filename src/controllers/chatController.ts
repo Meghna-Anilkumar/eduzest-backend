@@ -3,13 +3,14 @@ import { Status } from '../utils/enums';
 import { IChatService } from '../interfaces/IServices';
 import { AuthRequest } from '../interfaces/AuthRequest';
 import { MESSAGE_CONSTANTS } from '../constants/message_constants';
+import { asString } from '../utils/paramUtils';
 
 class ChatController {
   constructor(private _chatService: IChatService) {}
 
   async getMessages(req: AuthRequest, res: Response): Promise<void> {
     try {
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       const page = req.query.page ? Number(req.query.page) : 1;
       const limit = req.query.limit ? Number(req.query.limit) : 20;
       const userId = req.user?.id;
@@ -35,7 +36,7 @@ class ChatController {
 
   async sendMessage(req: AuthRequest, res: Response): Promise<void> {
     try {
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       const { message } = req.body;
       const userId = req.user?.id;
 

@@ -7,6 +7,7 @@ import { s3Service } from "../services/s3Service";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
 import { PopulatedEnrollmentDoc,EnrollmentWithSignedUrls } from "../models/enrollmentModel";
 import { AuthRequest } from "../interfaces/AuthRequest";
+import { asString } from '../utils/paramUtils';
 
 class EnrollCourseController {
   private enrollCourseService: IEnrollCourseService;
@@ -51,7 +52,7 @@ class EnrollCourseController {
 
   async checkEnrollment(req: Request, res: Response): Promise<void> {
     try {
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
 
       if (!userId) {
@@ -181,7 +182,7 @@ async getEnrollmentsByUserId(req: Request, res: Response): Promise<void> {
 
   async getLessonProgress(req: Request, res: Response): Promise<void> {
     try {
-      const { courseId } = req.params;
+      const courseId = asString(req.params.courseId);
       const userId = req.cookies.userJWT ? verifyAccessToken(req.cookies.userJWT).id : null;
 
       if (!userId) {

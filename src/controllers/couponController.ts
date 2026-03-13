@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ICouponService } from "../interfaces/IServices";
 import { AuthRequest } from "../interfaces/AuthRequest";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
+import { Status } from '../utils/enums';
 
 export class CouponController {
 
@@ -14,10 +15,10 @@ export class CouponController {
     try {
       const couponData = req.body;
       const result = await this._couponService.addCoupon(couponData);
-      res.status(result.success ? 201 : 400).json(result);
+      res.status(result.success ? Status.OK: Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error in addCoupon controller:", error);
-      res.status(500).json({
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
@@ -29,10 +30,10 @@ export class CouponController {
       const couponId = req.params.id;
       const couponData = req.body;
       const result = await this._couponService.editCoupon(couponId, couponData);
-      res.status(result.success ? 200 : 400).json(result);
+      res.status(result.success ? Status.OK: Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error in editCoupon controller:", error);
-      res.status(500).json({
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
@@ -43,10 +44,10 @@ export class CouponController {
     try {
       const couponId = req.params.id;
       const result = await this._couponService.deleteCoupon(couponId);
-      res.status(result.success ? 200 : 400).json(result);
+      res.status(result.success ? Status.OK: Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error in deleteCoupon controller:", error);
-      res.status(500).json({
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
@@ -59,10 +60,10 @@ export class CouponController {
       const limit = parseInt(req.query.limit as string) || 10;
       const search = req.query.search as string | undefined;
       const result = await this._couponService.getAllCoupons(page, limit, search);
-      res.status(result.success ? 200 : 400).json(result);
+      res.status(result.success ? Status.OK: Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error in getAllCoupons controller:", error);
-      res.status(500).json({
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
       });
@@ -73,9 +74,9 @@ export class CouponController {
   async getActiveCoupons(req: Request, res: Response) {
     try {
       const result = await this._couponService.getActiveCoupons();
-      res.status(200).json(result);
+      res.status(Status.OK).json(result);
     } catch (error) {
-      res.status(500).json({
+      res.status(Status.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: "Failed to fetch coupons",
         error: error instanceof Error ? error.message : MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR
@@ -93,7 +94,7 @@ export class CouponController {
         return;
       }
       const result = await this._couponService.checkCouponUsage(userId, couponId);
-      res.status(result.success ? 200 : 400).json(result);
+      res.status(result.success ? Status.OK: Status.BAD_REQUEST).json(result);
     } catch (error) {
       console.error("Error in checkCouponUsage:", error);
       res.status(500).json({ success: false, message: MESSAGE_CONSTANTS.INTERNAL_SERVER_ERROR });
