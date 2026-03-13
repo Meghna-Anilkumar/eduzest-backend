@@ -3,7 +3,6 @@ import { Status } from "../utils/enums";
 import { IReviewService } from "../interfaces/IServices";
 import { AuthRequest } from "../interfaces/AuthRequest";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
-import { asString } from '../utils/paramUtils';
 
 class ReviewController {
   constructor(private _reviewService: IReviewService) { }
@@ -33,7 +32,7 @@ class ReviewController {
 
   async getReviewsByCourse(req: Request, res: Response): Promise<void> {
     try {
-      const courseId = asString(req.params.courseId);
+      const { courseId } = req.params;
       const { skip = 0, limit = 10 } = req.query;
 
       if (!courseId) {
@@ -62,7 +61,7 @@ class ReviewController {
   async getReviewByUserAndCourse(req: AuthRequest, res: Response): Promise<void> {
     try {
       const userId = req.user?.id;
-      const courseId = asString(req.params.courseId);
+      const { courseId } = req.params;
 
       if (!userId) {
         res.status(Status.UN_AUTHORISED).json({

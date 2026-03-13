@@ -7,7 +7,7 @@ import { ICourse, IModule, ILesson, FilterOptions, SortOptions, ICourseUpdate } 
 import { s3Service } from "../services/s3Service";
 import { ILessonData, IModuleData} from "../interfaces/ILessonData";
 import { MESSAGE_CONSTANTS } from "../constants/message_constants";
-import { asString } from '../utils/paramUtils';
+
 
 class CourseController {
   constructor(private _courseService: ICourseService,
@@ -182,7 +182,8 @@ class CourseController {
 
   async getCourseById(req: Request, res: Response): Promise<void> {
     try {
-      const courseId = asString(req.params.courseId);
+      const courseId = req.params.id;
+
       if (!courseId) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -214,7 +215,8 @@ class CourseController {
   async getCourseByInstructor(req: AuthRequest, res: Response): Promise<void> {
     try {
       const instructorId = req.user?.id;
-      const courseId = asString(req.params.courseId);
+      const courseId = req.params.id;
+
       if (!instructorId) {
         res.status(Status.UN_AUTHORISED).json({
           success: false,
@@ -263,7 +265,7 @@ class CourseController {
         return;
       }
 
-      const courseId = asString(req.params.courseId);
+      const courseId = req.params.id;
       if (!courseId || !Types.ObjectId.isValid(courseId)) {
         res.status(Status.BAD_REQUEST).json({
           success: false,
@@ -485,7 +487,7 @@ class CourseController {
   async streamVideo(req: AuthRequest, res: Response): Promise<void> {
     try {
       const userId = req.user?.id;
-      const courseId = asString(req.params.courseId);
+      const courseId = req.params.courseId;
       let videoKey = req.query.videoKey as string;
 
       console.log("streamVideo request:", { userId, courseId, videoKey });
